@@ -13,7 +13,7 @@ figma.ui.onmessage = async (msg) => {
         try {
             const data = JSON.parse(msg.json);
             await importVariables(data);
-            figma.notify('✅ Variables imported! Primitive + Semantic (Light & Dark) collections created. Colors, strings, numbers & booleans all supported.', { timeout: 5000 });
+            figma.notify('✅ Variables synced! Primitive + Semantic (Light & Dark) updated in place.', { timeout: 5000 });
             figma.closePlugin();
         } catch (err) {
             figma.ui.postMessage({ type: 'error', message: err.message });
@@ -21,7 +21,7 @@ figma.ui.onmessage = async (msg) => {
     }
 };
 
-// ─── Helpers ───────────────────────────────────────────────────────────────
+// ─── Color helpers ─────────────────────────────────────────────────────────
 
 function hexToFigmaColor(hex) {
     const r = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
@@ -54,8 +54,8 @@ const TYPE_MAP = {
     number: 'FLOAT',
     float: 'FLOAT',
     boolean: 'BOOLEAN',
-    gradient: 'GRADIENT', // Special marker for Paint Styles
-    // common Tokens Studio aliases
+    gradient: 'GRADIENT', // Special marker — handled as Paint Styles
+    // Tokens Studio aliases
     fontFamilies: 'STRING',
     fontWeights: 'STRING',
     fontSizes: 'FLOAT',
@@ -70,7 +70,6 @@ const TYPE_MAP = {
 
 /**
  * Recursively flatten a token object into { path, type, value, description }.
- * Collects ALL $type tokens (color, string, number, boolean, …).
  */
 function flattenTokens(obj, prefix) {
     const out = [];
@@ -86,37 +85,109 @@ function flattenTokens(obj, prefix) {
     return out;
 }
 
+// ─── Collection / Mode / Variable upsert helpers ────────────────────────────
+
+/**
+ * Find an existing collection by name, or create a new one.
+ * Returns { col, isNew }.
+ */
+function getOrCreateCollection(name) {
+    const existing = figma.variables.getLocalVariableCollections()
+        .find(c => c.name === name);
+    if (existing) return { col: existing, isNew: false };
+    return { col: figma.variables.createVariableCollection(name), isNew: true };
+}
+
+/**
+ * Find a mode by name inside a collection, or add it.
+ * For brand-new collections, the first mode is the default — rename it instead of adding.
+ */
+function ensureMode(col, modeName, isNewCol, isFirstMode) {
+    // Always check first: mode might already exist with the right name
+    const existing = col.modes.find(m => m.name === modeName);
+    if (existing) return existing.modeId;
+
+    // New collection: rename the default mode instead of adding
+    if (isNewCol && isFirstMode) {
+        col.renameMode(col.defaultModeId, modeName);
+        return col.defaultModeId;
+    }
+
+    return col.addMode(modeName);
+}
+
+/**
+ * Build a name → Variable map for all variables in a collection.
+ * Used to look up existing variables for in-place updates.
+ */
+function buildVarNameMap(col) {
+    const map = {};
+    for (const varId of col.variableIds) {
+        const v = figma.variables.getVariableById(varId);
+        if (v) map[v.name] = v;
+    }
+    return map;
+}
+
+/**
+ * Find an existing variable by display name in a collection, or create one.
+ * Mutates existingVarMap to register newly created variables for later lookups.
+ */
+function getOrCreateVariable(displayName, col, figmaType, existingVarMap) {
+    if (existingVarMap[displayName]) return existingVarMap[displayName];
+    const v = figma.variables.createVariable(displayName, col, figmaType);
+    existingVarMap[displayName] = v;
+    return v;
+}
+
+/**
+ * Build a name → PaintStyle map for all local paint styles.
+ */
+function buildStyleNameMap() {
+    const map = {};
+    for (const style of figma.getLocalPaintStyles()) {
+        map[style.name] = style;
+    }
+    return map;
+}
+
+/**
+ * Find an existing paint style by name, or create one.
+ */
+function getOrCreatePaintStyle(name, existingStyleMap) {
+    if (existingStyleMap[name]) return existingStyleMap[name];
+    const style = figma.createPaintStyle();
+    style.name = name;
+    existingStyleMap[name] = style;
+    return style;
+}
+
 // ─── Main import ───────────────────────────────────────────────────────────
 
 async function importVariables(data) {
-    // ── 0. Wipe existing collections and styles ──────────────────────────────
-    const existingCols = figma.variables.getLocalVariableCollections();
-    for (const col of existingCols) {
-        if (col.name === 'Primitive' || col.name === 'Semantic') col.remove();
-    }
-    const existingStyles = figma.getLocalPaintStyles();
-    for (const style of existingStyles) {
-        if (style.name.startsWith('Semantic/')) style.remove();
-    }
 
-    const primCol = figma.variables.createVariableCollection('Primitive');
-    const primLightModeId = primCol.defaultModeId;
-    primCol.renameMode(primLightModeId, 'Light');
-    const primDarkModeId = primCol.addMode('Dark');
+    // ── 1. PRIMITIVE collection (find or create, update in place) ────────────
 
-    // Flatten: paths like "primitive.color.gray.50"
+    const { col: primCol, isNew: primIsNew } = getOrCreateCollection('Primitive');
+    const primLightModeId = ensureMode(primCol, 'Light', primIsNew, true);
+    const primDarkModeId = ensureMode(primCol, 'Dark', primIsNew, false);
+
     const primTokens = flattenTokens(data['Primitive'] || {}, '');
 
-    // map: full dot-path → Figma Variable
+    // Existing variables in this collection (name → Variable)
+    const primExistingVars = buildVarNameMap(primCol);
+
+    // Path → Variable map used for alias resolution during semantic import
     const primVarMap = {};
 
     for (const token of primTokens) {
         const displayName = token.path.replace(/^primitive\./, '').replace(/\./g, '/');
         const figmaType = TYPE_MAP[token.type] || 'STRING';
-        const variable = figma.variables.createVariable(displayName, primCol, figmaType);
+
+        const variable = getOrCreateVariable(displayName, primCol, figmaType, primExistingVars);
         if (token.description) variable.description = token.description;
 
-        // Hide primitives from sharing and inspector
+        // Hide primitives: not visible in publish panel or inspector
         variable.hiddenFromPublishing = true;
         variable.scopes = [];
 
@@ -126,22 +197,26 @@ async function importVariables(data) {
             variable.setValueForMode(primDarkModeId, val);
         }
 
+        // Register under both full path and path without "primitive." prefix
         primVarMap[token.path] = variable;
         primVarMap[token.path.replace(/^primitive\./, '')] = variable;
     }
 
-    // ── 2. SEMANTIC collection (Light + Dark modes) ──────────────────────────
-    const semCol = figma.variables.createVariableCollection('Semantic');
-    const lightModeId = semCol.defaultModeId;
-    semCol.renameMode(lightModeId, 'Light');
-    const darkModeId = semCol.addMode('Dark');
+    // ── 2. SEMANTIC collection (find or create, update in place) ─────────────
+
+    const { col: semCol, isNew: semIsNew } = getOrCreateCollection('Semantic');
+    const lightModeId = ensureMode(semCol, 'Light', semIsNew, true);
+    const darkModeId = ensureMode(semCol, 'Dark', semIsNew, false);
 
     const lightTokens = flattenTokens(data['Light'] || {}, '');
     const darkTokens = flattenTokens(data['Dark'] || {}, '');
 
-    // Build dark lookup by path
+    // Build dark token lookup by path for O(1) access
     const darkByPath = {};
     for (const t of darkTokens) darkByPath[t.path] = t;
+
+    const semExistingVars = buildVarNameMap(semCol);
+    const existingStyleMap = buildStyleNameMap();
 
     function resolveAlias(rawValue) {
         if (typeof rawValue === 'string' && rawValue.startsWith('{') && rawValue.endsWith('}')) {
@@ -151,7 +226,7 @@ async function importVariables(data) {
             console.warn(`[ds skill v2] Unresolved alias: ${rawValue}`);
             return null;
         }
-        return null; // not an alias
+        return null;
     }
 
     function resolveSemanticValue(tokenType, rawValue) {
@@ -160,17 +235,14 @@ async function importVariables(data) {
         return resolvePrimitiveValue(tokenType, rawValue);
     }
 
-    function createGradientStyle(name, tokenValue, description) {
-        const style = figma.createPaintStyle();
-        style.name = `Semantic/${name}`;
+    function upsertGradientStyle(name, tokenValue, description) {
+        const style = getOrCreatePaintStyle(name, existingStyleMap);
         if (description) style.description = description;
 
-        // Parse the stops
         const stops = tokenValue.stops.map(s => {
             const hexOrAlias = s.color;
             let rgb = { r: 0, g: 0, b: 0, a: 1 };
 
-            // Resolve alias if needed
             if (hexOrAlias.startsWith('{')) {
                 const refPath = hexOrAlias.slice(1, -1).replace(/^primitive\./, '');
                 const refVar = primVarMap[refPath];
@@ -185,7 +257,6 @@ async function importVariables(data) {
             return { position: s.position, color: rgb };
         });
 
-        // Simple vertical linear gradient (90 deg in Figma space)
         style.paints = [{
             type: 'GRADIENT_LINEAR',
             gradientTransform: [
@@ -199,20 +270,23 @@ async function importVariables(data) {
     for (const lightToken of lightTokens) {
         const displayName = lightToken.path.replace(/\./g, '/');
 
-        // Handle Gradient Styles separately
+        // Gradient tokens → Paint Styles (Figma Variables don't support gradients natively)
         if (lightToken.type === 'gradient') {
-            createGradientStyle(`Light/${displayName}`, lightToken.value, lightToken.description);
-
-            const darkToken = darkByPath[lightToken.path];
-            if (darkToken) {
-                createGradientStyle(`Dark/${displayName}`, darkToken.value, darkToken.description);
+            try {
+                upsertGradientStyle(`Semantic/Light/${displayName}`, lightToken.value, lightToken.description);
+                const darkToken = darkByPath[lightToken.path];
+                if (darkToken) {
+                    upsertGradientStyle(`Semantic/Dark/${displayName}`, darkToken.value, darkToken.description);
+                }
+            } catch (e) {
+                console.warn(`[ds skill v2] Gradient failed for "${displayName}": ${e.message}`);
             }
             continue;
         }
 
-        // Standard Variables
+        // Standard tokens → Variables
         const figmaType = TYPE_MAP[lightToken.type] || 'STRING';
-        const variable = figma.variables.createVariable(displayName, semCol, figmaType);
+        const variable = getOrCreateVariable(displayName, semCol, figmaType, semExistingVars);
         if (lightToken.description) variable.description = lightToken.description;
 
         const lightVal = resolveSemanticValue(lightToken.type, lightToken.value);
@@ -226,7 +300,7 @@ async function importVariables(data) {
     }
 }
 
-// ─── Primitive value resolver (no alias lookup) ─────────────────────────────
+// ─── Primitive value resolver ────────────────────────────────────────────────
 
 function resolvePrimitiveValue(tokenType, rawValue) {
     const figmaType = TYPE_MAP[tokenType] || 'STRING';
