@@ -653,6 +653,17 @@ component.button.primary.background
 
 ---
 
+## 19.6 API vs Plugin 决策背景及 Figma Plan 限制
+
+本架构选择使用 Figma Plugin（客户端执行）而非 REST API（服务端执行）作为同步终点的核心原因在于 Figma 的生态权限限制：
+
+1. **Variables 的 API 限制**：Figma Variables 的完整读写（POST）权限仅 **Enterprise (企业版)** 独占。Organization 及以下版本无写入权限。
+2. **Styles 的 API 限制 (硬伤)**：对于无法使用 Variable 表达的视觉属性（如 Gradient 渐变、Effect 阴影等，需输出为 Paint Styles），**Figma REST API 针对所有 Plan（包括 Enterprise）均不开放写入操作**。
+3. **架构务实结论**：由于本系统的 Design Token 中包含渐变（Gradient）等必须映射为 Style 的核心属性，即使升级至 Enterprise Plan 也无法实现 100% 无人干预的跨服务端 CI/CD 自动化同步，最终依然必须依赖 Plugin API 在客户端环境（如执行 `figma.createPaintStyle()`）打通闭环。
+4. **终极定论**：当前针对所有 Token 集合采用 **Org/Pro Plan + Token importer Plugin** 的策略，是权衡灵活性与工具墙现状下，性价比最高、且唯一能完整覆盖 "Variables + Styles" 的自动化设计方案。
+
+---
+
 # 20. Source Token 保留规则
 
 `source/tokens.json` 是系统的 **Single Source of Truth**，任何时候都必须完整保留以下特性。

@@ -107,8 +107,10 @@ graph TD
 
 ## 五、原因 & 决策背景
 
-- **Figma MCP 与 API 限制**：目前 Figma MCP 存在局限性，`get variable` 无法获取全局 Variable Token 定义，仅能获取页面内 Node 应用的变量；若通过 REST API 获取则需 Enterprise 计划，从能力化构建角度考量成本效益较低。
-  - > *补充信息：Figma 官方文档说明了通过 REST API 直接写入变量（`file_variables:write` 这个高级权限）是 Figma Enterprise（企业版）的专属特权。因为账号是个人免费版或 Pro 版，所以无法获取该权限。*
+- **Figma MCP 与 API 限制**：目前 Figma MCP 存在局限性，`get variable` 无法获取全局 Variable Token 定义，仅能获取页面内 Node 应用的变量。在 Token 写入自动化方面，Figma REST API 存在根本上的分层限制：
+  - > *补充信息 1（Variables）：Figma 官方文档说明通过 REST API 直接写入变量（`file_variables:write`）是 **Enterprise（企业版）** 的专属特权。普通免费版或 Pro 版均无权限。*
+  - > *补充信息 2（Styles）：对于渐变色 (Gradient)、阴影等必须映射为 Figma Styles 的 Token，**Figma REST API 对所有版本（包括 Enterprise）均未开放写入权限**，必须依赖 Plugin API 在客户端环境执行操作。*
+  - > **核心决策定论**：即使升级至 Enterprise Plan，依然无法实现全自动化、无人工干预的服务端 Token 写入闭环（渐变等必需属性仍需插件辅助）。因此，目前的 **Org/Pro Plan + 自动化 Plugin API 脚本** 架构，是成本与体验双赢、并且唯一能打通所有 Token 产出物（Variables + Styles）的最高效可行方案。
 - **Token Schema 差异与兼容性**：Figma 原生 Schema 较为保守（如不支持 Gradient 等复杂属性），而 TokenStudio 等插件的完整 Schema 虽然强大但需要 Pro 计划。这些格式与四层语义结构及审计规范存在一定差异，因此决定采用 SSOT 结构，并在应用层进行转换（Adapter Layer）。
 
 ---
