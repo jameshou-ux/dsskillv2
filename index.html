@@ -1425,6 +1425,71 @@
             </div>
         </div>
 
+        <!-- ===================== SLIDE 14: Skill Sample ===================== -->
+        <div class="slide" data-slide="13">
+            <div class="slide-content">
+                <div class="slide-label">七 · Skill Sample</div>
+                <h1 class="slide-title">DSSkillV2 已整理为可转发的 Skill 样本</h1>
+                <p class="slide-subtitle">当前仓库已输出一个可独立分发的 skill 包，用于维护以单一 Token Source 为核心、并向 Token Studio / Figma / Runtime / AI 同步的设计系统仓库。</p>
+
+                <div class="cards-grid cols-2" style="align-items: stretch;">
+                    <div class="card gradient-purple">
+                        <div class="card-title">📦 包内容</div>
+                        <div class="card-desc" style="margin-bottom: 14px;">已生成的最小分发结构：</div>
+                        <ul style="color: var(--text-secondary); font-size: 14px; line-height: 1.85; padding-left: 20px;">
+                            <li><strong>Skill 目录：</strong><code style="color: var(--accent-cyan);">dsskillv2/</code></li>
+                            <li><strong>压缩包：</strong><code style="color: var(--accent-cyan);">dsskillv2-skill-package.zip</code></li>
+                            <li><strong>安装说明：</strong><code style="color: var(--accent-cyan);">INSTALL_DSSKILLV2.md</code></li>
+                        </ul>
+                    </div>
+
+                    <div class="card gradient-green">
+                        <div class="card-title">🧭 Skill 范围</div>
+                        <div class="card-desc" style="margin-bottom: 14px;">这个样本适用于以下类型的项目：</div>
+                        <ul style="color: var(--text-secondary); font-size: 14px; line-height: 1.85; padding-left: 20px;">
+                            <li>存在一个 canonical token source</li>
+                            <li>下游同步到 Token Studio / Figma / Runtime</li>
+                            <li>需要维护 `primitive / semantic / pattern / component` 视角</li>
+                            <li>需要用 Git 保持 token 变更可追溯</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="cards-grid cols-3" style="margin-top: 24px;">
+                    <div class="card">
+                        <div class="card-title">Step 1</div>
+                        <div class="card-desc">解压 <code style="color: var(--accent-cyan);">dsskillv2-skill-package.zip</code>。</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-title">Step 2</div>
+                        <div class="card-desc">将 <code style="color: var(--accent-cyan);">dsskillv2</code> 文件夹复制到同事本机的 skills 目录。</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-title">Step 3</div>
+                        <div class="card-desc">重启 agent session，并用 <code style="color: var(--accent-cyan);">$dsskillv2</code> 调用。</div>
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-top: 28px;">
+                    <a href="dsskillv2-skill-package.zip" download
+                        style="display: inline-flex; align-items: center; justify-content: center; min-width: 220px; padding: 14px 22px; border-radius: 999px; background: var(--text-primary); color: var(--bg-primary); text-decoration: none; font-size: 14px; font-weight: 700; letter-spacing: 0.3px; transition: transform 0.2s ease, opacity 0.2s ease;">
+                        Download Skill Package
+                    </a>
+                    <a href="INSTALL_DSSKILLV2.md"
+                        style="display: inline-flex; align-items: center; justify-content: center; min-width: 220px; padding: 14px 22px; border-radius: 999px; background: transparent; color: var(--text-primary); text-decoration: none; font-size: 14px; font-weight: 700; letter-spacing: 0.3px; border: 1px solid var(--border-subtle); transition: transform 0.2s ease, background 0.2s ease;">
+                        Read Install Notes in Repo
+                    </a>
+                </div>
+
+                <div class="risk-card decision" style="margin-top: 28px;">
+                    <div style="font-size: 16px; font-weight: 700; margin-bottom: 10px;">说明</div>
+                    <div style="font-size: 14px; color: var(--text-secondary); line-height: 1.75;">
+                        这个 skill 样本已去除对当前机器绝对路径的依赖，不要求固定仓库名；它采用“先识别 canonical source，再处理 adapter 与文档”的通用工作流。
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <!-- Navigation -->
