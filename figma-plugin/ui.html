@@ -320,6 +320,28 @@
       cursor: not-allowed;
     }
 
+    button.secondary {
+      padding: 8px 14px;
+      border-radius: 7px;
+      border: 1px solid #007FFF50;
+      background: transparent;
+      color: #60a5fa;
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    button.secondary:hover {
+      background: #007fff15;
+      border-color: #007FFF;
+    }
+
+    button.secondary:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
     .panel {
       display: none;
     }
@@ -417,7 +439,8 @@
   <div class="footer">
     <div class="status" id="status">Load a token file to get started</div>
     <button class="cancel" onclick="cancel()">Cancel</button>
-    <button class="primary" id="importBtn" disabled onclick="doImport()">⚡ Import Variables</button>
+    <button class="secondary" id="sheetBtn" onclick="doGenerateSheet()">Generate Sheet</button>
+    <button class="primary" id="importBtn" disabled onclick="doImport()">Import Variables</button>
   </div>
 
   <script>
@@ -560,6 +583,15 @@
       parent.postMessage({ pluginMessage: { type: 'import', json: currentJson } }, '*');
     }
 
+    // ── Generate Sheet (independent) ──
+    function doGenerateSheet() {
+      const btn = document.getElementById('sheetBtn');
+      btn.disabled = true;
+      btn.textContent = '⏳ Generating…';
+      setStatus('Building token sheet…', '');
+      parent.postMessage({ pluginMessage: { type: 'generate-sheet' } }, '*');
+    }
+
     function cancel() {
       parent.postMessage({ pluginMessage: { type: 'cancel' } }, '*');
     }
@@ -572,19 +604,25 @@
         showError('❌ ' + msg.message);
         const btn = document.getElementById('importBtn');
         btn.disabled = false;
-        btn.textContent = '⚡ Import Variables';
+        btn.textContent = 'Import Variables';
       }
       if (msg.type === 'import-result') {
         const btn = document.getElementById('importBtn');
         btn.disabled = false;
-        btn.textContent = '⚡ Import Variables';
+        btn.textContent = 'Import Variables';
         const unsupported = (msg.report && msg.report.unsupported) || [];
         if (unsupported.length) {
           showError('Imported with unsupported tokens: ' + unsupported.map(item => `${item.path} (${item.reason})`).join(' · '));
           setStatus(`Imported with ${unsupported.length} unsupported token issue${unsupported.length === 1 ? '' : 's'}`, 'err');
         } else {
-          setStatus('✓ Import completed', 'ok');
+          setStatus('✓ Variables imported', 'ok');
         }
+      }
+      if (msg.type === 'sheet-done') {
+        const btn = document.getElementById('sheetBtn');
+        btn.disabled = false;
+        btn.textContent = 'Generate Sheet';
+        setStatus('✓ Token sheet generated', 'ok');
       }
     };
   </script>

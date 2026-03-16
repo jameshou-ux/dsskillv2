@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+<title>Design System — Token Reference</title>
+<style>
+  :root {
+    --bg: #F9FAFB;
+    --surface: #FFFFFF;
+    --surface2: #F0F1F3;
+    --text-primary: #111D4A;
+    --text-secondary: rgba(17,29,74,0.5);
+    --text-action: #007FFF;
+    --border: rgba(17,29,74,0.08);
+    --nav-w: 240px;
+    --radius: 10px;
+  }
+  [data-theme="dark"] {
+    --bg: #1C1C1E;
+    --surface: #2C2C2E;
+    --surface2: #1C1C1E;
+    --text-primary: #D6D7E0;
+    --text-secondary: rgba(221,222,234,0.4);
+    --text-action: #066BD2;
+    --border: rgba(221,222,234,0.08);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif; background: var(--bg); color: var(--text-primary); min-height: 100vh; display: flex; transition: background .2s, color .2s; }
+
+  /* NAV */
+  nav { width: var(--nav-w); min-height: 100vh; background: var(--surface); border-right: 1px solid var(--border); padding: 24px 0; position: fixed; top: 0; left: 0; overflow-y: auto; z-index: 10; }
+  nav .logo { padding: 0 20px 20px; border-bottom: 1px solid var(--border); margin-bottom: 12px; }
+  nav .logo h1 { font-size: 14px; font-weight: 700; letter-spacing: .02em; color: var(--text-primary); }
+  nav .logo p { font-size: 11px; color: var(--text-secondary); margin-top: 2px; }
+  nav a { display: block; padding: 7px 20px; font-size: 12px; color: var(--text-secondary); text-decoration: none; border-left: 2px solid transparent; transition: all .15s; cursor: pointer; }
+  nav a:hover, nav a.active { color: var(--text-primary); border-left-color: var(--text-action); background: rgba(0,127,255,0.04); }
+  html { scroll-behavior: smooth; }
+  nav .nav-section { padding: 14px 20px 4px; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: .1em; color: var(--text-secondary); }
+  .theme-toggle { margin: 16px 20px 0; display: flex; gap: 6px; align-items: center; }
+  .theme-toggle button { flex:1; padding: 6px 8px; border: 1px solid var(--border); background: var(--surface2); color: var(--text-primary); border-radius: 6px; font-size: 11px; cursor: pointer; transition: all .15s; }
+  .theme-toggle button.active { background: var(--text-action); color: #fff; border-color: var(--text-action); }
+
+  /* MAIN */
+  main { margin-left: var(--nav-w); flex: 1; padding: 40px 48px; max-width: 1200px; }
+  .page-title { font-size: 28px; font-weight: 700; margin-bottom: 6px; }
+  .page-sub { font-size: 14px; color: var(--text-secondary); margin-bottom: 48px; }
+
+  /* SECTION */
+  .section { margin-bottom: 60px; scroll-margin-top: 24px; }
+  .section-header { display: flex; align-items: baseline; gap: 12px; margin-bottom: 4px; }
+  .section-header h2 { font-size: 20px; font-weight: 700; }
+  .section-badge { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; background: rgba(0,127,255,.1); color: var(--text-action); padding: 2px 8px; border-radius: 20px; }
+  .section-desc { font-size: 13px; color: var(--text-secondary); margin-bottom: 20px; }
+  .subsection { margin-bottom: 28px; }
+  .subsection-title { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; color: var(--text-secondary); margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+
+  /* TOKEN GRIDS */
+  .token-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; }
+  .token-grid-wide { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+  .token-grid-list { display: grid; grid-template-columns: 1fr; gap: 8px; }
+
+  /* COLOR TOKEN CARD */
+  .color-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; cursor: pointer; transition: transform .1s, box-shadow .1s; }
+  .color-card:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,.08); }
+  .color-swatch { height: 72px; width: 100%; position: relative; }
+  .color-swatch.checkerboard { background-image: linear-gradient(45deg, #ccc 25%, transparent 25%), linear-gradient(-45deg, #ccc 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ccc 75%), linear-gradient(-45deg, transparent 75%, #ccc 75%); background-size: 12px 12px; background-position: 0 0, 0 6px, 6px -6px, -6px 0px; }
+  .color-inner { position: absolute; inset: 0; }
+  .color-meta { padding: 10px 12px; }
+  .color-name { font-size: 11px; font-weight: 600; color: var(--text-primary); margin-bottom: 2px; word-break: break-all; }
+  .color-value { font-size: 10px; color: var(--text-secondary); font-family: "SF Mono", "Fira Code", monospace; }
+  .color-desc { font-size: 10px; color: var(--text-secondary); margin-top: 4px; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+
+  /* GRADIENT CARD */
+  .gradient-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; cursor: pointer; transition: transform .1s, box-shadow .1s; }
+  .gradient-card:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,.08); }
+  .gradient-swatch { height: 88px; width: 100%; }
+  .gradient-meta { padding: 10px 12px; }
+
+  /* DIMENSION TOKEN ROW */
+  .dim-row { display: flex; align-items: center; gap: 12px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; }
+  .dim-bar-wrap { flex: 0 0 auto; width: 120px; height: 8px; background: var(--surface2); border-radius: 4px; overflow: hidden; }
+  .dim-bar { height: 100%; background: var(--text-action); border-radius: 4px; }
+  .dim-info { flex: 1; }
+  .dim-name { font-size: 12px; font-weight: 600; color: var(--text-primary); }
+  .dim-value { font-size: 11px; color: var(--text-secondary); font-family: "SF Mono", "Fira Code", monospace; }
+  .dim-desc { font-size: 10px; color: var(--text-secondary); margin-top: 2px; }
+
+  /* ALIAS TOKEN */
+  .alias-row { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; display: flex; align-items: center; gap: 10px; }
+  .alias-swatch { width: 32px; height: 32px; border-radius: 6px; flex-shrink: 0; border: 1px solid var(--border); }
+  .alias-info { flex: 1; min-width: 0; }
+  .alias-name { font-size: 12px; font-weight: 600; color: var(--text-primary); }
+  .alias-ref { font-size: 10px; color: var(--text-action); font-family: "SF Mono","Fira Code",monospace; }
+  .alias-desc { font-size: 10px; color: var(--text-secondary); margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .alias-value { font-size: 10px; font-family: "SF Mono","Fira Code",monospace; color: var(--text-secondary); }
+
+  /* COMPONENT SPEC TABLE */
+  .spec-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  .spec-table th { text-align: left; padding: 8px 12px; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: var(--text-secondary); border-bottom: 1px solid var(--border); }
+  .spec-table td { padding: 8px 12px; border-bottom: 1px solid var(--border); color: var(--text-primary); vertical-align: middle; }
+  .spec-table tr:last-child td { border-bottom: none; }
+  .spec-table td:first-child { font-weight: 600; font-size: 11px; }
+  .spec-table td code { font-family: "SF Mono","Fira Code",monospace; font-size: 10px; background: var(--surface2); padding: 2px 6px; border-radius: 4px; color: var(--text-action); }
+  .spec-table .swatch-cell { display: flex; align-items: center; gap: 8px; }
+  .spec-table .mini-swatch { width: 20px; height: 20px; border-radius: 4px; border: 1px solid var(--border); flex-shrink: 0; }
+  .table-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+
+  /* COPY FEEDBACK */
+  .copied-toast { position: fixed; bottom: 24px; right: 24px; background: #111D4A; color: #fff; padding: 10px 18px; border-radius: 8px; font-size: 12px; font-weight: 600; opacity: 0; transform: translateY(8px); transition: all .2s; pointer-events: none; z-index: 100; }
+  .copied-toast.show { opacity: 1; transform: translateY(0); }
+
+  /* THEME PREVIEW */
+  .theme-preview { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px; }
+  .theme-card { border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); }
+  .theme-card-label { padding: 8px 14px; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; border-bottom: 1px solid rgba(0,0,0,.06); }
+  .theme-card-body { padding: 16px; }
+
+  @media (max-width: 900px) {
+    nav { display: none; }
+    main { margin-left: 0; padding: 24px 20px; }
+    .theme-preview { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<nav id="sidenav">
+  <div class="logo">
+    <h1>Design System</h1>
+    <p>Figma Adapter Tokens</p>
+  </div>
+  <div class="nav-section">Primitive</div>
+  <a href="#prim-color">Colors</a>
+  <a href="#prim-spacing">Spacing</a>
+  <a href="#prim-size">Size</a>
+  <div class="nav-section">Semantic</div>
+  <a href="#sem-bg">Background</a>
+  <a href="#sem-text">Text</a>
+  <a href="#sem-stroke">Stroke &amp; Border</a>
+  <a href="#sem-fill">Fill</a>
+  <a href="#sem-gradient">Gradient</a>
+  <div class="nav-section">Pattern</div>
+  <a href="#pat-surface">Surface / Card</a>
+  <a href="#pat-modal">Modal Form</a>
+  <a href="#pat-list">List</a>
+  <div class="nav-section">Component</div>
+  <a href="#comp-mobileNav">Mobile Nav</a>
+  <a href="#comp-webNav">Web Nav</a>
+  <a href="#comp-modal">Modal</a>
+  <a href="#comp-button">Button</a>
+  <a href="#comp-menu">Menu</a>
+  <a href="#comp-tokenList">Token List</a>
+  <div class="theme-toggle">
+    <button class="active" id="btn-light" onclick="setTheme('light')">☀ Light</button>
+    <button id="btn-dark" onclick="setTheme('dark')">☾ Dark</button>
+  </div>
+</nav>
+
+<main>
+  <h1 class="page-title">Design System Tokens</h1>
+  <p class="page-sub">Complete visual reference for all Figma adapter token collections. Click any token to copy its value.</p>
+
+  <!-- ═══════════════════════════════════════════ PRIMITIVE COLORS ═══ -->
+  <section class="section" id="prim-color">
+    <div class="section-header"><h2>Primitive — Colors</h2><span class="section-badge">Primitive</span></div>
+    <p class="section-desc">Raw color values. These are the source-of-truth color palette referenced by all semantic tokens.</p>
+
+    <div class="subsection">
+      <div class="subsection-title">White &amp; Black</div>
+      <div class="token-grid">
+        <div class="color-card" onclick="copy('#FFFFFF')"><div class="color-swatch"><div class="color-inner" style="background:#FFFFFF;border-bottom:1px solid #eee"></div></div><div class="color-meta"><div class="color-name">white</div><div class="color-value">#FFFFFF</div><div class="color-desc">Pure white — light mode surfaces &amp; text on dark bg</div></div></div>
+        <div class="color-card" onclick="copy('rgba(255,255,255,0.8)')"><div class="color-swatch checkerboard"><div class="color-inner" style="background:rgba(255,255,255,0.8)"></div></div><div class="color-meta"><div class="color-name">white_a80</div><div class="color-value">rgba(255,255,255,0.8)</div><div class="color-desc">Frosted glass &amp; backdrop blur — light mode</div></div></div>
+        <div class="color-card" onclick="copy('rgba(255,255,255,0.6)')"><div class="color-swatch checkerboard"><div class="color-inner" style="background:rgba(255,255,255,0.6)"></div></div><div class="color-meta"><div class="color-name">white_a60</div><div class="color-value">rgba(255,255,255,0.6)</div><div class="color-desc">Subtle glassmorphism overlay</div></div></div>
+        <div class="color-card" onclick="copy('rgba(255,255,255,0.2)')"><div class="color-swatch checkerboard"><div class="color-inner" style="background:rgba(255,255,255,0.2)"></div></div><div class="color-meta"><div class="color-name">white_a20</div><div class="color-value">rgba(255,255,255,0.2)</div><div class="color-desc">Placeholder on dark bg</div></div></div>
+        <div class="color-card" onclick="copy('rgba(255,255,255,0)')"><div class="color-swatch checkerboard"><div class="color-inner" style="background:rgba(255,255,255,0)"></div></div><div class="color-meta"><div class="color-name">white_a0</div><div class="color-value">rgba(255,255,255,0)</div><div class="color-desc">Gradient feathered edge start</div></div></div>
+        <div class="color-card" onclick="copy('#000000')"><div class="color-swatch"><div class="color-inner" style="background:#000000"></div></div><div class="color-meta"><div class="color-name">black</div><div class="color-value">#000000</div><div class="color-desc">OLED-optimized dark gradient base</div></div></div>
+        <div class="color-card" onclick="copy('rgba(0,0,0,0.8)')"><div class="color-swatch checkerboard"><div class="color-inner" style="background:rgba(0,0,0,0.8)"></div></div><div class="color-meta"><div class="color-name">black_a80</div><div class="color-value">rgba(0,0,0,0.8)</div><div class="color-desc">Dark mode modal backdrop scrim</div></div></div>
+        <div class="color-card" onclick="copy('rgba(21,20,23,0.7)')"><div class="color-swatch checkerboard"><div class="color-inner" style="background:rgba(21,20,23,0.7)"></div></div><div class="color-meta"><div class="color-name">custom_21_20_23_a70</div><div class="color-value">rgba(21,20,23,0.7)</div><div class="color-desc">Dark card glassmorphism overlay</div></div></div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">Gray</div>
+      <div class="token-grid">
+        <div class="color-card" onclick="copy('#F9FAFB')"><div class="color-swatch"><div class="color-inner" style="background:#F9FAFB"></div></div><div class="color-meta"><div class="color-name">gray.50</div><div class="color-value">#F9FAFB</div><div class="color-desc">Page bg tint &amp; modal surface — light</div></div></div>
+        <div class="color-card" onclick="copy('#F0F1F3')"><div class="color-swatch"><div class="color-inner" style="background:#F0F1F3"></div></div><div class="color-meta"><div class="color-name">gray.100</div><div class="color-value">#F0F1F3</div><div class="color-desc">Secondary surfaces &amp; chip backgrounds</div></div></div>
+        <div class="color-card" onclick="copy('#D6D7E0')"><div class="color-swatch"><div class="color-inner" style="background:#D6D7E0"></div></div><div class="color-meta"><div class="color-name">gray.300</div><div class="color-value">#D6D7E0</div><div class="color-desc">Primary body text — dark mode</div></div></div>
+        <div class="color-card" onclick="copy('#B6B7C1')"><div class="color-swatch"><div class="color-inner" style="background:#B6B7C1"></div></div><div class="color-meta"><div class="color-name">gray.500</div><div class="color-value">#B6B7C1</div><div class="color-desc">Dark-surface adapted medium gray</div></div></div>
+        <div class="color-card" onclick="copy('rgba(221,222,234,0.08)')"><div class="color-swatch checkerboard"><div class="color-inner" style="background:rgba(221,222,234,0.08)"></div></div><div class="color-meta"><div class="color-name">gray.400_a8</div><div class="color-value">rgba(221,222,234,0.08)</div><div class="color-desc">Ultra-subtle border on dark surfaces</div></div></div>
+        <div class="color-card" onclick="copy('rgba(221,222,234,0.4)')"><div class="color-swatch checkerboard"><div class="color-inner" style="background:rgba(221,222,234,0.4)"></div></div><div class="color-meta"><div class="color-name">gray.400_a40</div><div class="color-value">rgba(221,222,234,0.4)</div><div class="color-desc">Secondary text on dark</div></div></div>
+        <div class="color-card" onclick="copy('rgba(221,222,234,0.8)')"><div class="color-swatch checkerboard"><div class="color-inner" style="background:rgba(221,222,234,0.8)"></div></div><div class="color-meta"><div class="color-name">gray.400_a80</div><div class="color-value">rgba(221,222,234,0.8)</div><div class="color-desc">Primary icon &amp; secondary button — dark</div></div></div>
+        <div class="color-card" onclick="copy('#2C2C2E')"><div class="color-swatch"><div class="color-inner" style="background:#2C2C2E"></div></div><div class="color-meta"><div class="color-name">gray.800</div><div class="color-value">#2C2C2E</div><div class="color-desc">Elevated card &amp; modal — dark</div></div></div>
+        <div class="color-card" onclick="copy('#1F1F1F')"><div class="color-swatch"><div class="color-inner" style="background:#1F1F1F"></div></div><div class="color-meta"><div class="color-name">gray.850</div><div class="color-value">#1F1F1F</div><div class="color-desc">Secondary gradient stop — dark bg</div></div></div>
+        <div class="color-card" onclick="copy('#1C1C1E')"><div class="color-swatch"><div class="color-inner" style="background:#1C1C1E"></div></div><div class="color-meta"><div class="color-name">gray.900</div><div class="color-value">#1C1C1E</div><div class="color-desc">Primary dark surface — iOS black</div></div></div>
+        <div class="color-card" onclick="copy('#010306')"><div class="color-swatch"><div class="color-inner" style="background:#010306"></div></div><div class="color-meta"><div class="color-name">gray.950</div><div class="color-value">#010306</div><div class="color-desc">OLED tab bar gradient end</div></div></div>
+        <div class="color-card" onclick="copy('rgba(1,3,6,0)')"><div class="color-swatch checkerboard"><div class="color-inner" style="background:rgba(1,3,6,0)"></div></div><div class="color-meta"><div class="color-name">gray.950_a0</div><div class="color-value">rgba(1,3,6,0)</div><div class="color-desc">Dark tab bar gradient start — transparent</div></div></div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">Navy</div>
+      <div class="token-grid">
+        <div class="color-card" onclick="copy('#003160')"><div class="color-swatch"><div class="color-inner" style="background:#003160"></div></div><div class="color-meta"><div class="color-name">navy.800</div><div class="color-value">#003160</div><div class="color-desc">Hero gradient end — dark mode</div></div></div>
+        <div class="color-card" onclick="copy('#111D4A')"><div class="color-swatch"><div class="color-inner" style="background:#111D4A"></div></div><div class="color-meta"><div class="color-name">navy.900</div><div class="color-value">#111D4A</div><div class="color-desc">Primary text, icon &amp; fill — light mode</div></div></div>
+        <div class="color-card" onclick="copy('rgba(17,29,74,0.08)')"><div class="color-swatch checkerboard"><div class="color-inner" style="background:rgba(17,29,74,0.08)"></div></div><div class="color-meta"><div class="color-name">navy.900_a8</div><div class="color-value">rgba(17,29,74,0.08)</div><div class="color-desc">Ultra-subtle card border — light</div></div></div>
+        <div class="color-card" onclick="copy('rgba(17,29,74,0.2)')"><div class="color-swatch checkerboard"><div class="color-inner" style="background:rgba(17,29,74,0.2)"></div></div><div class="color-meta"><div class="color-name">navy.900_a20</div><div class="color-value">rgba(17,29,74,0.2)</div><div class="color-desc">Placeholder &amp; hint text — light</div></div></div>
+        <div class="color-card" onclick="copy('rgba(17,29,74,0.4)')"><div class="color-swatch checkerboard"><div class="color-inner" style="background:rgba(17,29,74,0.4)"></div></div><div class="color-meta"><div class="color-name">navy.900_a40</div><div class="color-value">rgba(17,29,74,0.4)</div><div class="color-desc">Secondary text &amp; captions — light</div></div></div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">Blue</div>
+      <div class="token-grid">
+        <div class="color-card" onclick="copy('#F9FDFF')"><div class="color-swatch"><div class="color-inner" style="background:#F9FDFF"></div></div><div class="color-meta"><div class="color-name">blue.50</div><div class="color-value">#F9FDFF</div><div class="color-desc">Page gradient start — light mode</div></div></div>
+        <div class="color-card" onclick="copy('#D6EBFF')"><div class="color-swatch"><div class="color-inner" style="background:#D6EBFF"></div></div><div class="color-meta"><div class="color-name">blue.100</div><div class="color-value">#D6EBFF</div><div class="color-desc">Hero gradient end — light mode</div></div></div>
+        <div class="color-card" onclick="copy('#EEF7FF')"><div class="color-swatch"><div class="color-inner" style="background:#EEF7FF"></div></div><div class="color-meta"><div class="color-name">blue.200</div><div class="color-value">#EEF7FF</div><div class="color-desc">XAUT card gradient accent</div></div></div>
+        <div class="color-card" onclick="copy('#007FFF')"><div class="color-swatch"><div class="color-inner" style="background:#007FFF"></div></div><div class="color-meta"><div class="color-name">blue.500</div><div class="color-value">#007FFF</div><div class="color-desc">Brand blue — primary action &amp; links</div></div></div>
+        <div class="color-card" onclick="copy('#066BD2')"><div class="color-swatch"><div class="color-inner" style="background:#066BD2"></div></div><div class="color-meta"><div class="color-name">blue.600</div><div class="color-value">#066BD2</div><div class="color-desc">Dark-adapted brand blue</div></div></div>
+        <div class="color-card" onclick="copy('rgba(0,127,255,0.8)')"><div class="color-swatch checkerboard"><div class="color-inner" style="background:rgba(0,127,255,0.8)"></div></div><div class="color-meta"><div class="color-name">blue.500_a80</div><div class="color-value">rgba(0,127,255,0.8)</div><div class="color-desc">Softened action color — dark mode</div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ PRIMITIVE SPACING ═══ -->
+  <section class="section" id="prim-spacing">
+    <div class="section-header"><h2>Primitive — Spacing</h2><span class="section-badge">Primitive</span></div>
+    <p class="section-desc">Fixed spacing steps used for gaps, padding, and rhythm.</p>
+    <div class="token-grid-list">
+      <div class="dim-row" onclick="copy('4px')"><div class="dim-bar-wrap"><div class="dim-bar" style="width:3%"></div></div><div class="dim-info"><div class="dim-name">spacing.4</div><div class="dim-value">4px</div><div class="dim-desc">Compact internal gaps &amp; thin offsets</div></div></div>
+      <div class="dim-row" onclick="copy('8px')"><div class="dim-bar-wrap"><div class="dim-bar" style="width:6%"></div></div><div class="dim-info"><div class="dim-name">spacing.8</div><div class="dim-value">8px</div><div class="dim-desc">Tight row gaps &amp; small vertical rhythm</div></div></div>
+      <div class="dim-row" onclick="copy('12px')"><div class="dim-bar-wrap"><div class="dim-bar" style="width:10%"></div></div><div class="dim-info"><div class="dim-name">spacing.12</div><div class="dim-value">12px</div><div class="dim-desc">Field padding &amp; compact list gaps</div></div></div>
+      <div class="dim-row" onclick="copy('16px')"><div class="dim-bar-wrap"><div class="dim-bar" style="width:13%"></div></div><div class="dim-info"><div class="dim-name">spacing.16</div><div class="dim-value">16px</div><div class="dim-desc">Standard container padding &amp; section insets</div></div></div>
+      <div class="dim-row" onclick="copy('20px')"><div class="dim-bar-wrap"><div class="dim-bar" style="width:17%"></div></div><div class="dim-info"><div class="dim-name">spacing.20</div><div class="dim-value">20px</div><div class="dim-desc">Medium content separation</div></div></div>
+      <div class="dim-row" onclick="copy('24px')"><div class="dim-bar-wrap"><div class="dim-bar" style="width:20%"></div></div><div class="dim-info"><div class="dim-name">spacing.24</div><div class="dim-value">24px</div><div class="dim-desc">Larger intra-section gaps</div></div></div>
+      <div class="dim-row" onclick="copy('32px')"><div class="dim-bar-wrap"><div class="dim-bar" style="width:27%"></div></div><div class="dim-info"><div class="dim-name">spacing.32</div><div class="dim-value">32px</div><div class="dim-desc">Section-level separation &amp; action groups</div></div></div>
+      <div class="dim-row" onclick="copy('40px')"><div class="dim-bar-wrap"><div class="dim-bar" style="width:33%"></div></div><div class="dim-info"><div class="dim-name">spacing.40</div><div class="dim-value">40px</div><div class="dim-desc">Large content separation</div></div></div>
+      <div class="dim-row" onclick="copy('42px')"><div class="dim-bar-wrap"><div class="dim-bar" style="width:35%"></div></div><div class="dim-info"><div class="dim-name">spacing.42</div><div class="dim-value">42px</div><div class="dim-desc">Observed layout offset — design system</div></div></div>
+      <div class="dim-row" onclick="copy('72px')"><div class="dim-bar-wrap"><div class="dim-bar" style="width:60%"></div></div><div class="dim-info"><div class="dim-name">spacing.72</div><div class="dim-value">72px</div><div class="dim-desc">Large top offsets — modal content separation</div></div></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ PRIMITIVE SIZE ═══ -->
+  <section class="section" id="prim-size">
+    <div class="section-header"><h2>Primitive — Size</h2><span class="section-badge">Primitive</span></div>
+    <p class="section-desc">Structural dimension tokens for component widths, heights, and icon sizes.</p>
+    <div class="token-grid-list">
+      <div class="dim-row" onclick="copy('4px')"><div class="dim-bar-wrap"><div class="dim-bar" style="width:0.3%"></div></div><div class="dim-info"><div class="dim-name">size.4</div><div class="dim-value">4px</div><div class="dim-desc">Thin controls — drag handle height</div></div></div>
+      <div class="dim-row" onclick="copy('16px')"><div class="dim-bar-wrap"><div class="dim-bar" style="width:1.3%"></div></div><div class="dim-info"><div class="dim-name">size.16</div><div class="dim-value">16px</div><div class="dim-desc">Compact icons &amp; small affordances</div></div></div>
+      <div class="dim-row" onclick="copy('20px')"><div class="dim-bar-wrap"><div class="dim-bar" style="width:1.7%"></div></div><div class="dim-info"><div class="dim-name">size.20</div><div class="dim-value">20px</div><div class="dim-desc">Small status-row icons</div></div></div>
+      <div class="dim-row" onclick="copy('24px')"><div class="dim-bar-wrap"><div class="dim-bar" style="width:2%"></div></div><div class="dim-info"><div class="dim-name">size.24</div><div class="dim-value">24px</div><div class="dim-desc">Standard compact controls &amp; icons</div></div></div>
+      <div class="dim-row" onclick="copy('32px')"><div class="dim-bar-wrap"><div class="dim-bar" style="width:2.7%"></div></div><div class="dim-info"><div class="dim-name">size.32</div><div class="dim-value">32px</div><div class="dim-desc">Compact control heights &amp; icon buttons</div></div></div>
+      <div class="dim-row" onclick="copy('36px')"><div class="dim-bar-wrap"><div class="dim-bar" style="width:3%"></div></div><div class="dim-info"><div class="dim-name">size.36</div><div class="dim-value">36px</div><div class="dim-desc">Modal drag handle width</div></div></div>
+      <div class="dim-row" onclick="copy('40px')"><div class="dim-bar-wrap"><div class="dim-bar" style="width:3.3%"></div></div><div class="dim-info"><div class="dim-name">size.40</div><div class="dim-value">40px</div><div class="dim-desc">Large list icons &amp; square affordances</div></div></div>
+      <div class="dim-row" onclick="copy('44px')"><div class="dim-bar-wrap"><div class="dim-bar" style="width:3.7%"></div></div><div class="dim-info"><div class="dim-name">size.44</div><div class="dim-value">44px</div><div class="dim-desc">Touch-friendly compact controls</div></div></div>
+      <div class="dim-row" onclick="copy('48px')"><div class="dim-bar-wrap"><div class="dim-bar" style="width:4%"></div></div><div class="dim-info"><div class="dim-name">size.48</div><div class="dim-value">48px</div><div class="dim-desc">Field heights &amp; medium touch controls</div></div></div>
+      <div class="dim-row" onclick="copy('52px')"><div class="dim-bar-wrap"><div class="dim-bar" style="width:4.3%"></div></div><div class="dim-info"><div class="dim-name">size.52</div><div class="dim-value">52px</div><div class="dim-desc">Primary button height</div></div></div>
+      <div class="dim-row" onclick="copy('56px')"><div class="dim-bar-wrap"><div class="dim-bar" style="width:4.7%"></div></div><div class="dim-info"><div class="dim-name">size.56</div><div class="dim-value">56px</div><div class="dim-desc">Secondary mobile nav height</div></div></div>
+      <div class="dim-row" onclick="copy('62px')"><div class="dim-bar-wrap"><div class="dim-bar" style="width:5.2%"></div></div><div class="dim-info"><div class="dim-name">size.62</div><div class="dim-value">62px</div><div class="dim-desc">Token list row height</div></div></div>
+      <div class="dim-row" onclick="copy('64px')"><div class="dim-bar-wrap"><div class="dim-bar" style="width:5.3%"></div></div><div class="dim-info"><div class="dim-name">size.64</div><div class="dim-value">64px</div><div class="dim-desc">Tall compact containers</div></div></div>
+      <div class="dim-row" onclick="copy('68px')"><div class="dim-bar-wrap"><div class="dim-bar" style="width:5.7%"></div></div><div class="dim-info"><div class="dim-name">size.68</div><div class="dim-value">68px</div><div class="dim-desc">Web navigation height</div></div></div>
+      <div class="dim-row" onclick="copy('90px')"><div class="dim-bar-wrap"><div class="dim-bar" style="width:7.5%"></div></div><div class="dim-info"><div class="dim-name">size.90</div><div class="dim-value">90px</div><div class="dim-desc">Primary mobile navigation height</div></div></div>
+      <div class="dim-row" onclick="copy('343px')"><div class="dim-bar-wrap"><div class="dim-bar" style="width:28.6%"></div></div><div class="dim-info"><div class="dim-name">size.343</div><div class="dim-value">343px</div><div class="dim-desc">Compact container width</div></div></div>
+      <div class="dim-row" onclick="copy('356px')"><div class="dim-bar-wrap"><div class="dim-bar" style="width:29.7%"></div></div><div class="dim-info"><div class="dim-name">size.356</div><div class="dim-value">356px</div><div class="dim-desc">Canonical container width</div></div></div>
+      <div class="dim-row" onclick="copy('375px')"><div class="dim-bar-wrap"><div class="dim-bar" style="width:31.3%"></div></div><div class="dim-info"><div class="dim-name">size.375</div><div class="dim-value">375px</div><div class="dim-desc">Canonical mobile frame width</div></div></div>
+      <div class="dim-row" onclick="copy('1200px')"><div class="dim-bar-wrap"><div class="dim-bar" style="width:100%"></div></div><div class="dim-info"><div class="dim-name">size.1200</div><div class="dim-value">1200px</div><div class="dim-desc">Wide web container width</div></div></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ SEMANTIC BACKGROUND ═══ -->
+  <section class="section" id="sem-bg">
+    <div class="section-header"><h2>Semantic — Background</h2><span class="section-badge">Semantic</span></div>
+    <p class="section-desc">Surface background colors. Adapts across light and dark mode.</p>
+    <div class="theme-preview">
+      <div class="theme-card">
+        <div class="theme-card-label" style="background:#F9FAFB;color:#111D4A;">☀ Light Mode</div>
+        <div class="theme-card-body" style="background:#F9FAFB;">
+          <div class="token-grid-wide">
+            <div class="alias-row" onclick="copy('#FFFFFF')"><div class="alias-swatch" style="background:#FFFFFF;border:1px solid #eee"></div><div class="alias-info"><div class="alias-name">background.general</div><div class="alias-ref">{primitive.color.white}</div><div class="alias-desc">Primary app background</div></div><div class="alias-value">#FFFFFF</div></div>
+            <div class="alias-row" onclick="copy('#FFFFFF')"><div class="alias-swatch" style="background:#FFFFFF;border:1px solid #eee"></div><div class="alias-info"><div class="alias-name">background.card</div><div class="alias-ref">{primitive.color.white}</div><div class="alias-desc">Card surface background</div></div><div class="alias-value">#FFFFFF</div></div>
+            <div class="alias-row" onclick="copy('#F9FAFB')"><div class="alias-swatch" style="background:#F9FAFB;border:1px solid #eee"></div><div class="alias-info"><div class="alias-name">background.modal</div><div class="alias-ref">{primitive.color.gray.50}</div><div class="alias-desc">Modal container</div></div><div class="alias-value">#F9FAFB</div></div>
+            <div class="alias-row" onclick="copy('#FFFFFF')"><div class="alias-swatch" style="background:#FFFFFF;border:1px solid #eee"></div><div class="alias-info"><div class="alias-name">background.modal_section</div><div class="alias-ref">{primitive.color.white}</div><div class="alias-desc">Modal section panel</div></div><div class="alias-value">#FFFFFF</div></div>
+            <div class="alias-row" onclick="copy('#F0F1F3')"><div class="alias-swatch" style="background:#F0F1F3"></div><div class="alias-info"><div class="alias-name">background.modal_section_inner</div><div class="alias-ref">{primitive.color.gray.100}</div><div class="alias-desc">Inner modal subsection</div></div><div class="alias-value">#F0F1F3</div></div>
+            <div class="alias-row" onclick="copy('rgba(255,255,255,0.8)')"><div class="alias-swatch checkerboard" style="position:relative"><div style="position:absolute;inset:0;background:rgba(255,255,255,0.8);border-radius:5px"></div></div><div class="alias-info"><div class="alias-name">background.backdrop</div><div class="alias-ref">{primitive.color.white_a80}</div><div class="alias-desc">Modal backdrop blur</div></div><div class="alias-value">rgba(255,255,255,0.8)</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="theme-card">
+        <div class="theme-card-label" style="background:#1C1C1E;color:#D6D7E0;">☾ Dark Mode</div>
+        <div class="theme-card-body" style="background:#1C1C1E;">
+          <div class="token-grid-wide">
+            <div class="alias-row" style="background:#2C2C2E;border-color:rgba(221,222,234,0.08)" onclick="copy('#1C1C1E')"><div class="alias-swatch" style="background:#1C1C1E"></div><div class="alias-info"><div class="alias-name" style="color:#D6D7E0">background.general</div><div class="alias-ref">{primitive.color.gray.900}</div><div class="alias-desc" style="color:rgba(214,215,224,0.5)">Primary app bg dark</div></div><div class="alias-value" style="color:rgba(214,215,224,0.5)">#1C1C1E</div></div>
+            <div class="alias-row" style="background:#2C2C2E;border-color:rgba(221,222,234,0.08)" onclick="copy('#1C1C1E')"><div class="alias-swatch" style="background:#1C1C1E"></div><div class="alias-info"><div class="alias-name" style="color:#D6D7E0">background.card</div><div class="alias-ref">{primitive.color.gray.900}</div><div class="alias-desc" style="color:rgba(214,215,224,0.5)">Card surface dark</div></div><div class="alias-value" style="color:rgba(214,215,224,0.5)">#1C1C1E</div></div>
+            <div class="alias-row" style="background:#2C2C2E;border-color:rgba(221,222,234,0.08)" onclick="copy('#1C1C1E')"><div class="alias-swatch" style="background:#1C1C1E"></div><div class="alias-info"><div class="alias-name" style="color:#D6D7E0">background.modal</div><div class="alias-ref">{primitive.color.gray.900}</div><div class="alias-desc" style="color:rgba(214,215,224,0.5)">Modal container dark</div></div><div class="alias-value" style="color:rgba(214,215,224,0.5)">#1C1C1E</div></div>
+            <div class="alias-row" style="background:#2C2C2E;border-color:rgba(221,222,234,0.08)" onclick="copy('#2C2C2E')"><div class="alias-swatch" style="background:#2C2C2E;border-color:rgba(221,222,234,0.12)"></div><div class="alias-info"><div class="alias-name" style="color:#D6D7E0">background.modal_section</div><div class="alias-ref">{primitive.color.gray.800}</div><div class="alias-desc" style="color:rgba(214,215,224,0.5)">Modal section dark</div></div><div class="alias-value" style="color:rgba(214,215,224,0.5)">#2C2C2E</div></div>
+            <div class="alias-row" style="background:#2C2C2E;border-color:rgba(221,222,234,0.08)" onclick="copy('#1C1C1E')"><div class="alias-swatch" style="background:#1C1C1E"></div><div class="alias-info"><div class="alias-name" style="color:#D6D7E0">background.modal_section_inner</div><div class="alias-ref">{primitive.color.gray.900}</div><div class="alias-desc" style="color:rgba(214,215,224,0.5)">Inner section dark</div></div><div class="alias-value" style="color:rgba(214,215,224,0.5)">#1C1C1E</div></div>
+            <div class="alias-row" style="background:#2C2C2E;border-color:rgba(221,222,234,0.08)" onclick="copy('rgba(0,0,0,0.8)')"><div class="alias-swatch checkerboard" style="position:relative"><div style="position:absolute;inset:0;background:rgba(0,0,0,0.8);border-radius:5px"></div></div><div class="alias-info"><div class="alias-name" style="color:#D6D7E0">background.backdrop</div><div class="alias-ref">{primitive.color.black_a80}</div><div class="alias-desc" style="color:rgba(214,215,224,0.5)">Modal backdrop dark</div></div><div class="alias-value" style="color:rgba(214,215,224,0.5)">rgba(0,0,0,0.8)</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ SEMANTIC TEXT ═══ -->
+  <section class="section" id="sem-text">
+    <div class="section-header"><h2>Semantic — Text</h2><span class="section-badge">Semantic</span></div>
+    <p class="section-desc">Text color tokens used for headings, body, captions, and interactive labels.</p>
+    <div class="theme-preview">
+      <div class="theme-card">
+        <div class="theme-card-label" style="background:#F9FAFB;color:#111D4A;">☀ Light Mode</div>
+        <div class="theme-card-body" style="background:#FFFFFF;">
+          <div class="table-wrap">
+            <table class="spec-table">
+              <thead><tr><th>Token</th><th>Value</th><th>Sample</th><th>Usage</th></tr></thead>
+              <tbody>
+                <tr><td>text.core</td><td><code>#111D4A</code></td><td><span style="font-size:16px;font-weight:700;color:#111D4A">Aa</span></td><td>Balance amounts, page headers</td></tr>
+                <tr><td>text.primary</td><td><code>#111D4A</code></td><td><span style="font-size:14px;font-weight:600;color:#111D4A">Aa</span></td><td>Section titles &amp; main labels</td></tr>
+                <tr><td>text.secondary</td><td><code>rgba(17,29,74,0.4)</code></td><td><span style="font-size:13px;color:rgba(17,29,74,0.4)">Aa</span></td><td>Captions, metadata, sublabels</td></tr>
+                <tr><td>text.action</td><td><code>#007FFF</code></td><td><span style="font-size:13px;color:#007FFF">Aa</span></td><td>Links, CTAs, affordance</td></tr>
+                <tr><td>text.placeholder</td><td><code>rgba(17,29,74,0.2)</code></td><td><span style="font-size:13px;color:rgba(17,29,74,0.2)">Aa</span></td><td>Placeholder &amp; empty state hints</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="theme-card">
+        <div class="theme-card-label" style="background:#1C1C1E;color:#D6D7E0;">☾ Dark Mode</div>
+        <div class="theme-card-body" style="background:#1C1C1E;">
+          <div style="border:1px solid rgba(221,222,234,0.08);border-radius:var(--radius);overflow:hidden">
+            <table class="spec-table" style="background:#2C2C2E">
+              <thead><tr><th>Token</th><th>Value</th><th>Sample</th><th>Usage</th></tr></thead>
+              <tbody>
+                <tr><td style="color:#D6D7E0">text.core</td><td><code>#FFFFFF</code></td><td><span style="font-size:16px;font-weight:700;color:#FFFFFF">Aa</span></td><td style="color:rgba(214,215,224,0.5)">Core balance / hero</td></tr>
+                <tr><td style="color:#D6D7E0">text.primary</td><td><code>#D6D7E0</code></td><td><span style="font-size:14px;font-weight:600;color:#D6D7E0">Aa</span></td><td style="color:rgba(214,215,224,0.5)">Section titles</td></tr>
+                <tr><td style="color:#D6D7E0">text.secondary</td><td><code>rgba(221,222,234,0.4)</code></td><td><span style="font-size:13px;color:rgba(221,222,234,0.4)">Aa</span></td><td style="color:rgba(214,215,224,0.5)">Captions &amp; meta</td></tr>
+                <tr><td style="color:#D6D7E0">text.action</td><td><code>#066BD2</code></td><td><span style="font-size:13px;color:#066BD2">Aa</span></td><td style="color:rgba(214,215,224,0.5)">Links &amp; CTAs</td></tr>
+                <tr><td style="color:#D6D7E0">text.placeholder</td><td><code>rgba(255,255,255,0.2)</code></td><td><span style="font-size:13px;color:rgba(255,255,255,0.2)">Aa</span></td><td style="color:rgba(214,215,224,0.5)">Placeholder hints</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ STROKE & BORDER ═══ -->
+  <section class="section" id="sem-stroke">
+    <div class="section-header"><h2>Semantic — Stroke &amp; Border</h2><span class="section-badge">Semantic</span></div>
+    <p class="section-desc">Icon stroke and border/divider color tokens.</p>
+    <div class="token-grid-wide">
+      <div class="color-card" onclick="copy('#111D4A')"><div class="color-swatch"><div class="color-inner" style="background:#111D4A"></div></div><div class="color-meta"><div class="color-name">stroke.icon_primary (light)</div><div class="color-value">#111D4A</div><div class="color-desc">Strong, legible icons — light mode</div></div></div>
+      <div class="color-card" onclick="copy('rgba(17,29,74,0.4)')"><div class="color-swatch checkerboard"><div class="color-inner" style="background:rgba(17,29,74,0.4)"></div></div><div class="color-meta"><div class="color-name">stroke.icon_secondary (light)</div><div class="color-value">rgba(17,29,74,0.4)</div><div class="color-desc">De-emphasized icons — light mode</div></div></div>
+      <div class="color-card" onclick="copy('rgba(17,29,74,0.08)')"><div class="color-swatch checkerboard"><div class="color-inner" style="background:rgba(17,29,74,0.08)"></div></div><div class="color-meta"><div class="color-name">border.default (light)</div><div class="color-value">rgba(17,29,74,0.08)</div><div class="color-desc">Card &amp; list row separator</div></div></div>
+      <div class="color-card" onclick="copy('rgba(221,222,234,0.8)')"><div class="color-swatch" style="background:#1C1C1E"><div class="color-inner" style="background:rgba(221,222,234,0.8)"></div></div><div class="color-meta"><div class="color-name">stroke.icon_primary (dark)</div><div class="color-value">rgba(221,222,234,0.8)</div><div class="color-desc">Primary icon stroke — dark mode</div></div></div>
+      <div class="color-card" onclick="copy('rgba(221,222,234,0.4)')"><div class="color-swatch" style="background:#1C1C1E"><div class="color-inner" style="background:rgba(221,222,234,0.4)"></div></div><div class="color-meta"><div class="color-name">stroke.icon_secondary (dark)</div><div class="color-value">rgba(221,222,234,0.4)</div><div class="color-desc">Secondary icon stroke — dark mode</div></div></div>
+      <div class="color-card" onclick="copy('rgba(221,222,234,0.08)')"><div class="color-swatch" style="background:#1C1C1E"><div class="color-inner" style="background:rgba(221,222,234,0.08)"></div></div><div class="color-meta"><div class="color-name">border.default (dark)</div><div class="color-value">rgba(221,222,234,0.08)</div><div class="color-desc">Ultra-subtle divider — dark mode</div></div></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ SEMANTIC FILL ═══ -->
+  <section class="section" id="sem-fill">
+    <div class="section-header"><h2>Semantic — Fill</h2><span class="section-badge">Semantic</span></div>
+    <p class="section-desc">Fill colors for icon chips, buttons, logo, and brand color slots.</p>
+    <div class="subsection">
+      <div class="subsection-title">Light Mode</div>
+      <div class="token-grid">
+        <div class="color-card" onclick="copy('#F0F1F3')"><div class="color-swatch"><div class="color-inner" style="background:#F0F1F3"></div></div><div class="color-meta"><div class="color-name">fill.icon_chip</div><div class="color-value">#F0F1F3</div><div class="color-desc">Icon chip background</div></div></div>
+        <div class="color-card" onclick="copy('#111D4A')"><div class="color-swatch"><div class="color-inner" style="background:#111D4A"></div></div><div class="color-meta"><div class="color-name">fill.secondary</div><div class="color-value">#111D4A</div><div class="color-desc">Secondary buttons &amp; badge bg</div></div></div>
+        <div class="color-card" onclick="copy('#FFFFFF')"><div class="color-swatch"><div class="color-inner" style="background:#FFFFFF;border-bottom:1px solid #eee"></div></div><div class="color-meta"><div class="color-name">fill.tertiary</div><div class="color-value">#FFFFFF</div><div class="color-desc">Ghost &amp; outlined elements</div></div></div>
+        <div class="color-card" onclick="copy('#111D4A')"><div class="color-swatch"><div class="color-inner" style="background:#111D4A"></div></div><div class="color-meta"><div class="color-name">fill.logo</div><div class="color-value">#111D4A</div><div class="color-desc">Logo fill — light mode</div></div></div>
+        <div class="color-card" onclick="copy('#FFFFFF')"><div class="color-swatch"><div class="color-inner" style="background:#FFFFFF;border-bottom:1px solid #eee"></div></div><div class="color-meta"><div class="color-name">fill.color_1</div><div class="color-value">#FFFFFF</div><div class="color-desc">Brand color fill slot 1</div></div></div>
+        <div class="color-card" onclick="copy('#FFFFFF')"><div class="color-swatch"><div class="color-inner" style="background:#FFFFFF;border-bottom:1px solid #eee"></div></div><div class="color-meta"><div class="color-name">fill.color_2</div><div class="color-value">#FFFFFF</div><div class="color-desc">Brand color fill slot 2</div></div></div>
+      </div>
+    </div>
+    <div class="subsection">
+      <div class="subsection-title">Dark Mode</div>
+      <div class="token-grid">
+        <div class="color-card" onclick="copy('#2C2C2E')"><div class="color-swatch"><div class="color-inner" style="background:#2C2C2E"></div></div><div class="color-meta"><div class="color-name">fill.icon_chip</div><div class="color-value">#2C2C2E</div><div class="color-desc">Icon chip background — dark</div></div></div>
+        <div class="color-card" onclick="copy('#B6B7C1')"><div class="color-swatch"><div class="color-inner" style="background:#B6B7C1"></div></div><div class="color-meta"><div class="color-name">fill.secondary</div><div class="color-value">#B6B7C1</div><div class="color-desc">Secondary buttons — dark</div></div></div>
+        <div class="color-card" onclick="copy('#1C1C1E')"><div class="color-swatch"><div class="color-inner" style="background:#1C1C1E"></div></div><div class="color-meta"><div class="color-name">fill.tertiary</div><div class="color-value">#1C1C1E</div><div class="color-desc">Ghost elements — dark</div></div></div>
+        <div class="color-card" onclick="copy('#FFFFFF')"><div class="color-swatch"><div class="color-inner" style="background:#1C1C1E;border-bottom:1px solid #333"><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-weight:700;color:#FFFFFF;font-size:14px">LOGO</div></div></div><div class="color-meta"><div class="color-name">fill.logo</div><div class="color-value">#FFFFFF</div><div class="color-desc">Logo fill — dark mode</div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ SEMANTIC GRADIENT ═══ -->
+  <section class="section" id="sem-gradient">
+    <div class="section-header"><h2>Semantic — Gradient</h2><span class="section-badge">Semantic</span></div>
+    <p class="section-desc">Linear gradient tokens for page backgrounds, hero sections, and bar backdrops.</p>
+    <div class="subsection">
+      <div class="subsection-title">Light Mode</div>
+      <div class="token-grid-wide">
+        <div class="gradient-card" onclick="copy('linear-gradient(180deg, #F9FDFF 0%, #F0F1F3 100%)')">
+          <div class="gradient-swatch" style="background:linear-gradient(180deg,#F9FDFF 0%,#F0F1F3 100%)"></div>
+          <div class="gradient-meta"><div class="color-name">gradient.general</div><div class="color-value">↓ #F9FDFF → #F0F1F3</div><div class="color-desc">General page background</div></div>
+        </div>
+        <div class="gradient-card" onclick="copy('linear-gradient(180deg, #F9FDFF 0%, #D6EBFF 100%)')">
+          <div class="gradient-swatch" style="background:linear-gradient(180deg,#F9FDFF 0%,#D6EBFF 100%)"></div>
+          <div class="gradient-meta"><div class="color-name">gradient.main</div><div class="color-value">↓ #F9FDFF → #D6EBFF</div><div class="color-desc">Main hero gradient</div></div>
+        </div>
+        <div class="gradient-card" onclick="copy('linear-gradient(180deg, rgba(255,255,255,0.6) 0%, #EEF7FF 100%)')">
+          <div class="gradient-swatch" style="background:linear-gradient(180deg,rgba(255,255,255,0.6) 0%,#EEF7FF 100%)"></div>
+          <div class="gradient-meta"><div class="color-name">gradient.xaut_card</div><div class="color-value">↓ white_a60 → blue.200</div><div class="color-desc">XAUT card glassmorphism</div></div>
+        </div>
+        <div class="gradient-card" onclick="copy('linear-gradient(180deg, rgba(255,255,255,0) 0%, #FFFFFF 100%)')">
+          <div class="gradient-swatch checkerboard" style="position:relative"><div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,0) 0%,#FFFFFF 100%)"></div></div>
+          <div class="gradient-meta"><div class="color-name">gradient.bar_backdrop</div><div class="color-value">↓ white_a0 → white</div><div class="color-desc">Tab bar feathered edge</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="subsection">
+      <div class="subsection-title">Dark Mode</div>
+      <div class="token-grid-wide">
+        <div class="gradient-card" onclick="copy('linear-gradient(180deg, #000000 0%, #1F1F1F 100%)')">
+          <div class="gradient-swatch" style="background:linear-gradient(180deg,#000000 0%,#1F1F1F 100%)"></div>
+          <div class="gradient-meta"><div class="color-name">gradient.general</div><div class="color-value">↓ #000000 → #1F1F1F</div><div class="color-desc">Dark page background</div></div>
+        </div>
+        <div class="gradient-card" onclick="copy('linear-gradient(180deg, #000000 0%, #003160 100%)')">
+          <div class="gradient-swatch" style="background:linear-gradient(180deg,#000000 0%,#003160 100%)"></div>
+          <div class="gradient-meta"><div class="color-name">gradient.main</div><div class="color-value">↓ #000000 → #003160</div><div class="color-desc">Dark hero gradient — branded</div></div>
+        </div>
+        <div class="gradient-card" onclick="copy('linear-gradient(180deg, rgba(21,20,23,0.7) 0%, #2C2C2E 100%)')">
+          <div class="gradient-swatch" style="background:linear-gradient(180deg,rgba(21,20,23,0.7) 0%,#2C2C2E 100%)"></div>
+          <div class="gradient-meta"><div class="color-name">gradient.xaut_card</div><div class="color-value">↓ custom_a70 → gray.800</div><div class="color-desc">Dark XAUT card</div></div>
+        </div>
+        <div class="gradient-card" onclick="copy('linear-gradient(180deg, rgba(1,3,6,0) 0%, #010306 100%)')">
+          <div class="gradient-swatch" style="background:linear-gradient(180deg,rgba(1,3,6,0) 0%,#010306 100%)"></div>
+          <div class="gradient-meta"><div class="color-name">gradient.bar_backdrop</div><div class="color-value">↓ gray.950_a0 → #010306</div><div class="color-desc">Dark tab bar backdrop</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ PATTERN SURFACE ═══ -->
+  <section class="section" id="pat-surface">
+    <div class="section-header"><h2>Pattern — Surface / Card</h2><span class="section-badge">Pattern</span></div>
+    <p class="section-desc">Reusable card surface token aliases. Reference semantic tokens for portability across themes.</p>
+    <div class="table-wrap">
+      <table class="spec-table">
+        <thead><tr><th>Token</th><th>Light Value</th><th>Source Ref</th><th>Type</th><th>Usage</th></tr></thead>
+        <tbody>
+          <tr><td>surface.card.background</td><td><div class="swatch-cell"><div class="mini-swatch" style="background:#FFFFFF;border:1px solid #eee"></div><code>#FFFFFF</code></div></td><td><code>{semantic/light.background.card}</code></td><td>color</td><td>Card container fill</td></tr>
+          <tr><td>surface.card.title</td><td><div class="swatch-cell"><div class="mini-swatch" style="background:#111D4A"></div><code>#111D4A</code></div></td><td><code>{semantic/light.text.primary}</code></td><td>color</td><td>Card heading text</td></tr>
+          <tr><td>surface.card.body</td><td><div class="swatch-cell"><div class="mini-swatch checkerboard" style="position:relative"><div style="position:absolute;inset:0;background:rgba(17,29,74,0.4);border-radius:3px"></div></div><code>rgba(17,29,74,0.4)</code></div></td><td><code>{semantic/light.text.secondary}</code></td><td>color</td><td>Card body text</td></tr>
+          <tr><td>surface.card.padding</td><td><code>16px</code></td><td><code>{primitive.spacing.16}</code></td><td>dimension</td><td>Internal card padding</td></tr>
+          <tr><td>surface.card.radius</td><td><code>[MISSING]</code></td><td><code>{primitive.radius.md}</code></td><td>string</td><td>Card corner radius</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ PATTERN MODAL ═══ -->
+  <section class="section" id="pat-modal">
+    <div class="section-header"><h2>Pattern — Modal Form</h2><span class="section-badge">Pattern</span></div>
+    <p class="section-desc">Tokens for modal form layout: field sizing, gaps, and text colors.</p>
+    <div class="table-wrap">
+      <table class="spec-table">
+        <thead><tr><th>Token</th><th>Light Value</th><th>Source Ref</th><th>Type</th></tr></thead>
+        <tbody>
+          <tr><td>modal.form.title</td><td><div class="swatch-cell"><div class="mini-swatch" style="background:#111D4A"></div><code>#111D4A</code></div></td><td><code>{semantic/light.text.primary}</code></td><td>color</td></tr>
+          <tr><td>modal.form.body</td><td><div class="swatch-cell"><div class="mini-swatch checkerboard" style="position:relative"><div style="position:absolute;inset:0;background:rgba(17,29,74,0.4);border-radius:3px"></div></div><code>rgba(17,29,74,0.4)</code></div></td><td><code>{semantic/light.text.secondary}</code></td><td>color</td></tr>
+          <tr><td>modal.form.fieldBackground</td><td><div class="swatch-cell"><div class="mini-swatch" style="background:#FFFFFF;border:1px solid #eee"></div><code>#FFFFFF</code></div></td><td><code>{semantic/light.background.modal_section}</code></td><td>color</td></tr>
+          <tr><td>modal.form.fieldPaddingX</td><td><code>12px</code></td><td><code>{primitive.spacing.12}</code></td><td>dimension</td></tr>
+          <tr><td>modal.form.fieldHeight</td><td><code>48px</code></td><td><code>{primitive.size.48}</code></td><td>dimension</td></tr>
+          <tr><td>modal.form.sectionGap</td><td><code>32px</code></td><td><code>{primitive.spacing.32}</code></td><td>dimension</td></tr>
+          <tr><td>modal.form.actionGap</td><td><code>32px</code></td><td><code>{primitive.spacing.32}</code></td><td>dimension</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ PATTERN LIST ═══ -->
+  <section class="section" id="pat-list">
+    <div class="section-header"><h2>Pattern — List</h2><span class="section-badge">Pattern</span></div>
+    <p class="section-desc">Token list item and status row layout tokens.</p>
+    <div class="subsection">
+      <div class="subsection-title">Token Item</div>
+      <div class="table-wrap">
+        <table class="spec-table">
+          <thead><tr><th>Token</th><th>Value</th><th>Source Ref</th><th>Type</th></tr></thead>
+          <tbody>
+            <tr><td>list.tokenItem.text</td><td><div class="swatch-cell"><div class="mini-swatch" style="background:#111D4A"></div><code>#111D4A</code></div></td><td><code>{semantic/light.text.primary}</code></td><td>color</td></tr>
+            <tr><td>list.tokenItem.subtext</td><td><div class="swatch-cell"><div class="mini-swatch checkerboard" style="position:relative"><div style="position:absolute;inset:0;background:rgba(17,29,74,0.4);border-radius:3px"></div></div><code>rgba(17,29,74,0.4)</code></div></td><td><code>{semantic/light.text.secondary}</code></td><td>color</td></tr>
+            <tr><td>list.tokenItem.iconSize</td><td><code>40px</code></td><td><code>{primitive.size.40}</code></td><td>dimension</td></tr>
+            <tr><td>list.tokenItem.gap</td><td><code>12px</code></td><td><code>{primitive.spacing.12}</code></td><td>dimension</td></tr>
+            <tr><td>list.tokenItem.height</td><td><code>62px</code></td><td><code>{primitive.size.62}</code></td><td>dimension</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="subsection">
+      <div class="subsection-title">Status Row</div>
+      <div class="table-wrap">
+        <table class="spec-table">
+          <thead><tr><th>Token</th><th>Value</th><th>Source Ref</th><th>Type</th></tr></thead>
+          <tbody>
+            <tr><td>list.statusRow.title</td><td><div class="swatch-cell"><div class="mini-swatch" style="background:#111D4A"></div><code>#111D4A</code></div></td><td><code>{semantic/light.text.primary}</code></td><td>color</td></tr>
+            <tr><td>list.statusRow.meta</td><td><div class="swatch-cell"><div class="mini-swatch checkerboard" style="position:relative"><div style="position:absolute;inset:0;background:rgba(17,29,74,0.4);border-radius:3px"></div></div><code>rgba(17,29,74,0.4)</code></div></td><td><code>{semantic/light.text.secondary}</code></td><td>color</td></tr>
+            <tr><td>list.statusRow.iconSize</td><td><code>20px</code></td><td><code>{primitive.size.20}</code></td><td>dimension</td></tr>
+            <tr><td>list.statusRow.rowGap</td><td><code>8px</code></td><td><code>{primitive.spacing.8}</code></td><td>dimension</td></tr>
+            <tr><td>list.statusRow.paddingY</td><td><code>16px</code></td><td><code>{primitive.spacing.16}</code></td><td>dimension</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ COMPONENT MOBILE NAV ═══ -->
+  <section class="section" id="comp-mobileNav">
+    <div class="section-header"><h2>Component — Mobile Nav</h2><span class="section-badge">Component</span></div>
+    <p class="section-desc">Primary and secondary mobile navigation bar tokens.</p>
+    <!-- Preview -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px">
+      <div>
+        <div style="font-size:11px;font-weight:600;color:var(--text-secondary);margin-bottom:8px;text-transform:uppercase;letter-spacing:.06em">Primary Nav (90px)</div>
+        <div style="height:90px;background:#FFFFFF;border:1px solid rgba(17,29,74,0.08);border-radius:10px;display:flex;align-items:center;padding:0 16px;gap:12px;box-shadow:0 2px 8px rgba(17,29,74,0.06)">
+          <div style="width:32px;height:32px;border-radius:8px;background:#F0F1F3;display:flex;align-items:center;justify-content:center"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="2" width="5" height="5" rx="1" fill="#111D4A"/><rect x="9" y="2" width="5" height="5" rx="1" fill="#111D4A"/><rect x="2" y="9" width="5" height="5" rx="1" fill="#111D4A"/><rect x="9" y="9" width="5" height="5" rx="1" fill="#111D4A"/></svg></div>
+          <span style="font-size:15px;font-weight:600;color:#111D4A">Portfolio</span>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:11px;font-weight:600;color:var(--text-secondary);margin-bottom:8px;text-transform:uppercase;letter-spacing:.06em">Secondary Nav (56px)</div>
+        <div style="height:56px;background:#FFFFFF;border:1px solid rgba(17,29,74,0.08);border-radius:10px;display:flex;align-items:center;padding:0 16px;gap:12px;box-shadow:0 2px 8px rgba(17,29,74,0.06)">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2L2 8v10h6v-6h4v6h6V8L10 2z" fill="#111D4A"/></svg>
+          <span style="font-size:14px;font-weight:600;color:#111D4A">Back</span>
+        </div>
+      </div>
+    </div>
+    <div class="table-wrap">
+      <table class="spec-table">
+        <thead><tr><th>Token</th><th>Value</th><th>Source Ref</th><th>Type</th></tr></thead>
+        <tbody>
+          <tr><td>mobileNav.primary.default.height</td><td><code>90px</code></td><td><code>{primitive.size.90}</code></td><td>dimension</td></tr>
+          <tr><td>mobileNav.primary.default.paddingX</td><td><code>16px</code></td><td><code>{primitive.spacing.16}</code></td><td>dimension</td></tr>
+          <tr><td>mobileNav.primary.default.title</td><td><div class="swatch-cell"><div class="mini-swatch" style="background:#111D4A"></div><code>#111D4A</code></div></td><td><code>{semantic/light.text.primary}</code></td><td>color</td></tr>
+          <tr><td>mobileNav.primary.default.icon</td><td><div class="swatch-cell"><div class="mini-swatch" style="background:#111D4A"></div><code>#111D4A</code></div></td><td><code>{semantic/light.stroke.icon_primary}</code></td><td>color</td></tr>
+          <tr><td>mobileNav.secondary.default.height</td><td><code>56px</code></td><td><code>{primitive.size.56}</code></td><td>dimension</td></tr>
+          <tr><td>mobileNav.secondary.default.paddingX</td><td><code>16px</code></td><td><code>{primitive.spacing.16}</code></td><td>dimension</td></tr>
+          <tr><td>mobileNav.secondary.default.title</td><td><div class="swatch-cell"><div class="mini-swatch" style="background:#111D4A"></div><code>#111D4A</code></div></td><td><code>{semantic/light.text.primary}</code></td><td>color</td></tr>
+          <tr><td>mobileNav.secondary.default.icon</td><td><div class="swatch-cell"><div class="mini-swatch" style="background:#111D4A"></div><code>#111D4A</code></div></td><td><code>{semantic/light.stroke.icon_primary}</code></td><td>color</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ COMPONENT WEB NAV ═══ -->
+  <section class="section" id="comp-webNav">
+    <div class="section-header"><h2>Component — Web Nav</h2><span class="section-badge">Component</span></div>
+    <p class="section-desc">Web navigation bar tokens (signed-in and signed-out states, 68px height).</p>
+    <div style="height:68px;background:#FFFFFF;border:1px solid rgba(17,29,74,0.08);border-radius:10px;display:flex;align-items:center;padding:0 20px;justify-content:space-between;margin-bottom:20px;box-shadow:0 1px 4px rgba(17,29,74,0.06)">
+      <div style="display:flex;align-items:center;gap:8px"><div style="width:28px;height:28px;background:#111D4A;border-radius:6px"></div><span style="font-size:14px;font-weight:700;color:#111D4A">Brand</span></div>
+      <div style="display:flex;gap:24px"><span style="font-size:13px;color:#111D4A">Portfolio</span><span style="font-size:13px;color:#111D4A">Trade</span><span style="font-size:13px;color:#007FFF">Connect</span></div>
+    </div>
+    <div class="table-wrap">
+      <table class="spec-table">
+        <thead><tr><th>Token</th><th>Value</th><th>Source Ref</th><th>Type</th></tr></thead>
+        <tbody>
+          <tr><td>webNav.default.signedOut.height</td><td><code>68px</code></td><td><code>{primitive.size.68}</code></td><td>dimension</td></tr>
+          <tr><td>webNav.default.signedIn.height</td><td><code>68px</code></td><td><code>{primitive.size.68}</code></td><td>dimension</td></tr>
+          <tr><td>webNav.default.default.background</td><td><div class="swatch-cell"><div class="mini-swatch" style="background:#FFFFFF;border:1px solid #eee"></div><code>#FFFFFF</code></div></td><td><code>{semantic/light.background.general}</code></td><td>color</td></tr>
+          <tr><td>webNav.default.default.title</td><td><div class="swatch-cell"><div class="mini-swatch" style="background:#111D4A"></div><code>#111D4A</code></div></td><td><code>{semantic/light.text.primary}</code></td><td>color</td></tr>
+          <tr><td>webNav.default.default.icon</td><td><div class="swatch-cell"><div class="mini-swatch" style="background:#111D4A"></div><code>#111D4A</code></div></td><td><code>{semantic/light.stroke.icon_primary}</code></td><td>color</td></tr>
+          <tr><td>webNav.default.default.border</td><td><div class="swatch-cell"><div class="mini-swatch checkerboard" style="position:relative"><div style="position:absolute;inset:0;background:rgba(17,29,74,0.08);border-radius:3px"></div></div><code>rgba(17,29,74,0.08)</code></div></td><td><code>{semantic/light.border.default}</code></td><td>color</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ COMPONENT MODAL ═══ -->
+  <section class="section" id="comp-modal">
+    <div class="section-header"><h2>Component — Modal</h2><span class="section-badge">Component</span></div>
+    <p class="section-desc">Bottom sheet modal layout tokens including drag handle, padding, and content gap.</p>
+    <div style="max-width:375px;background:#F9FAFB;border-radius:20px 20px 0 0;border:1px solid rgba(17,29,74,0.08);padding:8px 16px 24px;margin-bottom:20px;box-shadow:0 -4px 24px rgba(17,29,74,0.1)">
+      <div style="width:36px;height:4px;background:#D6D7E0;border-radius:2px;margin:4px auto 68px"></div>
+      <div style="font-size:16px;font-weight:700;color:#111D4A;margin-bottom:8px">Modal Title</div>
+      <div style="font-size:13px;color:rgba(17,29,74,0.4);line-height:1.5">Modal body text content appears here with the semantic secondary text color.</div>
+    </div>
+    <div class="table-wrap">
+      <table class="spec-table">
+        <thead><tr><th>Token</th><th>Value</th><th>Source Ref</th><th>Type</th></tr></thead>
+        <tbody>
+          <tr><td>modal.default.default.background</td><td><div class="swatch-cell"><div class="mini-swatch" style="background:#F9FAFB"></div><code>#F9FAFB</code></div></td><td><code>{semantic/light.background.modal}</code></td><td>color</td></tr>
+          <tr><td>modal.default.default.title</td><td><div class="swatch-cell"><div class="mini-swatch" style="background:#111D4A"></div><code>#111D4A</code></div></td><td><code>{semantic/light.text.primary}</code></td><td>color</td></tr>
+          <tr><td>modal.default.default.body</td><td><div class="swatch-cell"><div class="mini-swatch checkerboard" style="position:relative"><div style="position:absolute;inset:0;background:rgba(17,29,74,0.4);border-radius:3px"></div></div><code>rgba(17,29,74,0.4)</code></div></td><td><code>{semantic/light.text.secondary}</code></td><td>color</td></tr>
+          <tr><td>modal.default.default.paddingX</td><td><code>16px</code></td><td><code>{primitive.spacing.16}</code></td><td>dimension</td></tr>
+          <tr><td>modal.default.default.paddingTop</td><td><code>8px</code></td><td><code>{primitive.spacing.8}</code></td><td>dimension</td></tr>
+          <tr><td>modal.default.default.contentTopGap</td><td><code>72px</code></td><td><code>{primitive.spacing.72}</code></td><td>dimension</td></tr>
+          <tr><td>modal.default.default.closeButtonSize</td><td><code>32px</code></td><td><code>{primitive.size.32}</code></td><td>dimension</td></tr>
+          <tr><td>modal.default.default.dragHandleWidth</td><td><code>36px</code></td><td><code>{primitive.size.36}</code></td><td>dimension</td></tr>
+          <tr><td>modal.default.default.dragHandleHeight</td><td><code>4px</code></td><td><code>{primitive.size.4}</code></td><td>dimension</td></tr>
+          <tr><td>modal.default.default.radius</td><td><code>[MISSING]</code></td><td><code>{primitive.radius.lg}</code></td><td>string</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ COMPONENT BUTTON ═══ -->
+  <section class="section" id="comp-button">
+    <div class="section-header"><h2>Component — Button</h2><span class="section-badge">Component</span></div>
+    <p class="section-desc">Primary button token set — height, padding, background, text, and radius.</p>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:20px">
+      <div style="height:52px;padding:0 20px;background:#111D4A;border-radius:10px;display:flex;align-items:center;gap:8px;cursor:pointer">
+        <span style="font-size:14px;font-weight:600;color:#007FFF">Connect Wallet</span>
+      </div>
+      <div style="height:52px;padding:0 20px;background:#1C1C1E;border-radius:10px;display:flex;align-items:center;gap:8px;cursor:pointer;border:1px solid rgba(221,222,234,0.08)">
+        <span style="font-size:14px;font-weight:600;color:#066BD2">Connect Wallet</span>
+      </div>
+    </div>
+    <div class="table-wrap">
+      <table class="spec-table">
+        <thead><tr><th>Token</th><th>Light Value</th><th>Source Ref</th><th>Type</th></tr></thead>
+        <tbody>
+          <tr><td>button.primary.default.height</td><td><code>52px</code></td><td><code>{primitive.size.52}</code></td><td>dimension</td></tr>
+          <tr><td>button.primary.default.paddingX</td><td><code>16px</code></td><td><code>{primitive.spacing.16}</code></td><td>dimension</td></tr>
+          <tr><td>button.primary.default.background</td><td><div class="swatch-cell"><div class="mini-swatch" style="background:#111D4A"></div><code>#111D4A</code></div></td><td><code>{semantic/light.fill.secondary}</code></td><td>color</td></tr>
+          <tr><td>button.primary.default.text</td><td><div class="swatch-cell"><div class="mini-swatch" style="background:#007FFF"></div><code>#007FFF</code></div></td><td><code>{semantic/light.text.action}</code></td><td>color</td></tr>
+          <tr><td>button.primary.default.radius</td><td><code>[MISSING]</code></td><td><code>{primitive.radius.md}</code></td><td>string</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ COMPONENT MENU ═══ -->
+  <section class="section" id="comp-menu">
+    <div class="section-header"><h2>Component — Menu</h2><span class="section-badge">Component</span></div>
+    <p class="section-desc">Dropdown/sidebar menu tokens for signed-in and signed-out states.</p>
+    <div class="table-wrap">
+      <table class="spec-table">
+        <thead><tr><th>Token</th><th>Value</th><th>Source Ref</th><th>Type</th></tr></thead>
+        <tbody>
+          <tr><td>menu.default.signedOut.background</td><td><div class="swatch-cell"><div class="mini-swatch" style="background:#FFFFFF;border:1px solid #eee"></div><code>#FFFFFF</code></div></td><td><code>{semantic/light.background.card}</code></td><td>color</td></tr>
+          <tr><td>menu.default.signedIn.background</td><td><div class="swatch-cell"><div class="mini-swatch" style="background:#FFFFFF;border:1px solid #eee"></div><code>#FFFFFF</code></div></td><td><code>{semantic/light.background.card}</code></td><td>color</td></tr>
+          <tr><td>menu.default.default.title</td><td><div class="swatch-cell"><div class="mini-swatch" style="background:#111D4A"></div><code>#111D4A</code></div></td><td><code>{semantic/light.text.primary}</code></td><td>color</td></tr>
+          <tr><td>menu.default.default.body</td><td><div class="swatch-cell"><div class="mini-swatch checkerboard" style="position:relative"><div style="position:absolute;inset:0;background:rgba(17,29,74,0.4);border-radius:3px"></div></div><code>rgba(17,29,74,0.4)</code></div></td><td><code>{semantic/light.text.secondary}</code></td><td>color</td></tr>
+          <tr><td>menu.default.default.padding</td><td><code>16px</code></td><td><code>{primitive.spacing.16}</code></td><td>dimension</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ COMPONENT TOKEN LIST ═══ -->
+  <section class="section" id="comp-tokenList">
+    <div class="section-header"><h2>Component — Token List</h2><span class="section-badge">Component</span></div>
+    <p class="section-desc">Token list control states: default and expand.</p>
+    <div style="background:#FFFFFF;border:1px solid rgba(17,29,74,0.08);border-radius:12px;overflow:hidden;margin-bottom:20px;max-width:375px">
+      <div style="height:32px;display:flex;align-items:center;padding:0 14px;gap:10px;border-bottom:1px solid rgba(17,29,74,0.08)">
+        <svg width="16" height="16" fill="none" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6" stroke="#111D4A" stroke-width="1.5"/></svg>
+        <span style="font-size:12px;font-weight:600;color:#111D4A">XAUT</span>
+        <span style="margin-left:auto;font-size:11px;color:rgba(17,29,74,0.4)">$2,340.00</span>
+      </div>
+      <div style="height:32px;display:flex;align-items:center;padding:0 14px;gap:10px;border-bottom:1px solid rgba(17,29,74,0.08)">
+        <svg width="16" height="16" fill="none" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6" stroke="#111D4A" stroke-width="1.5"/></svg>
+        <span style="font-size:12px;font-weight:600;color:#111D4A">BTC</span>
+        <span style="margin-left:auto;font-size:11px;color:rgba(17,29,74,0.4)">$67,200.00</span>
+      </div>
+      <div style="height:32px;display:flex;align-items:center;padding:0 14px;gap:10px;background:rgba(0,127,255,0.04)">
+        <svg width="16" height="16" fill="none" viewBox="0 0 16 16"><path d="M4 8h8M8 4l4 4-4 4" stroke="#007FFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span style="font-size:12px;font-weight:600;color:#007FFF">View All</span>
+      </div>
+    </div>
+    <div class="table-wrap">
+      <table class="spec-table">
+        <thead><tr><th>Token</th><th>Value</th><th>Source Ref</th><th>Type</th></tr></thead>
+        <tbody>
+          <tr><td>tokenList.default.default.height</td><td><code>32px</code></td><td><code>{primitive.size.32}</code></td><td>dimension</td></tr>
+          <tr><td>tokenList.default.default.text</td><td><div class="swatch-cell"><div class="mini-swatch" style="background:#111D4A"></div><code>#111D4A</code></div></td><td><code>{semantic/light.text.primary}</code></td><td>color</td></tr>
+          <tr><td>tokenList.default.default.icon</td><td><div class="swatch-cell"><div class="mini-swatch" style="background:#111D4A"></div><code>#111D4A</code></div></td><td><code>{semantic/light.stroke.icon_primary}</code></td><td>color</td></tr>
+          <tr><td>tokenList.expand.default.height</td><td><code>32px</code></td><td><code>{primitive.size.32}</code></td><td>dimension</td></tr>
+          <tr><td>tokenList.expand.default.text</td><td><div class="swatch-cell"><div class="mini-swatch" style="background:#111D4A"></div><code>#111D4A</code></div></td><td><code>{semantic/light.text.primary}</code></td><td>color</td></tr>
+          <tr><td>tokenList.expand.default.icon</td><td><div class="swatch-cell"><div class="mini-swatch" style="background:#111D4A"></div><code>#111D4A</code></div></td><td><code>{semantic/light.stroke.icon_primary}</code></td><td>color</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+</main>
+
+<div class="copied-toast" id="toast">Copied!</div>
+
+<script>
+function copy(val) {
+  navigator.clipboard.writeText(val).catch(() => {});
+  const t = document.getElementById('toast');
+  t.textContent = 'Copied: ' + val;
+  t.classList.add('show');
+  clearTimeout(window._toastTimer);
+  window._toastTimer = setTimeout(() => t.classList.remove('show'), 1800);
+}
+
+function setTheme(t) {
+  document.documentElement.setAttribute('data-theme', t);
+  document.getElementById('btn-light').classList.toggle('active', t === 'light');
+  document.getElementById('btn-dark').classList.toggle('active', t === 'dark');
+}
+
+// Highlight nav link on scroll
+const sections = document.querySelectorAll('.section');
+const navLinks = document.querySelectorAll('nav a[href^="#"]');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 80) cur = s.id; });
+  navLinks.forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + cur) a.classList.add('active');
+  });
+}, { passive: true });
+</script>
+</body>
+</html>

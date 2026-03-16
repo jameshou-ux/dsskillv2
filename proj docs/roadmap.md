@@ -56,10 +56,10 @@ Planned as a future `dsskillv2` capability, not part of the current default work
 Over time, it is expected to include and package three adjacent abilities together:
 
 - `audit`
-- `normalize`
+- `optimize`
 - `adapt`
 
-Within that direction, Figma export normalization belongs primarily to the `normalize` capability, and can later be bundled with `audit` for migration review and quality checks.
+Within that direction, Figma export normalization belongs primarily to the future `optimize` capability. That capability should cover not only semantic and structural normalization, but also accessibility review and improvement guidance, and can later be bundled with `audit` for migration review and quality checks.
 
 ### Summary
 
@@ -79,7 +79,7 @@ What exists today is only a limited precedent:
 
 That means reverse generation is currently better understood as a normalization or migration task, not as a stable part of the normal token pipeline.
 
-### Why this should live under `normalize`
+### Why this should live under `optimize`
 
 A Figma export usually reflects consumer-side structure and raw resolved values, but the canonical source model requires stronger design-system intent:
 
@@ -90,6 +90,13 @@ A Figma export usually reflects consumer-side structure and raw resolved values,
 - retained descriptions and governance metadata
 
 Those requirements are not reliably recoverable from exported Figma JSON without normalization rules and human review.
+
+In practice, this future capability should be broader than a narrow `normalize` label suggests. It should include:
+
+- semantic and structural normalization back into canonical source shape
+- accessibility checks on token and UI structure quality
+- WCAG support, including contrast-related review and other standards-oriented guidance where the available data allows it
+- optimization recommendations for issues that should be fixed before the normalized result is treated as production-ready
 
 ### Recommended future scope
 
@@ -105,9 +112,19 @@ It should not be positioned as a lossless round-trip compiler from Figma back in
 
 Recommended future packaging inside `dsskillv2`:
 
-1. `normalize`: convert legacy or exported token JSON into canonical source structure
-2. `audit`: detect drift, missing descriptions, broken parity, unresolved aliases, and schema gaps after normalization
-3. `adapt`: help reshape the normalized source for downstream consumer formats and future usage contexts without breaking the source-first model
+1. `optimize`: convert legacy or exported token JSON into canonical source structure, normalize semantic structure, and generate accessibility and WCAG-oriented improvement guidance
+2. `audit`: detect drift, missing descriptions, broken parity, unresolved aliases, schema gaps, and accessibility risks after optimization
+3. `adapt`: help reshape the optimized source for downstream consumer formats and future usage contexts without breaking the source-first model
+
+### Additional roadmap item: WCAG support
+
+Planned as part of `optimize`, not as an isolated feature.
+
+Scope should include:
+
+- baseline WCAG-aware checks for token usage and UI-facing outputs
+- accessibility issue detection such as insufficient contrast, weak semantic structure, or missing accessible intent metadata where applicable
+- actionable optimization suggestions so the result is not only normalized, but also more accessible and implementation-ready
 
 ### Constraint
 
