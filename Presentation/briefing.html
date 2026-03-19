@@ -1,0 +1,1425 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UX 资产体系简报 — AI 全流程自动化</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            border: 'hsl(240 5.9% 90%)',
+            input: 'hsl(240 5.9% 90%)',
+            ring: 'hsl(240 5% 64.9%)',
+            background: 'hsl(0 0% 100%)',
+            foreground: 'hsl(240 10% 3.9%)',
+            primary: { DEFAULT: 'hsl(240 5.9% 10%)', foreground: 'hsl(0 0% 98%)' },
+            muted: { DEFAULT: 'hsl(240 4.8% 95.9%)', foreground: 'hsl(240 3.8% 46.1%)' },
+            accent: { DEFAULT: 'hsl(240 4.8% 95.9%)', foreground: 'hsl(240 5.9% 10%)' },
+            card: { DEFAULT: 'hsl(0 0% 100%)', foreground: 'hsl(240 10% 3.9%)' },
+          },
+          fontFamily: {
+            sans: ['-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', sans-serif; }
+    .fade-in { animation: fadeIn 0.4s ease-out both; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    .asset-card:hover { border-color: hsl(240 5.9% 70%); box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+    details > summary { list-style: none; cursor: pointer; }
+    details > summary::-webkit-details-marker { display: none; }
+    details[open] .chevron { transform: rotate(180deg); }
+    .chevron { transition: transform 0.2s ease; }
+    .phase-card { transition: background 0.15s; }
+    .phase-card:hover { background: hsl(240 4.8% 94%); }
+    /* Markdown code container */
+    .md-container { background: hsl(240 4.8% 97%); border: 1px solid hsl(240 5.9% 90%); border-radius: 8px; overflow: hidden; }
+    .md-container-header { display: flex; align-items: center; justify-content: space-between; padding: 6px 12px; border-bottom: 1px solid hsl(240 5.9% 90%); background: hsl(240 4.8% 95%); }
+    .md-container-label { font-size: 11px; font-weight: 600; color: hsl(240 3.8% 52%); letter-spacing: 0.06em; font-family: ui-monospace, 'SF Mono', monospace; }
+    .md-container pre { margin: 0; padding: 14px 16px; font-size: 12px; line-height: 1.65; font-family: ui-monospace, 'SF Mono', Menlo, monospace; color: hsl(240 10% 20%); white-space: pre; overflow-x: auto; }
+    .md-section-title { font-size: 11px; font-weight: 600; color: hsl(240 3.8% 46%); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; margin-top: 16px; }
+    @media print {
+      .no-print { display: none; }
+      body { font-size: 13px; }
+    }
+    /* Asset link in roadmap */
+    .asset-link {
+      color: hsl(240 10% 3.9%);
+      text-decoration: underline;
+      text-decoration-color: hsl(240 5.9% 75%);
+      text-underline-offset: 2px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 0;
+      font: inherit;
+      transition: text-decoration-color 0.15s;
+    }
+    .asset-link:hover { text-decoration-color: hsl(240 10% 3.9%); }
+    /* Modal */
+    #asset-modal {
+      position: fixed; inset: 0; z-index: 50;
+      background: rgba(0,0,0,0.4);
+      display: flex; align-items: center; justify-content: center;
+      padding: 16px;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.18s ease;
+    }
+    #asset-modal.open { opacity: 1; pointer-events: all; }
+    #asset-modal.open .modal-panel { transform: translateY(0); }
+    .modal-panel {
+      background: white; border-radius: 14px;
+      width: 100%; max-width: 640px; max-height: 80vh;
+      display: flex; flex-direction: column;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.18);
+      transform: translateY(12px);
+      transition: transform 0.18s ease;
+      overflow: hidden;
+    }
+    .modal-header {
+      display: flex; align-items: flex-start; justify-content: space-between;
+      padding: 16px 20px; border-bottom: 1px solid hsl(240 5.9% 90%);
+      gap: 12px; flex-shrink: 0;
+    }
+    .modal-title { font-size: 14px; font-weight: 600; color: hsl(240 10% 3.9%); }
+    .modal-label { font-size: 11px; color: hsl(240 3.8% 52%); margin-top: 2px; font-family: ui-monospace, monospace; }
+    .modal-close {
+      width: 28px; height: 28px; border-radius: 6px; border: 1px solid hsl(240 5.9% 90%);
+      background: none; cursor: pointer; display: flex; align-items: center; justify-content: center;
+      color: hsl(240 3.8% 52%); flex-shrink: 0; font-size: 16px; line-height: 1;
+      transition: background 0.1s;
+    }
+    .modal-close:hover { background: hsl(240 4.8% 95.9%); }
+    .modal-body { overflow-y: auto; padding: 0; }
+    .modal-body pre {
+      margin: 0; padding: 16px 20px;
+      font-size: 12px; line-height: 1.65;
+      font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+      color: hsl(240 10% 20%);
+      white-space: pre; overflow-x: auto;
+    }
+  </style>
+</head>
+<body class="bg-background text-foreground min-h-screen">
+
+  <!-- Top bar -->
+  <header class="border-b border-border sticky top-0 bg-white/95 backdrop-blur-sm z-10">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <span class="text-xs font-semibold uppercase tracking-widest text-muted-foreground">PRD 简报</span>
+        <span class="h-3.5 w-px bg-border"></span>
+        <span class="text-sm font-medium">UX 资产体系 · AI 自动化</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="inline-flex items-center rounded-full border border-border px-2.5 py-0.5 text-xs font-medium text-muted-foreground">2026-03</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 py-10 space-y-12">
+
+    <!-- Hero -->
+    <section class="fade-in space-y-4" style="animation-delay:0s">
+      <div class="flex flex-wrap gap-2 mb-2">
+        <span class="inline-flex items-center rounded-full bg-muted px-2.5 py-0.5 text-xs font-medium text-muted-foreground">UX Strategy</span>
+        <span class="inline-flex items-center rounded-full bg-muted px-2.5 py-0.5 text-xs font-medium text-muted-foreground">AI 自动化</span>
+        <span class="inline-flex items-center rounded-full bg-muted px-2.5 py-0.5 text-xs font-medium text-muted-foreground">生产级代码</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-bold tracking-tight leading-snug">
+        面向 AI 全流程自动化的<br class="hidden sm:block"/>UX 资产体系
+      </h1>
+      <p class="text-base sm:text-lg text-muted-foreground max-w-2xl leading-relaxed">
+        目标不是生成"看起来像产品的页面"，而是建立一套可被 AI 消费、可映射、可约束、可评估的体验资产体系，支撑从业务语义到可上线代码的全链路稳定生成。
+      </p>
+    </section>
+
+    <!-- TL;DR -->
+    <section class="fade-in" style="animation-delay:0.05s">
+      <div class="rounded-xl border border-border bg-muted/40 p-5 sm:p-6 space-y-4">
+        <h2 class="text-xs font-semibold uppercase tracking-widest text-muted-foreground">一句话总结</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+          <div class="rounded-lg border border-border bg-white p-4">
+            <div class="text-xs font-medium text-muted-foreground mb-1">决策资产</div>
+            <div class="text-sm font-medium">语义如何映射到体验层</div>
+          </div>
+          <div class="rounded-lg border border-border bg-white p-4">
+            <div class="text-xs font-medium text-muted-foreground mb-1">规范资产</div>
+            <div class="text-sm font-medium">体验应该如何被约束</div>
+          </div>
+          <div class="rounded-lg border border-border bg-white p-4">
+            <div class="text-xs font-medium text-muted-foreground mb-1">系统资产</div>
+            <div class="text-sm font-medium">界面如何被稳定构建</div>
+          </div>
+          <div class="rounded-lg border border-border bg-white p-4">
+            <div class="text-xs font-medium text-muted-foreground mb-1">评估资产</div>
+            <div class="text-sm font-medium">结果如何判断为生产级</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Core Problem -->
+    <section class="fade-in space-y-4" style="animation-delay:0.1s">
+      <h2 class="text-xl font-semibold tracking-tight">核心问题</h2>
+      <div class="rounded-xl border border-border p-5 sm:p-6 space-y-4">
+        <p class="text-sm text-muted-foreground leading-relaxed">
+          即使上游业务语义已经结构化传递，<strong class="text-foreground">业务语义并不等于用户体验决策</strong>。语义到代码之间缺少一层体验映射机制：
+        </p>
+        <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+          <li class="flex items-start gap-2.5 text-sm">
+            <span class="mt-0.5 h-1.5 w-1.5 rounded-full bg-foreground flex-shrink-0"></span>
+            该语义对应什么样的<strong>交互模式</strong>
+          </li>
+          <li class="flex items-start gap-2.5 text-sm">
+            <span class="mt-0.5 h-1.5 w-1.5 rounded-full bg-foreground flex-shrink-0"></span>
+            该场景应采用什么<strong>复杂度和信息密度</strong>
+          </li>
+          <li class="flex items-start gap-2.5 text-sm">
+            <span class="mt-0.5 h-1.5 w-1.5 rounded-full bg-foreground flex-shrink-0"></span>
+            哪些操作需要<strong>引导</strong>，哪些可以直接执行
+          </li>
+          <li class="flex items-start gap-2.5 text-sm">
+            <span class="mt-0.5 h-1.5 w-1.5 rounded-full bg-foreground flex-shrink-0"></span>
+            哪些任务需要<strong>确认、预览、撤销</strong>
+          </li>
+          <li class="flex items-start gap-2.5 text-sm sm:col-span-2">
+            <span class="mt-0.5 h-1.5 w-1.5 rounded-full bg-foreground flex-shrink-0"></span>
+            在<strong>异常、边界、权限、性能</strong>场景下应如何处理
+          </li>
+        </ul>
+        <p class="text-sm font-medium border-t border-border pt-4">
+          → UX 需要准备的不是更多页面，而是一整套<strong>结构化资产</strong>。
+        </p>
+      </div>
+    </section>
+
+    <!-- 6 Asset Categories -->
+    <section class="fade-in space-y-5" style="animation-delay:0.15s">
+      <div class="flex items-baseline justify-between">
+        <h2 class="text-xl font-semibold tracking-tight">UX 资产清单（六类）</h2>
+        <span class="text-xs text-muted-foreground hidden sm:block">点击展开详情</span>
+      </div>
+
+      <div class="space-y-3">
+
+        <!-- Asset 1 -->
+        <details class="asset-card rounded-xl border border-border bg-white transition-all">
+          <summary class="flex items-center justify-between p-4 sm:p-5">
+            <div class="flex items-center gap-4">
+              <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-muted text-xs font-bold text-muted-foreground flex-shrink-0">01</span>
+              <div>
+                <div class="font-medium text-sm sm:text-base">语义映射资产</div>
+                <div class="text-xs text-muted-foreground mt-0.5">帮助 AI 判断"该生成哪种体验"</div>
+              </div>
+            </div>
+            <svg class="chevron w-4 h-4 text-muted-foreground flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <div class="border-t border-border px-4 sm:px-5 py-4 space-y-4">
+            <p class="text-sm text-muted-foreground">把上游需求稳定翻译成体验决策，避免功能语义正确但交互模式错误。</p>
+            <ul class="space-y-1.5 text-sm">
+              <li class="flex gap-2"><span class="text-muted-foreground">·</span>用户任务模型：目标、核心任务、成功标准</li>
+              <li class="flex gap-2"><span class="text-muted-foreground">·</span>场景模型：角色、上下文、设备、频率、风险等级</li>
+              <li class="flex gap-2"><span class="text-muted-foreground">·</span>任务流与状态机：主流程 / 分支流程 / 异常流程 / 回退路径</li>
+              <li class="flex gap-2"><span class="text-muted-foreground">·</span>语义到交互模式映射表（表单流、配置流、审批流、诊断流…）</li>
+              <li class="flex gap-2"><span class="text-muted-foreground">·</span>UX decision tree：基于复杂度、风险、熟练度、时长匹配体验层</li>
+            </ul>
+
+            <div class="md-section-title">具体产出样例</div>
+
+            <div class="md-container">
+              <div class="md-container-header">
+                <span class="md-container-label">task-model.yaml &nbsp;·&nbsp; 用户任务模型</span>
+              </div>
+              <pre>task: "发起转账"
+goal: "将指定金额发送给目标地址"
+success_criteria:
+  - 交易上链确认
+  - 钱包余额更新
+failure_conditions:
+  - 余额不足
+  - 地址格式无效
+  - 网络超时
+risk_level: high
+frequency: weekly</pre>
+            </div>
+
+            <div class="md-container">
+              <div class="md-container-header">
+                <span class="md-container-label">scenario.yaml &nbsp;·&nbsp; 场景模型</span>
+              </div>
+              <pre>role: DeFi 新手用户
+device: mobile
+context: 首次操作，不确定流程
+frequency: low
+risk_level: high
+expertise: beginner</pre>
+            </div>
+
+            <div class="md-container">
+              <div class="md-container-header">
+                <span class="md-container-label">state-machine.md &nbsp;·&nbsp; 任务流与状态机（Mermaid）</span>
+              </div>
+              <pre>stateDiagram-v2
+  [*] --> 输入金额
+  输入金额 --> 预览确认
+  预览确认 --> 提交中
+  提交中 --> 成功
+  提交中 --> 失败
+  失败 --> 重试
+  重试 --> 提交中</pre>
+            </div>
+
+            <div class="md-container">
+              <div class="md-container-header">
+                <span class="md-container-label">pattern-mapping.json &nbsp;·&nbsp; 语义到交互模式映射表</span>
+              </div>
+              <pre>{
+  "semantic": "批量审批",
+  "pattern": "审核确认层",
+  "complexity": "high",
+  "components": ["Table", "Checkbox", "ConfirmModal"],
+  "requires": ["preview", "二次确认", "撤销"]
+}</pre>
+            </div>
+
+            <div class="md-container">
+              <div class="md-container-header">
+                <span class="md-container-label">decision-tree.json &nbsp;·&nbsp; UX Decision Tree</span>
+              </div>
+              <pre>{
+  "if": { "risk": "high", "frequency": "low" },
+  "then": { "layer": "审核确认层", "require_preview": true }
+}</pre>
+            </div>
+
+            <p class="text-xs text-muted-foreground pt-1">存储建议：统一放 Git repo，版本可追踪，AI 工具可直接读取作为上下文。</p>
+          </div>
+        </details>
+
+        <!-- Asset 2 -->
+        <details class="asset-card rounded-xl border border-border bg-white transition-all">
+          <summary class="flex items-center justify-between p-4 sm:p-5">
+            <div class="flex items-center gap-4">
+              <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-muted text-xs font-bold text-muted-foreground flex-shrink-0">02</span>
+              <div>
+                <div class="font-medium text-sm sm:text-base">体验规范资产</div>
+                <div class="text-xs text-muted-foreground mt-0.5">帮助 AI 判断"怎样做才符合 UX 标准"</div>
+              </div>
+            </div>
+            <svg class="chevron w-4 h-4 text-muted-foreground flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <div class="border-t border-border px-4 sm:px-5 py-4 space-y-4">
+            <p class="text-sm text-muted-foreground">凌驾于组件之上的行为规则层 — 回答"该怎么做"，与具体用什么组件无关，在任何组件库下都成立。</p>
+            <ul class="space-y-1.5 text-sm">
+              <li class="flex gap-2"><span class="text-muted-foreground">·</span>交互原则：效率 / 可解释 / 风险控制 / 一致性</li>
+              <li class="flex gap-2"><span class="text-muted-foreground">·</span>页面级模式规范：列表页、详情页、创建页、编辑页、配置页、空状态页、错误页</li>
+              <li class="flex gap-2"><span class="text-muted-foreground">·</span>关键交互规范：搜索、筛选、批量操作、编辑、删除、确认、提交流程</li>
+              <li class="flex gap-2"><span class="text-muted-foreground">·</span>反馈规范：loading / success / error / warning / partial success</li>
+              <li class="flex gap-2"><span class="text-muted-foreground">·</span>高风险操作规范：二次确认、预览、撤销、权限说明、审批路径</li>
+            </ul>
+
+            <div class="md-section-title">具体产出样例</div>
+
+            <div class="md-container">
+              <div class="md-container-header">
+                <span class="md-container-label">interaction-principles.yaml &nbsp;·&nbsp; 交互原则</span>
+              </div>
+              <pre>principles:
+  - id: risk-control
+    rule: "高风险操作必须二次确认，不可直接执行"
+    applies_to: [delete, transfer, batch-submit]
+  - id: efficiency
+    rule: "高频任务路径不超过 2 步，禁止冗余确认"
+    applies_to: [view, filter, copy]
+  - id: explainability
+    rule: "AI 生成结果必须附带来源说明，用户可查看依据"
+    applies_to: [ai-generated-content]</pre>
+            </div>
+
+            <div class="md-container">
+              <div class="md-container-header">
+                <span class="md-container-label">page-pattern.yaml &nbsp;·&nbsp; 页面级模式规范（列表页）</span>
+              </div>
+              <pre>page: list
+required_zones:
+  - search-filter-bar
+  - data-table
+  - pagination
+  - empty-state
+  - batch-action-bar   # 仅勾选时出现
+optional_zones:
+  - side-panel         # 详情预览
+rules:
+  - 空状态必须包含引导操作，不能只显示"暂无数据"
+  - 批量操作超过 20 条需显示进度，不能 block UI</pre>
+            </div>
+
+            <div class="md-container">
+              <div class="md-container-header">
+                <span class="md-container-label">feedback-spec.yaml &nbsp;·&nbsp; 反馈规范</span>
+              </div>
+              <pre>feedback:
+  loading:
+    duration: "&lt; 300ms: 无反馈  |  300ms-3s: spinner  |  &gt;3s: 骨架屏"
+  success:
+    default: Toast (3s auto-dismiss)
+    critical: 全屏成功页（如转账完成）
+  error:
+    inline: 字段级错误，红色提示紧跟输入框
+    page: 操作失败时保留已填内容，提供重试入口
+  partial_success:
+    rule: "批量操作部分失败时，逐条列出失败原因"</pre>
+            </div>
+
+            <div class="md-container">
+              <div class="md-container-header">
+                <span class="md-container-label">high-risk-spec.yaml &nbsp;·&nbsp; 高风险操作规范</span>
+              </div>
+              <pre>high_risk_ops:
+  delete:
+    require: [二次确认弹窗, 明确说明影响范围]
+    allow_undo: true
+    undo_window: 5s
+  transfer:
+    require: [金额预览, 地址核对, 二次确认]
+    require_preview: true
+  batch_submit:
+    require: [差异对比, 影响数量说明]
+    max_auto_execute: 10   # 超出必须分批确认</pre>
+            </div>
+          </div>
+        </details>
+
+        <!-- Asset 3 -->
+        <details class="asset-card rounded-xl border border-border bg-white transition-all">
+          <summary class="flex items-center justify-between p-4 sm:p-5">
+            <div class="flex items-center gap-4">
+              <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-muted text-xs font-bold text-muted-foreground flex-shrink-0">03</span>
+              <div>
+                <div class="font-medium text-sm sm:text-base">设计系统资产</div>
+                <div class="text-xs text-muted-foreground mt-0.5">帮助 AI 判断"用什么来构建页面"</div>
+              </div>
+            </div>
+            <svg class="chevron w-4 h-4 text-muted-foreground flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <div class="border-t border-border px-4 sm:px-5 py-4 space-y-4">
+            <p class="text-sm text-muted-foreground">回答"用什么来实现" — 提供具体构建材料。与体验规范（02）协同：02 定规则，03 给工具。</p>
+            <ul class="space-y-1.5 text-sm">
+              <li class="flex gap-2"><span class="text-muted-foreground">·</span>基础 token：颜色、字体、间距、圆角、阴影、动效</li>
+              <li class="flex gap-2"><span class="text-muted-foreground">·</span>组件库：Button、Input、Form、Table、Modal、Drawer、Toast、Tabs…</li>
+              <li class="flex gap-2"><span class="text-muted-foreground">·</span>组件使用规则：何时用 modal / drawer / inline / stepper</li>
+              <li class="flex gap-2"><span class="text-muted-foreground">·</span>Pattern 库：搜索筛选区、表单区、详情区、对比区、结果反馈区、操作栏</li>
+              <li class="flex gap-2"><span class="text-muted-foreground">·</span>页面模板：标准 CRUD、审批流、配置流、数据分析流、运营流</li>
+              <li class="flex gap-2"><span class="text-muted-foreground">·</span>多端适配规则：桌面 / 移动 / 响应式断点变体</li>
+            </ul>
+
+            <div class="md-section-title">具体产出样例</div>
+
+            <div class="md-container">
+              <div class="md-container-header">
+                <span class="md-container-label">tokens.json &nbsp;·&nbsp; 基础 Token</span>
+              </div>
+              <pre>{
+  "color": {
+    "primary": "#0F172A",
+    "muted": "#F1F5F9",
+    "danger": "#EF4444",
+    "success": "#22C55E"
+  },
+  "spacing": { "xs": "4px", "sm": "8px", "md": "16px", "lg": "24px" },
+  "radius": { "sm": "6px", "md": "10px", "lg": "16px" },
+  "shadow": { "card": "0 1px 4px rgba(0,0,0,0.08)" }
+}</pre>
+            </div>
+
+            <div class="md-container">
+              <div class="md-container-header">
+                <span class="md-container-label">component-rules.yaml &nbsp;·&nbsp; 组件使用规则</span>
+              </div>
+              <pre>component_selection:
+  - trigger: "需要打断用户当前流程并要求确认"
+    use: AlertDialog
+    avoid: Toast
+
+  - trigger: "展示详情，用户仍需保留上下文"
+    use: Drawer (side panel)
+    avoid: Modal
+
+  - trigger: "多步骤任务，步骤间有依赖"
+    use: Stepper
+    avoid: Tabs
+
+  - trigger: "行内快速编辑，不需要跳转"
+    use: Inline Edit
+    avoid: 跳转到编辑页</pre>
+            </div>
+
+            <div class="md-container">
+              <div class="md-container-header">
+                <span class="md-container-label">pattern-search-filter.yaml &nbsp;·&nbsp; Pattern 库：搜索筛选区</span>
+              </div>
+              <pre>pattern: search-filter-bar
+slots:
+  - name: keyword-input
+    component: Input
+    props: { placeholder: "搜索...", clearable: true }
+  - name: filter-group
+    component: Select / DateRangePicker / CheckboxGroup
+    layout: inline-wrap
+  - name: reset-btn
+    component: Button
+    variant: ghost
+    show_when: any_filter_active
+behavior:
+  - 筛选变更即时触发，无需点击"搜索"按钮
+  - 筛选条件以 Tag 形式展示，可单独删除</pre>
+            </div>
+
+            <div class="md-container">
+              <div class="md-container-header">
+                <span class="md-container-label">page-template-crud.yaml &nbsp;·&nbsp; 页面模板：标准 CRUD</span>
+              </div>
+              <pre>template: standard-crud
+zones:
+  header:   { title, description, primary-action }
+  toolbar:  { search-filter-bar, bulk-actions }
+  content:  { data-table | card-grid }
+  footer:   { pagination }
+  detail:   { drawer | detail-page }
+variants:
+  mobile:   card-grid 替代 data-table，操作收入底部操作栏
+  desktop:  side-panel 预览，减少页面跳转</pre>
+            </div>
+          </div>
+        </details>
+
+        <!-- Asset 4 -->
+        <details class="asset-card rounded-xl border border-border bg-white transition-all">
+          <summary class="flex items-center justify-between p-4 sm:p-5">
+            <div class="flex items-center gap-4">
+              <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-muted text-xs font-bold text-muted-foreground flex-shrink-0">04</span>
+              <div>
+                <div class="font-medium text-sm sm:text-base">生产约束资产</div>
+                <div class="text-xs text-muted-foreground mt-0.5">帮助 AI 判断"什么才叫生产级"</div>
+              </div>
+            </div>
+            <svg class="chevron w-4 h-4 text-muted-foreground flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <div class="border-t border-border px-4 sm:px-5 py-4 space-y-4">
+            <p class="text-sm text-muted-foreground">保证生成结果可以上线，不只是主路径可用，显性化传统上依赖人工补齐的隐性要求。</p>
+            <ul class="space-y-1.5 text-sm">
+              <li class="flex gap-2"><span class="text-muted-foreground">·</span>状态覆盖清单：empty / loading / error / disabled / permission denied / offline</li>
+              <li class="flex gap-2"><span class="text-muted-foreground">·</span>边界 case：超长文本、缺失字段、异常数据、重复提交、并发冲突</li>
+              <li class="flex gap-2"><span class="text-muted-foreground">·</span>Accessibility：键盘可达、焦点管理、语义标签、读屏支持</li>
+              <li class="flex gap-2"><span class="text-muted-foreground">·</span>i18n：文本膨胀、日期 / 数字格式、RTL 适配</li>
+              <li class="flex gap-2"><span class="text-muted-foreground">·</span>性能体验：骨架屏、懒加载、渐进式反馈、乐观更新、失败回滚</li>
+              <li class="flex gap-2"><span class="text-muted-foreground">·</span>埋点与可观测性：关键事件、漏斗节点、错误上报点</li>
+            </ul>
+
+            <div class="md-section-title">具体产出样例</div>
+
+            <div class="md-container">
+              <div class="md-container-header">
+                <span class="md-container-label">state-checklist.yaml &nbsp;·&nbsp; 状态覆盖清单</span>
+              </div>
+              <pre>component: TransferForm
+states:
+  empty:
+    trigger: 页面初始加载
+    display: 输入框 placeholder，主按钮 disabled
+  loading:
+    trigger: 提交中
+    display: 按钮 loading spinner，表单字段 disabled
+  error:
+    trigger: 网络失败 / 余额不足
+    display: 行内错误提示，保留已填内容，显示重试按钮
+  disabled:
+    trigger: 用户无转账权限
+    display: 表单置灰，顶部 Banner 说明原因
+  permission_denied:
+    trigger: 钱包未连接
+    display: 空状态页，引导连接钱包
+  offline:
+    trigger: 网络断开
+    display: 顶部 Toast 警告，禁止提交</pre>
+            </div>
+
+            <div class="md-container">
+              <div class="md-container-header">
+                <span class="md-container-label">edge-cases.yaml &nbsp;·&nbsp; 边界 Case 清单</span>
+              </div>
+              <pre>edge_cases:
+  - scenario: 超长地址输入
+    expect: 截断显示 + tooltip 展示完整，不撑破布局
+  - scenario: 金额输入超过余额
+    expect: 实时校验，红色提示，按钮保持 disabled
+  - scenario: 重复点击提交
+    expect: 第一次点击后立即 disabled，防止重复提交
+  - scenario: 并发冲突（同一资产被他人操作）
+    expect: 提交时返回冲突提示，说明原因，提供刷新入口
+  - scenario: 缺失必填字段提交
+    expect: 逐字段标红，滚动至第一个错误位置</pre>
+            </div>
+
+            <div class="md-container">
+              <div class="md-container-header">
+                <span class="md-container-label">a11y-spec.yaml &nbsp;·&nbsp; Accessibility 规范</span>
+              </div>
+              <pre>rules:
+  - id: keyboard-nav
+    rule: 所有交互元素可通过 Tab 键到达，顺序符合视觉阅读顺序
+  - id: focus-management
+    rule: Modal 打开时焦点移入，关闭后焦点回到触发元素
+  - id: aria-labels
+    rule: 图标按钮必须有 aria-label，表单字段必须关联 label
+  - id: color-contrast
+    rule: 正文对比度 ≥ 4.5:1，大号标题 ≥ 3:1（WCAG AA）
+  - id: screen-reader
+    rule: 动态更新内容使用 aria-live，错误提示使用 role="alert"</pre>
+            </div>
+
+            <div class="md-container">
+              <div class="md-container-header">
+                <span class="md-container-label">performance-spec.yaml &nbsp;·&nbsp; 性能体验规范</span>
+              </div>
+              <pre>loading_strategy:
+  skeleton_screen:
+    use_when: 内容结构已知，加载时间预计 &gt; 300ms
+    avoid_when: 数据量极小或加载极快（&lt; 100ms）
+  optimistic_update:
+    use_when: 操作成功率 &gt; 95%，且可回滚
+    example: 点赞、收藏、简单状态切换
+  progressive_feedback:
+    rule: 长任务（&gt; 3s）必须有进度指示，不能只用 spinner
+  lazy_load:
+    rule: 列表图片、非首屏内容统一懒加载
+  rollback:
+    rule: 乐观更新失败时，自动还原 UI 并提示用户</pre>
+            </div>
+          </div>
+        </details>
+
+        <!-- Asset 5 -->
+        <details class="asset-card rounded-xl border border-border bg-white transition-all">
+          <summary class="flex items-center justify-between p-4 sm:p-5">
+            <div class="flex items-center gap-4">
+              <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-muted text-xs font-bold text-muted-foreground flex-shrink-0">05</span>
+              <div>
+                <div class="font-medium text-sm sm:text-base">训练与评估资产</div>
+                <div class="text-xs text-muted-foreground mt-0.5">帮助 AI 判断"结果是否合格"</div>
+              </div>
+            </div>
+            <svg class="chevron w-4 h-4 text-muted-foreground flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <div class="border-t border-border px-4 sm:px-5 py-4 space-y-4">
+            <p class="text-sm text-muted-foreground">定义什么叫好结果，为自动评估、人工 review 和模型优化提供统一基准。</p>
+            <ul class="space-y-1.5 text-sm">
+              <li class="flex gap-2"><span class="text-muted-foreground">·</span>高质量参考样本：需求语义 → UX 方案 → 最终代码</li>
+              <li class="flex gap-2"><span class="text-muted-foreground">·</span>Few-shot 样例库：不同任务类型的标准输入输出</li>
+              <li class="flex gap-2"><span class="text-muted-foreground">·</span>反例库：常见错误体验、错误模式选择、缺失状态处理</li>
+              <li class="flex gap-2"><span class="text-muted-foreground">·</span>UX review checklist：一致性、效率、易懂性、可恢复性、可访问性</li>
+              <li class="flex gap-2"><span class="text-muted-foreground">·</span>自动评估 rubric：主 / 异常流程覆盖、状态完整性、设计一致性</li>
+            </ul>
+
+            <div class="md-section-title">具体产出样例</div>
+
+            <div class="md-container">
+              <div class="md-container-header">
+                <span class="md-container-label">few-shot-sample.yaml &nbsp;·&nbsp; Few-shot 样例</span>
+              </div>
+              <pre>- input:
+    semantic: "用户发起一笔 ETH 转账，金额较大，目标地址首次使用"
+    risk: high
+    frequency: low
+    expertise: intermediate
+  output:
+    layer: 审核确认层
+    flow:
+      - 输入金额和地址
+      - 地址风险检测（首次使用提示）
+      - 金额 + 手续费预览页
+      - 二次确认（密码或生物识别）
+      - 提交 → loading → 成功/失败
+    components: [Input, AddressInput, PreviewCard, ConfirmDialog, Toast]
+    must_have: [地址校验, 金额预览, 二次确认, 失败重试]</pre>
+            </div>
+
+            <div class="md-container">
+              <div class="md-container-header">
+                <span class="md-container-label">anti-patterns.yaml &nbsp;·&nbsp; 反例库</span>
+              </div>
+              <pre>anti_patterns:
+  - id: empty-state-no-action
+    wrong: 列表为空时只显示"暂无数据"文字
+    correct: 提供引导操作（如"创建第一条记录"按钮）
+    reason: 空状态是引导用户的机会，不是终点
+
+  - id: error-message-generic
+    wrong: 所有错误统一显示"操作失败，请重试"
+    correct: 区分错误类型，说明原因并给出具体操作建议
+    reason: 用户需要知道"为什么失败"才能正确处理
+
+  - id: modal-overuse
+    wrong: 详情展示用 Modal，打断用户上下文
+    correct: 用 Drawer 或 Side Panel，保留列表可见
+    reason: 用户在查看详情时通常需要对比其他条目
+
+  - id: missing-loading-state
+    wrong: 点击提交后无反馈，用户不知道是否成功
+    correct: 立即切换按钮为 loading 状态
+    reason: 无反馈会导致重复提交</pre>
+            </div>
+
+            <div class="md-container">
+              <div class="md-container-header">
+                <span class="md-container-label">ux-review-checklist.yaml &nbsp;·&nbsp; UX Review Checklist</span>
+              </div>
+              <pre>checklist:
+  consistency:
+    - 同类操作使用相同组件和交互模式
+    - 术语和标签在全产品中一致
+  efficiency:
+    - 高频任务路径 ≤ 2 步
+    - 无冗余确认步骤
+  clarity:
+    - 每个页面有明确的主操作
+    - 错误信息说明原因和解决方式
+  recoverability:
+    - 高风险操作可撤销或有回退路径
+    - 表单提交失败后保留已填内容
+  accessibility:
+    - 键盘可完整操作
+    - 色彩对比度达标</pre>
+            </div>
+
+            <div class="md-container">
+              <div class="md-container-header">
+                <span class="md-container-label">eval-rubric.yaml &nbsp;·&nbsp; 自动评估 Rubric</span>
+              </div>
+              <pre>rubric:
+  - dimension: 主流程覆盖
+    score_4: 主流程完整，无缺失步骤
+    score_2: 主流程存在跳步或逻辑断点
+    score_0: 主流程不可用
+
+  - dimension: 异常流程覆盖
+    score_4: error / empty / loading 全部处理
+    score_2: 仅处理 error，缺少 empty 或 loading
+    score_0: 无任何异常处理
+
+  - dimension: 设计一致性
+    score_4: 组件选用符合规范，无自定义偏差
+    score_2: 存在 1-2 处组件误用
+    score_0: 大量偏离设计系统</pre>
+            </div>
+          </div>
+        </details>
+
+        <!-- Asset 6 -->
+        <details class="asset-card rounded-xl border border-border bg-white transition-all">
+          <summary class="flex items-center justify-between p-4 sm:p-5">
+            <div class="flex items-center gap-4">
+              <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-muted text-xs font-bold text-muted-foreground flex-shrink-0">06</span>
+              <div>
+                <div class="font-medium text-sm sm:text-base">交付接口资产</div>
+                <div class="text-xs text-muted-foreground mt-0.5">帮助 AI 判断"如何稳定读取并执行 UX 资产"</div>
+              </div>
+            </div>
+            <svg class="chevron w-4 h-4 text-muted-foreground flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <div class="border-t border-border px-4 sm:px-5 py-4 space-y-4">
+            <p class="text-sm text-muted-foreground">让 UX 资产能够被产品、设计、工程和 AI 一起消费，降低不同团队之间的语义损耗。</p>
+            <ul class="space-y-1.5 text-sm">
+              <li class="flex gap-2"><span class="text-muted-foreground">·</span>结构化 spec 模板：页面目标、输入、输出、状态、规则、组件依赖</li>
+              <li class="flex gap-2"><span class="text-muted-foreground">·</span>Figma 规范化文件：命名规则、组件层级、variant、token 映射</li>
+              <li class="flex gap-2"><span class="text-muted-foreground">·</span>设计到代码映射：组件名、属性 schema、交互 contract</li>
+              <li class="flex gap-2"><span class="text-muted-foreground">·</span>Prompt / DSL 模板：将 UX 规则和语义约束喂给 AI 的标准格式</li>
+              <li class="flex gap-2"><span class="text-muted-foreground">·</span>版本管理机制：设计系统版本、规范版本、模板版本</li>
+            </ul>
+
+            <div class="md-section-title">具体产出样例</div>
+
+            <div class="md-container">
+              <div class="md-container-header">
+                <span class="md-container-label">page-spec.yaml &nbsp;·&nbsp; 结构化 Spec 模板</span>
+              </div>
+              <pre>page: TransferPage
+goal: 用户发起一笔链上转账
+inputs:
+  - name: amount      type: number   required: true
+  - name: to_address  type: string   required: true
+  - name: note        type: string   required: false
+outputs:
+  - tx_hash
+  - updated_balance
+states: [idle, validating, submitting, success, error]
+rules:
+  - 金额不能超过当前余额
+  - 地址必须通过格式校验
+  - 提交前必须展示手续费预览
+component_deps: [Input, AddressInput, FeePreview, ConfirmDialog, Toast]</pre>
+            </div>
+
+            <div class="md-container">
+              <div class="md-container-header">
+                <span class="md-container-label">component-mapping.json &nbsp;·&nbsp; 设计到代码映射</span>
+              </div>
+              <pre>{
+  "figma_component": "Button/Primary",
+  "code_component": "Button",
+  "props_mapping": {
+    "variant": "default",
+    "size": "md"
+  },
+  "interaction_contract": {
+    "on_click": "触发主操作",
+    "loading_state": "prop: isLoading",
+    "disabled_state": "prop: disabled"
+  }
+}</pre>
+            </div>
+
+            <div class="md-container">
+              <div class="md-container-header">
+                <span class="md-container-label">prompt-template.md &nbsp;·&nbsp; Prompt / DSL 模板</span>
+              </div>
+              <pre># UX Generation Prompt
+
+## 任务语义
+{{ task_semantic }}
+
+## 场景约束
+- 用户角色：{{ role }}
+- 风险等级：{{ risk_level }}
+- 使用频率：{{ frequency }}
+
+## 体验规范引用
+- 交互层：{{ ux_layer }}        # 来自 decision-tree.json
+- 页面模式：{{ page_pattern }}  # 来自 page-pattern.yaml
+- 禁止行为：{{ anti_patterns }}
+
+## 设计系统约束
+- 可用组件：{{ allowed_components }}
+- Token 版本：{{ design_system_version }}
+
+## 输出要求
+请生成：页面结构 / 组件组合 / 状态覆盖清单 / 交互说明</pre>
+            </div>
+
+            <div class="md-container">
+              <div class="md-container-header">
+                <span class="md-container-label">version.yaml &nbsp;·&nbsp; 版本管理机制</span>
+              </div>
+              <pre>versions:
+  design_system: "2.4.1"
+  ux_spec: "1.2.0"
+  page_templates: "1.1.3"
+  prompt_dsl: "0.8.0"
+changelog:
+  - version: "2.4.1"
+    date: "2026-03-01"
+    changes:
+      - 新增 AddressInput 组件
+      - 更新 ConfirmDialog 高风险操作规范
+compatibility:
+  min_prompt_dsl: "0.7.0"</pre>
+            </div>
+          </div>
+        </details>
+
+      </div>
+    </section>
+
+    <!-- Experience Matching -->
+    <section class="fade-in space-y-4" style="animation-delay:0.2s">
+      <h2 class="text-xl font-semibold tracking-tight">体验层匹配机制</h2>
+      <div class="rounded-xl border border-border bg-white p-5 sm:p-6 space-y-5">
+        <p class="text-sm text-muted-foreground">基于以下维度判断匹配哪一种体验层：</p>
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3">
+          <div class="rounded-lg bg-muted/50 px-3 py-2.5">
+            <div class="text-xs text-muted-foreground mb-0.5">任务复杂度</div>
+            <div class="text-xs font-medium">低 → 轻量直达 / 高 → 分步引导</div>
+          </div>
+          <div class="rounded-lg bg-muted/50 px-3 py-2.5">
+            <div class="text-xs text-muted-foreground mb-0.5">风险强度</div>
+            <div class="text-xs font-medium">高 → 确认 / 预览 / 可回退</div>
+          </div>
+          <div class="rounded-lg bg-muted/50 px-3 py-2.5">
+            <div class="text-xs text-muted-foreground mb-0.5">使用频率</div>
+            <div class="text-xs font-medium">高频 → 减少阻力 / 低频 → 增加解释</div>
+          </div>
+          <div class="rounded-lg bg-muted/50 px-3 py-2.5">
+            <div class="text-xs text-muted-foreground mb-0.5">信息不确定性</div>
+            <div class="text-xs font-medium">高 → 先澄清 / 低 → 直接执行</div>
+          </div>
+          <div class="rounded-lg bg-muted/50 px-3 py-2.5">
+            <div class="text-xs text-muted-foreground mb-0.5">用户熟练度</div>
+            <div class="text-xs font-medium">新手 → 引导 / 专家 → 效率</div>
+          </div>
+          <div class="rounded-lg bg-muted/50 px-3 py-2.5">
+            <div class="text-xs text-muted-foreground mb-0.5">场景时长</div>
+            <div class="text-xs font-medium">短 → 快 / 长 → 进度感 / 恢复能力</div>
+          </div>
+        </div>
+
+        <div class="border-t border-border pt-4">
+          <p class="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-3">五类典型体验层</p>
+          <div class="space-y-2">
+            <div class="flex items-start gap-3 text-sm">
+              <span class="w-2 h-2 rounded-full bg-foreground mt-1.5 flex-shrink-0"></span>
+              <div><strong>直接操作层</strong> — 一键执行、内联编辑、即时反馈</div>
+            </div>
+            <div class="flex items-start gap-3 text-sm">
+              <span class="w-2 h-2 rounded-full bg-foreground mt-1.5 flex-shrink-0"></span>
+              <div><strong>引导操作层</strong> — 分步表单、默认推荐、过程解释</div>
+            </div>
+            <div class="flex items-start gap-3 text-sm">
+              <span class="w-2 h-2 rounded-full bg-foreground mt-1.5 flex-shrink-0"></span>
+              <div><strong>审核确认层</strong> — 预览、差异对比、二次确认、审批流</div>
+            </div>
+            <div class="flex items-start gap-3 text-sm">
+              <span class="w-2 h-2 rounded-full bg-foreground mt-1.5 flex-shrink-0"></span>
+              <div><strong>策略配置层</strong> — 规则设置、自动化编排、批量处理</div>
+            </div>
+            <div class="flex items-start gap-3 text-sm">
+              <span class="w-2 h-2 rounded-full bg-foreground mt-1.5 flex-shrink-0"></span>
+              <div><strong>诊断恢复层</strong> — 错误定位、原因解释、修复建议、重试路径</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Roadmap -->
+    <section class="fade-in space-y-6" style="animation-delay:0.25s">
+      <h2 class="text-xl font-semibold tracking-tight">Roadmap</h2>
+
+      <!-- Timeline connector line (desktop) -->
+      <div class="relative">
+
+        <!-- Horizontal progress bar (desktop) -->
+        <div class="hidden sm:flex items-center mb-8 px-8">
+          <div class="flex-1 relative">
+            <div class="absolute inset-x-0 top-1/2 -translate-y-1/2 h-px bg-border"></div>
+            <div class="relative flex justify-between">
+              <div class="flex flex-col items-center gap-2">
+                <div class="w-8 h-8 rounded-full bg-foreground text-white flex items-center justify-center text-xs font-bold z-10 ring-4 ring-white">1</div>
+                <span class="text-xs font-medium whitespace-nowrap">基础标准化</span>
+              </div>
+              <div class="flex flex-col items-center gap-2">
+                <div class="w-8 h-8 rounded-full bg-foreground text-white flex items-center justify-center text-xs font-bold z-10 ring-4 ring-white">2</div>
+                <span class="text-xs font-medium whitespace-nowrap">结构化映射</span>
+              </div>
+              <div class="flex flex-col items-center gap-2">
+                <div class="w-8 h-8 rounded-full bg-foreground text-white flex items-center justify-center text-xs font-bold z-10 ring-4 ring-white">3</div>
+                <span class="text-xs font-medium whitespace-nowrap">生产化完善</span>
+              </div>
+              <div class="flex flex-col items-center gap-2">
+                <div class="w-8 h-8 rounded-full bg-foreground text-white flex items-center justify-center text-xs font-bold z-10 ring-4 ring-white">4</div>
+                <span class="text-xs font-medium whitespace-nowrap">智能化优化</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Phase cards — vertical timeline on mobile, horizontal on desktop -->
+        <div class="space-y-0">
+
+          <!-- Phase 1 -->
+          <div class="flex gap-0 sm:gap-4 group">
+            <!-- Mobile timeline left column -->
+            <div class="flex flex-col items-center sm:hidden mr-4 flex-shrink-0">
+              <div class="w-8 h-8 rounded-full bg-foreground text-white flex items-center justify-center text-xs font-bold flex-shrink-0">1</div>
+              <div class="w-px flex-1 bg-border mt-2 group-last:hidden"></div>
+            </div>
+            <!-- Content -->
+            <div class="flex-1 rounded-xl border border-border bg-white p-4 sm:p-5 mb-3 sm:mb-0 hover:border-foreground/20 transition-colors">
+              <div class="flex items-start justify-between gap-4 mb-3">
+                <div>
+                  <div class="hidden sm:flex items-center gap-2 mb-1">
+                    <span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-foreground text-white text-xs font-bold">1</span>
+                    <span class="text-xs text-muted-foreground font-medium uppercase tracking-wider">Phase 1</span>
+                  </div>
+                  <div class="font-semibold text-sm">基础标准化</div>
+                  <div class="text-xs text-muted-foreground mt-0.5">先建立可复用、可约束的底座</div>
+                </div>
+                <span class="inline-flex items-center rounded-full border border-border px-2 py-0.5 text-xs text-muted-foreground flex-shrink-0">底座</span>
+              </div>
+              <ul class="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-1">
+                <li class="flex items-center gap-2 text-xs text-muted-foreground"><span class="w-1 h-1 rounded-full bg-muted-foreground flex-shrink-0"></span><button class="asset-link" onclick="openModal('design-token')">设计 token</button></li>
+                <li class="flex items-center gap-2 text-xs text-muted-foreground"><span class="w-1 h-1 rounded-full bg-muted-foreground flex-shrink-0"></span><button class="asset-link" onclick="openModal('component-lib')">基础组件库</button></li>
+                <li class="flex items-center gap-2 text-xs text-muted-foreground"><span class="w-1 h-1 rounded-full bg-muted-foreground flex-shrink-0"></span><button class="asset-link" onclick="openModal('page-template')">页面模板</button></li>
+                <li class="flex items-center gap-2 text-xs text-muted-foreground"><span class="w-1 h-1 rounded-full bg-muted-foreground flex-shrink-0"></span><button class="asset-link" onclick="openModal('core-interaction')">核心交互规范</button></li>
+                <li class="flex items-center gap-2 text-xs text-muted-foreground"><span class="w-1 h-1 rounded-full bg-muted-foreground flex-shrink-0"></span><button class="asset-link" onclick="openModal('state-checklist')">状态清单</button></li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Arrow connector (desktop only) -->
+          <div class="hidden sm:flex items-center justify-center py-1">
+            <svg class="w-4 h-4 text-border" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </div>
+
+          <!-- Phase 2 -->
+          <div class="flex gap-0 sm:gap-4 group">
+            <div class="flex flex-col items-center sm:hidden mr-4 flex-shrink-0">
+              <div class="w-8 h-8 rounded-full bg-foreground text-white flex items-center justify-center text-xs font-bold flex-shrink-0">2</div>
+              <div class="w-px flex-1 bg-border mt-2 group-last:hidden"></div>
+            </div>
+            <div class="flex-1 rounded-xl border border-border bg-white p-4 sm:p-5 mb-3 sm:mb-0 hover:border-foreground/20 transition-colors">
+              <div class="flex items-start justify-between gap-4 mb-3">
+                <div>
+                  <div class="hidden sm:flex items-center gap-2 mb-1">
+                    <span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-foreground text-white text-xs font-bold">2</span>
+                    <span class="text-xs text-muted-foreground font-medium uppercase tracking-wider">Phase 2</span>
+                  </div>
+                  <div class="font-semibold text-sm">结构化映射</div>
+                  <div class="text-xs text-muted-foreground mt-0.5">建立从语义到体验的稳定转换机制</div>
+                </div>
+                <span class="inline-flex items-center rounded-full border border-border px-2 py-0.5 text-xs text-muted-foreground flex-shrink-0">映射</span>
+              </div>
+              <ul class="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-1">
+                <li class="flex items-center gap-2 text-xs text-muted-foreground"><span class="w-1 h-1 rounded-full bg-muted-foreground flex-shrink-0"></span><button class="asset-link" onclick="openModal('task-model')">用户任务模型</button></li>
+                <li class="flex items-center gap-2 text-xs text-muted-foreground"><span class="w-1 h-1 rounded-full bg-muted-foreground flex-shrink-0"></span><button class="asset-link" onclick="openModal('scenario-model')">场景模型</button></li>
+                <li class="flex items-center gap-2 text-xs text-muted-foreground"><span class="w-1 h-1 rounded-full bg-muted-foreground flex-shrink-0"></span><button class="asset-link" onclick="openModal('state-machine')">任务流与状态机</button></li>
+                <li class="flex items-center gap-2 text-xs text-muted-foreground"><span class="w-1 h-1 rounded-full bg-muted-foreground flex-shrink-0"></span><button class="asset-link" onclick="openModal('pattern-mapping')">语义到交互模式映射表</button></li>
+                <li class="flex items-center gap-2 text-xs text-muted-foreground"><span class="w-1 h-1 rounded-full bg-muted-foreground flex-shrink-0"></span><button class="asset-link" onclick="openModal('ux-decision-tree')">UX decision tree</button></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="hidden sm:flex items-center justify-center py-1">
+            <svg class="w-4 h-4 text-border" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </div>
+
+          <!-- Phase 3 -->
+          <div class="flex gap-0 sm:gap-4 group">
+            <div class="flex flex-col items-center sm:hidden mr-4 flex-shrink-0">
+              <div class="w-8 h-8 rounded-full bg-foreground text-white flex items-center justify-center text-xs font-bold flex-shrink-0">3</div>
+              <div class="w-px flex-1 bg-border mt-2 group-last:hidden"></div>
+            </div>
+            <div class="flex-1 rounded-xl border border-border bg-white p-4 sm:p-5 mb-3 sm:mb-0 hover:border-foreground/20 transition-colors">
+              <div class="flex items-start justify-between gap-4 mb-3">
+                <div>
+                  <div class="hidden sm:flex items-center gap-2 mb-1">
+                    <span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-foreground text-white text-xs font-bold">3</span>
+                    <span class="text-xs text-muted-foreground font-medium uppercase tracking-wider">Phase 3</span>
+                  </div>
+                  <div class="font-semibold text-sm">生产化完善</div>
+                  <div class="text-xs text-muted-foreground mt-0.5">让生成结果具备真实上线能力</div>
+                </div>
+                <span class="inline-flex items-center rounded-full border border-border px-2 py-0.5 text-xs text-muted-foreground flex-shrink-0">上线</span>
+              </div>
+              <ul class="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-1">
+                <li class="flex items-center gap-2 text-xs text-muted-foreground"><span class="w-1 h-1 rounded-full bg-muted-foreground flex-shrink-0"></span><button class="asset-link" onclick="openModal('a11y-spec')">Accessibility 规范</button></li>
+                <li class="flex items-center gap-2 text-xs text-muted-foreground"><span class="w-1 h-1 rounded-full bg-muted-foreground flex-shrink-0"></span>i18n 规范</li>
+                <li class="flex items-center gap-2 text-xs text-muted-foreground"><span class="w-1 h-1 rounded-full bg-muted-foreground flex-shrink-0"></span><button class="asset-link" onclick="openModal('performance-spec')">性能体验规范</button></li>
+                <li class="flex items-center gap-2 text-xs text-muted-foreground"><span class="w-1 h-1 rounded-full bg-muted-foreground flex-shrink-0"></span><button class="asset-link" onclick="openModal('edge-cases')">异常和边界 case 规范</button></li>
+                <li class="flex items-center gap-2 text-xs text-muted-foreground"><span class="w-1 h-1 rounded-full bg-muted-foreground flex-shrink-0"></span>埋点与可观测性规范</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="hidden sm:flex items-center justify-center py-1">
+            <svg class="w-4 h-4 text-border" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </div>
+
+          <!-- Phase 4 -->
+          <div class="flex gap-0 sm:gap-4 group">
+            <div class="flex flex-col items-center sm:hidden mr-4 flex-shrink-0">
+              <div class="w-8 h-8 rounded-full bg-foreground text-white flex items-center justify-center text-xs font-bold flex-shrink-0">4</div>
+              <div class="w-px flex-1 bg-border mt-2 hidden"></div>
+            </div>
+            <div class="flex-1 rounded-xl border border-border bg-white p-4 sm:p-5 hover:border-foreground/20 transition-colors">
+              <div class="flex items-start justify-between gap-4 mb-3">
+                <div>
+                  <div class="hidden sm:flex items-center gap-2 mb-1">
+                    <span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-foreground text-white text-xs font-bold">4</span>
+                    <span class="text-xs text-muted-foreground font-medium uppercase tracking-wider">Phase 4</span>
+                  </div>
+                  <div class="font-semibold text-sm">智能化优化</div>
+                  <div class="text-xs text-muted-foreground mt-0.5">系统具备持续生成、评估、优化能力</div>
+                </div>
+                <span class="inline-flex items-center rounded-full border border-border px-2 py-0.5 text-xs text-muted-foreground flex-shrink-0">持续优化</span>
+              </div>
+              <ul class="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-1">
+                <li class="flex items-center gap-2 text-xs text-muted-foreground"><span class="w-1 h-1 rounded-full bg-muted-foreground flex-shrink-0"></span>高质量样本库</li>
+                <li class="flex items-center gap-2 text-xs text-muted-foreground"><span class="w-1 h-1 rounded-full bg-muted-foreground flex-shrink-0"></span><button class="asset-link" onclick="openModal('few-shot')">Few-shot 示例</button></li>
+                <li class="flex items-center gap-2 text-xs text-muted-foreground"><span class="w-1 h-1 rounded-full bg-muted-foreground flex-shrink-0"></span><button class="asset-link" onclick="openModal('anti-patterns')">反例库</button></li>
+                <li class="flex items-center gap-2 text-xs text-muted-foreground"><span class="w-1 h-1 rounded-full bg-muted-foreground flex-shrink-0"></span><button class="asset-link" onclick="openModal('eval-rubric')">自动评估 rubric</button></li>
+                <li class="flex items-center gap-2 text-xs text-muted-foreground"><span class="w-1 h-1 rounded-full bg-muted-foreground flex-shrink-0"></span><button class="asset-link" onclick="openModal('prompt-template')">Prompt / DSL 模板</button></li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Asset Table Fields -->
+    <section class="fade-in space-y-4" style="animation-delay:0.3s">
+      <h2 class="text-xl font-semibold tracking-tight">资产清单字段建议</h2>
+      <div class="rounded-xl border border-border overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-border bg-muted/40">
+                <th class="text-left px-4 py-3 text-xs font-medium text-muted-foreground">字段</th>
+                <th class="text-left px-4 py-3 text-xs font-medium text-muted-foreground">说明</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-border">
+              <tr class="bg-white hover:bg-muted/20 transition-colors"><td class="px-4 py-3 font-medium text-xs">Asset 名称</td><td class="px-4 py-3 text-xs text-muted-foreground">资产的唯一标识名称</td></tr>
+              <tr class="bg-white hover:bg-muted/20 transition-colors"><td class="px-4 py-3 font-medium text-xs">资产类型</td><td class="px-4 py-3 text-xs text-muted-foreground">六类之一（语义映射 / 体验规范 / 设计系统…）</td></tr>
+              <tr class="bg-white hover:bg-muted/20 transition-colors"><td class="px-4 py-3 font-medium text-xs">目标</td><td class="px-4 py-3 text-xs text-muted-foreground">该资产解决什么问题</td></tr>
+              <tr class="bg-white hover:bg-muted/20 transition-colors"><td class="px-4 py-3 font-medium text-xs">具体产出物</td><td class="px-4 py-3 text-xs text-muted-foreground">实际交付的文档 / 文件 / 数据结构</td></tr>
+              <tr class="bg-white hover:bg-muted/20 transition-colors"><td class="px-4 py-3 font-medium text-xs">使用方</td><td class="px-4 py-3 text-xs text-muted-foreground">产品 / 设计 / 工程 / AI</td></tr>
+              <tr class="bg-white hover:bg-muted/20 transition-colors"><td class="px-4 py-3 font-medium text-xs">优先级</td><td class="px-4 py-3 text-xs text-muted-foreground">P0 / P1 / P2</td></tr>
+              <tr class="bg-white hover:bg-muted/20 transition-colors"><td class="px-4 py-3 font-medium text-xs">所属阶段</td><td class="px-4 py-3 text-xs text-muted-foreground">Phase 1 — 4</td></tr>
+              <tr class="bg-white hover:bg-muted/20 transition-colors"><td class="px-4 py-3 font-medium text-xs">Owner</td><td class="px-4 py-3 text-xs text-muted-foreground">负责人</td></tr>
+              <tr class="bg-white hover:bg-muted/20 transition-colors"><td class="px-4 py-3 font-medium text-xs">当前状态</td><td class="px-4 py-3 text-xs text-muted-foreground">Not started / In progress / Done</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-border mt-16">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 py-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <p class="text-xs text-muted-foreground">UX 资产体系 PRD · 仅供内部汇报使用</p>
+      <p class="text-xs text-muted-foreground">2026-03</p>
+    </div>
+  </footer>
+
+  <!-- Asset Detail Modal -->
+  <div id="asset-modal" onclick="closeModalOnBackdrop(event)">
+    <div class="modal-panel">
+      <div class="modal-header">
+        <div>
+          <div class="modal-title" id="modal-title"></div>
+          <div class="modal-label" id="modal-label"></div>
+        </div>
+        <button class="modal-close" onclick="closeModal()" aria-label="关闭">✕</button>
+      </div>
+      <div class="modal-body">
+        <pre id="modal-code"></pre>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const ASSETS = {
+      'design-token': {
+        title: '设计 token',
+        label: 'tokens.json · 基础 Token',
+        code: `{
+  "color": {
+    "primary": "#0F172A",
+    "muted": "#F1F5F9",
+    "danger": "#EF4444",
+    "success": "#22C55E"
+  },
+  "spacing": { "xs": "4px", "sm": "8px", "md": "16px", "lg": "24px" },
+  "radius": { "sm": "6px", "md": "10px", "lg": "16px" },
+  "shadow": { "card": "0 1px 4px rgba(0,0,0,0.08)" }
+}`
+      },
+      'component-lib': {
+        title: '基础组件库',
+        label: 'component-rules.yaml · 组件使用规则',
+        code: `component_selection:
+  - trigger: "需要打断用户当前流程并要求确认"
+    use: AlertDialog
+    avoid: Toast
+
+  - trigger: "展示详情，用户仍需保留上下文"
+    use: Drawer (side panel)
+    avoid: Modal
+
+  - trigger: "多步骤任务，步骤间有依赖"
+    use: Stepper
+    avoid: Tabs
+
+  - trigger: "行内快速编辑，不需要跳转"
+    use: Inline Edit
+    avoid: 跳转到编辑页`
+      },
+      'page-template': {
+        title: '页面模板',
+        label: 'page-template-crud.yaml · 标准 CRUD',
+        code: `template: standard-crud
+zones:
+  header:   { title, description, primary-action }
+  toolbar:  { search-filter-bar, bulk-actions }
+  content:  { data-table | card-grid }
+  footer:   { pagination }
+  detail:   { drawer | detail-page }
+variants:
+  mobile:   card-grid 替代 data-table，操作收入底部操作栏
+  desktop:  side-panel 预览，减少页面跳转`
+      },
+      'core-interaction': {
+        title: '核心交互规范',
+        label: 'interaction-principles.yaml · 交互原则',
+        code: `principles:
+  - id: risk-control
+    rule: "高风险操作必须二次确认，不可直接执行"
+    applies_to: [delete, transfer, batch-submit]
+  - id: efficiency
+    rule: "高频任务路径不超过 2 步，禁止冗余确认"
+    applies_to: [view, filter, copy]
+  - id: explainability
+    rule: "AI 生成结果必须附带来源说明，用户可查看依据"
+    applies_to: [ai-generated-content]`
+      },
+      'state-checklist': {
+        title: '状态清单',
+        label: 'state-checklist.yaml · 状态覆盖清单',
+        code: `component: TransferForm
+states:
+  empty:
+    trigger: 页面初始加载
+    display: 输入框 placeholder，主按钮 disabled
+  loading:
+    trigger: 提交中
+    display: 按钮 loading spinner，表单字段 disabled
+  error:
+    trigger: 网络失败 / 余额不足
+    display: 行内错误提示，保留已填内容，显示重试按钮
+  disabled:
+    trigger: 用户无转账权限
+    display: 表单置灰，顶部 Banner 说明原因
+  permission_denied:
+    trigger: 钱包未连接
+    display: 空状态页，引导连接钱包
+  offline:
+    trigger: 网络断开
+    display: 顶部 Toast 警告，禁止提交`
+      },
+      'task-model': {
+        title: '用户任务模型',
+        label: 'task-model.yaml · 用户任务模型',
+        code: `task: "发起转账"
+goal: "将指定金额发送给目标地址"
+success_criteria:
+  - 交易上链确认
+  - 钱包余额更新
+failure_conditions:
+  - 余额不足
+  - 地址格式无效
+  - 网络超时
+risk_level: high
+frequency: weekly`
+      },
+      'scenario-model': {
+        title: '场景模型',
+        label: 'scenario.yaml · 场景模型',
+        code: `role: DeFi 新手用户
+device: mobile
+context: 首次操作，不确定流程
+frequency: low
+risk_level: high
+expertise: beginner`
+      },
+      'state-machine': {
+        title: '任务流与状态机',
+        label: 'state-machine.md · Mermaid 状态机',
+        code: `stateDiagram-v2
+  [*] --> 输入金额
+  输入金额 --> 预览确认
+  预览确认 --> 提交中
+  提交中 --> 成功
+  提交中 --> 失败
+  失败 --> 重试
+  重试 --> 提交中`
+      },
+      'pattern-mapping': {
+        title: '语义到交互模式映射表',
+        label: 'pattern-mapping.json · 映射表',
+        code: `{
+  "semantic": "批量审批",
+  "pattern": "审核确认层",
+  "complexity": "high",
+  "components": ["Table", "Checkbox", "ConfirmModal"],
+  "requires": ["preview", "二次确认", "撤销"]
+}`
+      },
+      'ux-decision-tree': {
+        title: 'UX Decision Tree',
+        label: 'decision-tree.json · 决策树',
+        code: `{
+  "if": { "risk": "high", "frequency": "low" },
+  "then": { "layer": "审核确认层", "require_preview": true }
+}`
+      },
+      'a11y-spec': {
+        title: 'Accessibility 规范',
+        label: 'a11y-spec.yaml · Accessibility 规范',
+        code: `rules:
+  - id: keyboard-nav
+    rule: 所有交互元素可通过 Tab 键到达，顺序符合视觉阅读顺序
+  - id: focus-management
+    rule: Modal 打开时焦点移入，关闭后焦点回到触发元素
+  - id: aria-labels
+    rule: 图标按钮必须有 aria-label，表单字段必须关联 label
+  - id: color-contrast
+    rule: 正文对比度 >= 4.5:1，大号标题 >= 3:1（WCAG AA）
+  - id: screen-reader
+    rule: 动态更新内容使用 aria-live，错误提示使用 role="alert"`
+      },
+      'performance-spec': {
+        title: '性能体验规范',
+        label: 'performance-spec.yaml · 性能体验规范',
+        code: `loading_strategy:
+  skeleton_screen:
+    use_when: 内容结构已知，加载时间预计 > 300ms
+    avoid_when: 数据量极小或加载极快（< 100ms）
+  optimistic_update:
+    use_when: 操作成功率 > 95%，且可回滚
+    example: 点赞、收藏、简单状态切换
+  progressive_feedback:
+    rule: 长任务（> 3s）必须有进度指示，不能只用 spinner
+  lazy_load:
+    rule: 列表图片、非首屏内容统一懒加载
+  rollback:
+    rule: 乐观更新失败时，自动还原 UI 并提示用户`
+      },
+      'edge-cases': {
+        title: '异常和边界 case 规范',
+        label: 'edge-cases.yaml · 边界 Case 清单',
+        code: `edge_cases:
+  - scenario: 超长地址输入
+    expect: 截断显示 + tooltip 展示完整，不撑破布局
+  - scenario: 金额输入超过余额
+    expect: 实时校验，红色提示，按钮保持 disabled
+  - scenario: 重复点击提交
+    expect: 第一次点击后立即 disabled，防止重复提交
+  - scenario: 并发冲突（同一资产被他人操作）
+    expect: 提交时返回冲突提示，说明原因，提供刷新入口
+  - scenario: 缺失必填字段提交
+    expect: 逐字段标红，滚动至第一个错误位置`
+      },
+      'few-shot': {
+        title: 'Few-shot 示例',
+        label: 'few-shot-sample.yaml · Few-shot 样例',
+        code: `- input:
+    semantic: "用户发起一笔 ETH 转账，金额较大，目标地址首次使用"
+    risk: high
+    frequency: low
+    expertise: intermediate
+  output:
+    layer: 审核确认层
+    flow:
+      - 输入金额和地址
+      - 地址风险检测（首次使用提示）
+      - 金额 + 手续费预览页
+      - 二次确认（密码或生物识别）
+      - 提交 → loading → 成功/失败
+    components: [Input, AddressInput, PreviewCard, ConfirmDialog, Toast]
+    must_have: [地址校验, 金额预览, 二次确认, 失败重试]`
+      },
+      'anti-patterns': {
+        title: '反例库',
+        label: 'anti-patterns.yaml · 反例库',
+        code: `anti_patterns:
+  - id: empty-state-no-action
+    wrong: 列表为空时只显示"暂无数据"文字
+    correct: 提供引导操作（如"创建第一条记录"按钮）
+    reason: 空状态是引导用户的机会，不是终点
+
+  - id: error-message-generic
+    wrong: 所有错误统一显示"操作失败，请重试"
+    correct: 区分错误类型，说明原因并给出具体操作建议
+    reason: 用户需要知道"为什么失败"才能正确处理
+
+  - id: modal-overuse
+    wrong: 详情展示用 Modal，打断用户上下文
+    correct: 用 Drawer 或 Side Panel，保留列表可见
+    reason: 用户在查看详情时通常需要对比其他条目
+
+  - id: missing-loading-state
+    wrong: 点击提交后无反馈，用户不知道是否成功
+    correct: 立即切换按钮为 loading 状态
+    reason: 无反馈会导致重复提交`
+      },
+      'eval-rubric': {
+        title: '自动评估 Rubric',
+        label: 'eval-rubric.yaml · 自动评估 Rubric',
+        code: `rubric:
+  - dimension: 主流程覆盖
+    score_4: 主流程完整，无缺失步骤
+    score_2: 主流程存在跳步或逻辑断点
+    score_0: 主流程不可用
+
+  - dimension: 异常流程覆盖
+    score_4: error / empty / loading 全部处理
+    score_2: 仅处理 error，缺少 empty 或 loading
+    score_0: 无任何异常处理
+
+  - dimension: 设计一致性
+    score_4: 组件选用符合规范，无自定义偏差
+    score_2: 存在 1-2 处组件误用
+    score_0: 大量偏离设计系统`
+      },
+      'prompt-template': {
+        title: 'Prompt / DSL 模板',
+        label: 'prompt-template.md · Prompt 模板',
+        code: `# UX Generation Prompt
+
+## 任务语义
+{{ task_semantic }}
+
+## 场景约束
+- 用户角色：{{ role }}
+- 风险等级：{{ risk_level }}
+- 使用频率：{{ frequency }}
+
+## 体验规范引用
+- 交互层：{{ ux_layer }}        # 来自 decision-tree.json
+- 页面模式：{{ page_pattern }}  # 来自 page-pattern.yaml
+- 禁止行为：{{ anti_patterns }}
+
+## 设计系统约束
+- 可用组件：{{ allowed_components }}
+- Token 版本：{{ design_system_version }}
+
+## 输出要求
+请生成：页面结构 / 组件组合 / 状态覆盖清单 / 交互说明`
+      },
+    };
+
+    function openModal(key) {
+      const asset = ASSETS[key];
+      if (!asset) return;
+      document.getElementById('modal-title').textContent = asset.title;
+      document.getElementById('modal-label').textContent = asset.label;
+      document.getElementById('modal-code').textContent = asset.code;
+      document.getElementById('asset-modal').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      document.getElementById('asset-modal').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    function closeModalOnBackdrop(e) {
+      if (e.target === document.getElementById('asset-modal')) closeModal();
+    }
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeModal();
+    });
+  </script>
+
+</body>
+</html>
