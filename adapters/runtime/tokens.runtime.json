@@ -4,7 +4,7 @@
     "dark"
   ],
   "$metadata": {
-    "generatedFrom": "source/tokens.json",
+    "generatedFrom": "source_token_v5.json",
     "collections": [
       "semantic",
       "pattern",
@@ -83,11 +83,11 @@
         "$description": "Backdrop blur overlay behind modals in light mode — 80% white for a frosted glass effect.",
         "sourceRef": "semantic.background.backdrop",
         "light": {
-          "value": "rgba(255, 255, 255, 0.8)",
+          "value": "#FFFFFFCC",
           "sourceRef": "semantic.background.backdrop"
         },
         "dark": {
-          "value": "rgba(0, 0, 0, 0.8)",
+          "value": "#000000CC",
           "sourceRef": "semantic.background.backdrop"
         }
       }
@@ -121,14 +121,14 @@
       },
       "secondary": {
         "$type": "color",
-        "$description": "Supporting and secondary text in light mode — 40% navy for captions, metadata, and sublabels.",
+        "$description": "Supporting and secondary text in light mode — solid navy-derived token replacing the prior alpha-based treatment for more stable contrast across surfaces.",
         "sourceRef": "semantic.text.secondary",
         "light": {
-          "value": "rgba(17, 29, 74, 0.4)",
+          "value": "#A0A5B7",
           "sourceRef": "semantic.text.secondary"
         },
         "dark": {
-          "value": "rgba(221, 222, 234, 0.4)",
+          "value": "#8B8B91",
           "sourceRef": "semantic.text.secondary"
         }
       },
@@ -147,15 +147,54 @@
       },
       "placeholder": {
         "$type": "color",
-        "$description": "Placeholder and empty state hint text in light mode — 20% navy at minimum readable contrast.",
+        "$description": "Placeholder and empty state hint text in light mode — solid navy-derived token replacing the prior alpha-based treatment.",
         "sourceRef": "semantic.text.placeholder",
         "light": {
-          "value": "rgba(17, 29, 74, 0.2)",
+          "value": "#D0D2DB",
           "sourceRef": "semantic.text.placeholder"
         },
         "dark": {
-          "value": "rgba(255, 255, 255, 0.2)",
+          "value": "#49494C",
           "sourceRef": "semantic.text.placeholder"
+        }
+      },
+      "success": {
+        "$type": "color",
+        "$description": "Success text color in light mode for positive inline messaging.",
+        "sourceRef": "semantic.text.success",
+        "light": {
+          "value": "#4BCE71",
+          "sourceRef": "semantic.text.success"
+        },
+        "dark": {
+          "value": "#4BCE71",
+          "sourceRef": "semantic.text.success"
+        }
+      },
+      "error": {
+        "$type": "color",
+        "$description": "Error text color in light mode for destructive and validation messaging.",
+        "sourceRef": "semantic.text.error",
+        "light": {
+          "value": "#F3636F",
+          "sourceRef": "semantic.text.error"
+        },
+        "dark": {
+          "value": "#F3636F",
+          "sourceRef": "semantic.text.error"
+        }
+      },
+      "warning": {
+        "$type": "color",
+        "$description": "Warning text color in light mode for caution and offline messaging.",
+        "sourceRef": "semantic.text.warning",
+        "light": {
+          "value": "#FC8C4D",
+          "sourceRef": "semantic.text.warning"
+        },
+        "dark": {
+          "value": "#FC8C4D",
+          "sourceRef": "semantic.text.warning"
         }
       }
     },
@@ -169,20 +208,20 @@
           "sourceRef": "semantic.stroke.icon_primary"
         },
         "dark": {
-          "value": "rgba(221, 222, 234, 0.8)",
+          "value": "#B4B4BC",
           "sourceRef": "semantic.stroke.icon_primary"
         }
       },
       "icon_secondary": {
         "$type": "color",
-        "$description": "Secondary icon stroke in light mode — 40% navy for de-emphasized, supporting icons.",
+        "$description": "Secondary icon stroke in light mode — solid navy-derived token replacing the prior alpha-based treatment.",
         "sourceRef": "semantic.stroke.icon_secondary",
         "light": {
-          "value": "rgba(17, 29, 74, 0.4)",
+          "value": "#A0A5B7",
           "sourceRef": "semantic.stroke.icon_secondary"
         },
         "dark": {
-          "value": "rgba(221, 222, 234, 0.4)",
+          "value": "#8B8B91",
           "sourceRef": "semantic.stroke.icon_secondary"
         }
       }
@@ -190,14 +229,14 @@
     "border": {
       "default": {
         "$type": "color",
-        "$description": "Default border and divider in light mode — 8% navy, ultra-subtle separator for cards and list rows.",
+        "$description": "Default border and divider in light mode — solid navy-derived subtle border token replacing the prior alpha-based treatment.",
         "sourceRef": "semantic.border.default",
         "light": {
-          "value": "rgba(17, 29, 74, 0.08)",
+          "value": "#ECEDF0",
           "sourceRef": "semantic.border.default"
         },
         "dark": {
-          "value": "rgba(221, 222, 234, 0.08)",
+          "value": "#2C2C30",
           "sourceRef": "semantic.border.default"
         }
       }
@@ -255,30 +294,82 @@
           "sourceRef": "semantic.fill.logo"
         }
       },
-      "color_1": {
+      "success": {
         "$type": "color",
-        "$description": "Generic brand color fill slot 1 in light mode — white, flexible placeholder for branded fills.",
-        "sourceRef": "semantic.fill.color_1",
+        "$description": "Filled success surface in light mode for high-emphasis positive actions and badges.",
+        "sourceRef": "semantic.fill.success",
         "light": {
-          "value": "#FFFFFF",
-          "sourceRef": "semantic.fill.color_1"
+          "value": "#4BCE71",
+          "sourceRef": "semantic.fill.success"
         },
         "dark": {
-          "value": "#FFFFFF",
-          "sourceRef": "semantic.fill.color_1"
+          "value": "#4BCE71",
+          "sourceRef": "semantic.fill.success"
         }
       },
-      "color_2": {
+      "success_subtle": {
         "$type": "color",
-        "$description": "Generic brand color fill slot 2 in light mode — white, secondary flexible branded fill placeholder.",
-        "sourceRef": "semantic.fill.color_2",
+        "$description": "Soft success fill in light mode for chips and secondary positive surfaces.",
+        "sourceRef": "semantic.fill.success_subtle",
         "light": {
-          "value": "#FFFFFF",
-          "sourceRef": "semantic.fill.color_2"
+          "value": "rgba(75, 206, 113, 0.2)",
+          "sourceRef": "semantic.fill.success_subtle"
         },
         "dark": {
-          "value": "#FFFFFF",
-          "sourceRef": "semantic.fill.color_2"
+          "value": "rgba(75, 206, 113, 0.2)",
+          "sourceRef": "semantic.fill.success_subtle"
+        }
+      },
+      "error": {
+        "$type": "color",
+        "$description": "Filled error surface in light mode for destructive actions and critical badges.",
+        "sourceRef": "semantic.fill.error",
+        "light": {
+          "value": "#F3636F",
+          "sourceRef": "semantic.fill.error"
+        },
+        "dark": {
+          "value": "#F3636F",
+          "sourceRef": "semantic.fill.error"
+        }
+      },
+      "error_subtle": {
+        "$type": "color",
+        "$description": "Soft error fill in light mode for alert chips and low-emphasis destructive surfaces.",
+        "sourceRef": "semantic.fill.error_subtle",
+        "light": {
+          "value": "rgba(243, 99, 111, 0.2)",
+          "sourceRef": "semantic.fill.error_subtle"
+        },
+        "dark": {
+          "value": "rgba(243, 99, 111, 0.2)",
+          "sourceRef": "semantic.fill.error_subtle"
+        }
+      },
+      "warning": {
+        "$type": "color",
+        "$description": "Filled warning surface in light mode for caution states and offline indicators.",
+        "sourceRef": "semantic.fill.warning",
+        "light": {
+          "value": "#FC8C4D",
+          "sourceRef": "semantic.fill.warning"
+        },
+        "dark": {
+          "value": "#FC8C4D",
+          "sourceRef": "semantic.fill.warning"
+        }
+      },
+      "warning_subtle": {
+        "$type": "color",
+        "$description": "Soft warning fill in light mode for caution chips and low-emphasis attention states.",
+        "sourceRef": "semantic.fill.warning_subtle",
+        "light": {
+          "value": "rgba(252, 140, 77, 0.2)",
+          "sourceRef": "semantic.fill.warning_subtle"
+        },
+        "dark": {
+          "value": "rgba(252, 140, 77, 0.2)",
+          "sourceRef": "semantic.fill.warning_subtle"
         }
       }
     },
@@ -372,7 +463,7 @@
             "stops": [
               {
                 "position": 0,
-                "color": "rgba(255, 255, 255, 0.6)"
+                "color": "#FFFFFF99"
               },
               {
                 "position": 1,
@@ -389,7 +480,7 @@
             "stops": [
               {
                 "position": 0,
-                "color": "rgba(21, 20, 23, 0.7)"
+                "color": "#151417B3"
               },
               {
                 "position": 1,
@@ -411,7 +502,7 @@
             "stops": [
               {
                 "position": 0,
-                "color": "rgba(255, 255, 255, 0)"
+                "color": "#FFFFFF00"
               },
               {
                 "position": 1,
@@ -428,7 +519,7 @@
             "stops": [
               {
                 "position": 0,
-                "color": "rgba(1, 3, 6, 0)"
+                "color": "#01030600"
               },
               {
                 "position": 1,
@@ -437,6 +528,398 @@
             ]
           },
           "sourceRef": "semantic.gradient.bar_backdrop"
+        }
+      }
+    },
+    "status": {
+      "success": {
+        "$type": "color",
+        "$description": "Canonical success color in light mode for positive status communication.",
+        "sourceRef": "semantic.status.success",
+        "light": {
+          "value": "#4BCE71",
+          "sourceRef": "semantic.status.success"
+        },
+        "dark": {
+          "value": "#4BCE71",
+          "sourceRef": "semantic.status.success"
+        }
+      },
+      "success_subtle": {
+        "$type": "color",
+        "$description": "Subtle success surface in light mode for chips, pills, and low-emphasis confirmations.",
+        "sourceRef": "semantic.status.success_subtle",
+        "light": {
+          "value": "rgba(75, 206, 113, 0.2)",
+          "sourceRef": "semantic.status.success_subtle"
+        },
+        "dark": {
+          "value": "rgba(75, 206, 113, 0.2)",
+          "sourceRef": "semantic.status.success_subtle"
+        }
+      },
+      "error": {
+        "$type": "color",
+        "$description": "Canonical error color in light mode for destructive and failed states.",
+        "sourceRef": "semantic.status.error",
+        "light": {
+          "value": "#F3636F",
+          "sourceRef": "semantic.status.error"
+        },
+        "dark": {
+          "value": "#F3636F",
+          "sourceRef": "semantic.status.error"
+        }
+      },
+      "error_subtle": {
+        "$type": "color",
+        "$description": "Subtle error surface in light mode for alerts and destructive background states.",
+        "sourceRef": "semantic.status.error_subtle",
+        "light": {
+          "value": "rgba(243, 99, 111, 0.2)",
+          "sourceRef": "semantic.status.error_subtle"
+        },
+        "dark": {
+          "value": "rgba(243, 99, 111, 0.2)",
+          "sourceRef": "semantic.status.error_subtle"
+        }
+      },
+      "warning": {
+        "$type": "color",
+        "$description": "Canonical warning color in light mode for caution and offline states.",
+        "sourceRef": "semantic.status.warning",
+        "light": {
+          "value": "#FC8C4D",
+          "sourceRef": "semantic.status.warning"
+        },
+        "dark": {
+          "value": "#FC8C4D",
+          "sourceRef": "semantic.status.warning"
+        }
+      },
+      "warning_subtle": {
+        "$type": "color",
+        "$description": "Subtle warning surface in light mode for chips, highlights, and caution backgrounds.",
+        "sourceRef": "semantic.status.warning_subtle",
+        "light": {
+          "value": "rgba(252, 140, 77, 0.2)",
+          "sourceRef": "semantic.status.warning_subtle"
+        },
+        "dark": {
+          "value": "rgba(252, 140, 77, 0.2)",
+          "sourceRef": "semantic.status.warning_subtle"
+        }
+      }
+    },
+    "textStyle": {
+      "titleLarge": {
+        "$type": "typography",
+        "$description": "Largest title style from Figma, used for article titles and special large amount emphasis.",
+        "sourceRef": "semantic.textStyle.titleLarge",
+        "light": {
+          "value": {
+            "fontFamily": "Noto Sans",
+            "fontWeight": 700,
+            "fontSize": 32,
+            "lineHeight": "140%",
+            "letterSpacing": {
+              "value": 4,
+              "unit": "%"
+            }
+          },
+          "sourceRef": "semantic.textStyle.titleLarge"
+        },
+        "dark": {
+          "value": {
+            "fontFamily": "Noto Sans",
+            "fontWeight": 700,
+            "fontSize": 32,
+            "lineHeight": "140%",
+            "letterSpacing": {
+              "value": 4,
+              "unit": "%"
+            }
+          },
+          "sourceRef": "semantic.textStyle.titleLarge"
+        }
+      },
+      "amountLarge": {
+        "$type": "typography",
+        "$description": "Large amount and article-title style from Figma.",
+        "sourceRef": "semantic.textStyle.amountLarge",
+        "light": {
+          "value": {
+            "fontFamily": "Noto Sans",
+            "fontWeight": 700,
+            "fontSize": 24,
+            "lineHeight": "140%",
+            "letterSpacing": {
+              "value": 4,
+              "unit": "%"
+            }
+          },
+          "sourceRef": "semantic.textStyle.amountLarge"
+        },
+        "dark": {
+          "value": {
+            "fontFamily": "Noto Sans",
+            "fontWeight": 700,
+            "fontSize": 24,
+            "lineHeight": "140%",
+            "letterSpacing": {
+              "value": 4,
+              "unit": "%"
+            }
+          },
+          "sourceRef": "semantic.textStyle.amountLarge"
+        }
+      },
+      "guideTitle": {
+        "$type": "typography",
+        "$description": "Guide title style from Figma.",
+        "sourceRef": "semantic.textStyle.guideTitle",
+        "light": {
+          "value": {
+            "fontFamily": "Noto Sans",
+            "fontWeight": 500,
+            "fontSize": 20,
+            "lineHeight": "140%",
+            "letterSpacing": {
+              "value": 4,
+              "unit": "%"
+            }
+          },
+          "sourceRef": "semantic.textStyle.guideTitle"
+        },
+        "dark": {
+          "value": {
+            "fontFamily": "Noto Sans",
+            "fontWeight": 500,
+            "fontSize": 20,
+            "lineHeight": "140%",
+            "letterSpacing": {
+              "value": 4,
+              "unit": "%"
+            }
+          },
+          "sourceRef": "semantic.textStyle.guideTitle"
+        }
+      },
+      "titleMedium": {
+        "$type": "typography",
+        "$description": "Medium title style from Figma, used for navigation headings.",
+        "sourceRef": "semantic.textStyle.titleMedium",
+        "light": {
+          "value": {
+            "fontFamily": "Noto Sans",
+            "fontWeight": 700,
+            "fontSize": 16,
+            "lineHeight": "140%",
+            "letterSpacing": {
+              "value": 4,
+              "unit": "%"
+            }
+          },
+          "sourceRef": "semantic.textStyle.titleMedium"
+        },
+        "dark": {
+          "value": {
+            "fontFamily": "Noto Sans",
+            "fontWeight": 700,
+            "fontSize": 16,
+            "lineHeight": "140%",
+            "letterSpacing": {
+              "value": 4,
+              "unit": "%"
+            }
+          },
+          "sourceRef": "semantic.textStyle.titleMedium"
+        }
+      },
+      "bodyMedium": {
+        "$type": "typography",
+        "$description": "Primary body content style from Figma.",
+        "sourceRef": "semantic.textStyle.bodyMedium",
+        "light": {
+          "value": {
+            "fontFamily": "Noto Sans",
+            "fontWeight": 500,
+            "fontSize": 16,
+            "lineHeight": "140%",
+            "letterSpacing": {
+              "value": 4,
+              "unit": "%"
+            }
+          },
+          "sourceRef": "semantic.textStyle.bodyMedium"
+        },
+        "dark": {
+          "value": {
+            "fontFamily": "Noto Sans",
+            "fontWeight": 500,
+            "fontSize": 16,
+            "lineHeight": "140%",
+            "letterSpacing": {
+              "value": 4,
+              "unit": "%"
+            }
+          },
+          "sourceRef": "semantic.textStyle.bodyMedium"
+        }
+      },
+      "buttonText": {
+        "$type": "typography",
+        "$description": "Button label style from Figma.",
+        "sourceRef": "semantic.textStyle.buttonText",
+        "light": {
+          "value": {
+            "fontFamily": "Noto Sans",
+            "fontWeight": 400,
+            "fontSize": 16,
+            "lineHeight": "140%",
+            "letterSpacing": {
+              "value": 4,
+              "unit": "%"
+            }
+          },
+          "sourceRef": "semantic.textStyle.buttonText"
+        },
+        "dark": {
+          "value": {
+            "fontFamily": "Noto Sans",
+            "fontWeight": 400,
+            "fontSize": 16,
+            "lineHeight": "140%",
+            "letterSpacing": {
+              "value": 4,
+              "unit": "%"
+            }
+          },
+          "sourceRef": "semantic.textStyle.buttonText"
+        }
+      },
+      "bodySmall": {
+        "$type": "typography",
+        "$description": "Secondary body content style from Figma.",
+        "sourceRef": "semantic.textStyle.bodySmall",
+        "light": {
+          "value": {
+            "fontFamily": "Noto Sans",
+            "fontWeight": 400,
+            "fontSize": 14,
+            "lineHeight": "140%",
+            "letterSpacing": {
+              "value": 4,
+              "unit": "%"
+            }
+          },
+          "sourceRef": "semantic.textStyle.bodySmall"
+        },
+        "dark": {
+          "value": {
+            "fontFamily": "Noto Sans",
+            "fontWeight": 400,
+            "fontSize": 14,
+            "lineHeight": "140%",
+            "letterSpacing": {
+              "value": 4,
+              "unit": "%"
+            }
+          },
+          "sourceRef": "semantic.textStyle.bodySmall"
+        }
+      },
+      "groupTitle": {
+        "$type": "typography",
+        "$description": "Grouped section title style from Figma.",
+        "sourceRef": "semantic.textStyle.groupTitle",
+        "light": {
+          "value": {
+            "fontFamily": "Noto Sans",
+            "fontWeight": 500,
+            "fontSize": 14,
+            "lineHeight": "140%",
+            "letterSpacing": {
+              "value": 4,
+              "unit": "%"
+            }
+          },
+          "sourceRef": "semantic.textStyle.groupTitle"
+        },
+        "dark": {
+          "value": {
+            "fontFamily": "Noto Sans",
+            "fontWeight": 500,
+            "fontSize": 14,
+            "lineHeight": "140%",
+            "letterSpacing": {
+              "value": 4,
+              "unit": "%"
+            }
+          },
+          "sourceRef": "semantic.textStyle.groupTitle"
+        }
+      },
+      "caption": {
+        "$type": "typography",
+        "$description": "Auxiliary information, annotation, and label style from Figma.",
+        "sourceRef": "semantic.textStyle.caption",
+        "light": {
+          "value": {
+            "fontFamily": "Noto Sans",
+            "fontWeight": 400,
+            "fontSize": 12,
+            "lineHeight": "130%",
+            "letterSpacing": {
+              "value": 4,
+              "unit": "%"
+            }
+          },
+          "sourceRef": "semantic.textStyle.caption"
+        },
+        "dark": {
+          "value": {
+            "fontFamily": "Noto Sans",
+            "fontWeight": 400,
+            "fontSize": 12,
+            "lineHeight": "130%",
+            "letterSpacing": {
+              "value": 4,
+              "unit": "%"
+            }
+          },
+          "sourceRef": "semantic.textStyle.caption"
+        }
+      },
+      "xSmall": {
+        "$type": "typography",
+        "$description": "Bottom navigation special-case small text style from Figma.",
+        "sourceRef": "semantic.textStyle.xSmall",
+        "light": {
+          "value": {
+            "fontFamily": "Noto Sans",
+            "fontWeight": 400,
+            "fontSize": 10,
+            "lineHeight": "140%",
+            "letterSpacing": {
+              "value": 4,
+              "unit": "%"
+            }
+          },
+          "sourceRef": "semantic.textStyle.xSmall"
+        },
+        "dark": {
+          "value": {
+            "fontFamily": "Noto Sans",
+            "fontWeight": 400,
+            "fontSize": 10,
+            "lineHeight": "140%",
+            "letterSpacing": {
+              "value": 4,
+              "unit": "%"
+            }
+          },
+          "sourceRef": "semantic.textStyle.xSmall"
         }
       }
     }
@@ -475,11 +958,11 @@
           "$description": "Reusable card body text alias for light mode.",
           "sourceRef": "pattern.surface.card.body",
           "light": {
-            "value": "rgba(17, 29, 74, 0.4)",
+            "value": "#A0A5B7",
             "sourceRef": "pattern.surface.card.body"
           },
           "dark": {
-            "value": "rgba(221, 222, 234, 0.4)",
+            "value": "#8B8B91",
             "sourceRef": "pattern.surface.card.body"
           }
         },
@@ -531,11 +1014,11 @@
           "$description": "Modal form body text alias for light mode.",
           "sourceRef": "pattern.modal.form.body",
           "light": {
-            "value": "rgba(17, 29, 74, 0.4)",
+            "value": "#A0A5B7",
             "sourceRef": "pattern.modal.form.body"
           },
           "dark": {
-            "value": "rgba(221, 222, 234, 0.4)",
+            "value": "#8B8B91",
             "sourceRef": "pattern.modal.form.body"
           }
         },
@@ -626,11 +1109,11 @@
           "$description": "Token list item secondary text alias for light mode.",
           "sourceRef": "pattern.list.tokenItem.subtext",
           "light": {
-            "value": "rgba(17, 29, 74, 0.4)",
+            "value": "#A0A5B7",
             "sourceRef": "pattern.list.tokenItem.subtext"
           },
           "dark": {
-            "value": "rgba(221, 222, 234, 0.4)",
+            "value": "#8B8B91",
             "sourceRef": "pattern.list.tokenItem.subtext"
           }
         },
@@ -693,11 +1176,11 @@
           "$description": "Status row metadata text alias for light mode.",
           "sourceRef": "pattern.list.statusRow.meta",
           "light": {
-            "value": "rgba(17, 29, 74, 0.4)",
+            "value": "#A0A5B7",
             "sourceRef": "pattern.list.statusRow.meta"
           },
           "dark": {
-            "value": "rgba(221, 222, 234, 0.4)",
+            "value": "#8B8B91",
             "sourceRef": "pattern.list.statusRow.meta"
           }
         },
@@ -795,7 +1278,7 @@
               "sourceRef": "component.mobileNav.primary.default.icon"
             },
             "dark": {
-              "value": "rgba(221, 222, 234, 0.8)",
+              "value": "#B4B4BC",
               "sourceRef": "component.mobileNav.primary.default.icon"
             }
           }
@@ -851,7 +1334,7 @@
               "sourceRef": "component.mobileNav.secondary.default.icon"
             },
             "dark": {
-              "value": "rgba(221, 222, 234, 0.8)",
+              "value": "#B4B4BC",
               "sourceRef": "component.mobileNav.secondary.default.icon"
             }
           }
@@ -926,7 +1409,7 @@
               "sourceRef": "component.webNav.default.default.icon"
             },
             "dark": {
-              "value": "rgba(221, 222, 234, 0.8)",
+              "value": "#B4B4BC",
               "sourceRef": "component.webNav.default.default.icon"
             }
           },
@@ -935,11 +1418,11 @@
             "$description": "Web nav border alias for light mode.",
             "sourceRef": "component.webNav.default.default.border",
             "light": {
-              "value": "rgba(17, 29, 74, 0.08)",
+              "value": "#ECEDF0",
               "sourceRef": "component.webNav.default.default.border"
             },
             "dark": {
-              "value": "rgba(221, 222, 234, 0.08)",
+              "value": "#2C2C30",
               "sourceRef": "component.webNav.default.default.border"
             }
           }
@@ -980,11 +1463,11 @@
             "$description": "Modal body text alias for light mode.",
             "sourceRef": "component.modal.default.default.body",
             "light": {
-              "value": "rgba(17, 29, 74, 0.4)",
+              "value": "#A0A5B7",
               "sourceRef": "component.modal.default.default.body"
             },
             "dark": {
-              "value": "rgba(221, 222, 234, 0.4)",
+              "value": "#8B8B91",
               "sourceRef": "component.modal.default.default.body"
             }
           },
@@ -1204,11 +1687,11 @@
             "$description": "Menu body text alias for light mode.",
             "sourceRef": "component.menu.default.default.body",
             "light": {
-              "value": "rgba(17, 29, 74, 0.4)",
+              "value": "#A0A5B7",
               "sourceRef": "component.menu.default.default.body"
             },
             "dark": {
-              "value": "rgba(221, 222, 234, 0.4)",
+              "value": "#8B8B91",
               "sourceRef": "component.menu.default.default.body"
             }
           },
@@ -1266,7 +1749,7 @@
               "sourceRef": "component.tokenList.default.default.icon"
             },
             "dark": {
-              "value": "rgba(221, 222, 234, 0.8)",
+              "value": "#B4B4BC",
               "sourceRef": "component.tokenList.default.default.icon"
             }
           }
@@ -1309,7 +1792,7 @@
               "sourceRef": "component.tokenList.expand.default.icon"
             },
             "dark": {
-              "value": "rgba(221, 222, 234, 0.8)",
+              "value": "#B4B4BC",
               "sourceRef": "component.tokenList.expand.default.icon"
             }
           }

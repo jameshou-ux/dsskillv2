@@ -33,7 +33,7 @@
           "description": "Inner modal subsection background in light mode — light gray to visually group and differentiate nested content."
         },
         "backdrop": {
-          "value": "rgba(255, 255, 255, 0.8)",
+          "value": "#FFFFFFCC",
           "sourceRef": "semantic.background.backdrop",
           "type": "color",
           "description": "Backdrop blur overlay behind modals in light mode — 80% white for a frosted glass effect."
@@ -53,10 +53,10 @@
           "description": "适用于对应于次标题的主标题等。但该标题尚未到页面核心信息的地位"
         },
         "secondary": {
-          "value": "rgba(17, 29, 74, 0.4)",
+          "value": "#A0A5B7",
           "sourceRef": "semantic.text.secondary",
           "type": "color",
-          "description": "Supporting and secondary text in light mode — 40% navy for captions, metadata, and sublabels."
+          "description": "Supporting and secondary text in light mode — solid navy-derived token replacing the prior alpha-based treatment for more stable contrast across surfaces."
         },
         "action": {
           "value": "#007FFF",
@@ -65,10 +65,28 @@
           "description": "Interactive action text in light mode — brand blue to signal links, CTAs, and affordance."
         },
         "placeholder": {
-          "value": "rgba(17, 29, 74, 0.2)",
+          "value": "#D0D2DB",
           "sourceRef": "semantic.text.placeholder",
           "type": "color",
-          "description": "Placeholder and empty state hint text in light mode — 20% navy at minimum readable contrast."
+          "description": "Placeholder and empty state hint text in light mode — solid navy-derived token replacing the prior alpha-based treatment."
+        },
+        "success": {
+          "value": "#4BCE71",
+          "sourceRef": "semantic.text.success",
+          "type": "color",
+          "description": "Success text color in light mode for positive inline messaging."
+        },
+        "error": {
+          "value": "#F3636F",
+          "sourceRef": "semantic.text.error",
+          "type": "color",
+          "description": "Error text color in light mode for destructive and validation messaging."
+        },
+        "warning": {
+          "value": "#FC8C4D",
+          "sourceRef": "semantic.text.warning",
+          "type": "color",
+          "description": "Warning text color in light mode for caution and offline messaging."
         }
       },
       "stroke": {
@@ -79,18 +97,18 @@
           "description": "Primary icon stroke color in light mode — full navy for strong, legible icon rendering."
         },
         "icon_secondary": {
-          "value": "rgba(17, 29, 74, 0.4)",
+          "value": "#A0A5B7",
           "sourceRef": "semantic.stroke.icon_secondary",
           "type": "color",
-          "description": "Secondary icon stroke in light mode — 40% navy for de-emphasized, supporting icons."
+          "description": "Secondary icon stroke in light mode — solid navy-derived token replacing the prior alpha-based treatment."
         }
       },
       "border": {
         "default": {
-          "value": "rgba(17, 29, 74, 0.08)",
+          "value": "#ECEDF0",
           "sourceRef": "semantic.border.default",
           "type": "color",
-          "description": "Default border and divider in light mode — 8% navy, ultra-subtle separator for cards and list rows."
+          "description": "Default border and divider in light mode — solid navy-derived subtle border token replacing the prior alpha-based treatment."
         }
       },
       "fill": {
@@ -118,17 +136,41 @@
           "type": "color",
           "description": "Logo fill color in light mode — navy ensures brand identity is clear on white surfaces."
         },
-        "color_1": {
-          "value": "#FFFFFF",
-          "sourceRef": "semantic.fill.color_1",
+        "success": {
+          "value": "#4BCE71",
+          "sourceRef": "semantic.fill.success",
           "type": "color",
-          "description": "Generic brand color fill slot 1 in light mode — white, flexible placeholder for branded fills."
+          "description": "Filled success surface in light mode for high-emphasis positive actions and badges."
         },
-        "color_2": {
-          "value": "#FFFFFF",
-          "sourceRef": "semantic.fill.color_2",
+        "success_subtle": {
+          "value": "rgba(75, 206, 113, 0.2)",
+          "sourceRef": "semantic.fill.success_subtle",
           "type": "color",
-          "description": "Generic brand color fill slot 2 in light mode — white, secondary flexible branded fill placeholder."
+          "description": "Soft success fill in light mode for chips and secondary positive surfaces."
+        },
+        "error": {
+          "value": "#F3636F",
+          "sourceRef": "semantic.fill.error",
+          "type": "color",
+          "description": "Filled error surface in light mode for destructive actions and critical badges."
+        },
+        "error_subtle": {
+          "value": "rgba(243, 99, 111, 0.2)",
+          "sourceRef": "semantic.fill.error_subtle",
+          "type": "color",
+          "description": "Soft error fill in light mode for alert chips and low-emphasis destructive surfaces."
+        },
+        "warning": {
+          "value": "#FC8C4D",
+          "sourceRef": "semantic.fill.warning",
+          "type": "color",
+          "description": "Filled warning surface in light mode for caution states and offline indicators."
+        },
+        "warning_subtle": {
+          "value": "rgba(252, 140, 77, 0.2)",
+          "sourceRef": "semantic.fill.warning_subtle",
+          "type": "color",
+          "description": "Soft warning fill in light mode for caution chips and low-emphasis attention states."
         }
       },
       "gradient": {
@@ -177,7 +219,7 @@
             "stops": [
               {
                 "position": 0,
-                "color": "rgba(255, 255, 255, 0.6)"
+                "color": "#FFFFFF99"
               },
               {
                 "position": 1,
@@ -196,7 +238,7 @@
             "stops": [
               {
                 "position": 0,
-                "color": "rgba(255, 255, 255, 0)"
+                "color": "#FFFFFF00"
               },
               {
                 "position": 1,
@@ -207,6 +249,196 @@
           "sourceRef": "semantic.gradient.bar_backdrop",
           "type": "gradient",
           "description": "Tab bar backdrop gradient — transparent white to solid white for feathered top edge."
+        }
+      },
+      "status": {
+        "success": {
+          "value": "#4BCE71",
+          "sourceRef": "semantic.status.success",
+          "type": "color",
+          "description": "Canonical success color in light mode for positive status communication."
+        },
+        "success_subtle": {
+          "value": "rgba(75, 206, 113, 0.2)",
+          "sourceRef": "semantic.status.success_subtle",
+          "type": "color",
+          "description": "Subtle success surface in light mode for chips, pills, and low-emphasis confirmations."
+        },
+        "error": {
+          "value": "#F3636F",
+          "sourceRef": "semantic.status.error",
+          "type": "color",
+          "description": "Canonical error color in light mode for destructive and failed states."
+        },
+        "error_subtle": {
+          "value": "rgba(243, 99, 111, 0.2)",
+          "sourceRef": "semantic.status.error_subtle",
+          "type": "color",
+          "description": "Subtle error surface in light mode for alerts and destructive background states."
+        },
+        "warning": {
+          "value": "#FC8C4D",
+          "sourceRef": "semantic.status.warning",
+          "type": "color",
+          "description": "Canonical warning color in light mode for caution and offline states."
+        },
+        "warning_subtle": {
+          "value": "rgba(252, 140, 77, 0.2)",
+          "sourceRef": "semantic.status.warning_subtle",
+          "type": "color",
+          "description": "Subtle warning surface in light mode for chips, highlights, and caution backgrounds."
+        }
+      },
+      "textStyle": {
+        "titleLarge": {
+          "value": {
+            "fontFamily": "Noto Sans",
+            "fontWeight": 700,
+            "fontSize": 32,
+            "lineHeight": "140%",
+            "letterSpacing": {
+              "value": 4,
+              "unit": "%"
+            }
+          },
+          "sourceRef": "semantic.textStyle.titleLarge",
+          "type": "typography",
+          "description": "Largest title style from Figma, used for article titles and special large amount emphasis."
+        },
+        "amountLarge": {
+          "value": {
+            "fontFamily": "Noto Sans",
+            "fontWeight": 700,
+            "fontSize": 24,
+            "lineHeight": "140%",
+            "letterSpacing": {
+              "value": 4,
+              "unit": "%"
+            }
+          },
+          "sourceRef": "semantic.textStyle.amountLarge",
+          "type": "typography",
+          "description": "Large amount and article-title style from Figma."
+        },
+        "guideTitle": {
+          "value": {
+            "fontFamily": "Noto Sans",
+            "fontWeight": 500,
+            "fontSize": 20,
+            "lineHeight": "140%",
+            "letterSpacing": {
+              "value": 4,
+              "unit": "%"
+            }
+          },
+          "sourceRef": "semantic.textStyle.guideTitle",
+          "type": "typography",
+          "description": "Guide title style from Figma."
+        },
+        "titleMedium": {
+          "value": {
+            "fontFamily": "Noto Sans",
+            "fontWeight": 700,
+            "fontSize": 16,
+            "lineHeight": "140%",
+            "letterSpacing": {
+              "value": 4,
+              "unit": "%"
+            }
+          },
+          "sourceRef": "semantic.textStyle.titleMedium",
+          "type": "typography",
+          "description": "Medium title style from Figma, used for navigation headings."
+        },
+        "bodyMedium": {
+          "value": {
+            "fontFamily": "Noto Sans",
+            "fontWeight": 500,
+            "fontSize": 16,
+            "lineHeight": "140%",
+            "letterSpacing": {
+              "value": 4,
+              "unit": "%"
+            }
+          },
+          "sourceRef": "semantic.textStyle.bodyMedium",
+          "type": "typography",
+          "description": "Primary body content style from Figma."
+        },
+        "buttonText": {
+          "value": {
+            "fontFamily": "Noto Sans",
+            "fontWeight": 400,
+            "fontSize": 16,
+            "lineHeight": "140%",
+            "letterSpacing": {
+              "value": 4,
+              "unit": "%"
+            }
+          },
+          "sourceRef": "semantic.textStyle.buttonText",
+          "type": "typography",
+          "description": "Button label style from Figma."
+        },
+        "bodySmall": {
+          "value": {
+            "fontFamily": "Noto Sans",
+            "fontWeight": 400,
+            "fontSize": 14,
+            "lineHeight": "140%",
+            "letterSpacing": {
+              "value": 4,
+              "unit": "%"
+            }
+          },
+          "sourceRef": "semantic.textStyle.bodySmall",
+          "type": "typography",
+          "description": "Secondary body content style from Figma."
+        },
+        "groupTitle": {
+          "value": {
+            "fontFamily": "Noto Sans",
+            "fontWeight": 500,
+            "fontSize": 14,
+            "lineHeight": "140%",
+            "letterSpacing": {
+              "value": 4,
+              "unit": "%"
+            }
+          },
+          "sourceRef": "semantic.textStyle.groupTitle",
+          "type": "typography",
+          "description": "Grouped section title style from Figma."
+        },
+        "caption": {
+          "value": {
+            "fontFamily": "Noto Sans",
+            "fontWeight": 400,
+            "fontSize": 12,
+            "lineHeight": "130%",
+            "letterSpacing": {
+              "value": 4,
+              "unit": "%"
+            }
+          },
+          "sourceRef": "semantic.textStyle.caption",
+          "type": "typography",
+          "description": "Auxiliary information, annotation, and label style from Figma."
+        },
+        "xSmall": {
+          "value": {
+            "fontFamily": "Noto Sans",
+            "fontWeight": 400,
+            "fontSize": 10,
+            "lineHeight": "140%",
+            "letterSpacing": {
+              "value": 4,
+              "unit": "%"
+            }
+          },
+          "sourceRef": "semantic.textStyle.xSmall",
+          "type": "typography",
+          "description": "Bottom navigation special-case small text style from Figma."
         }
       }
     },
@@ -226,7 +458,7 @@
             "description": "Reusable card title alias for light mode."
           },
           "body": {
-            "value": "rgba(17, 29, 74, 0.4)",
+            "value": "#A0A5B7",
             "sourceRef": "pattern.surface.card.body",
             "type": "color",
             "description": "Reusable card body text alias for light mode."
@@ -254,7 +486,7 @@
             "description": "Modal form title alias for light mode."
           },
           "body": {
-            "value": "rgba(17, 29, 74, 0.4)",
+            "value": "#A0A5B7",
             "sourceRef": "pattern.modal.form.body",
             "type": "color",
             "description": "Modal form body text alias for light mode."
@@ -300,7 +532,7 @@
             "description": "Token list item primary text alias for light mode."
           },
           "subtext": {
-            "value": "rgba(17, 29, 74, 0.4)",
+            "value": "#A0A5B7",
             "sourceRef": "pattern.list.tokenItem.subtext",
             "type": "color",
             "description": "Token list item secondary text alias for light mode."
@@ -332,7 +564,7 @@
             "description": "Status row title alias for light mode."
           },
           "meta": {
-            "value": "rgba(17, 29, 74, 0.4)",
+            "value": "#A0A5B7",
             "sourceRef": "pattern.list.statusRow.meta",
             "type": "color",
             "description": "Status row metadata text alias for light mode."
@@ -455,7 +687,7 @@
               "description": "Web nav icon alias for light mode."
             },
             "border": {
-              "value": "rgba(17, 29, 74, 0.08)",
+              "value": "#ECEDF0",
               "sourceRef": "component.webNav.default.default.border",
               "type": "color",
               "description": "Web nav border alias for light mode."
@@ -479,7 +711,7 @@
               "description": "Modal title alias for light mode."
             },
             "body": {
-              "value": "rgba(17, 29, 74, 0.4)",
+              "value": "#A0A5B7",
               "sourceRef": "component.modal.default.default.body",
               "type": "color",
               "description": "Modal body text alias for light mode."
@@ -591,7 +823,7 @@
               "description": "Menu title alias for light mode."
             },
             "body": {
-              "value": "rgba(17, 29, 74, 0.4)",
+              "value": "#A0A5B7",
               "sourceRef": "component.menu.default.default.body",
               "type": "color",
               "description": "Menu body text alias for light mode."
@@ -687,7 +919,7 @@
           "description": "Inner modal subsection background in light mode — light gray to visually group and differentiate nested content."
         },
         "backdrop": {
-          "value": "rgba(0, 0, 0, 0.8)",
+          "value": "#000000CC",
           "sourceRef": "semantic.background.backdrop",
           "type": "color",
           "description": "Backdrop blur overlay behind modals in light mode — 80% white for a frosted glass effect."
@@ -707,10 +939,10 @@
           "description": "适用于对应于次标题的主标题等。但该标题尚未到页面核心信息的地位"
         },
         "secondary": {
-          "value": "rgba(221, 222, 234, 0.4)",
+          "value": "#8B8B91",
           "sourceRef": "semantic.text.secondary",
           "type": "color",
-          "description": "Supporting and secondary text in light mode — 40% navy for captions, metadata, and sublabels."
+          "description": "Supporting and secondary text in light mode — solid navy-derived token replacing the prior alpha-based treatment for more stable contrast across surfaces."
         },
         "action": {
           "value": "#066BD2",
@@ -719,32 +951,50 @@
           "description": "Interactive action text in light mode — brand blue to signal links, CTAs, and affordance."
         },
         "placeholder": {
-          "value": "rgba(255, 255, 255, 0.2)",
+          "value": "#49494C",
           "sourceRef": "semantic.text.placeholder",
           "type": "color",
-          "description": "Placeholder and empty state hint text in light mode — 20% navy at minimum readable contrast."
+          "description": "Placeholder and empty state hint text in light mode — solid navy-derived token replacing the prior alpha-based treatment."
+        },
+        "success": {
+          "value": "#4BCE71",
+          "sourceRef": "semantic.text.success",
+          "type": "color",
+          "description": "Success text color in light mode for positive inline messaging."
+        },
+        "error": {
+          "value": "#F3636F",
+          "sourceRef": "semantic.text.error",
+          "type": "color",
+          "description": "Error text color in light mode for destructive and validation messaging."
+        },
+        "warning": {
+          "value": "#FC8C4D",
+          "sourceRef": "semantic.text.warning",
+          "type": "color",
+          "description": "Warning text color in light mode for caution and offline messaging."
         }
       },
       "stroke": {
         "icon_primary": {
-          "value": "rgba(221, 222, 234, 0.8)",
+          "value": "#B4B4BC",
           "sourceRef": "semantic.stroke.icon_primary",
           "type": "color",
           "description": "Primary icon stroke color in light mode — full navy for strong, legible icon rendering."
         },
         "icon_secondary": {
-          "value": "rgba(221, 222, 234, 0.4)",
+          "value": "#8B8B91",
           "sourceRef": "semantic.stroke.icon_secondary",
           "type": "color",
-          "description": "Secondary icon stroke in light mode — 40% navy for de-emphasized, supporting icons."
+          "description": "Secondary icon stroke in light mode — solid navy-derived token replacing the prior alpha-based treatment."
         }
       },
       "border": {
         "default": {
-          "value": "rgba(221, 222, 234, 0.08)",
+          "value": "#2C2C30",
           "sourceRef": "semantic.border.default",
           "type": "color",
-          "description": "Default border and divider in light mode — 8% navy, ultra-subtle separator for cards and list rows."
+          "description": "Default border and divider in light mode — solid navy-derived subtle border token replacing the prior alpha-based treatment."
         }
       },
       "fill": {
@@ -772,17 +1022,41 @@
           "type": "color",
           "description": "Logo fill color in light mode — navy ensures brand identity is clear on white surfaces."
         },
-        "color_1": {
-          "value": "#FFFFFF",
-          "sourceRef": "semantic.fill.color_1",
+        "success": {
+          "value": "#4BCE71",
+          "sourceRef": "semantic.fill.success",
           "type": "color",
-          "description": "Generic brand color fill slot 1 in light mode — white, flexible placeholder for branded fills."
+          "description": "Filled success surface in light mode for high-emphasis positive actions and badges."
         },
-        "color_2": {
-          "value": "#FFFFFF",
-          "sourceRef": "semantic.fill.color_2",
+        "success_subtle": {
+          "value": "rgba(75, 206, 113, 0.2)",
+          "sourceRef": "semantic.fill.success_subtle",
           "type": "color",
-          "description": "Generic brand color fill slot 2 in light mode — white, secondary flexible branded fill placeholder."
+          "description": "Soft success fill in light mode for chips and secondary positive surfaces."
+        },
+        "error": {
+          "value": "#F3636F",
+          "sourceRef": "semantic.fill.error",
+          "type": "color",
+          "description": "Filled error surface in light mode for destructive actions and critical badges."
+        },
+        "error_subtle": {
+          "value": "rgba(243, 99, 111, 0.2)",
+          "sourceRef": "semantic.fill.error_subtle",
+          "type": "color",
+          "description": "Soft error fill in light mode for alert chips and low-emphasis destructive surfaces."
+        },
+        "warning": {
+          "value": "#FC8C4D",
+          "sourceRef": "semantic.fill.warning",
+          "type": "color",
+          "description": "Filled warning surface in light mode for caution states and offline indicators."
+        },
+        "warning_subtle": {
+          "value": "rgba(252, 140, 77, 0.2)",
+          "sourceRef": "semantic.fill.warning_subtle",
+          "type": "color",
+          "description": "Soft warning fill in light mode for caution chips and low-emphasis attention states."
         }
       },
       "gradient": {
@@ -831,7 +1105,7 @@
             "stops": [
               {
                 "position": 0,
-                "color": "rgba(21, 20, 23, 0.7)"
+                "color": "#151417B3"
               },
               {
                 "position": 1,
@@ -850,7 +1124,7 @@
             "stops": [
               {
                 "position": 0,
-                "color": "rgba(1, 3, 6, 0)"
+                "color": "#01030600"
               },
               {
                 "position": 1,
@@ -861,6 +1135,196 @@
           "sourceRef": "semantic.gradient.bar_backdrop",
           "type": "gradient",
           "description": "Tab bar backdrop gradient — transparent white to solid white for feathered top edge."
+        }
+      },
+      "status": {
+        "success": {
+          "value": "#4BCE71",
+          "sourceRef": "semantic.status.success",
+          "type": "color",
+          "description": "Canonical success color in light mode for positive status communication."
+        },
+        "success_subtle": {
+          "value": "rgba(75, 206, 113, 0.2)",
+          "sourceRef": "semantic.status.success_subtle",
+          "type": "color",
+          "description": "Subtle success surface in light mode for chips, pills, and low-emphasis confirmations."
+        },
+        "error": {
+          "value": "#F3636F",
+          "sourceRef": "semantic.status.error",
+          "type": "color",
+          "description": "Canonical error color in light mode for destructive and failed states."
+        },
+        "error_subtle": {
+          "value": "rgba(243, 99, 111, 0.2)",
+          "sourceRef": "semantic.status.error_subtle",
+          "type": "color",
+          "description": "Subtle error surface in light mode for alerts and destructive background states."
+        },
+        "warning": {
+          "value": "#FC8C4D",
+          "sourceRef": "semantic.status.warning",
+          "type": "color",
+          "description": "Canonical warning color in light mode for caution and offline states."
+        },
+        "warning_subtle": {
+          "value": "rgba(252, 140, 77, 0.2)",
+          "sourceRef": "semantic.status.warning_subtle",
+          "type": "color",
+          "description": "Subtle warning surface in light mode for chips, highlights, and caution backgrounds."
+        }
+      },
+      "textStyle": {
+        "titleLarge": {
+          "value": {
+            "fontFamily": "Noto Sans",
+            "fontWeight": 700,
+            "fontSize": 32,
+            "lineHeight": "140%",
+            "letterSpacing": {
+              "value": 4,
+              "unit": "%"
+            }
+          },
+          "sourceRef": "semantic.textStyle.titleLarge",
+          "type": "typography",
+          "description": "Largest title style from Figma, used for article titles and special large amount emphasis."
+        },
+        "amountLarge": {
+          "value": {
+            "fontFamily": "Noto Sans",
+            "fontWeight": 700,
+            "fontSize": 24,
+            "lineHeight": "140%",
+            "letterSpacing": {
+              "value": 4,
+              "unit": "%"
+            }
+          },
+          "sourceRef": "semantic.textStyle.amountLarge",
+          "type": "typography",
+          "description": "Large amount and article-title style from Figma."
+        },
+        "guideTitle": {
+          "value": {
+            "fontFamily": "Noto Sans",
+            "fontWeight": 500,
+            "fontSize": 20,
+            "lineHeight": "140%",
+            "letterSpacing": {
+              "value": 4,
+              "unit": "%"
+            }
+          },
+          "sourceRef": "semantic.textStyle.guideTitle",
+          "type": "typography",
+          "description": "Guide title style from Figma."
+        },
+        "titleMedium": {
+          "value": {
+            "fontFamily": "Noto Sans",
+            "fontWeight": 700,
+            "fontSize": 16,
+            "lineHeight": "140%",
+            "letterSpacing": {
+              "value": 4,
+              "unit": "%"
+            }
+          },
+          "sourceRef": "semantic.textStyle.titleMedium",
+          "type": "typography",
+          "description": "Medium title style from Figma, used for navigation headings."
+        },
+        "bodyMedium": {
+          "value": {
+            "fontFamily": "Noto Sans",
+            "fontWeight": 500,
+            "fontSize": 16,
+            "lineHeight": "140%",
+            "letterSpacing": {
+              "value": 4,
+              "unit": "%"
+            }
+          },
+          "sourceRef": "semantic.textStyle.bodyMedium",
+          "type": "typography",
+          "description": "Primary body content style from Figma."
+        },
+        "buttonText": {
+          "value": {
+            "fontFamily": "Noto Sans",
+            "fontWeight": 400,
+            "fontSize": 16,
+            "lineHeight": "140%",
+            "letterSpacing": {
+              "value": 4,
+              "unit": "%"
+            }
+          },
+          "sourceRef": "semantic.textStyle.buttonText",
+          "type": "typography",
+          "description": "Button label style from Figma."
+        },
+        "bodySmall": {
+          "value": {
+            "fontFamily": "Noto Sans",
+            "fontWeight": 400,
+            "fontSize": 14,
+            "lineHeight": "140%",
+            "letterSpacing": {
+              "value": 4,
+              "unit": "%"
+            }
+          },
+          "sourceRef": "semantic.textStyle.bodySmall",
+          "type": "typography",
+          "description": "Secondary body content style from Figma."
+        },
+        "groupTitle": {
+          "value": {
+            "fontFamily": "Noto Sans",
+            "fontWeight": 500,
+            "fontSize": 14,
+            "lineHeight": "140%",
+            "letterSpacing": {
+              "value": 4,
+              "unit": "%"
+            }
+          },
+          "sourceRef": "semantic.textStyle.groupTitle",
+          "type": "typography",
+          "description": "Grouped section title style from Figma."
+        },
+        "caption": {
+          "value": {
+            "fontFamily": "Noto Sans",
+            "fontWeight": 400,
+            "fontSize": 12,
+            "lineHeight": "130%",
+            "letterSpacing": {
+              "value": 4,
+              "unit": "%"
+            }
+          },
+          "sourceRef": "semantic.textStyle.caption",
+          "type": "typography",
+          "description": "Auxiliary information, annotation, and label style from Figma."
+        },
+        "xSmall": {
+          "value": {
+            "fontFamily": "Noto Sans",
+            "fontWeight": 400,
+            "fontSize": 10,
+            "lineHeight": "140%",
+            "letterSpacing": {
+              "value": 4,
+              "unit": "%"
+            }
+          },
+          "sourceRef": "semantic.textStyle.xSmall",
+          "type": "typography",
+          "description": "Bottom navigation special-case small text style from Figma."
         }
       }
     },
@@ -880,7 +1344,7 @@
             "description": "Reusable card title alias for light mode."
           },
           "body": {
-            "value": "rgba(221, 222, 234, 0.4)",
+            "value": "#8B8B91",
             "sourceRef": "pattern.surface.card.body",
             "type": "color",
             "description": "Reusable card body text alias for light mode."
@@ -908,7 +1372,7 @@
             "description": "Modal form title alias for light mode."
           },
           "body": {
-            "value": "rgba(221, 222, 234, 0.4)",
+            "value": "#8B8B91",
             "sourceRef": "pattern.modal.form.body",
             "type": "color",
             "description": "Modal form body text alias for light mode."
@@ -954,7 +1418,7 @@
             "description": "Token list item primary text alias for light mode."
           },
           "subtext": {
-            "value": "rgba(221, 222, 234, 0.4)",
+            "value": "#8B8B91",
             "sourceRef": "pattern.list.tokenItem.subtext",
             "type": "color",
             "description": "Token list item secondary text alias for light mode."
@@ -986,7 +1450,7 @@
             "description": "Status row title alias for light mode."
           },
           "meta": {
-            "value": "rgba(221, 222, 234, 0.4)",
+            "value": "#8B8B91",
             "sourceRef": "pattern.list.statusRow.meta",
             "type": "color",
             "description": "Status row metadata text alias for light mode."
@@ -1035,7 +1499,7 @@
               "description": "Primary mobile nav title alias for light mode."
             },
             "icon": {
-              "value": "rgba(221, 222, 234, 0.8)",
+              "value": "#B4B4BC",
               "sourceRef": "component.mobileNav.primary.default.icon",
               "type": "color",
               "description": "Primary mobile nav icon alias for light mode."
@@ -1063,7 +1527,7 @@
               "description": "Secondary mobile nav title alias for light mode."
             },
             "icon": {
-              "value": "rgba(221, 222, 234, 0.8)",
+              "value": "#B4B4BC",
               "sourceRef": "component.mobileNav.secondary.default.icon",
               "type": "color",
               "description": "Secondary mobile nav icon alias for light mode."
@@ -1103,13 +1567,13 @@
               "description": "Web nav title alias for light mode."
             },
             "icon": {
-              "value": "rgba(221, 222, 234, 0.8)",
+              "value": "#B4B4BC",
               "sourceRef": "component.webNav.default.default.icon",
               "type": "color",
               "description": "Web nav icon alias for light mode."
             },
             "border": {
-              "value": "rgba(221, 222, 234, 0.08)",
+              "value": "#2C2C30",
               "sourceRef": "component.webNav.default.default.border",
               "type": "color",
               "description": "Web nav border alias for light mode."
@@ -1133,7 +1597,7 @@
               "description": "Modal title alias for light mode."
             },
             "body": {
-              "value": "rgba(221, 222, 234, 0.4)",
+              "value": "#8B8B91",
               "sourceRef": "component.modal.default.default.body",
               "type": "color",
               "description": "Modal body text alias for light mode."
@@ -1245,7 +1709,7 @@
               "description": "Menu title alias for light mode."
             },
             "body": {
-              "value": "rgba(221, 222, 234, 0.4)",
+              "value": "#8B8B91",
               "sourceRef": "component.menu.default.default.body",
               "type": "color",
               "description": "Menu body text alias for light mode."
@@ -1275,7 +1739,7 @@
               "description": "Default token list text alias for light mode."
             },
             "icon": {
-              "value": "rgba(221, 222, 234, 0.8)",
+              "value": "#B4B4BC",
               "sourceRef": "component.tokenList.default.default.icon",
               "type": "color",
               "description": "Default token list icon alias for light mode."
@@ -1297,7 +1761,7 @@
               "description": "Expanded token list text alias for light mode."
             },
             "icon": {
-              "value": "rgba(221, 222, 234, 0.8)",
+              "value": "#B4B4BC",
               "sourceRef": "component.tokenList.expand.default.icon",
               "type": "color",
               "description": "Expanded token list icon alias for light mode."

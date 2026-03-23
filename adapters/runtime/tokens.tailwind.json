@@ -24,7 +24,7 @@
             "sourceRef": "semantic.background.modal_section_inner"
           },
           "semantic-background-backdrop": {
-            "value": "rgba(255, 255, 255, 0.8)",
+            "value": "#FFFFFFCC",
             "sourceRef": "semantic.background.backdrop"
           },
           "semantic-text-core": {
@@ -36,7 +36,7 @@
             "sourceRef": "semantic.text.primary"
           },
           "semantic-text-secondary": {
-            "value": "rgba(17, 29, 74, 0.4)",
+            "value": "#A0A5B7",
             "sourceRef": "semantic.text.secondary"
           },
           "semantic-text-action": {
@@ -44,19 +44,31 @@
             "sourceRef": "semantic.text.action"
           },
           "semantic-text-placeholder": {
-            "value": "rgba(17, 29, 74, 0.2)",
+            "value": "#D0D2DB",
             "sourceRef": "semantic.text.placeholder"
+          },
+          "semantic-text-success": {
+            "value": "#4BCE71",
+            "sourceRef": "semantic.text.success"
+          },
+          "semantic-text-error": {
+            "value": "#F3636F",
+            "sourceRef": "semantic.text.error"
+          },
+          "semantic-text-warning": {
+            "value": "#FC8C4D",
+            "sourceRef": "semantic.text.warning"
           },
           "semantic-stroke-icon-primary": {
             "value": "#111D4A",
             "sourceRef": "semantic.stroke.icon_primary"
           },
           "semantic-stroke-icon-secondary": {
-            "value": "rgba(17, 29, 74, 0.4)",
+            "value": "#A0A5B7",
             "sourceRef": "semantic.stroke.icon_secondary"
           },
           "semantic-border-default": {
-            "value": "rgba(17, 29, 74, 0.08)",
+            "value": "#ECEDF0",
             "sourceRef": "semantic.border.default"
           },
           "semantic-fill-icon-chip": {
@@ -75,13 +87,53 @@
             "value": "#111D4A",
             "sourceRef": "semantic.fill.logo"
           },
-          "semantic-fill-color-1": {
-            "value": "#FFFFFF",
-            "sourceRef": "semantic.fill.color_1"
+          "semantic-fill-success": {
+            "value": "#4BCE71",
+            "sourceRef": "semantic.fill.success"
           },
-          "semantic-fill-color-2": {
-            "value": "#FFFFFF",
-            "sourceRef": "semantic.fill.color_2"
+          "semantic-fill-success-subtle": {
+            "value": "rgba(75, 206, 113, 0.2)",
+            "sourceRef": "semantic.fill.success_subtle"
+          },
+          "semantic-fill-error": {
+            "value": "#F3636F",
+            "sourceRef": "semantic.fill.error"
+          },
+          "semantic-fill-error-subtle": {
+            "value": "rgba(243, 99, 111, 0.2)",
+            "sourceRef": "semantic.fill.error_subtle"
+          },
+          "semantic-fill-warning": {
+            "value": "#FC8C4D",
+            "sourceRef": "semantic.fill.warning"
+          },
+          "semantic-fill-warning-subtle": {
+            "value": "rgba(252, 140, 77, 0.2)",
+            "sourceRef": "semantic.fill.warning_subtle"
+          },
+          "semantic-status-success": {
+            "value": "#4BCE71",
+            "sourceRef": "semantic.status.success"
+          },
+          "semantic-status-success-subtle": {
+            "value": "rgba(75, 206, 113, 0.2)",
+            "sourceRef": "semantic.status.success_subtle"
+          },
+          "semantic-status-error": {
+            "value": "#F3636F",
+            "sourceRef": "semantic.status.error"
+          },
+          "semantic-status-error-subtle": {
+            "value": "rgba(243, 99, 111, 0.2)",
+            "sourceRef": "semantic.status.error_subtle"
+          },
+          "semantic-status-warning": {
+            "value": "#FC8C4D",
+            "sourceRef": "semantic.status.warning"
+          },
+          "semantic-status-warning-subtle": {
+            "value": "rgba(252, 140, 77, 0.2)",
+            "sourceRef": "semantic.status.warning_subtle"
           },
           "pattern-surface-card-background": {
             "value": "#FFFFFF",
@@ -92,7 +144,7 @@
             "sourceRef": "pattern.surface.card.title"
           },
           "pattern-surface-card-body": {
-            "value": "rgba(17, 29, 74, 0.4)",
+            "value": "#A0A5B7",
             "sourceRef": "pattern.surface.card.body"
           },
           "pattern-modal-form-title": {
@@ -100,7 +152,7 @@
             "sourceRef": "pattern.modal.form.title"
           },
           "pattern-modal-form-body": {
-            "value": "rgba(17, 29, 74, 0.4)",
+            "value": "#A0A5B7",
             "sourceRef": "pattern.modal.form.body"
           },
           "pattern-modal-form-fieldBackground": {
@@ -112,7 +164,7 @@
             "sourceRef": "pattern.list.tokenItem.text"
           },
           "pattern-list-tokenItem-subtext": {
-            "value": "rgba(17, 29, 74, 0.4)",
+            "value": "#A0A5B7",
             "sourceRef": "pattern.list.tokenItem.subtext"
           },
           "pattern-list-statusRow-title": {
@@ -120,7 +172,7 @@
             "sourceRef": "pattern.list.statusRow.title"
           },
           "pattern-list-statusRow-meta": {
-            "value": "rgba(17, 29, 74, 0.4)",
+            "value": "#A0A5B7",
             "sourceRef": "pattern.list.statusRow.meta"
           },
           "component-mobileNav-primary-default-title": {
@@ -152,7 +204,7 @@
             "sourceRef": "component.webNav.default.default.icon"
           },
           "component-webNav-default-default-border": {
-            "value": "rgba(17, 29, 74, 0.08)",
+            "value": "#ECEDF0",
             "sourceRef": "component.webNav.default.default.border"
           },
           "component-modal-default-default-background": {
@@ -164,7 +216,7 @@
             "sourceRef": "component.modal.default.default.title"
           },
           "component-modal-default-default-body": {
-            "value": "rgba(17, 29, 74, 0.4)",
+            "value": "#A0A5B7",
             "sourceRef": "component.modal.default.default.body"
           },
           "component-button-primary-default-background": {
@@ -188,7 +240,7 @@
             "sourceRef": "component.menu.default.default.title"
           },
           "component-menu-default-default-body": {
-            "value": "rgba(17, 29, 74, 0.4)",
+            "value": "#A0A5B7",
             "sourceRef": "component.menu.default.default.body"
           },
           "component-tokenList-default-default-text": {
@@ -218,12 +270,114 @@
             "sourceRef": "semantic.gradient.main"
           },
           "semantic-gradient-xaut-card": {
-            "value": "linear-gradient(180deg, rgba(255, 255, 255, 0.6) 0%, #EEF7FF 100%)",
+            "value": "linear-gradient(180deg, #FFFFFF99 0%, #EEF7FF 100%)",
             "sourceRef": "semantic.gradient.xaut_card"
           },
           "semantic-gradient-bar-backdrop": {
-            "value": "linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #FFFFFF 100%)",
+            "value": "linear-gradient(180deg, #FFFFFF00 0%, #FFFFFF 100%)",
             "sourceRef": "semantic.gradient.bar_backdrop"
+          }
+        },
+        "textStyles": {
+          "semantic-textStyle-titleLarge": {
+            "value": {
+              "fontFamily": "Noto Sans",
+              "fontWeight": 700,
+              "fontSize": "32px",
+              "lineHeight": "140%",
+              "letterSpacing": "4%"
+            },
+            "sourceRef": "semantic.textStyle.titleLarge"
+          },
+          "semantic-textStyle-amountLarge": {
+            "value": {
+              "fontFamily": "Noto Sans",
+              "fontWeight": 700,
+              "fontSize": "24px",
+              "lineHeight": "140%",
+              "letterSpacing": "4%"
+            },
+            "sourceRef": "semantic.textStyle.amountLarge"
+          },
+          "semantic-textStyle-guideTitle": {
+            "value": {
+              "fontFamily": "Noto Sans",
+              "fontWeight": 500,
+              "fontSize": "20px",
+              "lineHeight": "140%",
+              "letterSpacing": "4%"
+            },
+            "sourceRef": "semantic.textStyle.guideTitle"
+          },
+          "semantic-textStyle-titleMedium": {
+            "value": {
+              "fontFamily": "Noto Sans",
+              "fontWeight": 700,
+              "fontSize": "16px",
+              "lineHeight": "140%",
+              "letterSpacing": "4%"
+            },
+            "sourceRef": "semantic.textStyle.titleMedium"
+          },
+          "semantic-textStyle-bodyMedium": {
+            "value": {
+              "fontFamily": "Noto Sans",
+              "fontWeight": 500,
+              "fontSize": "16px",
+              "lineHeight": "140%",
+              "letterSpacing": "4%"
+            },
+            "sourceRef": "semantic.textStyle.bodyMedium"
+          },
+          "semantic-textStyle-buttonText": {
+            "value": {
+              "fontFamily": "Noto Sans",
+              "fontWeight": 400,
+              "fontSize": "16px",
+              "lineHeight": "140%",
+              "letterSpacing": "4%"
+            },
+            "sourceRef": "semantic.textStyle.buttonText"
+          },
+          "semantic-textStyle-bodySmall": {
+            "value": {
+              "fontFamily": "Noto Sans",
+              "fontWeight": 400,
+              "fontSize": "14px",
+              "lineHeight": "140%",
+              "letterSpacing": "4%"
+            },
+            "sourceRef": "semantic.textStyle.bodySmall"
+          },
+          "semantic-textStyle-groupTitle": {
+            "value": {
+              "fontFamily": "Noto Sans",
+              "fontWeight": 500,
+              "fontSize": "14px",
+              "lineHeight": "140%",
+              "letterSpacing": "4%"
+            },
+            "sourceRef": "semantic.textStyle.groupTitle"
+          },
+          "semantic-textStyle-caption": {
+            "value": {
+              "fontFamily": "Noto Sans",
+              "fontWeight": 400,
+              "fontSize": "12px",
+              "lineHeight": "130%",
+              "letterSpacing": "4%"
+            },
+            "sourceRef": "semantic.textStyle.caption"
+          },
+          "semantic-textStyle-xSmall": {
+            "value": {
+              "fontFamily": "Noto Sans",
+              "fontWeight": 400,
+              "fontSize": "10px",
+              "lineHeight": "140%",
+              "letterSpacing": "4%"
+            },
+            "sourceRef": "semantic.textStyle.xSmall"
           }
         },
         "spacing": {
@@ -382,7 +536,7 @@
             "sourceRef": "semantic.background.modal_section_inner"
           },
           "semantic-background-backdrop": {
-            "value": "rgba(0, 0, 0, 0.8)",
+            "value": "#000000CC",
             "sourceRef": "semantic.background.backdrop"
           },
           "semantic-text-core": {
@@ -394,7 +548,7 @@
             "sourceRef": "semantic.text.primary"
           },
           "semantic-text-secondary": {
-            "value": "rgba(221, 222, 234, 0.4)",
+            "value": "#8B8B91",
             "sourceRef": "semantic.text.secondary"
           },
           "semantic-text-action": {
@@ -402,19 +556,31 @@
             "sourceRef": "semantic.text.action"
           },
           "semantic-text-placeholder": {
-            "value": "rgba(255, 255, 255, 0.2)",
+            "value": "#49494C",
             "sourceRef": "semantic.text.placeholder"
           },
+          "semantic-text-success": {
+            "value": "#4BCE71",
+            "sourceRef": "semantic.text.success"
+          },
+          "semantic-text-error": {
+            "value": "#F3636F",
+            "sourceRef": "semantic.text.error"
+          },
+          "semantic-text-warning": {
+            "value": "#FC8C4D",
+            "sourceRef": "semantic.text.warning"
+          },
           "semantic-stroke-icon-primary": {
-            "value": "rgba(221, 222, 234, 0.8)",
+            "value": "#B4B4BC",
             "sourceRef": "semantic.stroke.icon_primary"
           },
           "semantic-stroke-icon-secondary": {
-            "value": "rgba(221, 222, 234, 0.4)",
+            "value": "#8B8B91",
             "sourceRef": "semantic.stroke.icon_secondary"
           },
           "semantic-border-default": {
-            "value": "rgba(221, 222, 234, 0.08)",
+            "value": "#2C2C30",
             "sourceRef": "semantic.border.default"
           },
           "semantic-fill-icon-chip": {
@@ -433,13 +599,53 @@
             "value": "#FFFFFF",
             "sourceRef": "semantic.fill.logo"
           },
-          "semantic-fill-color-1": {
-            "value": "#FFFFFF",
-            "sourceRef": "semantic.fill.color_1"
+          "semantic-fill-success": {
+            "value": "#4BCE71",
+            "sourceRef": "semantic.fill.success"
           },
-          "semantic-fill-color-2": {
-            "value": "#FFFFFF",
-            "sourceRef": "semantic.fill.color_2"
+          "semantic-fill-success-subtle": {
+            "value": "rgba(75, 206, 113, 0.2)",
+            "sourceRef": "semantic.fill.success_subtle"
+          },
+          "semantic-fill-error": {
+            "value": "#F3636F",
+            "sourceRef": "semantic.fill.error"
+          },
+          "semantic-fill-error-subtle": {
+            "value": "rgba(243, 99, 111, 0.2)",
+            "sourceRef": "semantic.fill.error_subtle"
+          },
+          "semantic-fill-warning": {
+            "value": "#FC8C4D",
+            "sourceRef": "semantic.fill.warning"
+          },
+          "semantic-fill-warning-subtle": {
+            "value": "rgba(252, 140, 77, 0.2)",
+            "sourceRef": "semantic.fill.warning_subtle"
+          },
+          "semantic-status-success": {
+            "value": "#4BCE71",
+            "sourceRef": "semantic.status.success"
+          },
+          "semantic-status-success-subtle": {
+            "value": "rgba(75, 206, 113, 0.2)",
+            "sourceRef": "semantic.status.success_subtle"
+          },
+          "semantic-status-error": {
+            "value": "#F3636F",
+            "sourceRef": "semantic.status.error"
+          },
+          "semantic-status-error-subtle": {
+            "value": "rgba(243, 99, 111, 0.2)",
+            "sourceRef": "semantic.status.error_subtle"
+          },
+          "semantic-status-warning": {
+            "value": "#FC8C4D",
+            "sourceRef": "semantic.status.warning"
+          },
+          "semantic-status-warning-subtle": {
+            "value": "rgba(252, 140, 77, 0.2)",
+            "sourceRef": "semantic.status.warning_subtle"
           },
           "pattern-surface-card-background": {
             "value": "#1C1C1E",
@@ -450,7 +656,7 @@
             "sourceRef": "pattern.surface.card.title"
           },
           "pattern-surface-card-body": {
-            "value": "rgba(221, 222, 234, 0.4)",
+            "value": "#8B8B91",
             "sourceRef": "pattern.surface.card.body"
           },
           "pattern-modal-form-title": {
@@ -458,7 +664,7 @@
             "sourceRef": "pattern.modal.form.title"
           },
           "pattern-modal-form-body": {
-            "value": "rgba(221, 222, 234, 0.4)",
+            "value": "#8B8B91",
             "sourceRef": "pattern.modal.form.body"
           },
           "pattern-modal-form-fieldBackground": {
@@ -470,7 +676,7 @@
             "sourceRef": "pattern.list.tokenItem.text"
           },
           "pattern-list-tokenItem-subtext": {
-            "value": "rgba(221, 222, 234, 0.4)",
+            "value": "#8B8B91",
             "sourceRef": "pattern.list.tokenItem.subtext"
           },
           "pattern-list-statusRow-title": {
@@ -478,7 +684,7 @@
             "sourceRef": "pattern.list.statusRow.title"
           },
           "pattern-list-statusRow-meta": {
-            "value": "rgba(221, 222, 234, 0.4)",
+            "value": "#8B8B91",
             "sourceRef": "pattern.list.statusRow.meta"
           },
           "component-mobileNav-primary-default-title": {
@@ -486,7 +692,7 @@
             "sourceRef": "component.mobileNav.primary.default.title"
           },
           "component-mobileNav-primary-default-icon": {
-            "value": "rgba(221, 222, 234, 0.8)",
+            "value": "#B4B4BC",
             "sourceRef": "component.mobileNav.primary.default.icon"
           },
           "component-mobileNav-secondary-default-title": {
@@ -494,7 +700,7 @@
             "sourceRef": "component.mobileNav.secondary.default.title"
           },
           "component-mobileNav-secondary-default-icon": {
-            "value": "rgba(221, 222, 234, 0.8)",
+            "value": "#B4B4BC",
             "sourceRef": "component.mobileNav.secondary.default.icon"
           },
           "component-webNav-default-default-background": {
@@ -506,11 +712,11 @@
             "sourceRef": "component.webNav.default.default.title"
           },
           "component-webNav-default-default-icon": {
-            "value": "rgba(221, 222, 234, 0.8)",
+            "value": "#B4B4BC",
             "sourceRef": "component.webNav.default.default.icon"
           },
           "component-webNav-default-default-border": {
-            "value": "rgba(221, 222, 234, 0.08)",
+            "value": "#2C2C30",
             "sourceRef": "component.webNav.default.default.border"
           },
           "component-modal-default-default-background": {
@@ -522,7 +728,7 @@
             "sourceRef": "component.modal.default.default.title"
           },
           "component-modal-default-default-body": {
-            "value": "rgba(221, 222, 234, 0.4)",
+            "value": "#8B8B91",
             "sourceRef": "component.modal.default.default.body"
           },
           "component-button-primary-default-background": {
@@ -546,7 +752,7 @@
             "sourceRef": "component.menu.default.default.title"
           },
           "component-menu-default-default-body": {
-            "value": "rgba(221, 222, 234, 0.4)",
+            "value": "#8B8B91",
             "sourceRef": "component.menu.default.default.body"
           },
           "component-tokenList-default-default-text": {
@@ -554,7 +760,7 @@
             "sourceRef": "component.tokenList.default.default.text"
           },
           "component-tokenList-default-default-icon": {
-            "value": "rgba(221, 222, 234, 0.8)",
+            "value": "#B4B4BC",
             "sourceRef": "component.tokenList.default.default.icon"
           },
           "component-tokenList-expand-default-text": {
@@ -562,7 +768,7 @@
             "sourceRef": "component.tokenList.expand.default.text"
           },
           "component-tokenList-expand-default-icon": {
-            "value": "rgba(221, 222, 234, 0.8)",
+            "value": "#B4B4BC",
             "sourceRef": "component.tokenList.expand.default.icon"
           }
         },
@@ -576,12 +782,114 @@
             "sourceRef": "semantic.gradient.main"
           },
           "semantic-gradient-xaut-card": {
-            "value": "linear-gradient(180deg, rgba(21, 20, 23, 0.7) 0%, #2C2C2E 100%)",
+            "value": "linear-gradient(180deg, #151417B3 0%, #2C2C2E 100%)",
             "sourceRef": "semantic.gradient.xaut_card"
           },
           "semantic-gradient-bar-backdrop": {
-            "value": "linear-gradient(180deg, rgba(1, 3, 6, 0) 0%, #010306 100%)",
+            "value": "linear-gradient(180deg, #01030600 0%, #010306 100%)",
             "sourceRef": "semantic.gradient.bar_backdrop"
+          }
+        },
+        "textStyles": {
+          "semantic-textStyle-titleLarge": {
+            "value": {
+              "fontFamily": "Noto Sans",
+              "fontWeight": 700,
+              "fontSize": "32px",
+              "lineHeight": "140%",
+              "letterSpacing": "4%"
+            },
+            "sourceRef": "semantic.textStyle.titleLarge"
+          },
+          "semantic-textStyle-amountLarge": {
+            "value": {
+              "fontFamily": "Noto Sans",
+              "fontWeight": 700,
+              "fontSize": "24px",
+              "lineHeight": "140%",
+              "letterSpacing": "4%"
+            },
+            "sourceRef": "semantic.textStyle.amountLarge"
+          },
+          "semantic-textStyle-guideTitle": {
+            "value": {
+              "fontFamily": "Noto Sans",
+              "fontWeight": 500,
+              "fontSize": "20px",
+              "lineHeight": "140%",
+              "letterSpacing": "4%"
+            },
+            "sourceRef": "semantic.textStyle.guideTitle"
+          },
+          "semantic-textStyle-titleMedium": {
+            "value": {
+              "fontFamily": "Noto Sans",
+              "fontWeight": 700,
+              "fontSize": "16px",
+              "lineHeight": "140%",
+              "letterSpacing": "4%"
+            },
+            "sourceRef": "semantic.textStyle.titleMedium"
+          },
+          "semantic-textStyle-bodyMedium": {
+            "value": {
+              "fontFamily": "Noto Sans",
+              "fontWeight": 500,
+              "fontSize": "16px",
+              "lineHeight": "140%",
+              "letterSpacing": "4%"
+            },
+            "sourceRef": "semantic.textStyle.bodyMedium"
+          },
+          "semantic-textStyle-buttonText": {
+            "value": {
+              "fontFamily": "Noto Sans",
+              "fontWeight": 400,
+              "fontSize": "16px",
+              "lineHeight": "140%",
+              "letterSpacing": "4%"
+            },
+            "sourceRef": "semantic.textStyle.buttonText"
+          },
+          "semantic-textStyle-bodySmall": {
+            "value": {
+              "fontFamily": "Noto Sans",
+              "fontWeight": 400,
+              "fontSize": "14px",
+              "lineHeight": "140%",
+              "letterSpacing": "4%"
+            },
+            "sourceRef": "semantic.textStyle.bodySmall"
+          },
+          "semantic-textStyle-groupTitle": {
+            "value": {
+              "fontFamily": "Noto Sans",
+              "fontWeight": 500,
+              "fontSize": "14px",
+              "lineHeight": "140%",
+              "letterSpacing": "4%"
+            },
+            "sourceRef": "semantic.textStyle.groupTitle"
+          },
+          "semantic-textStyle-caption": {
+            "value": {
+              "fontFamily": "Noto Sans",
+              "fontWeight": 400,
+              "fontSize": "12px",
+              "lineHeight": "130%",
+              "letterSpacing": "4%"
+            },
+            "sourceRef": "semantic.textStyle.caption"
+          },
+          "semantic-textStyle-xSmall": {
+            "value": {
+              "fontFamily": "Noto Sans",
+              "fontWeight": 400,
+              "fontSize": "10px",
+              "lineHeight": "140%",
+              "letterSpacing": "4%"
+            },
+            "sourceRef": "semantic.textStyle.xSmall"
           }
         },
         "spacing": {

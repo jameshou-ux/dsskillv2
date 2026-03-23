@@ -27,7 +27,7 @@
         "type": "color"
       },
       "--semantic-background-backdrop": {
-        "value": "rgba(255, 255, 255, 0.8)",
+        "value": "#FFFFFFCC",
         "sourceRef": "semantic.background.backdrop",
         "type": "color"
       },
@@ -42,7 +42,7 @@
         "type": "color"
       },
       "--semantic-text-secondary": {
-        "value": "rgba(17, 29, 74, 0.4)",
+        "value": "#A0A5B7",
         "sourceRef": "semantic.text.secondary",
         "type": "color"
       },
@@ -52,8 +52,23 @@
         "type": "color"
       },
       "--semantic-text-placeholder": {
-        "value": "rgba(17, 29, 74, 0.2)",
+        "value": "#D0D2DB",
         "sourceRef": "semantic.text.placeholder",
+        "type": "color"
+      },
+      "--semantic-text-success": {
+        "value": "#4BCE71",
+        "sourceRef": "semantic.text.success",
+        "type": "color"
+      },
+      "--semantic-text-error": {
+        "value": "#F3636F",
+        "sourceRef": "semantic.text.error",
+        "type": "color"
+      },
+      "--semantic-text-warning": {
+        "value": "#FC8C4D",
+        "sourceRef": "semantic.text.warning",
         "type": "color"
       },
       "--semantic-stroke-icon-primary": {
@@ -62,12 +77,12 @@
         "type": "color"
       },
       "--semantic-stroke-icon-secondary": {
-        "value": "rgba(17, 29, 74, 0.4)",
+        "value": "#A0A5B7",
         "sourceRef": "semantic.stroke.icon_secondary",
         "type": "color"
       },
       "--semantic-border-default": {
-        "value": "rgba(17, 29, 74, 0.08)",
+        "value": "#ECEDF0",
         "sourceRef": "semantic.border.default",
         "type": "color"
       },
@@ -91,14 +106,34 @@
         "sourceRef": "semantic.fill.logo",
         "type": "color"
       },
-      "--semantic-fill-color-1": {
-        "value": "#FFFFFF",
-        "sourceRef": "semantic.fill.color_1",
+      "--semantic-fill-success": {
+        "value": "#4BCE71",
+        "sourceRef": "semantic.fill.success",
         "type": "color"
       },
-      "--semantic-fill-color-2": {
-        "value": "#FFFFFF",
-        "sourceRef": "semantic.fill.color_2",
+      "--semantic-fill-success-subtle": {
+        "value": "rgba(75, 206, 113, 0.2)",
+        "sourceRef": "semantic.fill.success_subtle",
+        "type": "color"
+      },
+      "--semantic-fill-error": {
+        "value": "#F3636F",
+        "sourceRef": "semantic.fill.error",
+        "type": "color"
+      },
+      "--semantic-fill-error-subtle": {
+        "value": "rgba(243, 99, 111, 0.2)",
+        "sourceRef": "semantic.fill.error_subtle",
+        "type": "color"
+      },
+      "--semantic-fill-warning": {
+        "value": "#FC8C4D",
+        "sourceRef": "semantic.fill.warning",
+        "type": "color"
+      },
+      "--semantic-fill-warning-subtle": {
+        "value": "rgba(252, 140, 77, 0.2)",
+        "sourceRef": "semantic.fill.warning_subtle",
         "type": "color"
       },
       "--semantic-gradient-general": {
@@ -112,14 +147,44 @@
         "type": "gradient"
       },
       "--semantic-gradient-xaut-card": {
-        "value": "linear-gradient(180deg, rgba(255, 255, 255, 0.6) 0%, #EEF7FF 100%)",
+        "value": "linear-gradient(180deg, #FFFFFF99 0%, #EEF7FF 100%)",
         "sourceRef": "semantic.gradient.xaut_card",
         "type": "gradient"
       },
       "--semantic-gradient-bar-backdrop": {
-        "value": "linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #FFFFFF 100%)",
+        "value": "linear-gradient(180deg, #FFFFFF00 0%, #FFFFFF 100%)",
         "sourceRef": "semantic.gradient.bar_backdrop",
         "type": "gradient"
+      },
+      "--semantic-status-success": {
+        "value": "#4BCE71",
+        "sourceRef": "semantic.status.success",
+        "type": "color"
+      },
+      "--semantic-status-success-subtle": {
+        "value": "rgba(75, 206, 113, 0.2)",
+        "sourceRef": "semantic.status.success_subtle",
+        "type": "color"
+      },
+      "--semantic-status-error": {
+        "value": "#F3636F",
+        "sourceRef": "semantic.status.error",
+        "type": "color"
+      },
+      "--semantic-status-error-subtle": {
+        "value": "rgba(243, 99, 111, 0.2)",
+        "sourceRef": "semantic.status.error_subtle",
+        "type": "color"
+      },
+      "--semantic-status-warning": {
+        "value": "#FC8C4D",
+        "sourceRef": "semantic.status.warning",
+        "type": "color"
+      },
+      "--semantic-status-warning-subtle": {
+        "value": "rgba(252, 140, 77, 0.2)",
+        "sourceRef": "semantic.status.warning_subtle",
+        "type": "color"
       },
       "--pattern-surface-card-background": {
         "value": "#FFFFFF",
@@ -132,7 +197,7 @@
         "type": "color"
       },
       "--pattern-surface-card-body": {
-        "value": "rgba(17, 29, 74, 0.4)",
+        "value": "#A0A5B7",
         "sourceRef": "pattern.surface.card.body",
         "type": "color"
       },
@@ -152,7 +217,7 @@
         "type": "color"
       },
       "--pattern-modal-form-body": {
-        "value": "rgba(17, 29, 74, 0.4)",
+        "value": "#A0A5B7",
         "sourceRef": "pattern.modal.form.body",
         "type": "color"
       },
@@ -187,7 +252,7 @@
         "type": "color"
       },
       "--pattern-list-tokenItem-subtext": {
-        "value": "rgba(17, 29, 74, 0.4)",
+        "value": "#A0A5B7",
         "sourceRef": "pattern.list.tokenItem.subtext",
         "type": "color"
       },
@@ -212,7 +277,7 @@
         "type": "color"
       },
       "--pattern-list-statusRow-meta": {
-        "value": "rgba(17, 29, 74, 0.4)",
+        "value": "#A0A5B7",
         "sourceRef": "pattern.list.statusRow.meta",
         "type": "color"
       },
@@ -297,7 +362,7 @@
         "type": "color"
       },
       "--component-webNav-default-default-border": {
-        "value": "rgba(17, 29, 74, 0.08)",
+        "value": "#ECEDF0",
         "sourceRef": "component.webNav.default.default.border",
         "type": "color"
       },
@@ -312,7 +377,7 @@
         "type": "color"
       },
       "--component-modal-default-default-body": {
-        "value": "rgba(17, 29, 74, 0.4)",
+        "value": "#A0A5B7",
         "sourceRef": "component.modal.default.default.body",
         "type": "color"
       },
@@ -392,7 +457,7 @@
         "type": "color"
       },
       "--component-menu-default-default-body": {
-        "value": "rgba(17, 29, 74, 0.4)",
+        "value": "#A0A5B7",
         "sourceRef": "component.menu.default.default.body",
         "type": "color"
       },
@@ -431,6 +496,118 @@
         "sourceRef": "component.tokenList.expand.default.icon",
         "type": "color"
       }
+    },
+    "typography": {
+      "semantic-textStyle-titleLarge": {
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 700,
+          "fontSize": "32px",
+          "lineHeight": "140%",
+          "letterSpacing": "4%"
+        },
+        "sourceRef": "semantic.textStyle.titleLarge",
+        "type": "typography"
+      },
+      "semantic-textStyle-amountLarge": {
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 700,
+          "fontSize": "24px",
+          "lineHeight": "140%",
+          "letterSpacing": "4%"
+        },
+        "sourceRef": "semantic.textStyle.amountLarge",
+        "type": "typography"
+      },
+      "semantic-textStyle-guideTitle": {
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 500,
+          "fontSize": "20px",
+          "lineHeight": "140%",
+          "letterSpacing": "4%"
+        },
+        "sourceRef": "semantic.textStyle.guideTitle",
+        "type": "typography"
+      },
+      "semantic-textStyle-titleMedium": {
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 700,
+          "fontSize": "16px",
+          "lineHeight": "140%",
+          "letterSpacing": "4%"
+        },
+        "sourceRef": "semantic.textStyle.titleMedium",
+        "type": "typography"
+      },
+      "semantic-textStyle-bodyMedium": {
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 500,
+          "fontSize": "16px",
+          "lineHeight": "140%",
+          "letterSpacing": "4%"
+        },
+        "sourceRef": "semantic.textStyle.bodyMedium",
+        "type": "typography"
+      },
+      "semantic-textStyle-buttonText": {
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 400,
+          "fontSize": "16px",
+          "lineHeight": "140%",
+          "letterSpacing": "4%"
+        },
+        "sourceRef": "semantic.textStyle.buttonText",
+        "type": "typography"
+      },
+      "semantic-textStyle-bodySmall": {
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 400,
+          "fontSize": "14px",
+          "lineHeight": "140%",
+          "letterSpacing": "4%"
+        },
+        "sourceRef": "semantic.textStyle.bodySmall",
+        "type": "typography"
+      },
+      "semantic-textStyle-groupTitle": {
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 500,
+          "fontSize": "14px",
+          "lineHeight": "140%",
+          "letterSpacing": "4%"
+        },
+        "sourceRef": "semantic.textStyle.groupTitle",
+        "type": "typography"
+      },
+      "semantic-textStyle-caption": {
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 400,
+          "fontSize": "12px",
+          "lineHeight": "130%",
+          "letterSpacing": "4%"
+        },
+        "sourceRef": "semantic.textStyle.caption",
+        "type": "typography"
+      },
+      "semantic-textStyle-xSmall": {
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 400,
+          "fontSize": "10px",
+          "lineHeight": "140%",
+          "letterSpacing": "4%"
+        },
+        "sourceRef": "semantic.textStyle.xSmall",
+        "type": "typography"
+      }
     }
   },
   "dark": {
@@ -461,7 +638,7 @@
         "type": "color"
       },
       "--semantic-background-backdrop": {
-        "value": "rgba(0, 0, 0, 0.8)",
+        "value": "#000000CC",
         "sourceRef": "semantic.background.backdrop",
         "type": "color"
       },
@@ -476,7 +653,7 @@
         "type": "color"
       },
       "--semantic-text-secondary": {
-        "value": "rgba(221, 222, 234, 0.4)",
+        "value": "#8B8B91",
         "sourceRef": "semantic.text.secondary",
         "type": "color"
       },
@@ -486,22 +663,37 @@
         "type": "color"
       },
       "--semantic-text-placeholder": {
-        "value": "rgba(255, 255, 255, 0.2)",
+        "value": "#49494C",
         "sourceRef": "semantic.text.placeholder",
         "type": "color"
       },
+      "--semantic-text-success": {
+        "value": "#4BCE71",
+        "sourceRef": "semantic.text.success",
+        "type": "color"
+      },
+      "--semantic-text-error": {
+        "value": "#F3636F",
+        "sourceRef": "semantic.text.error",
+        "type": "color"
+      },
+      "--semantic-text-warning": {
+        "value": "#FC8C4D",
+        "sourceRef": "semantic.text.warning",
+        "type": "color"
+      },
       "--semantic-stroke-icon-primary": {
-        "value": "rgba(221, 222, 234, 0.8)",
+        "value": "#B4B4BC",
         "sourceRef": "semantic.stroke.icon_primary",
         "type": "color"
       },
       "--semantic-stroke-icon-secondary": {
-        "value": "rgba(221, 222, 234, 0.4)",
+        "value": "#8B8B91",
         "sourceRef": "semantic.stroke.icon_secondary",
         "type": "color"
       },
       "--semantic-border-default": {
-        "value": "rgba(221, 222, 234, 0.08)",
+        "value": "#2C2C30",
         "sourceRef": "semantic.border.default",
         "type": "color"
       },
@@ -525,14 +717,34 @@
         "sourceRef": "semantic.fill.logo",
         "type": "color"
       },
-      "--semantic-fill-color-1": {
-        "value": "#FFFFFF",
-        "sourceRef": "semantic.fill.color_1",
+      "--semantic-fill-success": {
+        "value": "#4BCE71",
+        "sourceRef": "semantic.fill.success",
         "type": "color"
       },
-      "--semantic-fill-color-2": {
-        "value": "#FFFFFF",
-        "sourceRef": "semantic.fill.color_2",
+      "--semantic-fill-success-subtle": {
+        "value": "rgba(75, 206, 113, 0.2)",
+        "sourceRef": "semantic.fill.success_subtle",
+        "type": "color"
+      },
+      "--semantic-fill-error": {
+        "value": "#F3636F",
+        "sourceRef": "semantic.fill.error",
+        "type": "color"
+      },
+      "--semantic-fill-error-subtle": {
+        "value": "rgba(243, 99, 111, 0.2)",
+        "sourceRef": "semantic.fill.error_subtle",
+        "type": "color"
+      },
+      "--semantic-fill-warning": {
+        "value": "#FC8C4D",
+        "sourceRef": "semantic.fill.warning",
+        "type": "color"
+      },
+      "--semantic-fill-warning-subtle": {
+        "value": "rgba(252, 140, 77, 0.2)",
+        "sourceRef": "semantic.fill.warning_subtle",
         "type": "color"
       },
       "--semantic-gradient-general": {
@@ -546,14 +758,44 @@
         "type": "gradient"
       },
       "--semantic-gradient-xaut-card": {
-        "value": "linear-gradient(180deg, rgba(21, 20, 23, 0.7) 0%, #2C2C2E 100%)",
+        "value": "linear-gradient(180deg, #151417B3 0%, #2C2C2E 100%)",
         "sourceRef": "semantic.gradient.xaut_card",
         "type": "gradient"
       },
       "--semantic-gradient-bar-backdrop": {
-        "value": "linear-gradient(180deg, rgba(1, 3, 6, 0) 0%, #010306 100%)",
+        "value": "linear-gradient(180deg, #01030600 0%, #010306 100%)",
         "sourceRef": "semantic.gradient.bar_backdrop",
         "type": "gradient"
+      },
+      "--semantic-status-success": {
+        "value": "#4BCE71",
+        "sourceRef": "semantic.status.success",
+        "type": "color"
+      },
+      "--semantic-status-success-subtle": {
+        "value": "rgba(75, 206, 113, 0.2)",
+        "sourceRef": "semantic.status.success_subtle",
+        "type": "color"
+      },
+      "--semantic-status-error": {
+        "value": "#F3636F",
+        "sourceRef": "semantic.status.error",
+        "type": "color"
+      },
+      "--semantic-status-error-subtle": {
+        "value": "rgba(243, 99, 111, 0.2)",
+        "sourceRef": "semantic.status.error_subtle",
+        "type": "color"
+      },
+      "--semantic-status-warning": {
+        "value": "#FC8C4D",
+        "sourceRef": "semantic.status.warning",
+        "type": "color"
+      },
+      "--semantic-status-warning-subtle": {
+        "value": "rgba(252, 140, 77, 0.2)",
+        "sourceRef": "semantic.status.warning_subtle",
+        "type": "color"
       },
       "--pattern-surface-card-background": {
         "value": "#1C1C1E",
@@ -566,7 +808,7 @@
         "type": "color"
       },
       "--pattern-surface-card-body": {
-        "value": "rgba(221, 222, 234, 0.4)",
+        "value": "#8B8B91",
         "sourceRef": "pattern.surface.card.body",
         "type": "color"
       },
@@ -586,7 +828,7 @@
         "type": "color"
       },
       "--pattern-modal-form-body": {
-        "value": "rgba(221, 222, 234, 0.4)",
+        "value": "#8B8B91",
         "sourceRef": "pattern.modal.form.body",
         "type": "color"
       },
@@ -621,7 +863,7 @@
         "type": "color"
       },
       "--pattern-list-tokenItem-subtext": {
-        "value": "rgba(221, 222, 234, 0.4)",
+        "value": "#8B8B91",
         "sourceRef": "pattern.list.tokenItem.subtext",
         "type": "color"
       },
@@ -646,7 +888,7 @@
         "type": "color"
       },
       "--pattern-list-statusRow-meta": {
-        "value": "rgba(221, 222, 234, 0.4)",
+        "value": "#8B8B91",
         "sourceRef": "pattern.list.statusRow.meta",
         "type": "color"
       },
@@ -681,7 +923,7 @@
         "type": "color"
       },
       "--component-mobileNav-primary-default-icon": {
-        "value": "rgba(221, 222, 234, 0.8)",
+        "value": "#B4B4BC",
         "sourceRef": "component.mobileNav.primary.default.icon",
         "type": "color"
       },
@@ -701,7 +943,7 @@
         "type": "color"
       },
       "--component-mobileNav-secondary-default-icon": {
-        "value": "rgba(221, 222, 234, 0.8)",
+        "value": "#B4B4BC",
         "sourceRef": "component.mobileNav.secondary.default.icon",
         "type": "color"
       },
@@ -726,12 +968,12 @@
         "type": "color"
       },
       "--component-webNav-default-default-icon": {
-        "value": "rgba(221, 222, 234, 0.8)",
+        "value": "#B4B4BC",
         "sourceRef": "component.webNav.default.default.icon",
         "type": "color"
       },
       "--component-webNav-default-default-border": {
-        "value": "rgba(221, 222, 234, 0.08)",
+        "value": "#2C2C30",
         "sourceRef": "component.webNav.default.default.border",
         "type": "color"
       },
@@ -746,7 +988,7 @@
         "type": "color"
       },
       "--component-modal-default-default-body": {
-        "value": "rgba(221, 222, 234, 0.4)",
+        "value": "#8B8B91",
         "sourceRef": "component.modal.default.default.body",
         "type": "color"
       },
@@ -826,7 +1068,7 @@
         "type": "color"
       },
       "--component-menu-default-default-body": {
-        "value": "rgba(221, 222, 234, 0.4)",
+        "value": "#8B8B91",
         "sourceRef": "component.menu.default.default.body",
         "type": "color"
       },
@@ -846,7 +1088,7 @@
         "type": "color"
       },
       "--component-tokenList-default-default-icon": {
-        "value": "rgba(221, 222, 234, 0.8)",
+        "value": "#B4B4BC",
         "sourceRef": "component.tokenList.default.default.icon",
         "type": "color"
       },
@@ -861,9 +1103,121 @@
         "type": "color"
       },
       "--component-tokenList-expand-default-icon": {
-        "value": "rgba(221, 222, 234, 0.8)",
+        "value": "#B4B4BC",
         "sourceRef": "component.tokenList.expand.default.icon",
         "type": "color"
+      }
+    },
+    "typography": {
+      "semantic-textStyle-titleLarge": {
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 700,
+          "fontSize": "32px",
+          "lineHeight": "140%",
+          "letterSpacing": "4%"
+        },
+        "sourceRef": "semantic.textStyle.titleLarge",
+        "type": "typography"
+      },
+      "semantic-textStyle-amountLarge": {
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 700,
+          "fontSize": "24px",
+          "lineHeight": "140%",
+          "letterSpacing": "4%"
+        },
+        "sourceRef": "semantic.textStyle.amountLarge",
+        "type": "typography"
+      },
+      "semantic-textStyle-guideTitle": {
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 500,
+          "fontSize": "20px",
+          "lineHeight": "140%",
+          "letterSpacing": "4%"
+        },
+        "sourceRef": "semantic.textStyle.guideTitle",
+        "type": "typography"
+      },
+      "semantic-textStyle-titleMedium": {
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 700,
+          "fontSize": "16px",
+          "lineHeight": "140%",
+          "letterSpacing": "4%"
+        },
+        "sourceRef": "semantic.textStyle.titleMedium",
+        "type": "typography"
+      },
+      "semantic-textStyle-bodyMedium": {
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 500,
+          "fontSize": "16px",
+          "lineHeight": "140%",
+          "letterSpacing": "4%"
+        },
+        "sourceRef": "semantic.textStyle.bodyMedium",
+        "type": "typography"
+      },
+      "semantic-textStyle-buttonText": {
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 400,
+          "fontSize": "16px",
+          "lineHeight": "140%",
+          "letterSpacing": "4%"
+        },
+        "sourceRef": "semantic.textStyle.buttonText",
+        "type": "typography"
+      },
+      "semantic-textStyle-bodySmall": {
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 400,
+          "fontSize": "14px",
+          "lineHeight": "140%",
+          "letterSpacing": "4%"
+        },
+        "sourceRef": "semantic.textStyle.bodySmall",
+        "type": "typography"
+      },
+      "semantic-textStyle-groupTitle": {
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 500,
+          "fontSize": "14px",
+          "lineHeight": "140%",
+          "letterSpacing": "4%"
+        },
+        "sourceRef": "semantic.textStyle.groupTitle",
+        "type": "typography"
+      },
+      "semantic-textStyle-caption": {
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 400,
+          "fontSize": "12px",
+          "lineHeight": "130%",
+          "letterSpacing": "4%"
+        },
+        "sourceRef": "semantic.textStyle.caption",
+        "type": "typography"
+      },
+      "semantic-textStyle-xSmall": {
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 400,
+          "fontSize": "10px",
+          "lineHeight": "140%",
+          "letterSpacing": "4%"
+        },
+        "sourceRef": "semantic.textStyle.xSmall",
+        "type": "typography"
       }
     }
   }

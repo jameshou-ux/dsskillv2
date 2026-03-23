@@ -7,6 +7,18 @@ from typing import Any, Dict, List, Optional, Set
 THEMES = ("light", "dark")
 SOURCE_THEME_KEYS = {"light": "Light", "dark": "Dark"}
 COLLECTIONS = ("semantic", "pattern", "component")
+DEFAULT_SOURCE_CANDIDATES = ("source_token_v5.json", "source_token_v4.json", "source/tokens.json")
+TYPOGRAPHY_FIELDS = {
+    "fontFamily",
+    "fontWeight",
+    "fontStyle",
+    "fontSize",
+    "lineHeight",
+    "letterSpacing",
+    "paragraphSpacing",
+    "textCase",
+    "textDecoration",
+}
 OUTPUT_FILES = {
     "runtime": "adapters/runtime/tokens.runtime.json",
     "css": "adapters/runtime/tokens.css.json",
@@ -34,8 +46,10 @@ def flatten_tokens(obj: Dict[str, Any], prefix: str = "") -> Dict[str, Dict[str,
         path = f"{prefix}.{key}" if prefix else key
         if is_token_node(value):
             out[path] = value
-        elif isinstance(value, dict):
-            out.update(flatten_tokens(value, path))
+        if isinstance(value, dict):
+            child_nodes = {child_key: child_value for child_key, child_value in value.items() if not child_key.startswith("$")}
+            if child_nodes:
+                out.update(flatten_tokens(child_nodes, path))
     return out
 
 
@@ -47,6 +61,8 @@ def infer_type_from_value(raw_value: Any) -> str:
     if isinstance(raw_value, dict):
         if {"type", "angle", "stops"}.issubset(raw_value.keys()):
             return "gradient"
+        if TYPOGRAPHY_FIELDS.intersection(raw_value.keys()):
+            return "typography"
         return "string"
     if isinstance(raw_value, str):
         if raw_value == "[MISSING]":
@@ -67,6 +83,18 @@ def infer_type_from_value(raw_value: Any) -> str:
 
 
 def infer_type_from_path(path: str) -> Optional[str]:
+    if ".typography.family." in path:
+        return "fontFamilies"
+    if ".typography.weight." in path:
+        return "fontWeights"
+    if ".typography.size." in path:
+        return "fontSizes"
+    if ".typography.lineHeight." in path:
+        return "lineHeights"
+    if ".typography.letterSpacing." in path:
+        return "letterSpacing"
+    if ".textStyle." in path:
+        return "typography"
     if any(
         segment in path
         for segment in (
@@ -228,7 +256,7 @@ def set_nested_leaf(target: Dict[str, Any], path_parts: List[str], leaf: Dict[st
     current[path_parts[-1]] = leaf
 
 
-def build_runtime_canonical(source_data: Dict[str, Any]) -> Dict[str, Any]:
+def build_runtime_canonical(source_data: Dict[str, Any], source_path: str) -> Dict[str, Any]:
     lookups = build_lookups(source_data)
     validate_source(source_data, lookups)
     value_cache: Dict[str, Any] = {}
@@ -237,7 +265,7 @@ def build_runtime_canonical(source_data: Dict[str, Any]) -> Dict[str, Any]:
     payload: Dict[str, Any] = {
         "$themes": list(THEMES),
         "$metadata": {
-            "generatedFrom": "source/tokens.json",
+            "generatedFrom": source_path,
             "collections": list(COLLECTIONS),
         },
     }
@@ -295,6 +323,30 @@ def make_css_value(token_type: str, value: Any) -> str:
         stops = value.get("stops", [])
         stop_str = ", ".join(f"{stop['color']} {int(stop['position'] * 100)}%" for stop in stops)
         return f"linear-gradient({angle}deg, {stop_str})"
+    if token_type in {"dimension", "fontSizes"} and isinstance(value, (int, float)):
+        return f"{value}px"
+    if token_type == "lineHeights":
+        if isinstance(value, (int, float)):
+            return f"{value}px"
+        if isinstance(value, dict):
+            unit = str(value.get("unit", "PIXELS")).lower()
+            raw = value.get("value")
+            if unit in {"auto", "normal"}:
+                return "normal"
+            if unit in {"percent", "%"} and raw is not None:
+                return f"{raw}%"
+            if raw is not None:
+                return f"{raw}px"
+    if token_type == "letterSpacing":
+        if isinstance(value, (int, float)):
+            return f"{value}px"
+        if isinstance(value, dict):
+            unit = str(value.get("unit", "PIXELS")).lower()
+            raw = value.get("value")
+            if unit in {"percent", "%"} and raw is not None:
+                return f"{raw}%"
+            if raw is not None:
+                return f"{raw}px"
     if isinstance(value, bool):
         return "true" if value else "false"
     return str(value)
@@ -304,15 +356,44 @@ def kebab(path: str) -> str:
     return path.replace(".", "-").replace("_", "-")
 
 
+def normalize_typography_for_css(value: Any) -> Dict[str, Any]:
+    if not isinstance(value, dict):
+        return {}
+    normalized: Dict[str, Any] = {}
+    for field, raw in value.items():
+        if field == "fontSize":
+            normalized[field] = make_css_value("fontSizes", raw)
+        elif field == "lineHeight":
+            normalized[field] = make_css_value("lineHeights", raw)
+        elif field == "letterSpacing":
+            normalized[field] = make_css_value("letterSpacing", raw)
+        elif field == "paragraphSpacing" and isinstance(raw, (int, float)):
+            normalized[field] = f"{raw}px"
+        else:
+            normalized[field] = raw
+    return normalized
+
+
 def build_css_payload(flat_by_theme: Dict[str, Dict[str, Dict[str, Any]]]) -> Dict[str, Any]:
-    payload: Dict[str, Any] = {"light": {"variables": {}}, "dark": {"variables": {}}}
+    payload: Dict[str, Any] = {
+        "light": {"variables": {}, "typography": {}},
+        "dark": {"variables": {}, "typography": {}},
+    }
     for theme in THEMES:
         for path, token in flat_by_theme[theme].items():
-            payload[theme]["variables"][f"--{kebab(path)}"] = {
-                "value": make_css_value(token["type"], token["value"]),
-                "sourceRef": token["sourceRef"],
-                "type": token["type"],
-            }
+            key = kebab(path)
+            if token["type"] == "typography":
+                payload[theme]["typography"][key] = {
+                    "value": normalize_typography_for_css(token["value"]),
+                    "sourceRef": token["sourceRef"],
+                    "type": token["type"],
+                }
+            else:
+                payload[theme]["variables"][f"--{key}"] = {
+                    "value": make_css_value(token["type"], token["value"]),
+                    "sourceRef": token["sourceRef"],
+                    "type": token["type"],
+                }
     return payload
 
 
@@ -325,6 +406,12 @@ def build_tailwind_payload(flat_by_theme: Dict[str, Dict[str, Dict[str, Any]]]) 
         "spacing": "spacing",
         "sizing": "spacing",
         "borderRadius": "borderRadius",
+        "fontFamilies": "fontFamily",
+        "fontWeights": "fontWeight",
+        "fontSizes": "fontSize",
+        "lineHeights": "lineHeight",
+        "letterSpacing": "letterSpacing",
+        "typography": "textStyles",
         "number": "numbers",
         "string": "strings",
         "boolean": "booleans",
@@ -335,7 +422,9 @@ def build_tailwind_payload(flat_by_theme: Dict[str, Dict[str, Dict[str, Any]]]) 
             category = category_map.get(token["type"], "tokens")
             theme_payload["theme"]["extend"].setdefault(category, {})
             theme_payload["theme"]["extend"][category][kebab(path)] = {
-                "value": make_css_value(token["type"], token["value"]),
+                "value": normalize_typography_for_css(token["value"])
+                if token["type"] == "typography"
+                else make_css_value(token["type"], token["value"]),
                 "sourceRef": token["sourceRef"],
             }
         payload[theme] = theme_payload
@@ -390,11 +479,25 @@ def write_json(path: str, payload: Dict[str, Any]) -> None:
         f.write("\n")
 
 
-def main() -> None:
-    with open("source/tokens.json", "r", encoding="utf-8") as f:
-        source_data = json.load(f)
+def resolve_source_path() -> str:
+    explicit = os.environ.get("TOKEN_SOURCE_PATH")
+    if explicit:
+        return explicit
+    for candidate in DEFAULT_SOURCE_CANDIDATES:
+        if os.path.exists(candidate):
+            return candidate
+    raise FileNotFoundError(f"No token source found. Tried: {', '.join(DEFAULT_SOURCE_CANDIDATES)}")
 
-    runtime_payload = build_runtime_canonical(source_data)
+
+def load_source_data() -> tuple[str, Dict[str, Any]]:
+    source_path = resolve_source_path()
+    with open(source_path, "r", encoding="utf-8") as f:
+        return source_path, json.load(f)
+
+
+def main() -> None:
+    source_path, source_data = load_source_data()
+    runtime_payload = build_runtime_canonical(source_data, source_path)
     flat_by_theme = flatten_runtime_modes(runtime_payload)
 
     outputs = {

@@ -4,6 +4,18 @@ import os
 
 
 COLLECTIONS = ("semantic", "pattern", "component")
+DEFAULT_SOURCE_CANDIDATES = ("source_token_v5.json", "source_token_v4.json", "source/tokens.json")
+TYPOGRAPHY_FIELDS = {
+    "fontFamily",
+    "fontWeight",
+    "fontStyle",
+    "fontSize",
+    "lineHeight",
+    "letterSpacing",
+    "paragraphSpacing",
+    "textCase",
+    "textDecoration",
+}
 OUTPUT_FILES = (
     "adapters/figma/figma_tokens_adaptive.json",
     "adapters/figma/figma_tokens_4_collections.json",
@@ -26,6 +38,8 @@ def infer_type_from_value(raw_value):
     if isinstance(raw_value, dict):
         if {"type", "angle", "stops"}.issubset(raw_value.keys()):
             return "gradient"
+        if TYPOGRAPHY_FIELDS.intersection(raw_value.keys()):
+            return "typography"
         return "string"
     if isinstance(raw_value, str):
         if raw_value == "[MISSING]":
@@ -46,6 +60,18 @@ def infer_type_from_value(raw_value):
 
 
 def infer_type_from_path(path):
+    if ".typography.family." in path:
+        return "fontFamilies"
+    if ".typography.weight." in path:
+        return "fontWeights"
+    if ".typography.size." in path:
+        return "fontSizes"
+    if ".typography.lineHeight." in path:
+        return "lineHeights"
+    if ".typography.letterSpacing." in path:
+        return "letterSpacing"
+    if ".textStyle." in path:
+        return "typography"
     if any(
         segment in path
         for segment in (
@@ -132,6 +158,9 @@ def normalize_tree(obj, prefix, theme_name):
             token.setdefault("$description", "")
             token.setdefault("$type", infer_type_from_path(path) or infer_type_from_value(token["$value"]))
             normalized[key] = token
+            child_nodes = {child_key: child_value for child_key, child_value in value.items() if not child_key.startswith("$")}
+            if child_nodes:
+                normalized[key].update(normalize_tree(child_nodes, path, theme_name))
         elif isinstance(value, dict):
             normalized[key] = normalize_tree(value, path, theme_name)
         else:
@@ -150,8 +179,10 @@ def flatten_tokens(obj, prefix=""):
         path = f"{prefix}.{key}" if prefix else key
         if is_token_node(value):
             out[path] = value
-        elif isinstance(value, dict):
-            out.update(flatten_tokens(value, path))
+        if isinstance(value, dict):
+            child_nodes = {child_key: child_value for child_key, child_value in value.items() if not child_key.startswith("$")}
+            if child_nodes:
+                out.update(flatten_tokens(child_nodes, path))
     return out
 
 
@@ -189,7 +220,7 @@ def refine_alias_types(payload):
                 node["$type"] = inferred
 
 
-def build_payload(source_data):
+def build_payload(source_data, source_path):
     payload = {
         "primitive": {
             "primitive": normalize_tree(
@@ -239,6 +270,7 @@ def build_payload(source_data):
     ]
 
     payload["$metadata"] = {
+        "generatedFrom": source_path,
         "tokenSetOrder": [
             "primitive",
             "semantic/light",
@@ -262,11 +294,25 @@ def write_payload(payload):
             f.write("\n")
 
 
-def main():
-    with open("source/tokens.json", "r", encoding="utf-8") as f:
-        source_data = json.load(f)
+def resolve_source_path():
+    explicit = os.environ.get("TOKEN_SOURCE_PATH")
+    if explicit:
+        return explicit
+    for candidate in DEFAULT_SOURCE_CANDIDATES:
+        if os.path.exists(candidate):
+            return candidate
+    raise FileNotFoundError(f"No token source found. Tried: {', '.join(DEFAULT_SOURCE_CANDIDATES)}")
 
-    payload = build_payload(source_data)
+
+def load_source_data():
+    source_path = resolve_source_path()
+    with open(source_path, "r", encoding="utf-8") as f:
+        return source_path, json.load(f)
+
+
+def main():
+    source_path, source_data = load_source_data()
+    payload = build_payload(source_data, source_path)
     write_payload(payload)
 
     print("Generated:")

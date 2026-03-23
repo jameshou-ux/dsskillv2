@@ -3,46 +3,36 @@
     "primitive": {
       "color": {
         "white": {
+          "0": {
+            "$type": "color",
+            "$value": "#FFFFFF00",
+            "$description": "Fully transparent white — gradient feathered edge start point for bar backdrops."
+          },
+          "80": {
+            "$type": "color",
+            "$value": "#FFFFFFCC",
+            "$description": "White at 80% opacity — frosted glass and backdrop blur effects in light mode."
+          },
           "$type": "color",
           "$value": "#FFFFFF",
           "$description": "Pure white — used for light mode surfaces, text on dark backgrounds, and transparent overlay base."
         },
-        "white_a80": {
-          "$type": "color",
-          "$value": "rgba(255, 255, 255, 0.8)",
-          "$description": "White at 80% opacity — frosted glass and backdrop blur effects in light mode."
-        },
-        "white_a60": {
-          "$type": "color",
-          "$value": "rgba(255, 255, 255, 0.6)",
-          "$description": "White at 60% opacity — subtle glassmorphism overlay for card surfaces."
-        },
-        "white_a20": {
-          "$type": "color",
-          "$value": "rgba(255, 255, 255, 0.2)",
-          "$description": "White at 20% opacity — placeholder and hint text on dark backgrounds."
-        },
-        "white_a0": {
-          "$type": "color",
-          "$value": "rgba(255, 255, 255, 0)",
-          "$description": "Fully transparent white — gradient feathered edge start point for bar backdrops."
-        },
         "black": {
+          "80": {
+            "$type": "color",
+            "$value": "#000000CC",
+            "$description": "Black at 80% opacity — strong dark mode backdrop scrim for modal overlays."
+          },
           "$type": "color",
           "$value": "#000000",
           "$description": "Pure black — OLED-optimized dark mode gradient base."
         },
-        "black_a80": {
-          "$type": "color",
-          "$value": "rgba(0, 0, 0, 0.8)",
-          "$description": "Black at 80% opacity — strong dark mode backdrop scrim for modal overlays."
-        },
-        "custom_21_20_23_a70": {
-          "$type": "color",
-          "$value": "rgba(21, 20, 23, 0.7)",
-          "$description": "Near-black with warm undertone at 70% opacity — dark mode card gradient glassmorphism overlay."
-        },
         "gray": {
+          "0": {
+            "$type": "color",
+            "$value": "#01030600",
+            "$description": "Transparent near-pure-black — gradient feathered edge start for dark mode tab bar backdrop."
+          },
           "50": {
             "$type": "color",
             "$value": "#F9FAFB",
@@ -58,25 +48,25 @@
             "$value": "#D6D7E0",
             "$description": "Mid-light gray — primary body text in dark mode for comfortable reading."
           },
+          "350": {
+            "$type": "color",
+            "$value": "#8B8B91",
+            "$description": "Dark-mode mid gray — composited match of the former 40% light gray on gray.900."
+          },
+          "450": {
+            "$type": "color",
+            "$value": "#B4B4BC",
+            "$description": "Dark-mode light gray — composited match of the former 80% light gray on gray.900."
+          },
           "500": {
             "$type": "color",
             "$value": "#B6B7C1",
             "$description": "Dark-surface adapted medium gray — solid equivalent of the prior 80% gray fill on gray.900, preserving the same perceived emphasis without alpha dependence."
           },
-          "400_a8": {
+          "700": {
             "$type": "color",
-            "$value": "rgba(221, 222, 234, 0.08)",
-            "$description": "Gray at 8% opacity — ultra-subtle divider and border on dark surfaces."
-          },
-          "400_a40": {
-            "$type": "color",
-            "$value": "rgba(221, 222, 234, 0.4)",
-            "$description": "Gray at 40% opacity — secondary text and de-emphasized icon color on dark backgrounds."
-          },
-          "400_a80": {
-            "$type": "color",
-            "$value": "rgba(221, 222, 234, 0.8)",
-            "$description": "Gray at 80% opacity — primary icon stroke and secondary button fill on dark surfaces."
+            "$value": "#49494C",
+            "$description": "Dark-mode dark gray — composited match of the former 20% white on gray.900."
           },
           "800": {
             "$type": "color",
@@ -88,6 +78,11 @@
             "$value": "#1F1F1F",
             "$description": "Deeper dark gray — secondary gradient stop for dark mode page background depth."
           },
+          "880": {
+            "$type": "color",
+            "$value": "#2C2C30",
+            "$description": "Dark-mode near-surface gray — composited match of the former 8% light gray on gray.900."
+          },
           "900": {
             "$type": "color",
             "$value": "#1C1C1E",
@@ -97,14 +92,24 @@
             "$type": "color",
             "$value": "#010306",
             "$description": "Darkest near-pure-black — OLED-optimized tab bar backdrop gradient end."
-          },
-          "950_a0": {
-            "$type": "color",
-            "$value": "rgba(1, 3, 6, 0)",
-            "$description": "Transparent near-pure-black — gradient feathered edge start for dark mode tab bar backdrop."
           }
         },
         "navy": {
+          "50": {
+            "$type": "color",
+            "$value": "#ECEDF0",
+            "$description": "Light-mode near-white navy tint — composited match of the former 8% navy on white."
+          },
+          "200": {
+            "$type": "color",
+            "$value": "#D0D2DB",
+            "$description": "Light-mode pale navy tint — composited match of the former 20% navy on white."
+          },
+          "700": {
+            "$type": "color",
+            "$value": "#A0A5B7",
+            "$description": "Light-mode muted navy — composited match of the former 40% navy on white."
+          },
           "800": {
             "$type": "color",
             "$value": "#003160",
@@ -114,21 +119,6 @@
             "$type": "color",
             "$value": "#111D4A",
             "$description": "Darkest navy — primary text, icon, and fill color in light mode for maximum contrast."
-          },
-          "900_a8": {
-            "$type": "color",
-            "$value": "rgba(17, 29, 74, 0.08)",
-            "$description": "Navy at 8% opacity — ultra-subtle card edge border and separator in light mode."
-          },
-          "900_a20": {
-            "$type": "color",
-            "$value": "rgba(17, 29, 74, 0.2)",
-            "$description": "Navy at 20% opacity — placeholder and empty state hint text in light mode."
-          },
-          "900_a40": {
-            "$type": "color",
-            "$value": "rgba(17, 29, 74, 0.4)",
-            "$description": "Navy at 40% opacity — secondary text, captions, and de-emphasized icons in light mode."
           }
         },
         "blue": {
@@ -157,10 +147,106 @@
             "$value": "#066BD2",
             "$description": "Dark-surface adapted brand blue — solid equivalent of the prior 80% blue on gray.900, preserving the same perceived action emphasis without alpha dependence."
           },
-          "500_a80": {
+          "800": {
             "$type": "color",
-            "$value": "rgba(0, 127, 255, 0.8)",
-            "$description": "Brand blue at 80% opacity — softened action color adapted for dark mode surfaces."
+            "$value": "#004C99",
+            "$description": "Dark blue shade for pressed states, dense accents, and deeper branded emphasis."
+          },
+          "500_a8": {
+            "$type": "color",
+            "$value": "rgba(0, 127, 255, 0.08)",
+            "$description": "Brand blue at 8% opacity for subtle emphasis, selected surfaces, and low-contrast decorative accents."
+          },
+          "500_a20": {
+            "$type": "color",
+            "$value": "rgba(0, 127, 255, 0.2)",
+            "$description": "Brand blue at 20% opacity for soft fills, badges, and informational background states."
+          },
+          "500_a40": {
+            "$type": "color",
+            "$value": "rgba(0, 127, 255, 0.4)",
+            "$description": "Brand blue at 40% opacity for medium-emphasis fills and overlay states."
+          },
+          "500_a60": {
+            "$type": "color",
+            "$value": "rgba(0, 127, 255, 0.6)",
+            "$description": "Brand blue at 60% opacity for stronger tinted fills and transitional emphasis states."
+          }
+        },
+        "green": {
+          "500": {
+            "$type": "color",
+            "$value": "#4BCE71",
+            "$description": "Canonical success green for connected, positive, and completed states."
+          },
+          "800": {
+            "$type": "color",
+            "$value": "#2D7C44",
+            "$description": "Dark green shade for pressed success states and deeper positive emphasis."
+          },
+          "500_a20": {
+            "$type": "color",
+            "$value": "rgba(75, 206, 113, 0.2)",
+            "$description": "Success green at 20% opacity for soft success backgrounds and chips."
+          },
+          "500_a40": {
+            "$type": "color",
+            "$value": "rgba(75, 206, 113, 0.4)",
+            "$description": "Success green at 40% opacity for medium-emphasis success fills."
+          },
+          "500_a60": {
+            "$type": "color",
+            "$value": "rgba(75, 206, 113, 0.6)",
+            "$description": "Success green at 60% opacity for stronger success surfaces and overlays."
+          }
+        },
+        "red": {
+          "500": {
+            "$type": "color",
+            "$value": "#F3636F",
+            "$description": "Canonical error red for destructive, failed, and critical feedback states."
+          },
+          "800": {
+            "$type": "color",
+            "$value": "#923B43",
+            "$description": "Dark red shade for pressed destructive states and deeper alert emphasis."
+          },
+          "500_a20": {
+            "$type": "color",
+            "$value": "rgba(243, 99, 111, 0.2)",
+            "$description": "Error red at 20% opacity for subtle destructive backgrounds and alert surfaces."
+          },
+          "500_a40": {
+            "$type": "color",
+            "$value": "rgba(243, 99, 111, 0.4)",
+            "$description": "Error red at 40% opacity for medium-emphasis alert fills."
+          },
+          "500_a60": {
+            "$type": "color",
+            "$value": "rgba(243, 99, 111, 0.6)",
+            "$description": "Error red at 60% opacity for stronger destructive fills and overlays."
+          }
+        },
+        "orange": {
+          "500": {
+            "$type": "color",
+            "$value": "#FC8C4D",
+            "$description": "Canonical warning orange for caution, offline, and attention states."
+          },
+          "800": {
+            "$type": "color",
+            "$value": "#97542E",
+            "$description": "Dark orange shade for stronger warning emphasis and pressed caution states."
+          },
+          "500_a20": {
+            "$type": "color",
+            "$value": "rgba(252, 140, 77, 0.2)",
+            "$description": "Warning orange at 20% opacity for subtle warning backgrounds and offline badges."
+          },
+          "500_a40": {
+            "$type": "color",
+            "$value": "rgba(252, 140, 77, 0.4)",
+            "$description": "Warning orange at 40% opacity for medium-emphasis warning fills."
           }
         }
       },
@@ -334,6 +420,101 @@
           "$value": "[MISSING]",
           "$description": "Shared fully rounded radius token. Exact value is intentionally left unverified until confirmed from source design data."
         }
+      },
+      "typography": {
+        "family": {
+          "sans": {
+            "$type": "fontFamilies",
+            "$value": "Noto Sans",
+            "$description": "Confirmed primary Latin typography family from Figma node 33297:16462."
+          },
+          "jp": {
+            "$type": "fontFamilies",
+            "$value": "Noto Sans JP",
+            "$description": "Japanese fallback family observed in the Figma typography definition."
+          },
+          "sc": {
+            "$type": "fontFamilies",
+            "$value": "Noto Sans SC",
+            "$description": "Simplified Chinese fallback family observed in the Figma typography definition."
+          }
+        },
+        "weight": {
+          "regular": {
+            "$type": "fontWeights",
+            "$value": 400,
+            "$description": "Regular weight confirmed in the Figma typography definition."
+          },
+          "medium": {
+            "$type": "fontWeights",
+            "$value": 500,
+            "$description": "Medium weight confirmed in the Figma typography definition."
+          },
+          "bold": {
+            "$type": "fontWeights",
+            "$value": 700,
+            "$description": "Bold weight confirmed in the Figma typography definition."
+          }
+        },
+        "size": {
+          "xs": {
+            "$type": "fontSizes",
+            "$value": 10,
+            "$description": "10px text size from the bottom navigation special case in the Figma typography definition."
+          },
+          "sm": {
+            "$type": "fontSizes",
+            "$value": 12,
+            "$description": "12px text size for auxiliary information, annotations, and labels in the Figma typography definition."
+          },
+          "md": {
+            "$type": "fontSizes",
+            "$value": 14,
+            "$description": "14px text size for secondary content and grouped headings in the Figma typography definition."
+          },
+          "lg": {
+            "$type": "fontSizes",
+            "$value": 16,
+            "$description": "16px text size for navigation titles, body text, and button text in the Figma typography definition."
+          },
+          "xl": {
+            "$type": "fontSizes",
+            "$value": 20,
+            "$description": "20px text size for guide titles in the Figma typography definition."
+          },
+          "2xl": {
+            "$type": "fontSizes",
+            "$value": 24,
+            "$description": "24px text size for large amount emphasis in the Figma typography definition."
+          },
+          "3xl": {
+            "$type": "fontSizes",
+            "$value": 32,
+            "$description": "32px text size for the largest title treatment in the Figma typography definition."
+          }
+        },
+        "lineHeight": {
+          "tight": {
+            "$type": "lineHeights",
+            "$value": "130%",
+            "$description": "130% line height used by the 12px auxiliary information style in the Figma typography definition."
+          },
+          "normal": {
+            "$type": "lineHeights",
+            "$value": "140%",
+            "$description": "140% line height used by the main text styles in the Figma typography definition."
+          }
+        },
+        "letterSpacing": {
+          "normal": {
+            "$type": "letterSpacing",
+            "$value": {
+              "value": 4,
+              "unit": "%"
+            },
+            "$description": "4% letter spacing derived from the Figma typography definition value of 0.04em."
+          }
+        }
       }
     }
   },
@@ -366,7 +547,7 @@
       },
       "backdrop": {
         "$type": "color",
-        "$value": "{primitive.color.white_a80}",
+        "$value": "{primitive.color.white.80}",
         "$description": "Backdrop blur overlay behind modals in light mode — 80% white for a frosted glass effect."
       }
     },
@@ -383,8 +564,8 @@
       },
       "secondary": {
         "$type": "color",
-        "$value": "{primitive.color.navy.900_a40}",
-        "$description": "Supporting and secondary text in light mode — 40% navy for captions, metadata, and sublabels."
+        "$value": "{primitive.color.navy.700}",
+        "$description": "Supporting and secondary text in light mode — solid navy-derived token replacing the prior alpha-based treatment for more stable contrast across surfaces."
       },
       "action": {
         "$type": "color",
@@ -393,8 +574,23 @@
       },
       "placeholder": {
         "$type": "color",
-        "$value": "{primitive.color.navy.900_a20}",
-        "$description": "Placeholder and empty state hint text in light mode — 20% navy at minimum readable contrast."
+        "$value": "{primitive.color.navy.200}",
+        "$description": "Placeholder and empty state hint text in light mode — solid navy-derived token replacing the prior alpha-based treatment."
+      },
+      "success": {
+        "$type": "color",
+        "$value": "{primitive.color.green.500}",
+        "$description": "Success text color in light mode for positive inline messaging."
+      },
+      "error": {
+        "$type": "color",
+        "$value": "{primitive.color.red.500}",
+        "$description": "Error text color in light mode for destructive and validation messaging."
+      },
+      "warning": {
+        "$type": "color",
+        "$value": "{primitive.color.orange.500}",
+        "$description": "Warning text color in light mode for caution and offline messaging."
       }
     },
     "stroke": {
@@ -405,15 +601,15 @@
       },
       "icon_secondary": {
         "$type": "color",
-        "$value": "{primitive.color.navy.900_a40}",
-        "$description": "Secondary icon stroke in light mode — 40% navy for de-emphasized, supporting icons."
+        "$value": "{primitive.color.navy.700}",
+        "$description": "Secondary icon stroke in light mode — solid navy-derived token replacing the prior alpha-based treatment."
       }
     },
     "border": {
       "default": {
         "$type": "color",
-        "$value": "{primitive.color.navy.900_a8}",
-        "$description": "Default border and divider in light mode — 8% navy, ultra-subtle separator for cards and list rows."
+        "$value": "{primitive.color.navy.50}",
+        "$description": "Default border and divider in light mode — solid navy-derived subtle border token replacing the prior alpha-based treatment."
       }
     },
     "fill": {
@@ -437,15 +633,35 @@
         "$value": "{primitive.color.navy.900}",
         "$description": "Logo fill color in light mode — navy ensures brand identity is clear on white surfaces."
       },
-      "color_1": {
+      "success": {
         "$type": "color",
-        "$value": "{primitive.color.white}",
-        "$description": "Generic brand color fill slot 1 in light mode — white, flexible placeholder for branded fills."
+        "$value": "{primitive.color.green.500}",
+        "$description": "Filled success surface in light mode for high-emphasis positive actions and badges."
       },
-      "color_2": {
+      "success_subtle": {
         "$type": "color",
-        "$value": "{primitive.color.white}",
-        "$description": "Generic brand color fill slot 2 in light mode — white, secondary flexible branded fill placeholder."
+        "$value": "{primitive.color.green.500_a20}",
+        "$description": "Soft success fill in light mode for chips and secondary positive surfaces."
+      },
+      "error": {
+        "$type": "color",
+        "$value": "{primitive.color.red.500}",
+        "$description": "Filled error surface in light mode for destructive actions and critical badges."
+      },
+      "error_subtle": {
+        "$type": "color",
+        "$value": "{primitive.color.red.500_a20}",
+        "$description": "Soft error fill in light mode for alert chips and low-emphasis destructive surfaces."
+      },
+      "warning": {
+        "$type": "color",
+        "$value": "{primitive.color.orange.500}",
+        "$description": "Filled warning surface in light mode for caution states and offline indicators."
+      },
+      "warning_subtle": {
+        "$type": "color",
+        "$value": "{primitive.color.orange.500_a20}",
+        "$description": "Soft warning fill in light mode for caution chips and low-emphasis attention states."
       }
     },
     "gradient": {
@@ -493,7 +709,7 @@
           "stops": [
             {
               "position": 0,
-              "color": "{primitive.color.white_a60}"
+              "color": "#FFFFFF99"
             },
             {
               "position": 1,
@@ -511,7 +727,7 @@
           "stops": [
             {
               "position": 0,
-              "color": "{primitive.color.white_a0}"
+              "color": "{primitive.color.white.0}"
             },
             {
               "position": 1,
@@ -520,6 +736,150 @@
           ]
         },
         "$description": "Tab bar backdrop gradient — transparent white to solid white for feathered top edge."
+      }
+    },
+    "status": {
+      "success": {
+        "$type": "color",
+        "$value": "{primitive.color.green.500}",
+        "$description": "Canonical success color in light mode for positive status communication."
+      },
+      "success_subtle": {
+        "$type": "color",
+        "$value": "{primitive.color.green.500_a20}",
+        "$description": "Subtle success surface in light mode for chips, pills, and low-emphasis confirmations."
+      },
+      "error": {
+        "$type": "color",
+        "$value": "{primitive.color.red.500}",
+        "$description": "Canonical error color in light mode for destructive and failed states."
+      },
+      "error_subtle": {
+        "$type": "color",
+        "$value": "{primitive.color.red.500_a20}",
+        "$description": "Subtle error surface in light mode for alerts and destructive background states."
+      },
+      "warning": {
+        "$type": "color",
+        "$value": "{primitive.color.orange.500}",
+        "$description": "Canonical warning color in light mode for caution and offline states."
+      },
+      "warning_subtle": {
+        "$type": "color",
+        "$value": "{primitive.color.orange.500_a20}",
+        "$description": "Subtle warning surface in light mode for chips, highlights, and caution backgrounds."
+      }
+    },
+    "textStyle": {
+      "titleLarge": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{primitive.typography.family.sans}",
+          "fontWeight": "{primitive.typography.weight.bold}",
+          "fontSize": "{primitive.typography.size.3xl}",
+          "lineHeight": "{primitive.typography.lineHeight.normal}",
+          "letterSpacing": "{primitive.typography.letterSpacing.normal}"
+        },
+        "$description": "Largest title style from Figma, used for article titles and special large amount emphasis."
+      },
+      "amountLarge": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{primitive.typography.family.sans}",
+          "fontWeight": "{primitive.typography.weight.bold}",
+          "fontSize": "{primitive.typography.size.2xl}",
+          "lineHeight": "{primitive.typography.lineHeight.normal}",
+          "letterSpacing": "{primitive.typography.letterSpacing.normal}"
+        },
+        "$description": "Large amount and article-title style from Figma."
+      },
+      "guideTitle": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{primitive.typography.family.sans}",
+          "fontWeight": "{primitive.typography.weight.medium}",
+          "fontSize": "{primitive.typography.size.xl}",
+          "lineHeight": "{primitive.typography.lineHeight.normal}",
+          "letterSpacing": "{primitive.typography.letterSpacing.normal}"
+        },
+        "$description": "Guide title style from Figma."
+      },
+      "titleMedium": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{primitive.typography.family.sans}",
+          "fontWeight": "{primitive.typography.weight.bold}",
+          "fontSize": "{primitive.typography.size.lg}",
+          "lineHeight": "{primitive.typography.lineHeight.normal}",
+          "letterSpacing": "{primitive.typography.letterSpacing.normal}"
+        },
+        "$description": "Medium title style from Figma, used for navigation headings."
+      },
+      "bodyMedium": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{primitive.typography.family.sans}",
+          "fontWeight": "{primitive.typography.weight.medium}",
+          "fontSize": "{primitive.typography.size.lg}",
+          "lineHeight": "{primitive.typography.lineHeight.normal}",
+          "letterSpacing": "{primitive.typography.letterSpacing.normal}"
+        },
+        "$description": "Primary body content style from Figma."
+      },
+      "buttonText": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{primitive.typography.family.sans}",
+          "fontWeight": "{primitive.typography.weight.regular}",
+          "fontSize": "{primitive.typography.size.lg}",
+          "lineHeight": "{primitive.typography.lineHeight.normal}",
+          "letterSpacing": "{primitive.typography.letterSpacing.normal}"
+        },
+        "$description": "Button label style from Figma."
+      },
+      "bodySmall": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{primitive.typography.family.sans}",
+          "fontWeight": "{primitive.typography.weight.regular}",
+          "fontSize": "{primitive.typography.size.md}",
+          "lineHeight": "{primitive.typography.lineHeight.normal}",
+          "letterSpacing": "{primitive.typography.letterSpacing.normal}"
+        },
+        "$description": "Secondary body content style from Figma."
+      },
+      "groupTitle": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{primitive.typography.family.sans}",
+          "fontWeight": "{primitive.typography.weight.medium}",
+          "fontSize": "{primitive.typography.size.md}",
+          "lineHeight": "{primitive.typography.lineHeight.normal}",
+          "letterSpacing": "{primitive.typography.letterSpacing.normal}"
+        },
+        "$description": "Grouped section title style from Figma."
+      },
+      "caption": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{primitive.typography.family.sans}",
+          "fontWeight": "{primitive.typography.weight.regular}",
+          "fontSize": "{primitive.typography.size.sm}",
+          "lineHeight": "{primitive.typography.lineHeight.tight}",
+          "letterSpacing": "{primitive.typography.letterSpacing.normal}"
+        },
+        "$description": "Auxiliary information, annotation, and label style from Figma."
+      },
+      "xSmall": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{primitive.typography.family.sans}",
+          "fontWeight": "{primitive.typography.weight.regular}",
+          "fontSize": "{primitive.typography.size.xs}",
+          "lineHeight": "{primitive.typography.lineHeight.normal}",
+          "letterSpacing": "{primitive.typography.letterSpacing.normal}"
+        },
+        "$description": "Bottom navigation special-case small text style from Figma."
       }
     }
   },
@@ -932,7 +1292,7 @@
       },
       "backdrop": {
         "$type": "color",
-        "$value": "{primitive.color.black_a80}",
+        "$value": "{primitive.color.black.80}",
         "$description": "Backdrop scrim overlay in dark mode — 80% black for strong contrast behind presented modals."
       }
     },
@@ -949,8 +1309,8 @@
       },
       "secondary": {
         "$type": "color",
-        "$value": "{primitive.color.gray.400_a40}",
-        "$description": "Supporting and secondary text in dark mode — 40% gray for captions, metadata, and sublabels."
+        "$value": "{primitive.color.gray.350}",
+        "$description": "Supporting and secondary text in dark mode — solid gray token replacing the prior alpha-based treatment for more stable contrast across surfaces."
       },
       "action": {
         "$type": "color",
@@ -959,27 +1319,42 @@
       },
       "placeholder": {
         "$type": "color",
-        "$value": "{primitive.color.white_a20}",
-        "$description": "Placeholder and hint text in dark mode — 20% white for subtle empty state indication on dark."
+        "$value": "{primitive.color.gray.700}",
+        "$description": "Placeholder and hint text in dark mode — solid gray token replacing the prior alpha-based treatment."
+      },
+      "success": {
+        "$type": "color",
+        "$value": "{primitive.color.green.500}",
+        "$description": "Success text color in dark mode for positive inline messaging."
+      },
+      "error": {
+        "$type": "color",
+        "$value": "{primitive.color.red.500}",
+        "$description": "Error text color in dark mode for destructive and validation messaging."
+      },
+      "warning": {
+        "$type": "color",
+        "$value": "{primitive.color.orange.500}",
+        "$description": "Warning text color in dark mode for caution and offline messaging."
       }
     },
     "stroke": {
       "icon_primary": {
         "$type": "color",
-        "$value": "{primitive.color.gray.400_a80}",
-        "$description": "Primary icon stroke in dark mode — 80% gray for clear, legible icon rendering on dark surfaces."
+        "$value": "{primitive.color.gray.450}",
+        "$description": "Primary icon stroke in dark mode — solid gray token replacing the prior alpha-based treatment."
       },
       "icon_secondary": {
         "$type": "color",
-        "$value": "{primitive.color.gray.400_a40}",
-        "$description": "Secondary icon stroke in dark mode — 40% gray for de-emphasized, lower-hierarchy icons."
+        "$value": "{primitive.color.gray.350}",
+        "$description": "Secondary icon stroke in dark mode — solid gray token replacing the prior alpha-based treatment."
       }
     },
     "border": {
       "default": {
         "$type": "color",
-        "$value": "{primitive.color.gray.400_a8}",
-        "$description": "Default border and divider in dark mode — 8% gray, barely-visible separator for dark content areas."
+        "$value": "{primitive.color.gray.880}",
+        "$description": "Default border and divider in dark mode — solid gray subtle border token replacing the prior alpha-based treatment."
       }
     },
     "fill": {
@@ -1003,15 +1378,35 @@
         "$value": "{primitive.color.white}",
         "$description": "Logo fill in dark mode — pure white ensures brand identity is legible on dark backgrounds."
       },
-      "color_1": {
+      "success": {
         "$type": "color",
-        "$value": "{primitive.color.white}",
-        "$description": "Generic brand color fill slot 1 in dark mode — white, flexible placeholder for branded fills on dark."
+        "$value": "{primitive.color.green.500}",
+        "$description": "Filled success surface in dark mode for high-emphasis positive actions and badges."
       },
-      "color_2": {
+      "success_subtle": {
         "$type": "color",
-        "$value": "{primitive.color.white}",
-        "$description": "Generic brand color fill slot 2 in dark mode — white, secondary flexible branded fill on dark."
+        "$value": "{primitive.color.green.500_a20}",
+        "$description": "Soft success fill in dark mode for chips and secondary positive surfaces."
+      },
+      "error": {
+        "$type": "color",
+        "$value": "{primitive.color.red.500}",
+        "$description": "Filled error surface in dark mode for destructive actions and critical badges."
+      },
+      "error_subtle": {
+        "$type": "color",
+        "$value": "{primitive.color.red.500_a20}",
+        "$description": "Soft error fill in dark mode for alert chips and low-emphasis destructive surfaces."
+      },
+      "warning": {
+        "$type": "color",
+        "$value": "{primitive.color.orange.500}",
+        "$description": "Filled warning surface in dark mode for caution states and offline indicators."
+      },
+      "warning_subtle": {
+        "$type": "color",
+        "$value": "{primitive.color.orange.500_a20}",
+        "$description": "Soft warning fill in dark mode for caution chips and low-emphasis attention states."
       }
     },
     "gradient": {
@@ -1059,7 +1454,7 @@
           "stops": [
             {
               "position": 0,
-              "color": "{primitive.color.custom_21_20_23_a70}"
+              "color": "#151417B3"
             },
             {
               "position": 1,
@@ -1077,7 +1472,7 @@
           "stops": [
             {
               "position": 0,
-              "color": "{primitive.color.gray.950_a0}"
+              "color": "{primitive.color.gray.0}"
             },
             {
               "position": 1,
@@ -1086,6 +1481,150 @@
           ]
         },
         "$description": "Tab bar backdrop gradient in dark mode — transparent near-black to near-pure-black."
+      }
+    },
+    "status": {
+      "success": {
+        "$type": "color",
+        "$value": "{primitive.color.green.500}",
+        "$description": "Canonical success color in dark mode for positive status communication."
+      },
+      "success_subtle": {
+        "$type": "color",
+        "$value": "{primitive.color.green.500_a20}",
+        "$description": "Subtle success surface in dark mode for chips, pills, and low-emphasis confirmations."
+      },
+      "error": {
+        "$type": "color",
+        "$value": "{primitive.color.red.500}",
+        "$description": "Canonical error color in dark mode for destructive and failed states."
+      },
+      "error_subtle": {
+        "$type": "color",
+        "$value": "{primitive.color.red.500_a20}",
+        "$description": "Subtle error surface in dark mode for alerts and destructive background states."
+      },
+      "warning": {
+        "$type": "color",
+        "$value": "{primitive.color.orange.500}",
+        "$description": "Canonical warning color in dark mode for caution and offline states."
+      },
+      "warning_subtle": {
+        "$type": "color",
+        "$value": "{primitive.color.orange.500_a20}",
+        "$description": "Subtle warning surface in dark mode for chips, highlights, and caution backgrounds."
+      }
+    },
+    "textStyle": {
+      "titleLarge": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{primitive.typography.family.sans}",
+          "fontWeight": "{primitive.typography.weight.bold}",
+          "fontSize": "{primitive.typography.size.3xl}",
+          "lineHeight": "{primitive.typography.lineHeight.normal}",
+          "letterSpacing": "{primitive.typography.letterSpacing.normal}"
+        },
+        "$description": "Largest title style from Figma, used for article titles and special large amount emphasis."
+      },
+      "amountLarge": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{primitive.typography.family.sans}",
+          "fontWeight": "{primitive.typography.weight.bold}",
+          "fontSize": "{primitive.typography.size.2xl}",
+          "lineHeight": "{primitive.typography.lineHeight.normal}",
+          "letterSpacing": "{primitive.typography.letterSpacing.normal}"
+        },
+        "$description": "Large amount and article-title style from Figma."
+      },
+      "guideTitle": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{primitive.typography.family.sans}",
+          "fontWeight": "{primitive.typography.weight.medium}",
+          "fontSize": "{primitive.typography.size.xl}",
+          "lineHeight": "{primitive.typography.lineHeight.normal}",
+          "letterSpacing": "{primitive.typography.letterSpacing.normal}"
+        },
+        "$description": "Guide title style from Figma."
+      },
+      "titleMedium": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{primitive.typography.family.sans}",
+          "fontWeight": "{primitive.typography.weight.bold}",
+          "fontSize": "{primitive.typography.size.lg}",
+          "lineHeight": "{primitive.typography.lineHeight.normal}",
+          "letterSpacing": "{primitive.typography.letterSpacing.normal}"
+        },
+        "$description": "Medium title style from Figma, used for navigation headings."
+      },
+      "bodyMedium": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{primitive.typography.family.sans}",
+          "fontWeight": "{primitive.typography.weight.medium}",
+          "fontSize": "{primitive.typography.size.lg}",
+          "lineHeight": "{primitive.typography.lineHeight.normal}",
+          "letterSpacing": "{primitive.typography.letterSpacing.normal}"
+        },
+        "$description": "Primary body content style from Figma."
+      },
+      "buttonText": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{primitive.typography.family.sans}",
+          "fontWeight": "{primitive.typography.weight.regular}",
+          "fontSize": "{primitive.typography.size.lg}",
+          "lineHeight": "{primitive.typography.lineHeight.normal}",
+          "letterSpacing": "{primitive.typography.letterSpacing.normal}"
+        },
+        "$description": "Button label style from Figma."
+      },
+      "bodySmall": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{primitive.typography.family.sans}",
+          "fontWeight": "{primitive.typography.weight.regular}",
+          "fontSize": "{primitive.typography.size.md}",
+          "lineHeight": "{primitive.typography.lineHeight.normal}",
+          "letterSpacing": "{primitive.typography.letterSpacing.normal}"
+        },
+        "$description": "Secondary body content style from Figma."
+      },
+      "groupTitle": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{primitive.typography.family.sans}",
+          "fontWeight": "{primitive.typography.weight.medium}",
+          "fontSize": "{primitive.typography.size.md}",
+          "lineHeight": "{primitive.typography.lineHeight.normal}",
+          "letterSpacing": "{primitive.typography.letterSpacing.normal}"
+        },
+        "$description": "Grouped section title style from Figma."
+      },
+      "caption": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{primitive.typography.family.sans}",
+          "fontWeight": "{primitive.typography.weight.regular}",
+          "fontSize": "{primitive.typography.size.sm}",
+          "lineHeight": "{primitive.typography.lineHeight.tight}",
+          "letterSpacing": "{primitive.typography.letterSpacing.normal}"
+        },
+        "$description": "Auxiliary information, annotation, and label style from Figma."
+      },
+      "xSmall": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{primitive.typography.family.sans}",
+          "fontWeight": "{primitive.typography.weight.regular}",
+          "fontSize": "{primitive.typography.size.xs}",
+          "lineHeight": "{primitive.typography.lineHeight.normal}",
+          "letterSpacing": "{primitive.typography.letterSpacing.normal}"
+        },
+        "$description": "Bottom navigation special-case small text style from Figma."
       }
     }
   },
@@ -1498,6 +2037,7 @@
     }
   ],
   "$metadata": {
+    "generatedFrom": "source_token_v5.json",
     "tokenSetOrder": [
       "primitive",
       "semantic/light",

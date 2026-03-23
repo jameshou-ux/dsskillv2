@@ -8,6 +8,18 @@ THEMES = ("light", "dark")
 SOURCE_THEME_KEYS = {"light": "Light", "dark": "Dark"}
 COLLECTIONS = ("primitive", "semantic", "pattern", "component")
 OUTPUT_FILE = "adapters/ai/ai.tokens.json"
+DEFAULT_SOURCE_CANDIDATES = ("source_token_v5.json", "source_token_v4.json", "source/tokens.json")
+TYPOGRAPHY_FIELDS = {
+    "fontFamily",
+    "fontWeight",
+    "fontStyle",
+    "fontSize",
+    "lineHeight",
+    "letterSpacing",
+    "paragraphSpacing",
+    "textCase",
+    "textDecoration",
+}
 
 
 def is_token_node(node: Any) -> bool:
@@ -28,8 +40,10 @@ def flatten_tokens(obj: Dict[str, Any], prefix: str = "") -> Dict[str, Dict[str,
         path = f"{prefix}.{key}" if prefix else key
         if is_token_node(value):
             out[path] = value
-        elif isinstance(value, dict):
-            out.update(flatten_tokens(value, path))
+        if isinstance(value, dict):
+            child_nodes = {child_key: child_value for child_key, child_value in value.items() if not child_key.startswith("$")}
+            if child_nodes:
+                out.update(flatten_tokens(child_nodes, path))
     return out
 
 
@@ -41,6 +55,8 @@ def infer_type_from_value(raw_value: Any) -> str:
     if isinstance(raw_value, dict):
         if {"type", "angle", "stops"}.issubset(raw_value.keys()):
             return "gradient"
+        if TYPOGRAPHY_FIELDS.intersection(raw_value.keys()):
+            return "typography"
         return "string"
     if isinstance(raw_value, str):
         if raw_value == "[MISSING]":
@@ -61,6 +77,18 @@ def infer_type_from_value(raw_value: Any) -> str:
 
 
 def infer_type_from_path(path: str) -> Optional[str]:
+    if ".typography.family." in path:
+        return "fontFamilies"
+    if ".typography.weight." in path:
+        return "fontWeights"
+    if ".typography.size." in path:
+        return "fontSizes"
+    if ".typography.lineHeight." in path:
+        return "lineHeights"
+    if ".typography.letterSpacing." in path:
+        return "letterSpacing"
+    if ".textStyle." in path:
+        return "typography"
     if any(
         segment in path
         for segment in (
@@ -210,7 +238,7 @@ def build_component_index(entries: Dict[str, Dict[str, Any]]) -> Dict[str, Any]:
     return component_index
 
 
-def build_ai_payload(source_data: Dict[str, Any]) -> Dict[str, Any]:
+def build_ai_payload(source_data: Dict[str, Any], source_path: str) -> Dict[str, Any]:
     lookups = build_lookups(source_data)
     type_cache: Dict[str, str] = {}
     value_cache: Dict[str, Any] = {}
@@ -247,7 +275,7 @@ def build_ai_payload(source_data: Dict[str, Any]) -> Dict[str, Any]:
 
     payload = {
         "$metadata": {
-            "generatedFrom": "source/tokens.json",
+            "generatedFrom": source_path,
             "adapter": "ai",
             "themes": list(THEMES),
             "layers": list(COLLECTIONS),
@@ -271,11 +299,25 @@ def write_payload(payload: Dict[str, Any]) -> None:
         f.write("\n")
 
 
-def main() -> None:
-    with open("source/tokens.json", "r", encoding="utf-8") as f:
-        source_data = json.load(f)
+def resolve_source_path() -> str:
+    explicit = os.environ.get("TOKEN_SOURCE_PATH")
+    if explicit:
+        return explicit
+    for candidate in DEFAULT_SOURCE_CANDIDATES:
+        if os.path.exists(candidate):
+            return candidate
+    raise FileNotFoundError(f"No token source found. Tried: {', '.join(DEFAULT_SOURCE_CANDIDATES)}")
 
-    payload = build_ai_payload(source_data)
+
+def load_source_data() -> tuple[str, Dict[str, Any]]:
+    source_path = resolve_source_path()
+    with open(source_path, "r", encoding="utf-8") as f:
+        return source_path, json.load(f)
+
+
+def main() -> None:
+    source_path, source_data = load_source_data()
+    payload = build_ai_payload(source_data, source_path)
     write_payload(payload)
     print(f"Generated: {OUTPUT_FILE}")
 

@@ -1,0 +1,632 @@
+{
+  "imtoken-ds/light": {
+    "White900;Deep700": {
+      "$value": "#FFFFFF",
+      "$type": "color",
+      "$description": "Page BG; Modal 内卡片"
+    },
+    "White800; Deep800": {
+      "$value": "#FFFFFF",
+      "$type": "color",
+      "$description": "Page BG Bright;Page 内卡片，Modal/page 白背景"
+    },
+    "White700;Deep800": {
+      "$value": "#F0F1F3",
+      "$type": "color",
+      "$description": "PageBGDim; modal 背景"
+    },
+    "White700;Deep900": {
+      "$value": "#F0F1F3",
+      "$type": "color",
+      "$description": "PageBGdark; Page 背景"
+    },
+    "White900;Deep900": {
+      "$value": "#FFFFFF",
+      "$type": "color",
+      "$description": "Text On Color"
+    },
+    "white900": {
+      "$value": "#FFFFFF",
+      "$type": "color"
+    },
+    "Deep600;White500": {
+      "$value": "#111D4A",
+      "$type": "color"
+    },
+    "Deep900;White900": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Text On Color"
+    },
+    "Deep600,White600": {
+      "$value": "#111D4A",
+      "$type": "color",
+      "$description": "Text Primary"
+    },
+    "Deep400,White400": {
+      "$value": "rgba(17, 29, 74, 0.6)",
+      "$type": "color",
+      "$description": "Text Secondary"
+    },
+    "Deep300;White300": {
+      "$value": "rgba(17, 29, 74, 0.4)",
+      "$type": "color",
+      "$description": "TextPlaceholder"
+    },
+    "Deep200;White200": {
+      "$value": "rgba(17, 29, 74, 0.2)",
+      "$type": "color",
+      "$description": "TextPlaceholder"
+    },
+    "Deep100;White200": {
+      "$value": "rgba(17, 29, 74, 0.08)",
+      "$type": "color"
+    },
+    "Deep100;White100": {
+      "$value": "rgba(17, 29, 74, 0.08)",
+      "$type": "color",
+      "$description": "Border;unclick"
+    },
+    "Deep100;White000": {
+      "$value": "rgba(17, 29, 74, 0.08)",
+      "$type": "color",
+      "$description": "Border;unclick"
+    },
+    "Liner 1-0": {
+      "$value": "rgba(221, 222, 234, 0)",
+      "$type": "color"
+    },
+    "tab-bg1": {
+      "$value": "rgba(17, 29, 74, 0.08)",
+      "$type": "color"
+    },
+    "Red200": {
+      "$value": "rgba(243, 99, 111, 0.2)",
+      "$type": "color"
+    },
+    "Blue200": {
+      "$value": "rgba(0, 127, 255, 0.2)",
+      "$type": "color"
+    },
+    "OceanBlue200": {
+      "$value": "rgba(12, 197, 255, 0.2)",
+      "$type": "color"
+    },
+    "Green200": {
+      "$value": "rgba(75, 206, 113, 0.2)",
+      "$type": "color"
+    },
+    "Yellow200": {
+      "$value": "rgba(252, 140, 77, 0.2)",
+      "$type": "color"
+    },
+    "Blue600; Blue500": {
+      "$value": "#007FFF",
+      "$type": "color",
+      "$description": "Primary button"
+    },
+    "Oceanblue500;deep500": {
+      "$value": "rgba(12, 197, 255, 0.8)",
+      "$type": "color"
+    },
+    "oceanblue600; oceanblue500": {
+      "$value": "#0CC5FF",
+      "$type": "color",
+      "$description": "Secondary"
+    },
+    "Green600; Green500": {
+      "$value": "#4BCE71",
+      "$type": "color",
+      "$description": "Success,connect"
+    },
+    "Yellow600; Yellow500": {
+      "$value": "#FC8C4D",
+      "$type": "color",
+      "$description": "Warning,offline button"
+    },
+    "Red600; Red500": {
+      "$value": "#F3636F",
+      "$type": "color",
+      "$description": "Error"
+    },
+    "Blue800": {
+      "$value": "#004C99",
+      "$type": "color"
+    },
+    "Green800": {
+      "$value": "#2D7C44",
+      "$type": "color"
+    },
+    "Yellow800": {
+      "$value": "#97542E",
+      "$type": "color"
+    },
+    "Red800": {
+      "$value": "#923B43",
+      "$type": "color"
+    },
+    "blue300": {
+      "$value": "rgba(0, 127, 255, 0.4)",
+      "$type": "color"
+    },
+    "red300": {
+      "$value": "rgba(243, 99, 111, 0.4)",
+      "$type": "color"
+    },
+    "green300": {
+      "$value": "rgba(75, 206, 113, 0.4)",
+      "$type": "color"
+    },
+    "yellow300": {
+      "$value": "rgba(252, 140, 77, 0.4)",
+      "$type": "color"
+    },
+    "Color": {
+      "$value": "#FFFFFF",
+      "$type": "color"
+    },
+    "dark300;dark400": {
+      "$value": "rgba(0, 0, 0, 0.4)",
+      "$type": "color"
+    },
+    "dark200;dark300": {
+      "$value": "rgba(0, 0, 0, 0.2)",
+      "$type": "color"
+    },
+    "Dark100;Dark400": {
+      "$value": "rgba(0, 0, 0, 0.08)",
+      "$type": "color"
+    },
+    "blue200": {
+      "$value": "rgba(0, 127, 255, 0.2)",
+      "$type": "color"
+    },
+    "red200": {
+      "$value": "rgba(243, 99, 111, 0.2)",
+      "$type": "color"
+    },
+    "green200": {
+      "$value": "rgba(75, 206, 113, 0.2)",
+      "$type": "color"
+    },
+    "yellow200": {
+      "$value": "rgba(252, 140, 77, 0.2)",
+      "$type": "color"
+    },
+    "Blur-pagebg": {
+      "$value": "rgba(255, 255, 255, 0.96)",
+      "$type": "color"
+    },
+    "Blur 1-pagewhitebg": {
+      "$value": "rgba(240, 241, 243, 0.96)",
+      "$type": "color"
+    },
+    "Blur 2-modalbg": {
+      "$value": "rgba(240, 241, 243, 0.96)",
+      "$type": "color"
+    },
+    "light600;light500": {
+      "$value": "#FFFFFF",
+      "$type": "color"
+    },
+    "light400;light300": {
+      "$value": "rgba(255, 255, 255, 0.6)",
+      "$type": "color"
+    },
+    "M-L Blue600;Deep600": {
+      "$value": "#007FFF",
+      "$type": "color"
+    },
+    "M-R oceanBlue600;blue600": {
+      "$value": "#56BCF9",
+      "$type": "color"
+    },
+    "T-L Deep400;ligth100": {
+      "$value": "rgba(17, 29, 74, 0.6)",
+      "$type": "color"
+    },
+    "T-R Deep300;light200": {
+      "$value": "rgba(17, 29, 74, 0.4)",
+      "$type": "color"
+    },
+    "Bule400": {
+      "$value": "rgba(0, 127, 255, 0.6)",
+      "$type": "color"
+    },
+    "Green400": {
+      "$value": "rgba(75, 206, 113, 0.6)",
+      "$type": "color"
+    },
+    "Red400": {
+      "$value": "rgba(243, 99, 111, 0.6)",
+      "$type": "color"
+    },
+    "dex": {
+      "$value": "rgba(12, 197, 255, 0.2)",
+      "$type": "color"
+    },
+    "Blue100": {
+      "$value": "rgba(0, 127, 255, 0.08)",
+      "$type": "color"
+    },
+    "blue200;blue300": {
+      "$value": "rgba(0, 127, 255, 0.2)",
+      "$type": "color"
+    },
+    "red200;red300": {
+      "$value": "rgba(243, 99, 111, 0.2)",
+      "$type": "color"
+    },
+    "greeen200;green300": {
+      "$value": "rgba(75, 206, 113, 0.2)",
+      "$type": "color"
+    },
+    "yellow200;yellow300": {
+      "$value": "rgba(252, 140, 77, 0.2)",
+      "$type": "color"
+    },
+    "white700；deep700": {
+      "$value": "#F0F1F3",
+      "$type": "color"
+    },
+    "white750;dark750": {
+      "$value": "rgba(240, 241, 243, 0.96)",
+      "$type": "color"
+    },
+    "white850;dark750": {
+      "$value": "rgba(255, 255, 255, 0.96)",
+      "$type": "color"
+    },
+    "white750;dark850": {
+      "$value": "rgba(240, 241, 243, 0.96)",
+      "$type": "color"
+    },
+    "dark200": {
+      "$value": "rgba(0, 0, 0, 0.2)",
+      "$type": "color"
+    },
+    "deep300;dark700": {
+      "$value": "rgba(17, 29, 74, 0.4)",
+      "$type": "color"
+    },
+    "white000;deep000": {
+      "$value": "rgba(255, 255, 255, 0.02)",
+      "$type": "color"
+    },
+    "blue600;dark800": {
+      "$value": "#007FFF",
+      "$type": "color"
+    },
+    "light000;dark000": {
+      "$value": "rgba(240, 241, 243, 0)",
+      "$type": "color"
+    }
+  },
+  "imtoken-ds/dark": {
+    "White900;Deep700": {
+      "$value": "#2C2C2E",
+      "$type": "color",
+      "$description": "Page BG; Modal 内卡片"
+    },
+    "White800; Deep800": {
+      "$value": "#1C1C1E",
+      "$type": "color",
+      "$description": "Page BG Bright;Page 内卡片，Modal/page 白背景"
+    },
+    "White700;Deep800": {
+      "$value": "#1C1C1E",
+      "$type": "color",
+      "$description": "PageBGDim; modal 背景"
+    },
+    "White700;Deep900": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "PageBGdark; Page 背景"
+    },
+    "White900;Deep900": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Text On Color"
+    },
+    "white900": {
+      "$value": "#FFFFFF",
+      "$type": "color"
+    },
+    "Deep600;White500": {
+      "$value": "rgba(255, 255, 255, 0.8)",
+      "$type": "color"
+    },
+    "Deep900;White900": {
+      "$value": "#FFFFFF",
+      "$type": "color",
+      "$description": "Text On Color"
+    },
+    "Deep600,White600": {
+      "$value": "#DDDEEA",
+      "$type": "color",
+      "$description": "Text Primary"
+    },
+    "Deep400,White400": {
+      "$value": "rgba(221, 222, 234, 0.6)",
+      "$type": "color",
+      "$description": "Text Secondary"
+    },
+    "Deep300;White300": {
+      "$value": "rgba(221, 222, 234, 0.4)",
+      "$type": "color",
+      "$description": "TextPlaceholder"
+    },
+    "Deep200;White200": {
+      "$value": "rgba(221, 222, 234, 0.2)",
+      "$type": "color",
+      "$description": "TextPlaceholder"
+    },
+    "Deep100;White200": {
+      "$value": "rgba(255, 255, 255, 0.2)",
+      "$type": "color"
+    },
+    "Deep100;White100": {
+      "$value": "rgba(221, 222, 234, 0.08)",
+      "$type": "color",
+      "$description": "Border;unclick"
+    },
+    "Deep100;White000": {
+      "$value": "rgba(221, 222, 234, 0.02)",
+      "$type": "color",
+      "$description": "Border;unclick"
+    },
+    "Liner 1-0": {
+      "$value": "#1C1C1E",
+      "$type": "color"
+    },
+    "tab-bg1": {
+      "$value": "rgba(17, 29, 74, 0.08)",
+      "$type": "color"
+    },
+    "Red200": {
+      "$value": "rgba(243, 99, 111, 0.2)",
+      "$type": "color"
+    },
+    "Blue200": {
+      "$value": "rgba(0, 127, 255, 0.2)",
+      "$type": "color"
+    },
+    "OceanBlue200": {
+      "$value": "rgba(12, 197, 255, 0.2)",
+      "$type": "color"
+    },
+    "Green200": {
+      "$value": "rgba(75, 206, 113, 0.2)",
+      "$type": "color"
+    },
+    "Yellow200": {
+      "$value": "rgba(252, 140, 77, 0.2)",
+      "$type": "color"
+    },
+    "Blue600; Blue500": {
+      "$value": "rgba(0, 127, 255, 0.8)",
+      "$type": "color",
+      "$description": "Primary button"
+    },
+    "Oceanblue500;deep500": {
+      "$value": "rgba(17, 29, 74, 0.8)",
+      "$type": "color"
+    },
+    "oceanblue600; oceanblue500": {
+      "$value": "rgba(12, 197, 255, 0.8)",
+      "$type": "color",
+      "$description": "Secondary"
+    },
+    "Green600; Green500": {
+      "$value": "rgba(75, 206, 113, 0.8)",
+      "$type": "color",
+      "$description": "Success,connect"
+    },
+    "Yellow600; Yellow500": {
+      "$value": "rgba(252, 140, 77, 0.8)",
+      "$type": "color",
+      "$description": "Warning,offline button"
+    },
+    "Red600; Red500": {
+      "$value": "rgba(243, 99, 111, 0.8)",
+      "$type": "color",
+      "$description": "Error"
+    },
+    "Blue800": {
+      "$value": "#004C99",
+      "$type": "color"
+    },
+    "Green800": {
+      "$value": "#2D7C44",
+      "$type": "color"
+    },
+    "Yellow800": {
+      "$value": "#97542E",
+      "$type": "color"
+    },
+    "Red800": {
+      "$value": "#923B43",
+      "$type": "color"
+    },
+    "blue300": {
+      "$value": "rgba(0, 127, 255, 0.4)",
+      "$type": "color"
+    },
+    "red300": {
+      "$value": "rgba(243, 99, 111, 0.4)",
+      "$type": "color"
+    },
+    "green300": {
+      "$value": "rgba(75, 206, 113, 0.4)",
+      "$type": "color"
+    },
+    "yellow300": {
+      "$value": "rgba(252, 140, 77, 0.4)",
+      "$type": "color"
+    },
+    "Color": {
+      "$value": "#FFFFFF",
+      "$type": "color"
+    },
+    "dark300;dark400": {
+      "$value": "rgba(0, 0, 0, 0.6)",
+      "$type": "color"
+    },
+    "dark200;dark300": {
+      "$value": "rgba(0, 0, 0, 0.4)",
+      "$type": "color"
+    },
+    "Dark100;Dark400": {
+      "$value": "rgba(0, 0, 0, 0.6)",
+      "$type": "color"
+    },
+    "blue200": {
+      "$value": "rgba(0, 127, 255, 0.2)",
+      "$type": "color"
+    },
+    "red200": {
+      "$value": "rgba(243, 99, 111, 0.2)",
+      "$type": "color"
+    },
+    "green200": {
+      "$value": "rgba(75, 206, 113, 0.2)",
+      "$type": "color"
+    },
+    "yellow200": {
+      "$value": "rgba(252, 140, 77, 0.2)",
+      "$type": "color"
+    },
+    "Blur-pagebg": {
+      "$value": "rgba(28, 28, 30, 0.96)",
+      "$type": "color"
+    },
+    "Blur 1-pagewhitebg": {
+      "$value": "rgba(0, 0, 0, 0.96)",
+      "$type": "color"
+    },
+    "Blur 2-modalbg": {
+      "$value": "rgba(28, 28, 30, 0.96)",
+      "$type": "color"
+    },
+    "light600;light500": {
+      "$value": "rgba(255, 255, 255, 0.8)",
+      "$type": "color"
+    },
+    "light400;light300": {
+      "$value": "rgba(255, 255, 255, 0.4)",
+      "$type": "color"
+    },
+    "M-L Blue600;Deep600": {
+      "$value": "#111D4A",
+      "$type": "color"
+    },
+    "M-R oceanBlue600;blue600": {
+      "$value": "#007FFF",
+      "$type": "color"
+    },
+    "T-L Deep400;ligth100": {
+      "$value": "rgba(255, 255, 255, 0.08)",
+      "$type": "color"
+    },
+    "T-R Deep300;light200": {
+      "$value": "rgba(255, 255, 255, 0.2)",
+      "$type": "color"
+    },
+    "Bule400": {
+      "$value": "rgba(0, 127, 255, 0.6)",
+      "$type": "color"
+    },
+    "Green400": {
+      "$value": "rgba(75, 206, 113, 0.6)",
+      "$type": "color"
+    },
+    "Red400": {
+      "$value": "rgba(243, 99, 111, 0.6)",
+      "$type": "color"
+    },
+    "dex": {
+      "$value": "rgba(0, 127, 255, 0.2)",
+      "$type": "color"
+    },
+    "Blue100": {
+      "$value": "rgba(0, 127, 255, 0.08)",
+      "$type": "color"
+    },
+    "blue200;blue300": {
+      "$value": "rgba(0, 127, 255, 0.4)",
+      "$type": "color"
+    },
+    "red200;red300": {
+      "$value": "rgba(243, 99, 111, 0.4)",
+      "$type": "color"
+    },
+    "greeen200;green300": {
+      "$value": "rgba(75, 206, 113, 0.4)",
+      "$type": "color"
+    },
+    "yellow200;yellow300": {
+      "$value": "rgba(252, 140, 77, 0.3)",
+      "$type": "color"
+    },
+    "white700；deep700": {
+      "$value": "#2C2C2E",
+      "$type": "color"
+    },
+    "white750;dark750": {
+      "$value": "rgba(28, 28, 30, 0.96)",
+      "$type": "color"
+    },
+    "white850;dark750": {
+      "$value": "rgba(28, 28, 30, 0.96)",
+      "$type": "color"
+    },
+    "white750;dark850": {
+      "$value": "rgba(0, 0, 0, 0.96)",
+      "$type": "color"
+    },
+    "dark200": {
+      "$value": "#FFFFFF",
+      "$type": "color"
+    },
+    "deep300;dark700": {
+      "$value": "#333333",
+      "$type": "color"
+    },
+    "white000;deep000": {
+      "$value": "rgba(0, 0, 0, 0)",
+      "$type": "color"
+    },
+    "blue600;dark800": {
+      "$value": "#25252E",
+      "$type": "color"
+    },
+    "light000;dark000": {
+      "$value": "rgba(28, 28, 30, 0)",
+      "$type": "color"
+    }
+  },
+  "$themes": [
+    {
+      "id": "light",
+      "name": "Light",
+      "selectedTokenSets": {
+        "imtoken-ds/light": "enabled",
+        "imtoken-ds/dark": "disabled"
+      }
+    },
+    {
+      "id": "dark",
+      "name": "Dark",
+      "selectedTokenSets": {
+        "imtoken-ds/light": "disabled",
+        "imtoken-ds/dark": "enabled"
+      }
+    }
+  ],
+  "$metadata": {
+    "tokenSetOrder": [
+      "imtoken-ds/light",
+      "imtoken-ds/dark"
+    ]
+  }
+}

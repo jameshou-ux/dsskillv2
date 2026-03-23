@@ -1,6 +1,6 @@
 {
   "$metadata": {
-    "generatedFrom": "source/tokens.json",
+    "generatedFrom": "source_token_v5.json",
     "adapter": "ai",
     "themes": [
       "light",
@@ -23,43 +23,25 @@
           "value": "#FFFFFF",
           "resolved": "#FFFFFF",
           "references": [],
-          "sourceRef": "primitive.color.white"
-        },
-        "white_a80": {
-          "layer": "primitive",
-          "type": "color",
-          "description": "White at 80% opacity — frosted glass and backdrop blur effects in light mode.",
-          "value": "rgba(255, 255, 255, 0.8)",
-          "resolved": "rgba(255, 255, 255, 0.8)",
-          "references": [],
-          "sourceRef": "primitive.color.white_a80"
-        },
-        "white_a60": {
-          "layer": "primitive",
-          "type": "color",
-          "description": "White at 60% opacity — subtle glassmorphism overlay for card surfaces.",
-          "value": "rgba(255, 255, 255, 0.6)",
-          "resolved": "rgba(255, 255, 255, 0.6)",
-          "references": [],
-          "sourceRef": "primitive.color.white_a60"
-        },
-        "white_a20": {
-          "layer": "primitive",
-          "type": "color",
-          "description": "White at 20% opacity — placeholder and hint text on dark backgrounds.",
-          "value": "rgba(255, 255, 255, 0.2)",
-          "resolved": "rgba(255, 255, 255, 0.2)",
-          "references": [],
-          "sourceRef": "primitive.color.white_a20"
-        },
-        "white_a0": {
-          "layer": "primitive",
-          "type": "color",
-          "description": "Fully transparent white — gradient feathered edge start point for bar backdrops.",
-          "value": "rgba(255, 255, 255, 0)",
-          "resolved": "rgba(255, 255, 255, 0)",
-          "references": [],
-          "sourceRef": "primitive.color.white_a0"
+          "sourceRef": "primitive.color.white",
+          "0": {
+            "layer": "primitive",
+            "type": "color",
+            "description": "Fully transparent white — gradient feathered edge start point for bar backdrops.",
+            "value": "#FFFFFF00",
+            "resolved": "#FFFFFF00",
+            "references": [],
+            "sourceRef": "primitive.color.white.0"
+          },
+          "80": {
+            "layer": "primitive",
+            "type": "color",
+            "description": "White at 80% opacity — frosted glass and backdrop blur effects in light mode.",
+            "value": "#FFFFFFCC",
+            "resolved": "#FFFFFFCC",
+            "references": [],
+            "sourceRef": "primitive.color.white.80"
+          }
         },
         "black": {
           "layer": "primitive",
@@ -68,27 +50,27 @@
           "value": "#000000",
           "resolved": "#000000",
           "references": [],
-          "sourceRef": "primitive.color.black"
-        },
-        "black_a80": {
-          "layer": "primitive",
-          "type": "color",
-          "description": "Black at 80% opacity — strong dark mode backdrop scrim for modal overlays.",
-          "value": "rgba(0, 0, 0, 0.8)",
-          "resolved": "rgba(0, 0, 0, 0.8)",
-          "references": [],
-          "sourceRef": "primitive.color.black_a80"
-        },
-        "custom_21_20_23_a70": {
-          "layer": "primitive",
-          "type": "color",
-          "description": "Near-black with warm undertone at 70% opacity — dark mode card gradient glassmorphism overlay.",
-          "value": "rgba(21, 20, 23, 0.7)",
-          "resolved": "rgba(21, 20, 23, 0.7)",
-          "references": [],
-          "sourceRef": "primitive.color.custom_21_20_23_a70"
+          "sourceRef": "primitive.color.black",
+          "80": {
+            "layer": "primitive",
+            "type": "color",
+            "description": "Black at 80% opacity — strong dark mode backdrop scrim for modal overlays.",
+            "value": "#000000CC",
+            "resolved": "#000000CC",
+            "references": [],
+            "sourceRef": "primitive.color.black.80"
+          }
         },
         "gray": {
+          "0": {
+            "layer": "primitive",
+            "type": "color",
+            "description": "Transparent near-pure-black — gradient feathered edge start for dark mode tab bar backdrop.",
+            "value": "#01030600",
+            "resolved": "#01030600",
+            "references": [],
+            "sourceRef": "primitive.color.gray.0"
+          },
           "50": {
             "layer": "primitive",
             "type": "color",
@@ -116,6 +98,24 @@
             "references": [],
             "sourceRef": "primitive.color.gray.300"
           },
+          "350": {
+            "layer": "primitive",
+            "type": "color",
+            "description": "Dark-mode mid gray — composited match of the former 40% light gray on gray.900.",
+            "value": "#8B8B91",
+            "resolved": "#8B8B91",
+            "references": [],
+            "sourceRef": "primitive.color.gray.350"
+          },
+          "450": {
+            "layer": "primitive",
+            "type": "color",
+            "description": "Dark-mode light gray — composited match of the former 80% light gray on gray.900.",
+            "value": "#B4B4BC",
+            "resolved": "#B4B4BC",
+            "references": [],
+            "sourceRef": "primitive.color.gray.450"
+          },
           "500": {
             "layer": "primitive",
             "type": "color",
@@ -125,32 +125,14 @@
             "references": [],
             "sourceRef": "primitive.color.gray.500"
           },
-          "400_a8": {
+          "700": {
             "layer": "primitive",
             "type": "color",
-            "description": "Gray at 8% opacity — ultra-subtle divider and border on dark surfaces.",
-            "value": "rgba(221, 222, 234, 0.08)",
-            "resolved": "rgba(221, 222, 234, 0.08)",
+            "description": "Dark-mode dark gray — composited match of the former 20% white on gray.900.",
+            "value": "#49494C",
+            "resolved": "#49494C",
             "references": [],
-            "sourceRef": "primitive.color.gray.400_a8"
-          },
-          "400_a40": {
-            "layer": "primitive",
-            "type": "color",
-            "description": "Gray at 40% opacity — secondary text and de-emphasized icon color on dark backgrounds.",
-            "value": "rgba(221, 222, 234, 0.4)",
-            "resolved": "rgba(221, 222, 234, 0.4)",
-            "references": [],
-            "sourceRef": "primitive.color.gray.400_a40"
-          },
-          "400_a80": {
-            "layer": "primitive",
-            "type": "color",
-            "description": "Gray at 80% opacity — primary icon stroke and secondary button fill on dark surfaces.",
-            "value": "rgba(221, 222, 234, 0.8)",
-            "resolved": "rgba(221, 222, 234, 0.8)",
-            "references": [],
-            "sourceRef": "primitive.color.gray.400_a80"
+            "sourceRef": "primitive.color.gray.700"
           },
           "800": {
             "layer": "primitive",
@@ -170,6 +152,15 @@
             "references": [],
             "sourceRef": "primitive.color.gray.850"
           },
+          "880": {
+            "layer": "primitive",
+            "type": "color",
+            "description": "Dark-mode near-surface gray — composited match of the former 8% light gray on gray.900.",
+            "value": "#2C2C30",
+            "resolved": "#2C2C30",
+            "references": [],
+            "sourceRef": "primitive.color.gray.880"
+          },
           "900": {
             "layer": "primitive",
             "type": "color",
@@ -187,18 +178,36 @@
             "resolved": "#010306",
             "references": [],
             "sourceRef": "primitive.color.gray.950"
-          },
-          "950_a0": {
-            "layer": "primitive",
-            "type": "color",
-            "description": "Transparent near-pure-black — gradient feathered edge start for dark mode tab bar backdrop.",
-            "value": "rgba(1, 3, 6, 0)",
-            "resolved": "rgba(1, 3, 6, 0)",
-            "references": [],
-            "sourceRef": "primitive.color.gray.950_a0"
           }
         },
         "navy": {
+          "50": {
+            "layer": "primitive",
+            "type": "color",
+            "description": "Light-mode near-white navy tint — composited match of the former 8% navy on white.",
+            "value": "#ECEDF0",
+            "resolved": "#ECEDF0",
+            "references": [],
+            "sourceRef": "primitive.color.navy.50"
+          },
+          "200": {
+            "layer": "primitive",
+            "type": "color",
+            "description": "Light-mode pale navy tint — composited match of the former 20% navy on white.",
+            "value": "#D0D2DB",
+            "resolved": "#D0D2DB",
+            "references": [],
+            "sourceRef": "primitive.color.navy.200"
+          },
+          "700": {
+            "layer": "primitive",
+            "type": "color",
+            "description": "Light-mode muted navy — composited match of the former 40% navy on white.",
+            "value": "#A0A5B7",
+            "resolved": "#A0A5B7",
+            "references": [],
+            "sourceRef": "primitive.color.navy.700"
+          },
           "800": {
             "layer": "primitive",
             "type": "color",
@@ -216,33 +225,6 @@
             "resolved": "#111D4A",
             "references": [],
             "sourceRef": "primitive.color.navy.900"
-          },
-          "900_a8": {
-            "layer": "primitive",
-            "type": "color",
-            "description": "Navy at 8% opacity — ultra-subtle card edge border and separator in light mode.",
-            "value": "rgba(17, 29, 74, 0.08)",
-            "resolved": "rgba(17, 29, 74, 0.08)",
-            "references": [],
-            "sourceRef": "primitive.color.navy.900_a8"
-          },
-          "900_a20": {
-            "layer": "primitive",
-            "type": "color",
-            "description": "Navy at 20% opacity — placeholder and empty state hint text in light mode.",
-            "value": "rgba(17, 29, 74, 0.2)",
-            "resolved": "rgba(17, 29, 74, 0.2)",
-            "references": [],
-            "sourceRef": "primitive.color.navy.900_a20"
-          },
-          "900_a40": {
-            "layer": "primitive",
-            "type": "color",
-            "description": "Navy at 40% opacity — secondary text, captions, and de-emphasized icons in light mode.",
-            "value": "rgba(17, 29, 74, 0.4)",
-            "resolved": "rgba(17, 29, 74, 0.4)",
-            "references": [],
-            "sourceRef": "primitive.color.navy.900_a40"
           }
         },
         "blue": {
@@ -291,14 +273,182 @@
             "references": [],
             "sourceRef": "primitive.color.blue.600"
           },
-          "500_a80": {
+          "800": {
             "layer": "primitive",
             "type": "color",
-            "description": "Brand blue at 80% opacity — softened action color adapted for dark mode surfaces.",
-            "value": "rgba(0, 127, 255, 0.8)",
-            "resolved": "rgba(0, 127, 255, 0.8)",
+            "description": "Dark blue shade for pressed states, dense accents, and deeper branded emphasis.",
+            "value": "#004C99",
+            "resolved": "#004C99",
             "references": [],
-            "sourceRef": "primitive.color.blue.500_a80"
+            "sourceRef": "primitive.color.blue.800"
+          },
+          "500_a8": {
+            "layer": "primitive",
+            "type": "color",
+            "description": "Brand blue at 8% opacity for subtle emphasis, selected surfaces, and low-contrast decorative accents.",
+            "value": "rgba(0, 127, 255, 0.08)",
+            "resolved": "rgba(0, 127, 255, 0.08)",
+            "references": [],
+            "sourceRef": "primitive.color.blue.500_a8"
+          },
+          "500_a20": {
+            "layer": "primitive",
+            "type": "color",
+            "description": "Brand blue at 20% opacity for soft fills, badges, and informational background states.",
+            "value": "rgba(0, 127, 255, 0.2)",
+            "resolved": "rgba(0, 127, 255, 0.2)",
+            "references": [],
+            "sourceRef": "primitive.color.blue.500_a20"
+          },
+          "500_a40": {
+            "layer": "primitive",
+            "type": "color",
+            "description": "Brand blue at 40% opacity for medium-emphasis fills and overlay states.",
+            "value": "rgba(0, 127, 255, 0.4)",
+            "resolved": "rgba(0, 127, 255, 0.4)",
+            "references": [],
+            "sourceRef": "primitive.color.blue.500_a40"
+          },
+          "500_a60": {
+            "layer": "primitive",
+            "type": "color",
+            "description": "Brand blue at 60% opacity for stronger tinted fills and transitional emphasis states.",
+            "value": "rgba(0, 127, 255, 0.6)",
+            "resolved": "rgba(0, 127, 255, 0.6)",
+            "references": [],
+            "sourceRef": "primitive.color.blue.500_a60"
+          }
+        },
+        "green": {
+          "500": {
+            "layer": "primitive",
+            "type": "color",
+            "description": "Canonical success green for connected, positive, and completed states.",
+            "value": "#4BCE71",
+            "resolved": "#4BCE71",
+            "references": [],
+            "sourceRef": "primitive.color.green.500"
+          },
+          "800": {
+            "layer": "primitive",
+            "type": "color",
+            "description": "Dark green shade for pressed success states and deeper positive emphasis.",
+            "value": "#2D7C44",
+            "resolved": "#2D7C44",
+            "references": [],
+            "sourceRef": "primitive.color.green.800"
+          },
+          "500_a20": {
+            "layer": "primitive",
+            "type": "color",
+            "description": "Success green at 20% opacity for soft success backgrounds and chips.",
+            "value": "rgba(75, 206, 113, 0.2)",
+            "resolved": "rgba(75, 206, 113, 0.2)",
+            "references": [],
+            "sourceRef": "primitive.color.green.500_a20"
+          },
+          "500_a40": {
+            "layer": "primitive",
+            "type": "color",
+            "description": "Success green at 40% opacity for medium-emphasis success fills.",
+            "value": "rgba(75, 206, 113, 0.4)",
+            "resolved": "rgba(75, 206, 113, 0.4)",
+            "references": [],
+            "sourceRef": "primitive.color.green.500_a40"
+          },
+          "500_a60": {
+            "layer": "primitive",
+            "type": "color",
+            "description": "Success green at 60% opacity for stronger success surfaces and overlays.",
+            "value": "rgba(75, 206, 113, 0.6)",
+            "resolved": "rgba(75, 206, 113, 0.6)",
+            "references": [],
+            "sourceRef": "primitive.color.green.500_a60"
+          }
+        },
+        "red": {
+          "500": {
+            "layer": "primitive",
+            "type": "color",
+            "description": "Canonical error red for destructive, failed, and critical feedback states.",
+            "value": "#F3636F",
+            "resolved": "#F3636F",
+            "references": [],
+            "sourceRef": "primitive.color.red.500"
+          },
+          "800": {
+            "layer": "primitive",
+            "type": "color",
+            "description": "Dark red shade for pressed destructive states and deeper alert emphasis.",
+            "value": "#923B43",
+            "resolved": "#923B43",
+            "references": [],
+            "sourceRef": "primitive.color.red.800"
+          },
+          "500_a20": {
+            "layer": "primitive",
+            "type": "color",
+            "description": "Error red at 20% opacity for subtle destructive backgrounds and alert surfaces.",
+            "value": "rgba(243, 99, 111, 0.2)",
+            "resolved": "rgba(243, 99, 111, 0.2)",
+            "references": [],
+            "sourceRef": "primitive.color.red.500_a20"
+          },
+          "500_a40": {
+            "layer": "primitive",
+            "type": "color",
+            "description": "Error red at 40% opacity for medium-emphasis alert fills.",
+            "value": "rgba(243, 99, 111, 0.4)",
+            "resolved": "rgba(243, 99, 111, 0.4)",
+            "references": [],
+            "sourceRef": "primitive.color.red.500_a40"
+          },
+          "500_a60": {
+            "layer": "primitive",
+            "type": "color",
+            "description": "Error red at 60% opacity for stronger destructive fills and overlays.",
+            "value": "rgba(243, 99, 111, 0.6)",
+            "resolved": "rgba(243, 99, 111, 0.6)",
+            "references": [],
+            "sourceRef": "primitive.color.red.500_a60"
+          }
+        },
+        "orange": {
+          "500": {
+            "layer": "primitive",
+            "type": "color",
+            "description": "Canonical warning orange for caution, offline, and attention states.",
+            "value": "#FC8C4D",
+            "resolved": "#FC8C4D",
+            "references": [],
+            "sourceRef": "primitive.color.orange.500"
+          },
+          "800": {
+            "layer": "primitive",
+            "type": "color",
+            "description": "Dark orange shade for stronger warning emphasis and pressed caution states.",
+            "value": "#97542E",
+            "resolved": "#97542E",
+            "references": [],
+            "sourceRef": "primitive.color.orange.800"
+          },
+          "500_a20": {
+            "layer": "primitive",
+            "type": "color",
+            "description": "Warning orange at 20% opacity for subtle warning backgrounds and offline badges.",
+            "value": "rgba(252, 140, 77, 0.2)",
+            "resolved": "rgba(252, 140, 77, 0.2)",
+            "references": [],
+            "sourceRef": "primitive.color.orange.500_a20"
+          },
+          "500_a40": {
+            "layer": "primitive",
+            "type": "color",
+            "description": "Warning orange at 40% opacity for medium-emphasis warning fills.",
+            "value": "rgba(252, 140, 77, 0.4)",
+            "resolved": "rgba(252, 140, 77, 0.4)",
+            "references": [],
+            "sourceRef": "primitive.color.orange.500_a40"
           }
         }
       },
@@ -604,6 +754,168 @@
           "references": [],
           "sourceRef": "primitive.radius.full"
         }
+      },
+      "typography": {
+        "family": {
+          "sans": {
+            "layer": "primitive",
+            "type": "fontFamilies",
+            "description": "Confirmed primary Latin typography family from Figma node 33297:16462.",
+            "value": "Noto Sans",
+            "resolved": "Noto Sans",
+            "references": [],
+            "sourceRef": "primitive.typography.family.sans"
+          },
+          "jp": {
+            "layer": "primitive",
+            "type": "fontFamilies",
+            "description": "Japanese fallback family observed in the Figma typography definition.",
+            "value": "Noto Sans JP",
+            "resolved": "Noto Sans JP",
+            "references": [],
+            "sourceRef": "primitive.typography.family.jp"
+          },
+          "sc": {
+            "layer": "primitive",
+            "type": "fontFamilies",
+            "description": "Simplified Chinese fallback family observed in the Figma typography definition.",
+            "value": "Noto Sans SC",
+            "resolved": "Noto Sans SC",
+            "references": [],
+            "sourceRef": "primitive.typography.family.sc"
+          }
+        },
+        "weight": {
+          "regular": {
+            "layer": "primitive",
+            "type": "fontWeights",
+            "description": "Regular weight confirmed in the Figma typography definition.",
+            "value": 400,
+            "resolved": 400,
+            "references": [],
+            "sourceRef": "primitive.typography.weight.regular"
+          },
+          "medium": {
+            "layer": "primitive",
+            "type": "fontWeights",
+            "description": "Medium weight confirmed in the Figma typography definition.",
+            "value": 500,
+            "resolved": 500,
+            "references": [],
+            "sourceRef": "primitive.typography.weight.medium"
+          },
+          "bold": {
+            "layer": "primitive",
+            "type": "fontWeights",
+            "description": "Bold weight confirmed in the Figma typography definition.",
+            "value": 700,
+            "resolved": 700,
+            "references": [],
+            "sourceRef": "primitive.typography.weight.bold"
+          }
+        },
+        "size": {
+          "xs": {
+            "layer": "primitive",
+            "type": "fontSizes",
+            "description": "10px text size from the bottom navigation special case in the Figma typography definition.",
+            "value": 10,
+            "resolved": 10,
+            "references": [],
+            "sourceRef": "primitive.typography.size.xs"
+          },
+          "sm": {
+            "layer": "primitive",
+            "type": "fontSizes",
+            "description": "12px text size for auxiliary information, annotations, and labels in the Figma typography definition.",
+            "value": 12,
+            "resolved": 12,
+            "references": [],
+            "sourceRef": "primitive.typography.size.sm"
+          },
+          "md": {
+            "layer": "primitive",
+            "type": "fontSizes",
+            "description": "14px text size for secondary content and grouped headings in the Figma typography definition.",
+            "value": 14,
+            "resolved": 14,
+            "references": [],
+            "sourceRef": "primitive.typography.size.md"
+          },
+          "lg": {
+            "layer": "primitive",
+            "type": "fontSizes",
+            "description": "16px text size for navigation titles, body text, and button text in the Figma typography definition.",
+            "value": 16,
+            "resolved": 16,
+            "references": [],
+            "sourceRef": "primitive.typography.size.lg"
+          },
+          "xl": {
+            "layer": "primitive",
+            "type": "fontSizes",
+            "description": "20px text size for guide titles in the Figma typography definition.",
+            "value": 20,
+            "resolved": 20,
+            "references": [],
+            "sourceRef": "primitive.typography.size.xl"
+          },
+          "2xl": {
+            "layer": "primitive",
+            "type": "fontSizes",
+            "description": "24px text size for large amount emphasis in the Figma typography definition.",
+            "value": 24,
+            "resolved": 24,
+            "references": [],
+            "sourceRef": "primitive.typography.size.2xl"
+          },
+          "3xl": {
+            "layer": "primitive",
+            "type": "fontSizes",
+            "description": "32px text size for the largest title treatment in the Figma typography definition.",
+            "value": 32,
+            "resolved": 32,
+            "references": [],
+            "sourceRef": "primitive.typography.size.3xl"
+          }
+        },
+        "lineHeight": {
+          "tight": {
+            "layer": "primitive",
+            "type": "lineHeights",
+            "description": "130% line height used by the 12px auxiliary information style in the Figma typography definition.",
+            "value": "130%",
+            "resolved": "130%",
+            "references": [],
+            "sourceRef": "primitive.typography.lineHeight.tight"
+          },
+          "normal": {
+            "layer": "primitive",
+            "type": "lineHeights",
+            "description": "140% line height used by the main text styles in the Figma typography definition.",
+            "value": "140%",
+            "resolved": "140%",
+            "references": [],
+            "sourceRef": "primitive.typography.lineHeight.normal"
+          }
+        },
+        "letterSpacing": {
+          "normal": {
+            "layer": "primitive",
+            "type": "letterSpacing",
+            "description": "4% letter spacing derived from the Figma typography definition value of 0.04em.",
+            "value": {
+              "value": 4,
+              "unit": "%"
+            },
+            "resolved": {
+              "value": 4,
+              "unit": "%"
+            },
+            "references": [],
+            "sourceRef": "primitive.typography.letterSpacing.normal"
+          }
+        }
       }
     },
     "semantic": {
@@ -714,17 +1026,17 @@
           "description": "Backdrop blur overlay behind modals in light mode — 80% white for a frosted glass effect.",
           "sourceRef": "semantic.background.backdrop",
           "light": {
-            "value": "{primitive.color.white_a80}",
-            "resolved": "rgba(255, 255, 255, 0.8)",
+            "value": "{primitive.color.white.80}",
+            "resolved": "#FFFFFFCC",
             "references": [
-              "primitive.color.white_a80"
+              "primitive.color.white.80"
             ]
           },
           "dark": {
-            "value": "{primitive.color.black_a80}",
-            "resolved": "rgba(0, 0, 0, 0.8)",
+            "value": "{primitive.color.black.80}",
+            "resolved": "#000000CC",
             "references": [
-              "primitive.color.black_a80"
+              "primitive.color.black.80"
             ]
           }
         }
@@ -773,20 +1085,20 @@
         "secondary": {
           "layer": "semantic",
           "type": "color",
-          "description": "Supporting and secondary text in light mode — 40% navy for captions, metadata, and sublabels.",
+          "description": "Supporting and secondary text in light mode — solid navy-derived token replacing the prior alpha-based treatment for more stable contrast across surfaces.",
           "sourceRef": "semantic.text.secondary",
           "light": {
-            "value": "{primitive.color.navy.900_a40}",
-            "resolved": "rgba(17, 29, 74, 0.4)",
+            "value": "{primitive.color.navy.700}",
+            "resolved": "#A0A5B7",
             "references": [
-              "primitive.color.navy.900_a40"
+              "primitive.color.navy.700"
             ]
           },
           "dark": {
-            "value": "{primitive.color.gray.400_a40}",
-            "resolved": "rgba(221, 222, 234, 0.4)",
+            "value": "{primitive.color.gray.350}",
+            "resolved": "#8B8B91",
             "references": [
-              "primitive.color.gray.400_a40"
+              "primitive.color.gray.350"
             ]
           }
         },
@@ -813,20 +1125,80 @@
         "placeholder": {
           "layer": "semantic",
           "type": "color",
-          "description": "Placeholder and empty state hint text in light mode — 20% navy at minimum readable contrast.",
+          "description": "Placeholder and empty state hint text in light mode — solid navy-derived token replacing the prior alpha-based treatment.",
           "sourceRef": "semantic.text.placeholder",
           "light": {
-            "value": "{primitive.color.navy.900_a20}",
-            "resolved": "rgba(17, 29, 74, 0.2)",
+            "value": "{primitive.color.navy.200}",
+            "resolved": "#D0D2DB",
             "references": [
-              "primitive.color.navy.900_a20"
+              "primitive.color.navy.200"
             ]
           },
           "dark": {
-            "value": "{primitive.color.white_a20}",
-            "resolved": "rgba(255, 255, 255, 0.2)",
+            "value": "{primitive.color.gray.700}",
+            "resolved": "#49494C",
             "references": [
-              "primitive.color.white_a20"
+              "primitive.color.gray.700"
+            ]
+          }
+        },
+        "success": {
+          "layer": "semantic",
+          "type": "color",
+          "description": "Success text color in light mode for positive inline messaging.",
+          "sourceRef": "semantic.text.success",
+          "light": {
+            "value": "{primitive.color.green.500}",
+            "resolved": "#4BCE71",
+            "references": [
+              "primitive.color.green.500"
+            ]
+          },
+          "dark": {
+            "value": "{primitive.color.green.500}",
+            "resolved": "#4BCE71",
+            "references": [
+              "primitive.color.green.500"
+            ]
+          }
+        },
+        "error": {
+          "layer": "semantic",
+          "type": "color",
+          "description": "Error text color in light mode for destructive and validation messaging.",
+          "sourceRef": "semantic.text.error",
+          "light": {
+            "value": "{primitive.color.red.500}",
+            "resolved": "#F3636F",
+            "references": [
+              "primitive.color.red.500"
+            ]
+          },
+          "dark": {
+            "value": "{primitive.color.red.500}",
+            "resolved": "#F3636F",
+            "references": [
+              "primitive.color.red.500"
+            ]
+          }
+        },
+        "warning": {
+          "layer": "semantic",
+          "type": "color",
+          "description": "Warning text color in light mode for caution and offline messaging.",
+          "sourceRef": "semantic.text.warning",
+          "light": {
+            "value": "{primitive.color.orange.500}",
+            "resolved": "#FC8C4D",
+            "references": [
+              "primitive.color.orange.500"
+            ]
+          },
+          "dark": {
+            "value": "{primitive.color.orange.500}",
+            "resolved": "#FC8C4D",
+            "references": [
+              "primitive.color.orange.500"
             ]
           }
         }
@@ -845,30 +1217,30 @@
             ]
           },
           "dark": {
-            "value": "{primitive.color.gray.400_a80}",
-            "resolved": "rgba(221, 222, 234, 0.8)",
+            "value": "{primitive.color.gray.450}",
+            "resolved": "#B4B4BC",
             "references": [
-              "primitive.color.gray.400_a80"
+              "primitive.color.gray.450"
             ]
           }
         },
         "icon_secondary": {
           "layer": "semantic",
           "type": "color",
-          "description": "Secondary icon stroke in light mode — 40% navy for de-emphasized, supporting icons.",
+          "description": "Secondary icon stroke in light mode — solid navy-derived token replacing the prior alpha-based treatment.",
           "sourceRef": "semantic.stroke.icon_secondary",
           "light": {
-            "value": "{primitive.color.navy.900_a40}",
-            "resolved": "rgba(17, 29, 74, 0.4)",
+            "value": "{primitive.color.navy.700}",
+            "resolved": "#A0A5B7",
             "references": [
-              "primitive.color.navy.900_a40"
+              "primitive.color.navy.700"
             ]
           },
           "dark": {
-            "value": "{primitive.color.gray.400_a40}",
-            "resolved": "rgba(221, 222, 234, 0.4)",
+            "value": "{primitive.color.gray.350}",
+            "resolved": "#8B8B91",
             "references": [
-              "primitive.color.gray.400_a40"
+              "primitive.color.gray.350"
             ]
           }
         }
@@ -877,20 +1249,20 @@
         "default": {
           "layer": "semantic",
           "type": "color",
-          "description": "Default border and divider in light mode — 8% navy, ultra-subtle separator for cards and list rows.",
+          "description": "Default border and divider in light mode — solid navy-derived subtle border token replacing the prior alpha-based treatment.",
           "sourceRef": "semantic.border.default",
           "light": {
-            "value": "{primitive.color.navy.900_a8}",
-            "resolved": "rgba(17, 29, 74, 0.08)",
+            "value": "{primitive.color.navy.50}",
+            "resolved": "#ECEDF0",
             "references": [
-              "primitive.color.navy.900_a8"
+              "primitive.color.navy.50"
             ]
           },
           "dark": {
-            "value": "{primitive.color.gray.400_a8}",
-            "resolved": "rgba(221, 222, 234, 0.08)",
+            "value": "{primitive.color.gray.880}",
+            "resolved": "#2C2C30",
             "references": [
-              "primitive.color.gray.400_a8"
+              "primitive.color.gray.880"
             ]
           }
         }
@@ -976,43 +1348,123 @@
             ]
           }
         },
-        "color_1": {
+        "success": {
           "layer": "semantic",
           "type": "color",
-          "description": "Generic brand color fill slot 1 in light mode — white, flexible placeholder for branded fills.",
-          "sourceRef": "semantic.fill.color_1",
+          "description": "Filled success surface in light mode for high-emphasis positive actions and badges.",
+          "sourceRef": "semantic.fill.success",
           "light": {
-            "value": "{primitive.color.white}",
-            "resolved": "#FFFFFF",
+            "value": "{primitive.color.green.500}",
+            "resolved": "#4BCE71",
             "references": [
-              "primitive.color.white"
+              "primitive.color.green.500"
             ]
           },
           "dark": {
-            "value": "{primitive.color.white}",
-            "resolved": "#FFFFFF",
+            "value": "{primitive.color.green.500}",
+            "resolved": "#4BCE71",
             "references": [
-              "primitive.color.white"
+              "primitive.color.green.500"
             ]
           }
         },
-        "color_2": {
+        "success_subtle": {
           "layer": "semantic",
           "type": "color",
-          "description": "Generic brand color fill slot 2 in light mode — white, secondary flexible branded fill placeholder.",
-          "sourceRef": "semantic.fill.color_2",
+          "description": "Soft success fill in light mode for chips and secondary positive surfaces.",
+          "sourceRef": "semantic.fill.success_subtle",
           "light": {
-            "value": "{primitive.color.white}",
-            "resolved": "#FFFFFF",
+            "value": "{primitive.color.green.500_a20}",
+            "resolved": "rgba(75, 206, 113, 0.2)",
             "references": [
-              "primitive.color.white"
+              "primitive.color.green.500_a20"
             ]
           },
           "dark": {
-            "value": "{primitive.color.white}",
-            "resolved": "#FFFFFF",
+            "value": "{primitive.color.green.500_a20}",
+            "resolved": "rgba(75, 206, 113, 0.2)",
             "references": [
-              "primitive.color.white"
+              "primitive.color.green.500_a20"
+            ]
+          }
+        },
+        "error": {
+          "layer": "semantic",
+          "type": "color",
+          "description": "Filled error surface in light mode for destructive actions and critical badges.",
+          "sourceRef": "semantic.fill.error",
+          "light": {
+            "value": "{primitive.color.red.500}",
+            "resolved": "#F3636F",
+            "references": [
+              "primitive.color.red.500"
+            ]
+          },
+          "dark": {
+            "value": "{primitive.color.red.500}",
+            "resolved": "#F3636F",
+            "references": [
+              "primitive.color.red.500"
+            ]
+          }
+        },
+        "error_subtle": {
+          "layer": "semantic",
+          "type": "color",
+          "description": "Soft error fill in light mode for alert chips and low-emphasis destructive surfaces.",
+          "sourceRef": "semantic.fill.error_subtle",
+          "light": {
+            "value": "{primitive.color.red.500_a20}",
+            "resolved": "rgba(243, 99, 111, 0.2)",
+            "references": [
+              "primitive.color.red.500_a20"
+            ]
+          },
+          "dark": {
+            "value": "{primitive.color.red.500_a20}",
+            "resolved": "rgba(243, 99, 111, 0.2)",
+            "references": [
+              "primitive.color.red.500_a20"
+            ]
+          }
+        },
+        "warning": {
+          "layer": "semantic",
+          "type": "color",
+          "description": "Filled warning surface in light mode for caution states and offline indicators.",
+          "sourceRef": "semantic.fill.warning",
+          "light": {
+            "value": "{primitive.color.orange.500}",
+            "resolved": "#FC8C4D",
+            "references": [
+              "primitive.color.orange.500"
+            ]
+          },
+          "dark": {
+            "value": "{primitive.color.orange.500}",
+            "resolved": "#FC8C4D",
+            "references": [
+              "primitive.color.orange.500"
+            ]
+          }
+        },
+        "warning_subtle": {
+          "layer": "semantic",
+          "type": "color",
+          "description": "Soft warning fill in light mode for caution chips and low-emphasis attention states.",
+          "sourceRef": "semantic.fill.warning_subtle",
+          "light": {
+            "value": "{primitive.color.orange.500_a20}",
+            "resolved": "rgba(252, 140, 77, 0.2)",
+            "references": [
+              "primitive.color.orange.500_a20"
+            ]
+          },
+          "dark": {
+            "value": "{primitive.color.orange.500_a20}",
+            "resolved": "rgba(252, 140, 77, 0.2)",
+            "references": [
+              "primitive.color.orange.500_a20"
             ]
           }
         }
@@ -1178,7 +1630,7 @@
               "stops": [
                 {
                   "position": 0,
-                  "color": "{primitive.color.white_a60}"
+                  "color": "#FFFFFF99"
                 },
                 {
                   "position": 1,
@@ -1192,7 +1644,7 @@
               "stops": [
                 {
                   "position": 0,
-                  "color": "rgba(255, 255, 255, 0.6)"
+                  "color": "#FFFFFF99"
                 },
                 {
                   "position": 1,
@@ -1201,7 +1653,6 @@
               ]
             },
             "references": [
-              "primitive.color.white_a60",
               "primitive.color.blue.200"
             ]
           },
@@ -1212,7 +1663,7 @@
               "stops": [
                 {
                   "position": 0,
-                  "color": "{primitive.color.custom_21_20_23_a70}"
+                  "color": "#151417B3"
                 },
                 {
                   "position": 1,
@@ -1226,7 +1677,7 @@
               "stops": [
                 {
                   "position": 0,
-                  "color": "rgba(21, 20, 23, 0.7)"
+                  "color": "#151417B3"
                 },
                 {
                   "position": 1,
@@ -1235,7 +1686,6 @@
               ]
             },
             "references": [
-              "primitive.color.custom_21_20_23_a70",
               "primitive.color.gray.800"
             ]
           }
@@ -1252,7 +1702,7 @@
               "stops": [
                 {
                   "position": 0,
-                  "color": "{primitive.color.white_a0}"
+                  "color": "{primitive.color.white.0}"
                 },
                 {
                   "position": 1,
@@ -1266,7 +1716,7 @@
               "stops": [
                 {
                   "position": 0,
-                  "color": "rgba(255, 255, 255, 0)"
+                  "color": "#FFFFFF00"
                 },
                 {
                   "position": 1,
@@ -1275,7 +1725,7 @@
               ]
             },
             "references": [
-              "primitive.color.white_a0",
+              "primitive.color.white.0",
               "primitive.color.white"
             ]
           },
@@ -1286,7 +1736,7 @@
               "stops": [
                 {
                   "position": 0,
-                  "color": "{primitive.color.gray.950_a0}"
+                  "color": "{primitive.color.gray.0}"
                 },
                 {
                   "position": 1,
@@ -1300,7 +1750,7 @@
               "stops": [
                 {
                   "position": 0,
-                  "color": "rgba(1, 3, 6, 0)"
+                  "color": "#01030600"
                 },
                 {
                   "position": 1,
@@ -1309,8 +1759,712 @@
               ]
             },
             "references": [
-              "primitive.color.gray.950_a0",
+              "primitive.color.gray.0",
               "primitive.color.gray.950"
+            ]
+          }
+        }
+      },
+      "status": {
+        "success": {
+          "layer": "semantic",
+          "type": "color",
+          "description": "Canonical success color in light mode for positive status communication.",
+          "sourceRef": "semantic.status.success",
+          "light": {
+            "value": "{primitive.color.green.500}",
+            "resolved": "#4BCE71",
+            "references": [
+              "primitive.color.green.500"
+            ]
+          },
+          "dark": {
+            "value": "{primitive.color.green.500}",
+            "resolved": "#4BCE71",
+            "references": [
+              "primitive.color.green.500"
+            ]
+          }
+        },
+        "success_subtle": {
+          "layer": "semantic",
+          "type": "color",
+          "description": "Subtle success surface in light mode for chips, pills, and low-emphasis confirmations.",
+          "sourceRef": "semantic.status.success_subtle",
+          "light": {
+            "value": "{primitive.color.green.500_a20}",
+            "resolved": "rgba(75, 206, 113, 0.2)",
+            "references": [
+              "primitive.color.green.500_a20"
+            ]
+          },
+          "dark": {
+            "value": "{primitive.color.green.500_a20}",
+            "resolved": "rgba(75, 206, 113, 0.2)",
+            "references": [
+              "primitive.color.green.500_a20"
+            ]
+          }
+        },
+        "error": {
+          "layer": "semantic",
+          "type": "color",
+          "description": "Canonical error color in light mode for destructive and failed states.",
+          "sourceRef": "semantic.status.error",
+          "light": {
+            "value": "{primitive.color.red.500}",
+            "resolved": "#F3636F",
+            "references": [
+              "primitive.color.red.500"
+            ]
+          },
+          "dark": {
+            "value": "{primitive.color.red.500}",
+            "resolved": "#F3636F",
+            "references": [
+              "primitive.color.red.500"
+            ]
+          }
+        },
+        "error_subtle": {
+          "layer": "semantic",
+          "type": "color",
+          "description": "Subtle error surface in light mode for alerts and destructive background states.",
+          "sourceRef": "semantic.status.error_subtle",
+          "light": {
+            "value": "{primitive.color.red.500_a20}",
+            "resolved": "rgba(243, 99, 111, 0.2)",
+            "references": [
+              "primitive.color.red.500_a20"
+            ]
+          },
+          "dark": {
+            "value": "{primitive.color.red.500_a20}",
+            "resolved": "rgba(243, 99, 111, 0.2)",
+            "references": [
+              "primitive.color.red.500_a20"
+            ]
+          }
+        },
+        "warning": {
+          "layer": "semantic",
+          "type": "color",
+          "description": "Canonical warning color in light mode for caution and offline states.",
+          "sourceRef": "semantic.status.warning",
+          "light": {
+            "value": "{primitive.color.orange.500}",
+            "resolved": "#FC8C4D",
+            "references": [
+              "primitive.color.orange.500"
+            ]
+          },
+          "dark": {
+            "value": "{primitive.color.orange.500}",
+            "resolved": "#FC8C4D",
+            "references": [
+              "primitive.color.orange.500"
+            ]
+          }
+        },
+        "warning_subtle": {
+          "layer": "semantic",
+          "type": "color",
+          "description": "Subtle warning surface in light mode for chips, highlights, and caution backgrounds.",
+          "sourceRef": "semantic.status.warning_subtle",
+          "light": {
+            "value": "{primitive.color.orange.500_a20}",
+            "resolved": "rgba(252, 140, 77, 0.2)",
+            "references": [
+              "primitive.color.orange.500_a20"
+            ]
+          },
+          "dark": {
+            "value": "{primitive.color.orange.500_a20}",
+            "resolved": "rgba(252, 140, 77, 0.2)",
+            "references": [
+              "primitive.color.orange.500_a20"
+            ]
+          }
+        }
+      },
+      "textStyle": {
+        "titleLarge": {
+          "layer": "semantic",
+          "type": "typography",
+          "description": "Largest title style from Figma, used for article titles and special large amount emphasis.",
+          "sourceRef": "semantic.textStyle.titleLarge",
+          "light": {
+            "value": {
+              "fontFamily": "{primitive.typography.family.sans}",
+              "fontWeight": "{primitive.typography.weight.bold}",
+              "fontSize": "{primitive.typography.size.3xl}",
+              "lineHeight": "{primitive.typography.lineHeight.normal}",
+              "letterSpacing": "{primitive.typography.letterSpacing.normal}"
+            },
+            "resolved": {
+              "fontFamily": "Noto Sans",
+              "fontWeight": 700,
+              "fontSize": 32,
+              "lineHeight": "140%",
+              "letterSpacing": {
+                "value": 4,
+                "unit": "%"
+              }
+            },
+            "references": [
+              "primitive.typography.family.sans",
+              "primitive.typography.weight.bold",
+              "primitive.typography.size.3xl",
+              "primitive.typography.lineHeight.normal",
+              "primitive.typography.letterSpacing.normal"
+            ]
+          },
+          "dark": {
+            "value": {
+              "fontFamily": "{primitive.typography.family.sans}",
+              "fontWeight": "{primitive.typography.weight.bold}",
+              "fontSize": "{primitive.typography.size.3xl}",
+              "lineHeight": "{primitive.typography.lineHeight.normal}",
+              "letterSpacing": "{primitive.typography.letterSpacing.normal}"
+            },
+            "resolved": {
+              "fontFamily": "Noto Sans",
+              "fontWeight": 700,
+              "fontSize": 32,
+              "lineHeight": "140%",
+              "letterSpacing": {
+                "value": 4,
+                "unit": "%"
+              }
+            },
+            "references": [
+              "primitive.typography.family.sans",
+              "primitive.typography.weight.bold",
+              "primitive.typography.size.3xl",
+              "primitive.typography.lineHeight.normal",
+              "primitive.typography.letterSpacing.normal"
+            ]
+          }
+        },
+        "amountLarge": {
+          "layer": "semantic",
+          "type": "typography",
+          "description": "Large amount and article-title style from Figma.",
+          "sourceRef": "semantic.textStyle.amountLarge",
+          "light": {
+            "value": {
+              "fontFamily": "{primitive.typography.family.sans}",
+              "fontWeight": "{primitive.typography.weight.bold}",
+              "fontSize": "{primitive.typography.size.2xl}",
+              "lineHeight": "{primitive.typography.lineHeight.normal}",
+              "letterSpacing": "{primitive.typography.letterSpacing.normal}"
+            },
+            "resolved": {
+              "fontFamily": "Noto Sans",
+              "fontWeight": 700,
+              "fontSize": 24,
+              "lineHeight": "140%",
+              "letterSpacing": {
+                "value": 4,
+                "unit": "%"
+              }
+            },
+            "references": [
+              "primitive.typography.family.sans",
+              "primitive.typography.weight.bold",
+              "primitive.typography.size.2xl",
+              "primitive.typography.lineHeight.normal",
+              "primitive.typography.letterSpacing.normal"
+            ]
+          },
+          "dark": {
+            "value": {
+              "fontFamily": "{primitive.typography.family.sans}",
+              "fontWeight": "{primitive.typography.weight.bold}",
+              "fontSize": "{primitive.typography.size.2xl}",
+              "lineHeight": "{primitive.typography.lineHeight.normal}",
+              "letterSpacing": "{primitive.typography.letterSpacing.normal}"
+            },
+            "resolved": {
+              "fontFamily": "Noto Sans",
+              "fontWeight": 700,
+              "fontSize": 24,
+              "lineHeight": "140%",
+              "letterSpacing": {
+                "value": 4,
+                "unit": "%"
+              }
+            },
+            "references": [
+              "primitive.typography.family.sans",
+              "primitive.typography.weight.bold",
+              "primitive.typography.size.2xl",
+              "primitive.typography.lineHeight.normal",
+              "primitive.typography.letterSpacing.normal"
+            ]
+          }
+        },
+        "guideTitle": {
+          "layer": "semantic",
+          "type": "typography",
+          "description": "Guide title style from Figma.",
+          "sourceRef": "semantic.textStyle.guideTitle",
+          "light": {
+            "value": {
+              "fontFamily": "{primitive.typography.family.sans}",
+              "fontWeight": "{primitive.typography.weight.medium}",
+              "fontSize": "{primitive.typography.size.xl}",
+              "lineHeight": "{primitive.typography.lineHeight.normal}",
+              "letterSpacing": "{primitive.typography.letterSpacing.normal}"
+            },
+            "resolved": {
+              "fontFamily": "Noto Sans",
+              "fontWeight": 500,
+              "fontSize": 20,
+              "lineHeight": "140%",
+              "letterSpacing": {
+                "value": 4,
+                "unit": "%"
+              }
+            },
+            "references": [
+              "primitive.typography.family.sans",
+              "primitive.typography.weight.medium",
+              "primitive.typography.size.xl",
+              "primitive.typography.lineHeight.normal",
+              "primitive.typography.letterSpacing.normal"
+            ]
+          },
+          "dark": {
+            "value": {
+              "fontFamily": "{primitive.typography.family.sans}",
+              "fontWeight": "{primitive.typography.weight.medium}",
+              "fontSize": "{primitive.typography.size.xl}",
+              "lineHeight": "{primitive.typography.lineHeight.normal}",
+              "letterSpacing": "{primitive.typography.letterSpacing.normal}"
+            },
+            "resolved": {
+              "fontFamily": "Noto Sans",
+              "fontWeight": 500,
+              "fontSize": 20,
+              "lineHeight": "140%",
+              "letterSpacing": {
+                "value": 4,
+                "unit": "%"
+              }
+            },
+            "references": [
+              "primitive.typography.family.sans",
+              "primitive.typography.weight.medium",
+              "primitive.typography.size.xl",
+              "primitive.typography.lineHeight.normal",
+              "primitive.typography.letterSpacing.normal"
+            ]
+          }
+        },
+        "titleMedium": {
+          "layer": "semantic",
+          "type": "typography",
+          "description": "Medium title style from Figma, used for navigation headings.",
+          "sourceRef": "semantic.textStyle.titleMedium",
+          "light": {
+            "value": {
+              "fontFamily": "{primitive.typography.family.sans}",
+              "fontWeight": "{primitive.typography.weight.bold}",
+              "fontSize": "{primitive.typography.size.lg}",
+              "lineHeight": "{primitive.typography.lineHeight.normal}",
+              "letterSpacing": "{primitive.typography.letterSpacing.normal}"
+            },
+            "resolved": {
+              "fontFamily": "Noto Sans",
+              "fontWeight": 700,
+              "fontSize": 16,
+              "lineHeight": "140%",
+              "letterSpacing": {
+                "value": 4,
+                "unit": "%"
+              }
+            },
+            "references": [
+              "primitive.typography.family.sans",
+              "primitive.typography.weight.bold",
+              "primitive.typography.size.lg",
+              "primitive.typography.lineHeight.normal",
+              "primitive.typography.letterSpacing.normal"
+            ]
+          },
+          "dark": {
+            "value": {
+              "fontFamily": "{primitive.typography.family.sans}",
+              "fontWeight": "{primitive.typography.weight.bold}",
+              "fontSize": "{primitive.typography.size.lg}",
+              "lineHeight": "{primitive.typography.lineHeight.normal}",
+              "letterSpacing": "{primitive.typography.letterSpacing.normal}"
+            },
+            "resolved": {
+              "fontFamily": "Noto Sans",
+              "fontWeight": 700,
+              "fontSize": 16,
+              "lineHeight": "140%",
+              "letterSpacing": {
+                "value": 4,
+                "unit": "%"
+              }
+            },
+            "references": [
+              "primitive.typography.family.sans",
+              "primitive.typography.weight.bold",
+              "primitive.typography.size.lg",
+              "primitive.typography.lineHeight.normal",
+              "primitive.typography.letterSpacing.normal"
+            ]
+          }
+        },
+        "bodyMedium": {
+          "layer": "semantic",
+          "type": "typography",
+          "description": "Primary body content style from Figma.",
+          "sourceRef": "semantic.textStyle.bodyMedium",
+          "light": {
+            "value": {
+              "fontFamily": "{primitive.typography.family.sans}",
+              "fontWeight": "{primitive.typography.weight.medium}",
+              "fontSize": "{primitive.typography.size.lg}",
+              "lineHeight": "{primitive.typography.lineHeight.normal}",
+              "letterSpacing": "{primitive.typography.letterSpacing.normal}"
+            },
+            "resolved": {
+              "fontFamily": "Noto Sans",
+              "fontWeight": 500,
+              "fontSize": 16,
+              "lineHeight": "140%",
+              "letterSpacing": {
+                "value": 4,
+                "unit": "%"
+              }
+            },
+            "references": [
+              "primitive.typography.family.sans",
+              "primitive.typography.weight.medium",
+              "primitive.typography.size.lg",
+              "primitive.typography.lineHeight.normal",
+              "primitive.typography.letterSpacing.normal"
+            ]
+          },
+          "dark": {
+            "value": {
+              "fontFamily": "{primitive.typography.family.sans}",
+              "fontWeight": "{primitive.typography.weight.medium}",
+              "fontSize": "{primitive.typography.size.lg}",
+              "lineHeight": "{primitive.typography.lineHeight.normal}",
+              "letterSpacing": "{primitive.typography.letterSpacing.normal}"
+            },
+            "resolved": {
+              "fontFamily": "Noto Sans",
+              "fontWeight": 500,
+              "fontSize": 16,
+              "lineHeight": "140%",
+              "letterSpacing": {
+                "value": 4,
+                "unit": "%"
+              }
+            },
+            "references": [
+              "primitive.typography.family.sans",
+              "primitive.typography.weight.medium",
+              "primitive.typography.size.lg",
+              "primitive.typography.lineHeight.normal",
+              "primitive.typography.letterSpacing.normal"
+            ]
+          }
+        },
+        "buttonText": {
+          "layer": "semantic",
+          "type": "typography",
+          "description": "Button label style from Figma.",
+          "sourceRef": "semantic.textStyle.buttonText",
+          "light": {
+            "value": {
+              "fontFamily": "{primitive.typography.family.sans}",
+              "fontWeight": "{primitive.typography.weight.regular}",
+              "fontSize": "{primitive.typography.size.lg}",
+              "lineHeight": "{primitive.typography.lineHeight.normal}",
+              "letterSpacing": "{primitive.typography.letterSpacing.normal}"
+            },
+            "resolved": {
+              "fontFamily": "Noto Sans",
+              "fontWeight": 400,
+              "fontSize": 16,
+              "lineHeight": "140%",
+              "letterSpacing": {
+                "value": 4,
+                "unit": "%"
+              }
+            },
+            "references": [
+              "primitive.typography.family.sans",
+              "primitive.typography.weight.regular",
+              "primitive.typography.size.lg",
+              "primitive.typography.lineHeight.normal",
+              "primitive.typography.letterSpacing.normal"
+            ]
+          },
+          "dark": {
+            "value": {
+              "fontFamily": "{primitive.typography.family.sans}",
+              "fontWeight": "{primitive.typography.weight.regular}",
+              "fontSize": "{primitive.typography.size.lg}",
+              "lineHeight": "{primitive.typography.lineHeight.normal}",
+              "letterSpacing": "{primitive.typography.letterSpacing.normal}"
+            },
+            "resolved": {
+              "fontFamily": "Noto Sans",
+              "fontWeight": 400,
+              "fontSize": 16,
+              "lineHeight": "140%",
+              "letterSpacing": {
+                "value": 4,
+                "unit": "%"
+              }
+            },
+            "references": [
+              "primitive.typography.family.sans",
+              "primitive.typography.weight.regular",
+              "primitive.typography.size.lg",
+              "primitive.typography.lineHeight.normal",
+              "primitive.typography.letterSpacing.normal"
+            ]
+          }
+        },
+        "bodySmall": {
+          "layer": "semantic",
+          "type": "typography",
+          "description": "Secondary body content style from Figma.",
+          "sourceRef": "semantic.textStyle.bodySmall",
+          "light": {
+            "value": {
+              "fontFamily": "{primitive.typography.family.sans}",
+              "fontWeight": "{primitive.typography.weight.regular}",
+              "fontSize": "{primitive.typography.size.md}",
+              "lineHeight": "{primitive.typography.lineHeight.normal}",
+              "letterSpacing": "{primitive.typography.letterSpacing.normal}"
+            },
+            "resolved": {
+              "fontFamily": "Noto Sans",
+              "fontWeight": 400,
+              "fontSize": 14,
+              "lineHeight": "140%",
+              "letterSpacing": {
+                "value": 4,
+                "unit": "%"
+              }
+            },
+            "references": [
+              "primitive.typography.family.sans",
+              "primitive.typography.weight.regular",
+              "primitive.typography.size.md",
+              "primitive.typography.lineHeight.normal",
+              "primitive.typography.letterSpacing.normal"
+            ]
+          },
+          "dark": {
+            "value": {
+              "fontFamily": "{primitive.typography.family.sans}",
+              "fontWeight": "{primitive.typography.weight.regular}",
+              "fontSize": "{primitive.typography.size.md}",
+              "lineHeight": "{primitive.typography.lineHeight.normal}",
+              "letterSpacing": "{primitive.typography.letterSpacing.normal}"
+            },
+            "resolved": {
+              "fontFamily": "Noto Sans",
+              "fontWeight": 400,
+              "fontSize": 14,
+              "lineHeight": "140%",
+              "letterSpacing": {
+                "value": 4,
+                "unit": "%"
+              }
+            },
+            "references": [
+              "primitive.typography.family.sans",
+              "primitive.typography.weight.regular",
+              "primitive.typography.size.md",
+              "primitive.typography.lineHeight.normal",
+              "primitive.typography.letterSpacing.normal"
+            ]
+          }
+        },
+        "groupTitle": {
+          "layer": "semantic",
+          "type": "typography",
+          "description": "Grouped section title style from Figma.",
+          "sourceRef": "semantic.textStyle.groupTitle",
+          "light": {
+            "value": {
+              "fontFamily": "{primitive.typography.family.sans}",
+              "fontWeight": "{primitive.typography.weight.medium}",
+              "fontSize": "{primitive.typography.size.md}",
+              "lineHeight": "{primitive.typography.lineHeight.normal}",
+              "letterSpacing": "{primitive.typography.letterSpacing.normal}"
+            },
+            "resolved": {
+              "fontFamily": "Noto Sans",
+              "fontWeight": 500,
+              "fontSize": 14,
+              "lineHeight": "140%",
+              "letterSpacing": {
+                "value": 4,
+                "unit": "%"
+              }
+            },
+            "references": [
+              "primitive.typography.family.sans",
+              "primitive.typography.weight.medium",
+              "primitive.typography.size.md",
+              "primitive.typography.lineHeight.normal",
+              "primitive.typography.letterSpacing.normal"
+            ]
+          },
+          "dark": {
+            "value": {
+              "fontFamily": "{primitive.typography.family.sans}",
+              "fontWeight": "{primitive.typography.weight.medium}",
+              "fontSize": "{primitive.typography.size.md}",
+              "lineHeight": "{primitive.typography.lineHeight.normal}",
+              "letterSpacing": "{primitive.typography.letterSpacing.normal}"
+            },
+            "resolved": {
+              "fontFamily": "Noto Sans",
+              "fontWeight": 500,
+              "fontSize": 14,
+              "lineHeight": "140%",
+              "letterSpacing": {
+                "value": 4,
+                "unit": "%"
+              }
+            },
+            "references": [
+              "primitive.typography.family.sans",
+              "primitive.typography.weight.medium",
+              "primitive.typography.size.md",
+              "primitive.typography.lineHeight.normal",
+              "primitive.typography.letterSpacing.normal"
+            ]
+          }
+        },
+        "caption": {
+          "layer": "semantic",
+          "type": "typography",
+          "description": "Auxiliary information, annotation, and label style from Figma.",
+          "sourceRef": "semantic.textStyle.caption",
+          "light": {
+            "value": {
+              "fontFamily": "{primitive.typography.family.sans}",
+              "fontWeight": "{primitive.typography.weight.regular}",
+              "fontSize": "{primitive.typography.size.sm}",
+              "lineHeight": "{primitive.typography.lineHeight.tight}",
+              "letterSpacing": "{primitive.typography.letterSpacing.normal}"
+            },
+            "resolved": {
+              "fontFamily": "Noto Sans",
+              "fontWeight": 400,
+              "fontSize": 12,
+              "lineHeight": "130%",
+              "letterSpacing": {
+                "value": 4,
+                "unit": "%"
+              }
+            },
+            "references": [
+              "primitive.typography.family.sans",
+              "primitive.typography.weight.regular",
+              "primitive.typography.size.sm",
+              "primitive.typography.lineHeight.tight",
+              "primitive.typography.letterSpacing.normal"
+            ]
+          },
+          "dark": {
+            "value": {
+              "fontFamily": "{primitive.typography.family.sans}",
+              "fontWeight": "{primitive.typography.weight.regular}",
+              "fontSize": "{primitive.typography.size.sm}",
+              "lineHeight": "{primitive.typography.lineHeight.tight}",
+              "letterSpacing": "{primitive.typography.letterSpacing.normal}"
+            },
+            "resolved": {
+              "fontFamily": "Noto Sans",
+              "fontWeight": 400,
+              "fontSize": 12,
+              "lineHeight": "130%",
+              "letterSpacing": {
+                "value": 4,
+                "unit": "%"
+              }
+            },
+            "references": [
+              "primitive.typography.family.sans",
+              "primitive.typography.weight.regular",
+              "primitive.typography.size.sm",
+              "primitive.typography.lineHeight.tight",
+              "primitive.typography.letterSpacing.normal"
+            ]
+          }
+        },
+        "xSmall": {
+          "layer": "semantic",
+          "type": "typography",
+          "description": "Bottom navigation special-case small text style from Figma.",
+          "sourceRef": "semantic.textStyle.xSmall",
+          "light": {
+            "value": {
+              "fontFamily": "{primitive.typography.family.sans}",
+              "fontWeight": "{primitive.typography.weight.regular}",
+              "fontSize": "{primitive.typography.size.xs}",
+              "lineHeight": "{primitive.typography.lineHeight.normal}",
+              "letterSpacing": "{primitive.typography.letterSpacing.normal}"
+            },
+            "resolved": {
+              "fontFamily": "Noto Sans",
+              "fontWeight": 400,
+              "fontSize": 10,
+              "lineHeight": "140%",
+              "letterSpacing": {
+                "value": 4,
+                "unit": "%"
+              }
+            },
+            "references": [
+              "primitive.typography.family.sans",
+              "primitive.typography.weight.regular",
+              "primitive.typography.size.xs",
+              "primitive.typography.lineHeight.normal",
+              "primitive.typography.letterSpacing.normal"
+            ]
+          },
+          "dark": {
+            "value": {
+              "fontFamily": "{primitive.typography.family.sans}",
+              "fontWeight": "{primitive.typography.weight.regular}",
+              "fontSize": "{primitive.typography.size.xs}",
+              "lineHeight": "{primitive.typography.lineHeight.normal}",
+              "letterSpacing": "{primitive.typography.letterSpacing.normal}"
+            },
+            "resolved": {
+              "fontFamily": "Noto Sans",
+              "fontWeight": 400,
+              "fontSize": 10,
+              "lineHeight": "140%",
+              "letterSpacing": {
+                "value": 4,
+                "unit": "%"
+              }
+            },
+            "references": [
+              "primitive.typography.family.sans",
+              "primitive.typography.weight.regular",
+              "primitive.typography.size.xs",
+              "primitive.typography.lineHeight.normal",
+              "primitive.typography.letterSpacing.normal"
             ]
           }
         }
@@ -1366,14 +2520,14 @@
             "sourceRef": "pattern.surface.card.body",
             "light": {
               "value": "{semantic.text.secondary}",
-              "resolved": "rgba(17, 29, 74, 0.4)",
+              "resolved": "#A0A5B7",
               "references": [
                 "semantic.text.secondary"
               ]
             },
             "dark": {
               "value": "{semantic.text.secondary}",
-              "resolved": "rgba(221, 222, 234, 0.4)",
+              "resolved": "#8B8B91",
               "references": [
                 "semantic.text.secondary"
               ]
@@ -1450,14 +2604,14 @@
             "sourceRef": "pattern.modal.form.body",
             "light": {
               "value": "{semantic.text.secondary}",
-              "resolved": "rgba(17, 29, 74, 0.4)",
+              "resolved": "#A0A5B7",
               "references": [
                 "semantic.text.secondary"
               ]
             },
             "dark": {
               "value": "{semantic.text.secondary}",
-              "resolved": "rgba(221, 222, 234, 0.4)",
+              "resolved": "#8B8B91",
               "references": [
                 "semantic.text.secondary"
               ]
@@ -1594,14 +2748,14 @@
             "sourceRef": "pattern.list.tokenItem.subtext",
             "light": {
               "value": "{semantic.text.secondary}",
-              "resolved": "rgba(17, 29, 74, 0.4)",
+              "resolved": "#A0A5B7",
               "references": [
                 "semantic.text.secondary"
               ]
             },
             "dark": {
               "value": "{semantic.text.secondary}",
-              "resolved": "rgba(221, 222, 234, 0.4)",
+              "resolved": "#8B8B91",
               "references": [
                 "semantic.text.secondary"
               ]
@@ -1696,14 +2850,14 @@
             "sourceRef": "pattern.list.statusRow.meta",
             "light": {
               "value": "{semantic.text.secondary}",
-              "resolved": "rgba(17, 29, 74, 0.4)",
+              "resolved": "#A0A5B7",
               "references": [
                 "semantic.text.secondary"
               ]
             },
             "dark": {
               "value": "{semantic.text.secondary}",
-              "resolved": "rgba(221, 222, 234, 0.4)",
+              "resolved": "#8B8B91",
               "references": [
                 "semantic.text.secondary"
               ]
@@ -1850,7 +3004,7 @@
               },
               "dark": {
                 "value": "{semantic.stroke.icon_primary}",
-                "resolved": "rgba(221, 222, 234, 0.8)",
+                "resolved": "#B4B4BC",
                 "references": [
                   "semantic.stroke.icon_primary"
                 ]
@@ -1934,7 +3088,7 @@
               },
               "dark": {
                 "value": "{semantic.stroke.icon_primary}",
-                "resolved": "rgba(221, 222, 234, 0.8)",
+                "resolved": "#B4B4BC",
                 "references": [
                   "semantic.stroke.icon_primary"
                 ]
@@ -2044,7 +3198,7 @@
               },
               "dark": {
                 "value": "{semantic.stroke.icon_primary}",
-                "resolved": "rgba(221, 222, 234, 0.8)",
+                "resolved": "#B4B4BC",
                 "references": [
                   "semantic.stroke.icon_primary"
                 ]
@@ -2057,14 +3211,14 @@
               "sourceRef": "component.webNav.default.default.border",
               "light": {
                 "value": "{semantic.border.default}",
-                "resolved": "rgba(17, 29, 74, 0.08)",
+                "resolved": "#ECEDF0",
                 "references": [
                   "semantic.border.default"
                 ]
               },
               "dark": {
                 "value": "{semantic.border.default}",
-                "resolved": "rgba(221, 222, 234, 0.08)",
+                "resolved": "#2C2C30",
                 "references": [
                   "semantic.border.default"
                 ]
@@ -2123,14 +3277,14 @@
               "sourceRef": "component.modal.default.default.body",
               "light": {
                 "value": "{semantic.text.secondary}",
-                "resolved": "rgba(17, 29, 74, 0.4)",
+                "resolved": "#A0A5B7",
                 "references": [
                   "semantic.text.secondary"
                 ]
               },
               "dark": {
                 "value": "{semantic.text.secondary}",
-                "resolved": "rgba(221, 222, 234, 0.4)",
+                "resolved": "#8B8B91",
                 "references": [
                   "semantic.text.secondary"
                 ]
@@ -2459,14 +3613,14 @@
               "sourceRef": "component.menu.default.default.body",
               "light": {
                 "value": "{semantic.text.secondary}",
-                "resolved": "rgba(17, 29, 74, 0.4)",
+                "resolved": "#A0A5B7",
                 "references": [
                   "semantic.text.secondary"
                 ]
               },
               "dark": {
                 "value": "{semantic.text.secondary}",
-                "resolved": "rgba(221, 222, 234, 0.4)",
+                "resolved": "#8B8B91",
                 "references": [
                   "semantic.text.secondary"
                 ]
@@ -2552,7 +3706,7 @@
               },
               "dark": {
                 "value": "{semantic.stroke.icon_primary}",
-                "resolved": "rgba(221, 222, 234, 0.8)",
+                "resolved": "#B4B4BC",
                 "references": [
                   "semantic.stroke.icon_primary"
                 ]
@@ -2616,7 +3770,7 @@
               },
               "dark": {
                 "value": "{semantic.stroke.icon_primary}",
-                "resolved": "rgba(221, 222, 234, 0.8)",
+                "resolved": "#B4B4BC",
                 "references": [
                   "semantic.stroke.icon_primary"
                 ]
@@ -2735,14 +3889,14 @@
       "sourceRef": "component.menu.default.default.body",
       "light": {
         "value": "{semantic.text.secondary}",
-        "resolved": "rgba(17, 29, 74, 0.4)",
+        "resolved": "#A0A5B7",
         "references": [
           "semantic.text.secondary"
         ]
       },
       "dark": {
         "value": "{semantic.text.secondary}",
-        "resolved": "rgba(221, 222, 234, 0.4)",
+        "resolved": "#8B8B91",
         "references": [
           "semantic.text.secondary"
         ]
@@ -2862,7 +4016,7 @@
       },
       "dark": {
         "value": "{semantic.stroke.icon_primary}",
-        "resolved": "rgba(221, 222, 234, 0.8)",
+        "resolved": "#B4B4BC",
         "references": [
           "semantic.stroke.icon_primary"
         ]
@@ -2942,7 +4096,7 @@
       },
       "dark": {
         "value": "{semantic.stroke.icon_primary}",
-        "resolved": "rgba(221, 222, 234, 0.8)",
+        "resolved": "#B4B4BC",
         "references": [
           "semantic.stroke.icon_primary"
         ]
@@ -3015,14 +4169,14 @@
       "sourceRef": "component.modal.default.default.body",
       "light": {
         "value": "{semantic.text.secondary}",
-        "resolved": "rgba(17, 29, 74, 0.4)",
+        "resolved": "#A0A5B7",
         "references": [
           "semantic.text.secondary"
         ]
       },
       "dark": {
         "value": "{semantic.text.secondary}",
-        "resolved": "rgba(221, 222, 234, 0.4)",
+        "resolved": "#8B8B91",
         "references": [
           "semantic.text.secondary"
         ]
@@ -3222,7 +4376,7 @@
       },
       "dark": {
         "value": "{semantic.stroke.icon_primary}",
-        "resolved": "rgba(221, 222, 234, 0.8)",
+        "resolved": "#B4B4BC",
         "references": [
           "semantic.stroke.icon_primary"
         ]
@@ -3282,7 +4436,7 @@
       },
       "dark": {
         "value": "{semantic.stroke.icon_primary}",
-        "resolved": "rgba(221, 222, 234, 0.8)",
+        "resolved": "#B4B4BC",
         "references": [
           "semantic.stroke.icon_primary"
         ]
@@ -3335,14 +4489,14 @@
       "sourceRef": "component.webNav.default.default.border",
       "light": {
         "value": "{semantic.border.default}",
-        "resolved": "rgba(17, 29, 74, 0.08)",
+        "resolved": "#ECEDF0",
         "references": [
           "semantic.border.default"
         ]
       },
       "dark": {
         "value": "{semantic.border.default}",
-        "resolved": "rgba(221, 222, 234, 0.08)",
+        "resolved": "#2C2C30",
         "references": [
           "semantic.border.default"
         ]
@@ -3362,7 +4516,7 @@
       },
       "dark": {
         "value": "{semantic.stroke.icon_primary}",
-        "resolved": "rgba(221, 222, 234, 0.8)",
+        "resolved": "#B4B4BC",
         "references": [
           "semantic.stroke.icon_primary"
         ]
@@ -3455,14 +4609,14 @@
       "sourceRef": "pattern.list.statusRow.meta",
       "light": {
         "value": "{semantic.text.secondary}",
-        "resolved": "rgba(17, 29, 74, 0.4)",
+        "resolved": "#A0A5B7",
         "references": [
           "semantic.text.secondary"
         ]
       },
       "dark": {
         "value": "{semantic.text.secondary}",
-        "resolved": "rgba(221, 222, 234, 0.4)",
+        "resolved": "#8B8B91",
         "references": [
           "semantic.text.secondary"
         ]
@@ -3595,14 +4749,14 @@
       "sourceRef": "pattern.list.tokenItem.subtext",
       "light": {
         "value": "{semantic.text.secondary}",
-        "resolved": "rgba(17, 29, 74, 0.4)",
+        "resolved": "#A0A5B7",
         "references": [
           "semantic.text.secondary"
         ]
       },
       "dark": {
         "value": "{semantic.text.secondary}",
-        "resolved": "rgba(221, 222, 234, 0.4)",
+        "resolved": "#8B8B91",
         "references": [
           "semantic.text.secondary"
         ]
@@ -3655,14 +4809,14 @@
       "sourceRef": "pattern.modal.form.body",
       "light": {
         "value": "{semantic.text.secondary}",
-        "resolved": "rgba(17, 29, 74, 0.4)",
+        "resolved": "#A0A5B7",
         "references": [
           "semantic.text.secondary"
         ]
       },
       "dark": {
         "value": "{semantic.text.secondary}",
-        "resolved": "rgba(221, 222, 234, 0.4)",
+        "resolved": "#8B8B91",
         "references": [
           "semantic.text.secondary"
         ]
@@ -3795,14 +4949,14 @@
       "sourceRef": "pattern.surface.card.body",
       "light": {
         "value": "{semantic.text.secondary}",
-        "resolved": "rgba(17, 29, 74, 0.4)",
+        "resolved": "#A0A5B7",
         "references": [
           "semantic.text.secondary"
         ]
       },
       "dark": {
         "value": "{semantic.text.secondary}",
-        "resolved": "rgba(221, 222, 234, 0.4)",
+        "resolved": "#8B8B91",
         "references": [
           "semantic.text.secondary"
         ]
@@ -3875,16 +5029,25 @@
       "value": "#000000",
       "resolved": "#000000",
       "references": [],
-      "sourceRef": "primitive.color.black"
+      "sourceRef": "primitive.color.black",
+      "80": {
+        "layer": "primitive",
+        "type": "color",
+        "description": "Black at 80% opacity — strong dark mode backdrop scrim for modal overlays.",
+        "value": "#000000CC",
+        "resolved": "#000000CC",
+        "references": [],
+        "sourceRef": "primitive.color.black.80"
+      }
     },
-    "primitive.color.black_a80": {
+    "primitive.color.black.80": {
       "layer": "primitive",
       "type": "color",
       "description": "Black at 80% opacity — strong dark mode backdrop scrim for modal overlays.",
-      "value": "rgba(0, 0, 0, 0.8)",
-      "resolved": "rgba(0, 0, 0, 0.8)",
+      "value": "#000000CC",
+      "resolved": "#000000CC",
       "references": [],
-      "sourceRef": "primitive.color.black_a80"
+      "sourceRef": "primitive.color.black.80"
     },
     "primitive.color.blue.100": {
       "layer": "primitive",
@@ -3922,14 +5085,41 @@
       "references": [],
       "sourceRef": "primitive.color.blue.500"
     },
-    "primitive.color.blue.500_a80": {
+    "primitive.color.blue.500_a20": {
       "layer": "primitive",
       "type": "color",
-      "description": "Brand blue at 80% opacity — softened action color adapted for dark mode surfaces.",
-      "value": "rgba(0, 127, 255, 0.8)",
-      "resolved": "rgba(0, 127, 255, 0.8)",
+      "description": "Brand blue at 20% opacity for soft fills, badges, and informational background states.",
+      "value": "rgba(0, 127, 255, 0.2)",
+      "resolved": "rgba(0, 127, 255, 0.2)",
       "references": [],
-      "sourceRef": "primitive.color.blue.500_a80"
+      "sourceRef": "primitive.color.blue.500_a20"
+    },
+    "primitive.color.blue.500_a40": {
+      "layer": "primitive",
+      "type": "color",
+      "description": "Brand blue at 40% opacity for medium-emphasis fills and overlay states.",
+      "value": "rgba(0, 127, 255, 0.4)",
+      "resolved": "rgba(0, 127, 255, 0.4)",
+      "references": [],
+      "sourceRef": "primitive.color.blue.500_a40"
+    },
+    "primitive.color.blue.500_a60": {
+      "layer": "primitive",
+      "type": "color",
+      "description": "Brand blue at 60% opacity for stronger tinted fills and transitional emphasis states.",
+      "value": "rgba(0, 127, 255, 0.6)",
+      "resolved": "rgba(0, 127, 255, 0.6)",
+      "references": [],
+      "sourceRef": "primitive.color.blue.500_a60"
+    },
+    "primitive.color.blue.500_a8": {
+      "layer": "primitive",
+      "type": "color",
+      "description": "Brand blue at 8% opacity for subtle emphasis, selected surfaces, and low-contrast decorative accents.",
+      "value": "rgba(0, 127, 255, 0.08)",
+      "resolved": "rgba(0, 127, 255, 0.08)",
+      "references": [],
+      "sourceRef": "primitive.color.blue.500_a8"
     },
     "primitive.color.blue.600": {
       "layer": "primitive",
@@ -3940,14 +5130,23 @@
       "references": [],
       "sourceRef": "primitive.color.blue.600"
     },
-    "primitive.color.custom_21_20_23_a70": {
+    "primitive.color.blue.800": {
       "layer": "primitive",
       "type": "color",
-      "description": "Near-black with warm undertone at 70% opacity — dark mode card gradient glassmorphism overlay.",
-      "value": "rgba(21, 20, 23, 0.7)",
-      "resolved": "rgba(21, 20, 23, 0.7)",
+      "description": "Dark blue shade for pressed states, dense accents, and deeper branded emphasis.",
+      "value": "#004C99",
+      "resolved": "#004C99",
       "references": [],
-      "sourceRef": "primitive.color.custom_21_20_23_a70"
+      "sourceRef": "primitive.color.blue.800"
+    },
+    "primitive.color.gray.0": {
+      "layer": "primitive",
+      "type": "color",
+      "description": "Transparent near-pure-black — gradient feathered edge start for dark mode tab bar backdrop.",
+      "value": "#01030600",
+      "resolved": "#01030600",
+      "references": [],
+      "sourceRef": "primitive.color.gray.0"
     },
     "primitive.color.gray.100": {
       "layer": "primitive",
@@ -3967,32 +5166,23 @@
       "references": [],
       "sourceRef": "primitive.color.gray.300"
     },
-    "primitive.color.gray.400_a40": {
+    "primitive.color.gray.350": {
       "layer": "primitive",
       "type": "color",
-      "description": "Gray at 40% opacity — secondary text and de-emphasized icon color on dark backgrounds.",
-      "value": "rgba(221, 222, 234, 0.4)",
-      "resolved": "rgba(221, 222, 234, 0.4)",
+      "description": "Dark-mode mid gray — composited match of the former 40% light gray on gray.900.",
+      "value": "#8B8B91",
+      "resolved": "#8B8B91",
       "references": [],
-      "sourceRef": "primitive.color.gray.400_a40"
+      "sourceRef": "primitive.color.gray.350"
     },
-    "primitive.color.gray.400_a8": {
+    "primitive.color.gray.450": {
       "layer": "primitive",
       "type": "color",
-      "description": "Gray at 8% opacity — ultra-subtle divider and border on dark surfaces.",
-      "value": "rgba(221, 222, 234, 0.08)",
-      "resolved": "rgba(221, 222, 234, 0.08)",
+      "description": "Dark-mode light gray — composited match of the former 80% light gray on gray.900.",
+      "value": "#B4B4BC",
+      "resolved": "#B4B4BC",
       "references": [],
-      "sourceRef": "primitive.color.gray.400_a8"
-    },
-    "primitive.color.gray.400_a80": {
-      "layer": "primitive",
-      "type": "color",
-      "description": "Gray at 80% opacity — primary icon stroke and secondary button fill on dark surfaces.",
-      "value": "rgba(221, 222, 234, 0.8)",
-      "resolved": "rgba(221, 222, 234, 0.8)",
-      "references": [],
-      "sourceRef": "primitive.color.gray.400_a80"
+      "sourceRef": "primitive.color.gray.450"
     },
     "primitive.color.gray.50": {
       "layer": "primitive",
@@ -4012,6 +5202,15 @@
       "references": [],
       "sourceRef": "primitive.color.gray.500"
     },
+    "primitive.color.gray.700": {
+      "layer": "primitive",
+      "type": "color",
+      "description": "Dark-mode dark gray — composited match of the former 20% white on gray.900.",
+      "value": "#49494C",
+      "resolved": "#49494C",
+      "references": [],
+      "sourceRef": "primitive.color.gray.700"
+    },
     "primitive.color.gray.800": {
       "layer": "primitive",
       "type": "color",
@@ -4029,6 +5228,15 @@
       "resolved": "#1F1F1F",
       "references": [],
       "sourceRef": "primitive.color.gray.850"
+    },
+    "primitive.color.gray.880": {
+      "layer": "primitive",
+      "type": "color",
+      "description": "Dark-mode near-surface gray — composited match of the former 8% light gray on gray.900.",
+      "value": "#2C2C30",
+      "resolved": "#2C2C30",
+      "references": [],
+      "sourceRef": "primitive.color.gray.880"
     },
     "primitive.color.gray.900": {
       "layer": "primitive",
@@ -4048,14 +5256,77 @@
       "references": [],
       "sourceRef": "primitive.color.gray.950"
     },
-    "primitive.color.gray.950_a0": {
+    "primitive.color.green.500": {
       "layer": "primitive",
       "type": "color",
-      "description": "Transparent near-pure-black — gradient feathered edge start for dark mode tab bar backdrop.",
-      "value": "rgba(1, 3, 6, 0)",
-      "resolved": "rgba(1, 3, 6, 0)",
+      "description": "Canonical success green for connected, positive, and completed states.",
+      "value": "#4BCE71",
+      "resolved": "#4BCE71",
       "references": [],
-      "sourceRef": "primitive.color.gray.950_a0"
+      "sourceRef": "primitive.color.green.500"
+    },
+    "primitive.color.green.500_a20": {
+      "layer": "primitive",
+      "type": "color",
+      "description": "Success green at 20% opacity for soft success backgrounds and chips.",
+      "value": "rgba(75, 206, 113, 0.2)",
+      "resolved": "rgba(75, 206, 113, 0.2)",
+      "references": [],
+      "sourceRef": "primitive.color.green.500_a20"
+    },
+    "primitive.color.green.500_a40": {
+      "layer": "primitive",
+      "type": "color",
+      "description": "Success green at 40% opacity for medium-emphasis success fills.",
+      "value": "rgba(75, 206, 113, 0.4)",
+      "resolved": "rgba(75, 206, 113, 0.4)",
+      "references": [],
+      "sourceRef": "primitive.color.green.500_a40"
+    },
+    "primitive.color.green.500_a60": {
+      "layer": "primitive",
+      "type": "color",
+      "description": "Success green at 60% opacity for stronger success surfaces and overlays.",
+      "value": "rgba(75, 206, 113, 0.6)",
+      "resolved": "rgba(75, 206, 113, 0.6)",
+      "references": [],
+      "sourceRef": "primitive.color.green.500_a60"
+    },
+    "primitive.color.green.800": {
+      "layer": "primitive",
+      "type": "color",
+      "description": "Dark green shade for pressed success states and deeper positive emphasis.",
+      "value": "#2D7C44",
+      "resolved": "#2D7C44",
+      "references": [],
+      "sourceRef": "primitive.color.green.800"
+    },
+    "primitive.color.navy.200": {
+      "layer": "primitive",
+      "type": "color",
+      "description": "Light-mode pale navy tint — composited match of the former 20% navy on white.",
+      "value": "#D0D2DB",
+      "resolved": "#D0D2DB",
+      "references": [],
+      "sourceRef": "primitive.color.navy.200"
+    },
+    "primitive.color.navy.50": {
+      "layer": "primitive",
+      "type": "color",
+      "description": "Light-mode near-white navy tint — composited match of the former 8% navy on white.",
+      "value": "#ECEDF0",
+      "resolved": "#ECEDF0",
+      "references": [],
+      "sourceRef": "primitive.color.navy.50"
+    },
+    "primitive.color.navy.700": {
+      "layer": "primitive",
+      "type": "color",
+      "description": "Light-mode muted navy — composited match of the former 40% navy on white.",
+      "value": "#A0A5B7",
+      "resolved": "#A0A5B7",
+      "references": [],
+      "sourceRef": "primitive.color.navy.700"
     },
     "primitive.color.navy.800": {
       "layer": "primitive",
@@ -4075,32 +5346,86 @@
       "references": [],
       "sourceRef": "primitive.color.navy.900"
     },
-    "primitive.color.navy.900_a20": {
+    "primitive.color.orange.500": {
       "layer": "primitive",
       "type": "color",
-      "description": "Navy at 20% opacity — placeholder and empty state hint text in light mode.",
-      "value": "rgba(17, 29, 74, 0.2)",
-      "resolved": "rgba(17, 29, 74, 0.2)",
+      "description": "Canonical warning orange for caution, offline, and attention states.",
+      "value": "#FC8C4D",
+      "resolved": "#FC8C4D",
       "references": [],
-      "sourceRef": "primitive.color.navy.900_a20"
+      "sourceRef": "primitive.color.orange.500"
     },
-    "primitive.color.navy.900_a40": {
+    "primitive.color.orange.500_a20": {
       "layer": "primitive",
       "type": "color",
-      "description": "Navy at 40% opacity — secondary text, captions, and de-emphasized icons in light mode.",
-      "value": "rgba(17, 29, 74, 0.4)",
-      "resolved": "rgba(17, 29, 74, 0.4)",
+      "description": "Warning orange at 20% opacity for subtle warning backgrounds and offline badges.",
+      "value": "rgba(252, 140, 77, 0.2)",
+      "resolved": "rgba(252, 140, 77, 0.2)",
       "references": [],
-      "sourceRef": "primitive.color.navy.900_a40"
+      "sourceRef": "primitive.color.orange.500_a20"
     },
-    "primitive.color.navy.900_a8": {
+    "primitive.color.orange.500_a40": {
       "layer": "primitive",
       "type": "color",
-      "description": "Navy at 8% opacity — ultra-subtle card edge border and separator in light mode.",
-      "value": "rgba(17, 29, 74, 0.08)",
-      "resolved": "rgba(17, 29, 74, 0.08)",
+      "description": "Warning orange at 40% opacity for medium-emphasis warning fills.",
+      "value": "rgba(252, 140, 77, 0.4)",
+      "resolved": "rgba(252, 140, 77, 0.4)",
       "references": [],
-      "sourceRef": "primitive.color.navy.900_a8"
+      "sourceRef": "primitive.color.orange.500_a40"
+    },
+    "primitive.color.orange.800": {
+      "layer": "primitive",
+      "type": "color",
+      "description": "Dark orange shade for stronger warning emphasis and pressed caution states.",
+      "value": "#97542E",
+      "resolved": "#97542E",
+      "references": [],
+      "sourceRef": "primitive.color.orange.800"
+    },
+    "primitive.color.red.500": {
+      "layer": "primitive",
+      "type": "color",
+      "description": "Canonical error red for destructive, failed, and critical feedback states.",
+      "value": "#F3636F",
+      "resolved": "#F3636F",
+      "references": [],
+      "sourceRef": "primitive.color.red.500"
+    },
+    "primitive.color.red.500_a20": {
+      "layer": "primitive",
+      "type": "color",
+      "description": "Error red at 20% opacity for subtle destructive backgrounds and alert surfaces.",
+      "value": "rgba(243, 99, 111, 0.2)",
+      "resolved": "rgba(243, 99, 111, 0.2)",
+      "references": [],
+      "sourceRef": "primitive.color.red.500_a20"
+    },
+    "primitive.color.red.500_a40": {
+      "layer": "primitive",
+      "type": "color",
+      "description": "Error red at 40% opacity for medium-emphasis alert fills.",
+      "value": "rgba(243, 99, 111, 0.4)",
+      "resolved": "rgba(243, 99, 111, 0.4)",
+      "references": [],
+      "sourceRef": "primitive.color.red.500_a40"
+    },
+    "primitive.color.red.500_a60": {
+      "layer": "primitive",
+      "type": "color",
+      "description": "Error red at 60% opacity for stronger destructive fills and overlays.",
+      "value": "rgba(243, 99, 111, 0.6)",
+      "resolved": "rgba(243, 99, 111, 0.6)",
+      "references": [],
+      "sourceRef": "primitive.color.red.500_a60"
+    },
+    "primitive.color.red.800": {
+      "layer": "primitive",
+      "type": "color",
+      "description": "Dark red shade for pressed destructive states and deeper alert emphasis.",
+      "value": "#923B43",
+      "resolved": "#923B43",
+      "references": [],
+      "sourceRef": "primitive.color.red.800"
     },
     "primitive.color.white": {
       "layer": "primitive",
@@ -4109,43 +5434,43 @@
       "value": "#FFFFFF",
       "resolved": "#FFFFFF",
       "references": [],
-      "sourceRef": "primitive.color.white"
+      "sourceRef": "primitive.color.white",
+      "0": {
+        "layer": "primitive",
+        "type": "color",
+        "description": "Fully transparent white — gradient feathered edge start point for bar backdrops.",
+        "value": "#FFFFFF00",
+        "resolved": "#FFFFFF00",
+        "references": [],
+        "sourceRef": "primitive.color.white.0"
+      },
+      "80": {
+        "layer": "primitive",
+        "type": "color",
+        "description": "White at 80% opacity — frosted glass and backdrop blur effects in light mode.",
+        "value": "#FFFFFFCC",
+        "resolved": "#FFFFFFCC",
+        "references": [],
+        "sourceRef": "primitive.color.white.80"
+      }
     },
-    "primitive.color.white_a0": {
+    "primitive.color.white.0": {
       "layer": "primitive",
       "type": "color",
       "description": "Fully transparent white — gradient feathered edge start point for bar backdrops.",
-      "value": "rgba(255, 255, 255, 0)",
-      "resolved": "rgba(255, 255, 255, 0)",
+      "value": "#FFFFFF00",
+      "resolved": "#FFFFFF00",
       "references": [],
-      "sourceRef": "primitive.color.white_a0"
+      "sourceRef": "primitive.color.white.0"
     },
-    "primitive.color.white_a20": {
-      "layer": "primitive",
-      "type": "color",
-      "description": "White at 20% opacity — placeholder and hint text on dark backgrounds.",
-      "value": "rgba(255, 255, 255, 0.2)",
-      "resolved": "rgba(255, 255, 255, 0.2)",
-      "references": [],
-      "sourceRef": "primitive.color.white_a20"
-    },
-    "primitive.color.white_a60": {
-      "layer": "primitive",
-      "type": "color",
-      "description": "White at 60% opacity — subtle glassmorphism overlay for card surfaces.",
-      "value": "rgba(255, 255, 255, 0.6)",
-      "resolved": "rgba(255, 255, 255, 0.6)",
-      "references": [],
-      "sourceRef": "primitive.color.white_a60"
-    },
-    "primitive.color.white_a80": {
+    "primitive.color.white.80": {
       "layer": "primitive",
       "type": "color",
       "description": "White at 80% opacity — frosted glass and backdrop blur effects in light mode.",
-      "value": "rgba(255, 255, 255, 0.8)",
-      "resolved": "rgba(255, 255, 255, 0.8)",
+      "value": "#FFFFFFCC",
+      "resolved": "#FFFFFFCC",
       "references": [],
-      "sourceRef": "primitive.color.white_a80"
+      "sourceRef": "primitive.color.white.80"
     },
     "primitive.radius.full": {
       "layer": "primitive",
@@ -4444,23 +5769,173 @@
       "references": [],
       "sourceRef": "primitive.spacing.8"
     },
+    "primitive.typography.family.jp": {
+      "layer": "primitive",
+      "type": "fontFamilies",
+      "description": "Japanese fallback family observed in the Figma typography definition.",
+      "value": "Noto Sans JP",
+      "resolved": "Noto Sans JP",
+      "references": [],
+      "sourceRef": "primitive.typography.family.jp"
+    },
+    "primitive.typography.family.sans": {
+      "layer": "primitive",
+      "type": "fontFamilies",
+      "description": "Confirmed primary Latin typography family from Figma node 33297:16462.",
+      "value": "Noto Sans",
+      "resolved": "Noto Sans",
+      "references": [],
+      "sourceRef": "primitive.typography.family.sans"
+    },
+    "primitive.typography.family.sc": {
+      "layer": "primitive",
+      "type": "fontFamilies",
+      "description": "Simplified Chinese fallback family observed in the Figma typography definition.",
+      "value": "Noto Sans SC",
+      "resolved": "Noto Sans SC",
+      "references": [],
+      "sourceRef": "primitive.typography.family.sc"
+    },
+    "primitive.typography.letterSpacing.normal": {
+      "layer": "primitive",
+      "type": "letterSpacing",
+      "description": "4% letter spacing derived from the Figma typography definition value of 0.04em.",
+      "value": {
+        "value": 4,
+        "unit": "%"
+      },
+      "resolved": {
+        "value": 4,
+        "unit": "%"
+      },
+      "references": [],
+      "sourceRef": "primitive.typography.letterSpacing.normal"
+    },
+    "primitive.typography.lineHeight.normal": {
+      "layer": "primitive",
+      "type": "lineHeights",
+      "description": "140% line height used by the main text styles in the Figma typography definition.",
+      "value": "140%",
+      "resolved": "140%",
+      "references": [],
+      "sourceRef": "primitive.typography.lineHeight.normal"
+    },
+    "primitive.typography.lineHeight.tight": {
+      "layer": "primitive",
+      "type": "lineHeights",
+      "description": "130% line height used by the 12px auxiliary information style in the Figma typography definition.",
+      "value": "130%",
+      "resolved": "130%",
+      "references": [],
+      "sourceRef": "primitive.typography.lineHeight.tight"
+    },
+    "primitive.typography.size.2xl": {
+      "layer": "primitive",
+      "type": "fontSizes",
+      "description": "24px text size for large amount emphasis in the Figma typography definition.",
+      "value": 24,
+      "resolved": 24,
+      "references": [],
+      "sourceRef": "primitive.typography.size.2xl"
+    },
+    "primitive.typography.size.3xl": {
+      "layer": "primitive",
+      "type": "fontSizes",
+      "description": "32px text size for the largest title treatment in the Figma typography definition.",
+      "value": 32,
+      "resolved": 32,
+      "references": [],
+      "sourceRef": "primitive.typography.size.3xl"
+    },
+    "primitive.typography.size.lg": {
+      "layer": "primitive",
+      "type": "fontSizes",
+      "description": "16px text size for navigation titles, body text, and button text in the Figma typography definition.",
+      "value": 16,
+      "resolved": 16,
+      "references": [],
+      "sourceRef": "primitive.typography.size.lg"
+    },
+    "primitive.typography.size.md": {
+      "layer": "primitive",
+      "type": "fontSizes",
+      "description": "14px text size for secondary content and grouped headings in the Figma typography definition.",
+      "value": 14,
+      "resolved": 14,
+      "references": [],
+      "sourceRef": "primitive.typography.size.md"
+    },
+    "primitive.typography.size.sm": {
+      "layer": "primitive",
+      "type": "fontSizes",
+      "description": "12px text size for auxiliary information, annotations, and labels in the Figma typography definition.",
+      "value": 12,
+      "resolved": 12,
+      "references": [],
+      "sourceRef": "primitive.typography.size.sm"
+    },
+    "primitive.typography.size.xl": {
+      "layer": "primitive",
+      "type": "fontSizes",
+      "description": "20px text size for guide titles in the Figma typography definition.",
+      "value": 20,
+      "resolved": 20,
+      "references": [],
+      "sourceRef": "primitive.typography.size.xl"
+    },
+    "primitive.typography.size.xs": {
+      "layer": "primitive",
+      "type": "fontSizes",
+      "description": "10px text size from the bottom navigation special case in the Figma typography definition.",
+      "value": 10,
+      "resolved": 10,
+      "references": [],
+      "sourceRef": "primitive.typography.size.xs"
+    },
+    "primitive.typography.weight.bold": {
+      "layer": "primitive",
+      "type": "fontWeights",
+      "description": "Bold weight confirmed in the Figma typography definition.",
+      "value": 700,
+      "resolved": 700,
+      "references": [],
+      "sourceRef": "primitive.typography.weight.bold"
+    },
+    "primitive.typography.weight.medium": {
+      "layer": "primitive",
+      "type": "fontWeights",
+      "description": "Medium weight confirmed in the Figma typography definition.",
+      "value": 500,
+      "resolved": 500,
+      "references": [],
+      "sourceRef": "primitive.typography.weight.medium"
+    },
+    "primitive.typography.weight.regular": {
+      "layer": "primitive",
+      "type": "fontWeights",
+      "description": "Regular weight confirmed in the Figma typography definition.",
+      "value": 400,
+      "resolved": 400,
+      "references": [],
+      "sourceRef": "primitive.typography.weight.regular"
+    },
     "semantic.background.backdrop": {
       "layer": "semantic",
       "type": "color",
       "description": "Backdrop blur overlay behind modals in light mode — 80% white for a frosted glass effect.",
       "sourceRef": "semantic.background.backdrop",
       "light": {
-        "value": "{primitive.color.white_a80}",
-        "resolved": "rgba(255, 255, 255, 0.8)",
+        "value": "{primitive.color.white.80}",
+        "resolved": "#FFFFFFCC",
         "references": [
-          "primitive.color.white_a80"
+          "primitive.color.white.80"
         ]
       },
       "dark": {
-        "value": "{primitive.color.black_a80}",
-        "resolved": "rgba(0, 0, 0, 0.8)",
+        "value": "{primitive.color.black.80}",
+        "resolved": "#000000CC",
         "references": [
-          "primitive.color.black_a80"
+          "primitive.color.black.80"
         ]
       }
     },
@@ -4567,60 +6042,60 @@
     "semantic.border.default": {
       "layer": "semantic",
       "type": "color",
-      "description": "Default border and divider in light mode — 8% navy, ultra-subtle separator for cards and list rows.",
+      "description": "Default border and divider in light mode — solid navy-derived subtle border token replacing the prior alpha-based treatment.",
       "sourceRef": "semantic.border.default",
       "light": {
-        "value": "{primitive.color.navy.900_a8}",
-        "resolved": "rgba(17, 29, 74, 0.08)",
+        "value": "{primitive.color.navy.50}",
+        "resolved": "#ECEDF0",
         "references": [
-          "primitive.color.navy.900_a8"
+          "primitive.color.navy.50"
         ]
       },
       "dark": {
-        "value": "{primitive.color.gray.400_a8}",
-        "resolved": "rgba(221, 222, 234, 0.08)",
+        "value": "{primitive.color.gray.880}",
+        "resolved": "#2C2C30",
         "references": [
-          "primitive.color.gray.400_a8"
+          "primitive.color.gray.880"
         ]
       }
     },
-    "semantic.fill.color_1": {
+    "semantic.fill.error": {
       "layer": "semantic",
       "type": "color",
-      "description": "Generic brand color fill slot 1 in light mode — white, flexible placeholder for branded fills.",
-      "sourceRef": "semantic.fill.color_1",
+      "description": "Filled error surface in light mode for destructive actions and critical badges.",
+      "sourceRef": "semantic.fill.error",
       "light": {
-        "value": "{primitive.color.white}",
-        "resolved": "#FFFFFF",
+        "value": "{primitive.color.red.500}",
+        "resolved": "#F3636F",
         "references": [
-          "primitive.color.white"
+          "primitive.color.red.500"
         ]
       },
       "dark": {
-        "value": "{primitive.color.white}",
-        "resolved": "#FFFFFF",
+        "value": "{primitive.color.red.500}",
+        "resolved": "#F3636F",
         "references": [
-          "primitive.color.white"
+          "primitive.color.red.500"
         ]
       }
     },
-    "semantic.fill.color_2": {
+    "semantic.fill.error_subtle": {
       "layer": "semantic",
       "type": "color",
-      "description": "Generic brand color fill slot 2 in light mode — white, secondary flexible branded fill placeholder.",
-      "sourceRef": "semantic.fill.color_2",
+      "description": "Soft error fill in light mode for alert chips and low-emphasis destructive surfaces.",
+      "sourceRef": "semantic.fill.error_subtle",
       "light": {
-        "value": "{primitive.color.white}",
-        "resolved": "#FFFFFF",
+        "value": "{primitive.color.red.500_a20}",
+        "resolved": "rgba(243, 99, 111, 0.2)",
         "references": [
-          "primitive.color.white"
+          "primitive.color.red.500_a20"
         ]
       },
       "dark": {
-        "value": "{primitive.color.white}",
-        "resolved": "#FFFFFF",
+        "value": "{primitive.color.red.500_a20}",
+        "resolved": "rgba(243, 99, 111, 0.2)",
         "references": [
-          "primitive.color.white"
+          "primitive.color.red.500_a20"
         ]
       }
     },
@@ -4684,6 +6159,46 @@
         ]
       }
     },
+    "semantic.fill.success": {
+      "layer": "semantic",
+      "type": "color",
+      "description": "Filled success surface in light mode for high-emphasis positive actions and badges.",
+      "sourceRef": "semantic.fill.success",
+      "light": {
+        "value": "{primitive.color.green.500}",
+        "resolved": "#4BCE71",
+        "references": [
+          "primitive.color.green.500"
+        ]
+      },
+      "dark": {
+        "value": "{primitive.color.green.500}",
+        "resolved": "#4BCE71",
+        "references": [
+          "primitive.color.green.500"
+        ]
+      }
+    },
+    "semantic.fill.success_subtle": {
+      "layer": "semantic",
+      "type": "color",
+      "description": "Soft success fill in light mode for chips and secondary positive surfaces.",
+      "sourceRef": "semantic.fill.success_subtle",
+      "light": {
+        "value": "{primitive.color.green.500_a20}",
+        "resolved": "rgba(75, 206, 113, 0.2)",
+        "references": [
+          "primitive.color.green.500_a20"
+        ]
+      },
+      "dark": {
+        "value": "{primitive.color.green.500_a20}",
+        "resolved": "rgba(75, 206, 113, 0.2)",
+        "references": [
+          "primitive.color.green.500_a20"
+        ]
+      }
+    },
     "semantic.fill.tertiary": {
       "layer": "semantic",
       "type": "color",
@@ -4704,6 +6219,46 @@
         ]
       }
     },
+    "semantic.fill.warning": {
+      "layer": "semantic",
+      "type": "color",
+      "description": "Filled warning surface in light mode for caution states and offline indicators.",
+      "sourceRef": "semantic.fill.warning",
+      "light": {
+        "value": "{primitive.color.orange.500}",
+        "resolved": "#FC8C4D",
+        "references": [
+          "primitive.color.orange.500"
+        ]
+      },
+      "dark": {
+        "value": "{primitive.color.orange.500}",
+        "resolved": "#FC8C4D",
+        "references": [
+          "primitive.color.orange.500"
+        ]
+      }
+    },
+    "semantic.fill.warning_subtle": {
+      "layer": "semantic",
+      "type": "color",
+      "description": "Soft warning fill in light mode for caution chips and low-emphasis attention states.",
+      "sourceRef": "semantic.fill.warning_subtle",
+      "light": {
+        "value": "{primitive.color.orange.500_a20}",
+        "resolved": "rgba(252, 140, 77, 0.2)",
+        "references": [
+          "primitive.color.orange.500_a20"
+        ]
+      },
+      "dark": {
+        "value": "{primitive.color.orange.500_a20}",
+        "resolved": "rgba(252, 140, 77, 0.2)",
+        "references": [
+          "primitive.color.orange.500_a20"
+        ]
+      }
+    },
     "semantic.gradient.bar_backdrop": {
       "layer": "semantic",
       "type": "gradient",
@@ -4716,7 +6271,7 @@
           "stops": [
             {
               "position": 0,
-              "color": "{primitive.color.white_a0}"
+              "color": "{primitive.color.white.0}"
             },
             {
               "position": 1,
@@ -4730,7 +6285,7 @@
           "stops": [
             {
               "position": 0,
-              "color": "rgba(255, 255, 255, 0)"
+              "color": "#FFFFFF00"
             },
             {
               "position": 1,
@@ -4739,7 +6294,7 @@
           ]
         },
         "references": [
-          "primitive.color.white_a0",
+          "primitive.color.white.0",
           "primitive.color.white"
         ]
       },
@@ -4750,7 +6305,7 @@
           "stops": [
             {
               "position": 0,
-              "color": "{primitive.color.gray.950_a0}"
+              "color": "{primitive.color.gray.0}"
             },
             {
               "position": 1,
@@ -4764,7 +6319,7 @@
           "stops": [
             {
               "position": 0,
-              "color": "rgba(1, 3, 6, 0)"
+              "color": "#01030600"
             },
             {
               "position": 1,
@@ -4773,7 +6328,7 @@
           ]
         },
         "references": [
-          "primitive.color.gray.950_a0",
+          "primitive.color.gray.0",
           "primitive.color.gray.950"
         ]
       }
@@ -4938,7 +6493,7 @@
           "stops": [
             {
               "position": 0,
-              "color": "{primitive.color.white_a60}"
+              "color": "#FFFFFF99"
             },
             {
               "position": 1,
@@ -4952,7 +6507,7 @@
           "stops": [
             {
               "position": 0,
-              "color": "rgba(255, 255, 255, 0.6)"
+              "color": "#FFFFFF99"
             },
             {
               "position": 1,
@@ -4961,7 +6516,6 @@
           ]
         },
         "references": [
-          "primitive.color.white_a60",
           "primitive.color.blue.200"
         ]
       },
@@ -4972,7 +6526,7 @@
           "stops": [
             {
               "position": 0,
-              "color": "{primitive.color.custom_21_20_23_a70}"
+              "color": "#151417B3"
             },
             {
               "position": 1,
@@ -4986,7 +6540,7 @@
           "stops": [
             {
               "position": 0,
-              "color": "rgba(21, 20, 23, 0.7)"
+              "color": "#151417B3"
             },
             {
               "position": 1,
@@ -4995,8 +6549,127 @@
           ]
         },
         "references": [
-          "primitive.color.custom_21_20_23_a70",
           "primitive.color.gray.800"
+        ]
+      }
+    },
+    "semantic.status.error": {
+      "layer": "semantic",
+      "type": "color",
+      "description": "Canonical error color in light mode for destructive and failed states.",
+      "sourceRef": "semantic.status.error",
+      "light": {
+        "value": "{primitive.color.red.500}",
+        "resolved": "#F3636F",
+        "references": [
+          "primitive.color.red.500"
+        ]
+      },
+      "dark": {
+        "value": "{primitive.color.red.500}",
+        "resolved": "#F3636F",
+        "references": [
+          "primitive.color.red.500"
+        ]
+      }
+    },
+    "semantic.status.error_subtle": {
+      "layer": "semantic",
+      "type": "color",
+      "description": "Subtle error surface in light mode for alerts and destructive background states.",
+      "sourceRef": "semantic.status.error_subtle",
+      "light": {
+        "value": "{primitive.color.red.500_a20}",
+        "resolved": "rgba(243, 99, 111, 0.2)",
+        "references": [
+          "primitive.color.red.500_a20"
+        ]
+      },
+      "dark": {
+        "value": "{primitive.color.red.500_a20}",
+        "resolved": "rgba(243, 99, 111, 0.2)",
+        "references": [
+          "primitive.color.red.500_a20"
+        ]
+      }
+    },
+    "semantic.status.success": {
+      "layer": "semantic",
+      "type": "color",
+      "description": "Canonical success color in light mode for positive status communication.",
+      "sourceRef": "semantic.status.success",
+      "light": {
+        "value": "{primitive.color.green.500}",
+        "resolved": "#4BCE71",
+        "references": [
+          "primitive.color.green.500"
+        ]
+      },
+      "dark": {
+        "value": "{primitive.color.green.500}",
+        "resolved": "#4BCE71",
+        "references": [
+          "primitive.color.green.500"
+        ]
+      }
+    },
+    "semantic.status.success_subtle": {
+      "layer": "semantic",
+      "type": "color",
+      "description": "Subtle success surface in light mode for chips, pills, and low-emphasis confirmations.",
+      "sourceRef": "semantic.status.success_subtle",
+      "light": {
+        "value": "{primitive.color.green.500_a20}",
+        "resolved": "rgba(75, 206, 113, 0.2)",
+        "references": [
+          "primitive.color.green.500_a20"
+        ]
+      },
+      "dark": {
+        "value": "{primitive.color.green.500_a20}",
+        "resolved": "rgba(75, 206, 113, 0.2)",
+        "references": [
+          "primitive.color.green.500_a20"
+        ]
+      }
+    },
+    "semantic.status.warning": {
+      "layer": "semantic",
+      "type": "color",
+      "description": "Canonical warning color in light mode for caution and offline states.",
+      "sourceRef": "semantic.status.warning",
+      "light": {
+        "value": "{primitive.color.orange.500}",
+        "resolved": "#FC8C4D",
+        "references": [
+          "primitive.color.orange.500"
+        ]
+      },
+      "dark": {
+        "value": "{primitive.color.orange.500}",
+        "resolved": "#FC8C4D",
+        "references": [
+          "primitive.color.orange.500"
+        ]
+      }
+    },
+    "semantic.status.warning_subtle": {
+      "layer": "semantic",
+      "type": "color",
+      "description": "Subtle warning surface in light mode for chips, highlights, and caution backgrounds.",
+      "sourceRef": "semantic.status.warning_subtle",
+      "light": {
+        "value": "{primitive.color.orange.500_a20}",
+        "resolved": "rgba(252, 140, 77, 0.2)",
+        "references": [
+          "primitive.color.orange.500_a20"
+        ]
+      },
+      "dark": {
+        "value": "{primitive.color.orange.500_a20}",
+        "resolved": "rgba(252, 140, 77, 0.2)",
+        "references": [
+          "primitive.color.orange.500_a20"
         ]
       }
     },
@@ -5013,30 +6686,30 @@
         ]
       },
       "dark": {
-        "value": "{primitive.color.gray.400_a80}",
-        "resolved": "rgba(221, 222, 234, 0.8)",
+        "value": "{primitive.color.gray.450}",
+        "resolved": "#B4B4BC",
         "references": [
-          "primitive.color.gray.400_a80"
+          "primitive.color.gray.450"
         ]
       }
     },
     "semantic.stroke.icon_secondary": {
       "layer": "semantic",
       "type": "color",
-      "description": "Secondary icon stroke in light mode — 40% navy for de-emphasized, supporting icons.",
+      "description": "Secondary icon stroke in light mode — solid navy-derived token replacing the prior alpha-based treatment.",
       "sourceRef": "semantic.stroke.icon_secondary",
       "light": {
-        "value": "{primitive.color.navy.900_a40}",
-        "resolved": "rgba(17, 29, 74, 0.4)",
+        "value": "{primitive.color.navy.700}",
+        "resolved": "#A0A5B7",
         "references": [
-          "primitive.color.navy.900_a40"
+          "primitive.color.navy.700"
         ]
       },
       "dark": {
-        "value": "{primitive.color.gray.400_a40}",
-        "resolved": "rgba(221, 222, 234, 0.4)",
+        "value": "{primitive.color.gray.350}",
+        "resolved": "#8B8B91",
         "references": [
-          "primitive.color.gray.400_a40"
+          "primitive.color.gray.350"
         ]
       }
     },
@@ -5080,23 +6753,43 @@
         ]
       }
     },
-    "semantic.text.placeholder": {
+    "semantic.text.error": {
       "layer": "semantic",
       "type": "color",
-      "description": "Placeholder and empty state hint text in light mode — 20% navy at minimum readable contrast.",
-      "sourceRef": "semantic.text.placeholder",
+      "description": "Error text color in light mode for destructive and validation messaging.",
+      "sourceRef": "semantic.text.error",
       "light": {
-        "value": "{primitive.color.navy.900_a20}",
-        "resolved": "rgba(17, 29, 74, 0.2)",
+        "value": "{primitive.color.red.500}",
+        "resolved": "#F3636F",
         "references": [
-          "primitive.color.navy.900_a20"
+          "primitive.color.red.500"
         ]
       },
       "dark": {
-        "value": "{primitive.color.white_a20}",
-        "resolved": "rgba(255, 255, 255, 0.2)",
+        "value": "{primitive.color.red.500}",
+        "resolved": "#F3636F",
         "references": [
-          "primitive.color.white_a20"
+          "primitive.color.red.500"
+        ]
+      }
+    },
+    "semantic.text.placeholder": {
+      "layer": "semantic",
+      "type": "color",
+      "description": "Placeholder and empty state hint text in light mode — solid navy-derived token replacing the prior alpha-based treatment.",
+      "sourceRef": "semantic.text.placeholder",
+      "light": {
+        "value": "{primitive.color.navy.200}",
+        "resolved": "#D0D2DB",
+        "references": [
+          "primitive.color.navy.200"
+        ]
+      },
+      "dark": {
+        "value": "{primitive.color.gray.700}",
+        "resolved": "#49494C",
+        "references": [
+          "primitive.color.gray.700"
         ]
       }
     },
@@ -5123,20 +6816,640 @@
     "semantic.text.secondary": {
       "layer": "semantic",
       "type": "color",
-      "description": "Supporting and secondary text in light mode — 40% navy for captions, metadata, and sublabels.",
+      "description": "Supporting and secondary text in light mode — solid navy-derived token replacing the prior alpha-based treatment for more stable contrast across surfaces.",
       "sourceRef": "semantic.text.secondary",
       "light": {
-        "value": "{primitive.color.navy.900_a40}",
-        "resolved": "rgba(17, 29, 74, 0.4)",
+        "value": "{primitive.color.navy.700}",
+        "resolved": "#A0A5B7",
         "references": [
-          "primitive.color.navy.900_a40"
+          "primitive.color.navy.700"
         ]
       },
       "dark": {
-        "value": "{primitive.color.gray.400_a40}",
-        "resolved": "rgba(221, 222, 234, 0.4)",
+        "value": "{primitive.color.gray.350}",
+        "resolved": "#8B8B91",
         "references": [
-          "primitive.color.gray.400_a40"
+          "primitive.color.gray.350"
+        ]
+      }
+    },
+    "semantic.text.success": {
+      "layer": "semantic",
+      "type": "color",
+      "description": "Success text color in light mode for positive inline messaging.",
+      "sourceRef": "semantic.text.success",
+      "light": {
+        "value": "{primitive.color.green.500}",
+        "resolved": "#4BCE71",
+        "references": [
+          "primitive.color.green.500"
+        ]
+      },
+      "dark": {
+        "value": "{primitive.color.green.500}",
+        "resolved": "#4BCE71",
+        "references": [
+          "primitive.color.green.500"
+        ]
+      }
+    },
+    "semantic.text.warning": {
+      "layer": "semantic",
+      "type": "color",
+      "description": "Warning text color in light mode for caution and offline messaging.",
+      "sourceRef": "semantic.text.warning",
+      "light": {
+        "value": "{primitive.color.orange.500}",
+        "resolved": "#FC8C4D",
+        "references": [
+          "primitive.color.orange.500"
+        ]
+      },
+      "dark": {
+        "value": "{primitive.color.orange.500}",
+        "resolved": "#FC8C4D",
+        "references": [
+          "primitive.color.orange.500"
+        ]
+      }
+    },
+    "semantic.textStyle.amountLarge": {
+      "layer": "semantic",
+      "type": "typography",
+      "description": "Large amount and article-title style from Figma.",
+      "sourceRef": "semantic.textStyle.amountLarge",
+      "light": {
+        "value": {
+          "fontFamily": "{primitive.typography.family.sans}",
+          "fontWeight": "{primitive.typography.weight.bold}",
+          "fontSize": "{primitive.typography.size.2xl}",
+          "lineHeight": "{primitive.typography.lineHeight.normal}",
+          "letterSpacing": "{primitive.typography.letterSpacing.normal}"
+        },
+        "resolved": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 700,
+          "fontSize": 24,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
+        "references": [
+          "primitive.typography.family.sans",
+          "primitive.typography.weight.bold",
+          "primitive.typography.size.2xl",
+          "primitive.typography.lineHeight.normal",
+          "primitive.typography.letterSpacing.normal"
+        ]
+      },
+      "dark": {
+        "value": {
+          "fontFamily": "{primitive.typography.family.sans}",
+          "fontWeight": "{primitive.typography.weight.bold}",
+          "fontSize": "{primitive.typography.size.2xl}",
+          "lineHeight": "{primitive.typography.lineHeight.normal}",
+          "letterSpacing": "{primitive.typography.letterSpacing.normal}"
+        },
+        "resolved": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 700,
+          "fontSize": 24,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
+        "references": [
+          "primitive.typography.family.sans",
+          "primitive.typography.weight.bold",
+          "primitive.typography.size.2xl",
+          "primitive.typography.lineHeight.normal",
+          "primitive.typography.letterSpacing.normal"
+        ]
+      }
+    },
+    "semantic.textStyle.bodyMedium": {
+      "layer": "semantic",
+      "type": "typography",
+      "description": "Primary body content style from Figma.",
+      "sourceRef": "semantic.textStyle.bodyMedium",
+      "light": {
+        "value": {
+          "fontFamily": "{primitive.typography.family.sans}",
+          "fontWeight": "{primitive.typography.weight.medium}",
+          "fontSize": "{primitive.typography.size.lg}",
+          "lineHeight": "{primitive.typography.lineHeight.normal}",
+          "letterSpacing": "{primitive.typography.letterSpacing.normal}"
+        },
+        "resolved": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 500,
+          "fontSize": 16,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
+        "references": [
+          "primitive.typography.family.sans",
+          "primitive.typography.weight.medium",
+          "primitive.typography.size.lg",
+          "primitive.typography.lineHeight.normal",
+          "primitive.typography.letterSpacing.normal"
+        ]
+      },
+      "dark": {
+        "value": {
+          "fontFamily": "{primitive.typography.family.sans}",
+          "fontWeight": "{primitive.typography.weight.medium}",
+          "fontSize": "{primitive.typography.size.lg}",
+          "lineHeight": "{primitive.typography.lineHeight.normal}",
+          "letterSpacing": "{primitive.typography.letterSpacing.normal}"
+        },
+        "resolved": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 500,
+          "fontSize": 16,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
+        "references": [
+          "primitive.typography.family.sans",
+          "primitive.typography.weight.medium",
+          "primitive.typography.size.lg",
+          "primitive.typography.lineHeight.normal",
+          "primitive.typography.letterSpacing.normal"
+        ]
+      }
+    },
+    "semantic.textStyle.bodySmall": {
+      "layer": "semantic",
+      "type": "typography",
+      "description": "Secondary body content style from Figma.",
+      "sourceRef": "semantic.textStyle.bodySmall",
+      "light": {
+        "value": {
+          "fontFamily": "{primitive.typography.family.sans}",
+          "fontWeight": "{primitive.typography.weight.regular}",
+          "fontSize": "{primitive.typography.size.md}",
+          "lineHeight": "{primitive.typography.lineHeight.normal}",
+          "letterSpacing": "{primitive.typography.letterSpacing.normal}"
+        },
+        "resolved": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 400,
+          "fontSize": 14,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
+        "references": [
+          "primitive.typography.family.sans",
+          "primitive.typography.weight.regular",
+          "primitive.typography.size.md",
+          "primitive.typography.lineHeight.normal",
+          "primitive.typography.letterSpacing.normal"
+        ]
+      },
+      "dark": {
+        "value": {
+          "fontFamily": "{primitive.typography.family.sans}",
+          "fontWeight": "{primitive.typography.weight.regular}",
+          "fontSize": "{primitive.typography.size.md}",
+          "lineHeight": "{primitive.typography.lineHeight.normal}",
+          "letterSpacing": "{primitive.typography.letterSpacing.normal}"
+        },
+        "resolved": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 400,
+          "fontSize": 14,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
+        "references": [
+          "primitive.typography.family.sans",
+          "primitive.typography.weight.regular",
+          "primitive.typography.size.md",
+          "primitive.typography.lineHeight.normal",
+          "primitive.typography.letterSpacing.normal"
+        ]
+      }
+    },
+    "semantic.textStyle.buttonText": {
+      "layer": "semantic",
+      "type": "typography",
+      "description": "Button label style from Figma.",
+      "sourceRef": "semantic.textStyle.buttonText",
+      "light": {
+        "value": {
+          "fontFamily": "{primitive.typography.family.sans}",
+          "fontWeight": "{primitive.typography.weight.regular}",
+          "fontSize": "{primitive.typography.size.lg}",
+          "lineHeight": "{primitive.typography.lineHeight.normal}",
+          "letterSpacing": "{primitive.typography.letterSpacing.normal}"
+        },
+        "resolved": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 400,
+          "fontSize": 16,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
+        "references": [
+          "primitive.typography.family.sans",
+          "primitive.typography.weight.regular",
+          "primitive.typography.size.lg",
+          "primitive.typography.lineHeight.normal",
+          "primitive.typography.letterSpacing.normal"
+        ]
+      },
+      "dark": {
+        "value": {
+          "fontFamily": "{primitive.typography.family.sans}",
+          "fontWeight": "{primitive.typography.weight.regular}",
+          "fontSize": "{primitive.typography.size.lg}",
+          "lineHeight": "{primitive.typography.lineHeight.normal}",
+          "letterSpacing": "{primitive.typography.letterSpacing.normal}"
+        },
+        "resolved": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 400,
+          "fontSize": 16,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
+        "references": [
+          "primitive.typography.family.sans",
+          "primitive.typography.weight.regular",
+          "primitive.typography.size.lg",
+          "primitive.typography.lineHeight.normal",
+          "primitive.typography.letterSpacing.normal"
+        ]
+      }
+    },
+    "semantic.textStyle.caption": {
+      "layer": "semantic",
+      "type": "typography",
+      "description": "Auxiliary information, annotation, and label style from Figma.",
+      "sourceRef": "semantic.textStyle.caption",
+      "light": {
+        "value": {
+          "fontFamily": "{primitive.typography.family.sans}",
+          "fontWeight": "{primitive.typography.weight.regular}",
+          "fontSize": "{primitive.typography.size.sm}",
+          "lineHeight": "{primitive.typography.lineHeight.tight}",
+          "letterSpacing": "{primitive.typography.letterSpacing.normal}"
+        },
+        "resolved": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 400,
+          "fontSize": 12,
+          "lineHeight": "130%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
+        "references": [
+          "primitive.typography.family.sans",
+          "primitive.typography.weight.regular",
+          "primitive.typography.size.sm",
+          "primitive.typography.lineHeight.tight",
+          "primitive.typography.letterSpacing.normal"
+        ]
+      },
+      "dark": {
+        "value": {
+          "fontFamily": "{primitive.typography.family.sans}",
+          "fontWeight": "{primitive.typography.weight.regular}",
+          "fontSize": "{primitive.typography.size.sm}",
+          "lineHeight": "{primitive.typography.lineHeight.tight}",
+          "letterSpacing": "{primitive.typography.letterSpacing.normal}"
+        },
+        "resolved": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 400,
+          "fontSize": 12,
+          "lineHeight": "130%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
+        "references": [
+          "primitive.typography.family.sans",
+          "primitive.typography.weight.regular",
+          "primitive.typography.size.sm",
+          "primitive.typography.lineHeight.tight",
+          "primitive.typography.letterSpacing.normal"
+        ]
+      }
+    },
+    "semantic.textStyle.groupTitle": {
+      "layer": "semantic",
+      "type": "typography",
+      "description": "Grouped section title style from Figma.",
+      "sourceRef": "semantic.textStyle.groupTitle",
+      "light": {
+        "value": {
+          "fontFamily": "{primitive.typography.family.sans}",
+          "fontWeight": "{primitive.typography.weight.medium}",
+          "fontSize": "{primitive.typography.size.md}",
+          "lineHeight": "{primitive.typography.lineHeight.normal}",
+          "letterSpacing": "{primitive.typography.letterSpacing.normal}"
+        },
+        "resolved": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 500,
+          "fontSize": 14,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
+        "references": [
+          "primitive.typography.family.sans",
+          "primitive.typography.weight.medium",
+          "primitive.typography.size.md",
+          "primitive.typography.lineHeight.normal",
+          "primitive.typography.letterSpacing.normal"
+        ]
+      },
+      "dark": {
+        "value": {
+          "fontFamily": "{primitive.typography.family.sans}",
+          "fontWeight": "{primitive.typography.weight.medium}",
+          "fontSize": "{primitive.typography.size.md}",
+          "lineHeight": "{primitive.typography.lineHeight.normal}",
+          "letterSpacing": "{primitive.typography.letterSpacing.normal}"
+        },
+        "resolved": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 500,
+          "fontSize": 14,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
+        "references": [
+          "primitive.typography.family.sans",
+          "primitive.typography.weight.medium",
+          "primitive.typography.size.md",
+          "primitive.typography.lineHeight.normal",
+          "primitive.typography.letterSpacing.normal"
+        ]
+      }
+    },
+    "semantic.textStyle.guideTitle": {
+      "layer": "semantic",
+      "type": "typography",
+      "description": "Guide title style from Figma.",
+      "sourceRef": "semantic.textStyle.guideTitle",
+      "light": {
+        "value": {
+          "fontFamily": "{primitive.typography.family.sans}",
+          "fontWeight": "{primitive.typography.weight.medium}",
+          "fontSize": "{primitive.typography.size.xl}",
+          "lineHeight": "{primitive.typography.lineHeight.normal}",
+          "letterSpacing": "{primitive.typography.letterSpacing.normal}"
+        },
+        "resolved": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 500,
+          "fontSize": 20,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
+        "references": [
+          "primitive.typography.family.sans",
+          "primitive.typography.weight.medium",
+          "primitive.typography.size.xl",
+          "primitive.typography.lineHeight.normal",
+          "primitive.typography.letterSpacing.normal"
+        ]
+      },
+      "dark": {
+        "value": {
+          "fontFamily": "{primitive.typography.family.sans}",
+          "fontWeight": "{primitive.typography.weight.medium}",
+          "fontSize": "{primitive.typography.size.xl}",
+          "lineHeight": "{primitive.typography.lineHeight.normal}",
+          "letterSpacing": "{primitive.typography.letterSpacing.normal}"
+        },
+        "resolved": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 500,
+          "fontSize": 20,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
+        "references": [
+          "primitive.typography.family.sans",
+          "primitive.typography.weight.medium",
+          "primitive.typography.size.xl",
+          "primitive.typography.lineHeight.normal",
+          "primitive.typography.letterSpacing.normal"
+        ]
+      }
+    },
+    "semantic.textStyle.titleLarge": {
+      "layer": "semantic",
+      "type": "typography",
+      "description": "Largest title style from Figma, used for article titles and special large amount emphasis.",
+      "sourceRef": "semantic.textStyle.titleLarge",
+      "light": {
+        "value": {
+          "fontFamily": "{primitive.typography.family.sans}",
+          "fontWeight": "{primitive.typography.weight.bold}",
+          "fontSize": "{primitive.typography.size.3xl}",
+          "lineHeight": "{primitive.typography.lineHeight.normal}",
+          "letterSpacing": "{primitive.typography.letterSpacing.normal}"
+        },
+        "resolved": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 700,
+          "fontSize": 32,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
+        "references": [
+          "primitive.typography.family.sans",
+          "primitive.typography.weight.bold",
+          "primitive.typography.size.3xl",
+          "primitive.typography.lineHeight.normal",
+          "primitive.typography.letterSpacing.normal"
+        ]
+      },
+      "dark": {
+        "value": {
+          "fontFamily": "{primitive.typography.family.sans}",
+          "fontWeight": "{primitive.typography.weight.bold}",
+          "fontSize": "{primitive.typography.size.3xl}",
+          "lineHeight": "{primitive.typography.lineHeight.normal}",
+          "letterSpacing": "{primitive.typography.letterSpacing.normal}"
+        },
+        "resolved": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 700,
+          "fontSize": 32,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
+        "references": [
+          "primitive.typography.family.sans",
+          "primitive.typography.weight.bold",
+          "primitive.typography.size.3xl",
+          "primitive.typography.lineHeight.normal",
+          "primitive.typography.letterSpacing.normal"
+        ]
+      }
+    },
+    "semantic.textStyle.titleMedium": {
+      "layer": "semantic",
+      "type": "typography",
+      "description": "Medium title style from Figma, used for navigation headings.",
+      "sourceRef": "semantic.textStyle.titleMedium",
+      "light": {
+        "value": {
+          "fontFamily": "{primitive.typography.family.sans}",
+          "fontWeight": "{primitive.typography.weight.bold}",
+          "fontSize": "{primitive.typography.size.lg}",
+          "lineHeight": "{primitive.typography.lineHeight.normal}",
+          "letterSpacing": "{primitive.typography.letterSpacing.normal}"
+        },
+        "resolved": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 700,
+          "fontSize": 16,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
+        "references": [
+          "primitive.typography.family.sans",
+          "primitive.typography.weight.bold",
+          "primitive.typography.size.lg",
+          "primitive.typography.lineHeight.normal",
+          "primitive.typography.letterSpacing.normal"
+        ]
+      },
+      "dark": {
+        "value": {
+          "fontFamily": "{primitive.typography.family.sans}",
+          "fontWeight": "{primitive.typography.weight.bold}",
+          "fontSize": "{primitive.typography.size.lg}",
+          "lineHeight": "{primitive.typography.lineHeight.normal}",
+          "letterSpacing": "{primitive.typography.letterSpacing.normal}"
+        },
+        "resolved": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 700,
+          "fontSize": 16,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
+        "references": [
+          "primitive.typography.family.sans",
+          "primitive.typography.weight.bold",
+          "primitive.typography.size.lg",
+          "primitive.typography.lineHeight.normal",
+          "primitive.typography.letterSpacing.normal"
+        ]
+      }
+    },
+    "semantic.textStyle.xSmall": {
+      "layer": "semantic",
+      "type": "typography",
+      "description": "Bottom navigation special-case small text style from Figma.",
+      "sourceRef": "semantic.textStyle.xSmall",
+      "light": {
+        "value": {
+          "fontFamily": "{primitive.typography.family.sans}",
+          "fontWeight": "{primitive.typography.weight.regular}",
+          "fontSize": "{primitive.typography.size.xs}",
+          "lineHeight": "{primitive.typography.lineHeight.normal}",
+          "letterSpacing": "{primitive.typography.letterSpacing.normal}"
+        },
+        "resolved": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 400,
+          "fontSize": 10,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
+        "references": [
+          "primitive.typography.family.sans",
+          "primitive.typography.weight.regular",
+          "primitive.typography.size.xs",
+          "primitive.typography.lineHeight.normal",
+          "primitive.typography.letterSpacing.normal"
+        ]
+      },
+      "dark": {
+        "value": {
+          "fontFamily": "{primitive.typography.family.sans}",
+          "fontWeight": "{primitive.typography.weight.regular}",
+          "fontSize": "{primitive.typography.size.xs}",
+          "lineHeight": "{primitive.typography.lineHeight.normal}",
+          "letterSpacing": "{primitive.typography.letterSpacing.normal}"
+        },
+        "resolved": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 400,
+          "fontSize": 10,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
+        "references": [
+          "primitive.typography.family.sans",
+          "primitive.typography.weight.regular",
+          "primitive.typography.size.xs",
+          "primitive.typography.lineHeight.normal",
+          "primitive.typography.letterSpacing.normal"
         ]
       }
     }
@@ -5218,7 +7531,7 @@
                   },
                   "dark": {
                     "value": "{semantic.stroke.icon_primary}",
-                    "resolved": "rgba(221, 222, 234, 0.8)",
+                    "resolved": "#B4B4BC",
                     "references": [
                       "semantic.stroke.icon_primary"
                     ]
@@ -5302,7 +7615,7 @@
                   },
                   "dark": {
                     "value": "{semantic.stroke.icon_primary}",
-                    "resolved": "rgba(221, 222, 234, 0.8)",
+                    "resolved": "#B4B4BC",
                     "references": [
                       "semantic.stroke.icon_primary"
                     ]
@@ -5417,7 +7730,7 @@
                   },
                   "dark": {
                     "value": "{semantic.stroke.icon_primary}",
-                    "resolved": "rgba(221, 222, 234, 0.8)",
+                    "resolved": "#B4B4BC",
                     "references": [
                       "semantic.stroke.icon_primary"
                     ]
@@ -5429,14 +7742,14 @@
                   "description": "Web nav border alias for light mode.",
                   "light": {
                     "value": "{semantic.border.default}",
-                    "resolved": "rgba(17, 29, 74, 0.08)",
+                    "resolved": "#ECEDF0",
                     "references": [
                       "semantic.border.default"
                     ]
                   },
                   "dark": {
                     "value": "{semantic.border.default}",
-                    "resolved": "rgba(221, 222, 234, 0.08)",
+                    "resolved": "#2C2C30",
                     "references": [
                       "semantic.border.default"
                     ]
@@ -5498,14 +7811,14 @@
                   "description": "Modal body text alias for light mode.",
                   "light": {
                     "value": "{semantic.text.secondary}",
-                    "resolved": "rgba(17, 29, 74, 0.4)",
+                    "resolved": "#A0A5B7",
                     "references": [
                       "semantic.text.secondary"
                     ]
                   },
                   "dark": {
                     "value": "{semantic.text.secondary}",
-                    "resolved": "rgba(221, 222, 234, 0.4)",
+                    "resolved": "#8B8B91",
                     "references": [
                       "semantic.text.secondary"
                     ]
@@ -5834,14 +8147,14 @@
                   "description": "Menu body text alias for light mode.",
                   "light": {
                     "value": "{semantic.text.secondary}",
-                    "resolved": "rgba(17, 29, 74, 0.4)",
+                    "resolved": "#A0A5B7",
                     "references": [
                       "semantic.text.secondary"
                     ]
                   },
                   "dark": {
                     "value": "{semantic.text.secondary}",
-                    "resolved": "rgba(221, 222, 234, 0.4)",
+                    "resolved": "#8B8B91",
                     "references": [
                       "semantic.text.secondary"
                     ]
@@ -5929,7 +8242,7 @@
                   },
                   "dark": {
                     "value": "{semantic.stroke.icon_primary}",
-                    "resolved": "rgba(221, 222, 234, 0.8)",
+                    "resolved": "#B4B4BC",
                     "references": [
                       "semantic.stroke.icon_primary"
                     ]
@@ -5994,7 +8307,7 @@
                   },
                   "dark": {
                     "value": "{semantic.stroke.icon_primary}",
-                    "resolved": "rgba(221, 222, 234, 0.8)",
+                    "resolved": "#B4B4BC",
                     "references": [
                       "semantic.stroke.icon_primary"
                     ]

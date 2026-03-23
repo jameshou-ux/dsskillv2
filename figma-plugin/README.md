@@ -1,6 +1,6 @@
 # Figma Variable Importer
 
-Standalone Figma plugin package for importing adapted design-token payloads into local Figma Variables and paint styles.
+Standalone Figma plugin package for importing adapted design-token payloads into local Figma Variables, paint styles, and typography text styles.
 
 ## What It Imports
 
@@ -57,3 +57,37 @@ The plugin uses the Figma Variables API and creates or updates:
 - collection modes
 - local variables
 - local paint styles for gradients
+- local text styles for composite typography tokens
+
+## Typography Import Behavior
+
+Typography is imported in two different ways:
+
+- composite `$type: "typography"` tokens are imported as Figma text styles
+- standalone font-scale tokens such as `fontFamilies`, `fontWeights`, `fontSizes`, `lineHeights`, and `letterSpacing` are treated as supporting inputs for typography resolution and are not imported as Figma variables
+
+Example:
+
+```json
+{
+  "semantic/light": {
+    "textStyle": {
+      "body": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{primitive.typography.family.sans}",
+          "fontWeight": "{primitive.typography.weight.regular}",
+          "fontSize": "{primitive.typography.size.md}",
+          "lineHeight": "{primitive.typography.lineHeight.md}",
+          "letterSpacing": "0"
+        }
+      }
+    }
+  }
+}
+```
+
+With multiple modes, text style names are created as:
+
+- `Collection/Light/...`
+- `Collection/Dark/...`

@@ -107,6 +107,7 @@ Supported `$type` values:
 - `dimension`
 - `boolean`
 - `gradient`
+- `typography`
 - `fontFamilies`
 - `fontWeights`
 - `fontSizes`
@@ -127,6 +128,7 @@ Supported `$value` forms:
 - booleans such as `true`
 - alias strings such as `"{primitive.spacing.16}"`
 - gradient objects with `type`, `angle`, and `stops`
+- typography objects with fields such as `fontFamily`, `fontWeight`, `fontSize`, `lineHeight`, `letterSpacing`, `paragraphSpacing`, `textCase`, and `textDecoration`
 
 Sentinel values:
 
@@ -183,6 +185,8 @@ Example:
 - A source system does need enough structure to map into at least one base layer plus any optional consumer layers.
 - Raw Figma variable exports are not expected to match this contract.
 - If your source system uses different names such as `global` and `alias`, map them into this contract during adaptation.
+- Composite `typography` tokens are imported as Figma text styles, not variables.
+- Standalone typography scalar tokens such as `fontFamilies`, `fontWeights`, `fontSizes`, `lineHeights`, and `letterSpacing` may be referenced by typography tokens and are resolved during import, but they are not imported as standalone variables.
 
 ## Recommended Pipeline
 

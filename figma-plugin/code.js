@@ -88,6 +88,16 @@ const TYPE_MAP = {
     opacity: 'FLOAT',
 };
 
+const TYPOGRAPHY_SCALAR_TYPES = new Set([
+    'fontFamilies',
+    'fontWeights',
+    'fontSizes',
+    'lineHeights',
+    'letterSpacing'
+]);
+
+const TYPOGRAPHY_STYLE_TYPE = 'typography';
+
 const COLLECTION_ORDER = ['primitive', 'semantic', 'pattern', 'component'];
 
 /**
@@ -98,7 +108,7 @@ function flattenTokens(obj, prefix) {
     for (const [key, val] of Object.entries(obj)) {
         if (key.startsWith('$')) continue;
         const path = prefix ? `${prefix}.${key}` : key;
-        if (val && val.$type && TYPE_MAP[val.$type]) {
+        if (val && val.$type && (TYPE_MAP[val.$type] || val.$type === TYPOGRAPHY_STYLE_TYPE)) {
             out.push({ path, type: val.$type, value: val.$value, description: val.$description || '' });
         } else if (val && typeof val === 'object' && !Array.isArray(val)) {
             out.push(...flattenTokens(val, path));
@@ -177,6 +187,14 @@ function getOrCreateVariable(displayName, col, figmaType, existingVarMap) {
 function buildStyleNameMap() {
     const map = {};
     for (const style of figma.getLocalPaintStyles()) {
+        map[style.name] = style;
+    }
+    return map;
+}
+
+function buildTextStyleNameMap() {
+    const map = {};
+    for (const style of figma.getLocalTextStyles()) {
         map[style.name] = style;
     }
     return map;
@@ -272,6 +290,236 @@ function sortModeNames(modeNames) {
     });
 }
 
+function isTypographyVariableType(tokenType) {
+    return tokenType === TYPOGRAPHY_STYLE_TYPE || TYPOGRAPHY_SCALAR_TYPES.has(tokenType);
+}
+
+function normalizeEnumTokenValue(value) {
+    if (value === null || value === undefined) return '';
+    return String(value).trim().toLowerCase().replace(/[_\s-]+/g, ' ');
+}
+
+function parseNumericTokenValue(rawValue) {
+    if (rawValue === null || rawValue === undefined) return null;
+    if (typeof rawValue === 'number') return rawValue;
+    if (typeof rawValue === 'string') {
+        const trimmed = rawValue.trim();
+        if (!trimmed) return null;
+        const parsed = parseFloat(trimmed);
+        return isNaN(parsed) ? null : parsed;
+    }
+    if (typeof rawValue === 'object' && rawValue.value !== undefined) {
+        return parseNumericTokenValue(rawValue.value);
+    }
+    return null;
+}
+
+function parseFontSizeValue(rawValue) {
+    return parseNumericTokenValue(rawValue);
+}
+
+function parseLineHeightValue(rawValue) {
+    if (rawValue === null || rawValue === undefined) return null;
+    if (typeof rawValue === 'string') {
+        const normalized = normalizeEnumTokenValue(rawValue);
+        if (normalized === 'auto' || normalized === 'normal') {
+            return { unit: 'AUTO' };
+        }
+        if (rawValue.trim().endsWith('%')) {
+            const value = parseNumericTokenValue(rawValue);
+            return value === null ? null : { unit: 'PERCENT', value };
+        }
+        const value = parseNumericTokenValue(rawValue);
+        return value === null ? null : { unit: 'PIXELS', value };
+    }
+    if (typeof rawValue === 'number') {
+        return { unit: 'PIXELS', value: rawValue };
+    }
+    if (typeof rawValue === 'object') {
+        const unit = normalizeEnumTokenValue(rawValue.unit || rawValue.type || '');
+        if (unit === 'auto' || unit === 'normal') {
+            return { unit: 'AUTO' };
+        }
+        const value = parseNumericTokenValue(rawValue.value);
+        if (value === null) return null;
+        if (unit === 'percent' || unit === '%') {
+            return { unit: 'PERCENT', value };
+        }
+        return { unit: 'PIXELS', value };
+    }
+    return null;
+}
+
+function parseLetterSpacingValue(rawValue) {
+    if (rawValue === null || rawValue === undefined) return null;
+    if (typeof rawValue === 'string' && rawValue.trim().endsWith('%')) {
+        const value = parseNumericTokenValue(rawValue);
+        return value === null ? null : { unit: 'PERCENT', value };
+    }
+    if (typeof rawValue === 'object') {
+        const unit = normalizeEnumTokenValue(rawValue.unit || rawValue.type || '');
+        const value = parseNumericTokenValue(rawValue.value);
+        if (value === null) return null;
+        if (unit === 'percent' || unit === '%') {
+            return { unit: 'PERCENT', value };
+        }
+        return { unit: 'PIXELS', value };
+    }
+    const value = parseNumericTokenValue(rawValue);
+    return value === null ? null : { unit: 'PIXELS', value };
+}
+
+function parseTextCaseValue(rawValue) {
+    const normalized = normalizeEnumTokenValue(rawValue);
+    if (!normalized || normalized === 'none') return 'ORIGINAL';
+    if (normalized === 'uppercase' || normalized === 'upper') return 'UPPER';
+    if (normalized === 'lowercase' || normalized === 'lower') return 'LOWER';
+    if (normalized === 'capitalize' || normalized === 'title') return 'TITLE';
+    if (normalized === 'small caps') return 'SMALL_CAPS';
+    if (normalized === 'small caps forced') return 'SMALL_CAPS_FORCED';
+    return null;
+}
+
+function parseTextDecorationValue(rawValue) {
+    const normalized = normalizeEnumTokenValue(rawValue);
+    if (!normalized || normalized === 'none') return 'NONE';
+    if (normalized === 'underline') return 'UNDERLINE';
+    if (normalized === 'strikethrough' || normalized === 'line through') return 'STRIKETHROUGH';
+    return null;
+}
+
+function extractFontWeightHint(rawValue) {
+    if (rawValue === null || rawValue === undefined) return '';
+    if (typeof rawValue === 'number') return String(rawValue);
+    return String(rawValue).trim();
+}
+
+function normalizeFontStyleLabel(label) {
+    return String(label || '').toLowerCase().replace(/[\s_-]+/g, '');
+}
+
+function buildFontStyleCandidates(weightValue, fontStyleValue) {
+    const italic = normalizeEnumTokenValue(fontStyleValue) === 'italic';
+    const weightHint = extractFontWeightHint(weightValue);
+    const numericWeight = parseInt(weightHint, 10);
+    const namedWeight = isNaN(numericWeight) ? normalizeEnumTokenValue(weightHint) : '';
+    const weightMap = {
+        100: 'Thin',
+        200: 'Extra Light',
+        300: 'Light',
+        400: 'Regular',
+        500: 'Medium',
+        600: 'Semi Bold',
+        700: 'Bold',
+        800: 'Extra Bold',
+        900: 'Black'
+    };
+
+    const candidates = [];
+    const pushCandidate = (name) => {
+        if (!name) return;
+        if (!candidates.includes(name)) candidates.push(name);
+    };
+
+    if (!isNaN(numericWeight) && weightMap[numericWeight]) {
+        pushCandidate(weightMap[numericWeight] + (italic ? ' Italic' : ''));
+    }
+
+    if (namedWeight) {
+        const pretty = namedWeight.split(' ').map(part => part.charAt(0).toUpperCase() + part.slice(1)).join(' ');
+        pushCandidate(pretty + (italic && !pretty.toLowerCase().includes('italic') ? ' Italic' : ''));
+    }
+
+    if (italic) {
+        pushCandidate('Italic');
+    }
+    pushCandidate('Regular');
+    return candidates;
+}
+
+let availableFontsPromise = null;
+
+async function getAvailableFonts() {
+    if (!availableFontsPromise) {
+        availableFontsPromise = figma.listAvailableFontsAsync().catch(() => []);
+    }
+    return availableFontsPromise;
+}
+
+async function resolveFontName(path, fontFamily, fontWeight, fontStyle, addUnsupported) {
+    const availableFonts = await getAvailableFonts();
+    const familyFonts = availableFonts.filter(font => font.fontName.family === fontFamily);
+    if (!familyFonts.length) {
+        addUnsupported(path, `Font family "${fontFamily}" is not available in this Figma file`);
+        return null;
+    }
+
+    const candidates = buildFontStyleCandidates(fontWeight, fontStyle);
+    for (const candidate of candidates) {
+        const exact = familyFonts.find(font => normalizeFontStyleLabel(font.fontName.style) === normalizeFontStyleLabel(candidate));
+        if (exact) return exact.fontName;
+    }
+
+    const fallback = familyFonts[0].fontName;
+    addUnsupported(path, `Using fallback font style "${fallback.style}" for family "${fontFamily}"`);
+    return fallback;
+}
+
+function getOrCreateTextStyle(name, existingTextStyleMap) {
+    if (existingTextStyleMap[name]) return existingTextStyleMap[name];
+    const style = figma.createTextStyle();
+    style.name = name;
+    existingTextStyleMap[name] = style;
+    return style;
+}
+
+async function upsertTypographyStyle(path, styleName, tokenValue, description, existingTextStyleMap, resolveRawTokenValue, addUnsupported) {
+    if (!tokenValue || typeof tokenValue !== 'object' || Array.isArray(tokenValue)) {
+        addUnsupported(path, 'Typography token must use an object $value');
+        return;
+    }
+
+    const resolveField = (fieldName) => resolveRawTokenValue(path + '.' + fieldName, tokenValue[fieldName]);
+    const fontFamily = resolveField('fontFamily');
+    if (!fontFamily) {
+        addUnsupported(path, 'Typography token is missing fontFamily');
+        return;
+    }
+
+    const fontWeight = resolveField('fontWeight');
+    const fontStyle = resolveField('fontStyle');
+    const fontName = await resolveFontName(path, String(fontFamily), fontWeight, fontStyle, addUnsupported);
+    if (!fontName) return;
+
+    const textStyle = getOrCreateTextStyle(styleName, existingTextStyleMap);
+    if (description) textStyle.description = description;
+
+    await figma.loadFontAsync(fontName);
+    textStyle.fontName = fontName;
+
+    const fontSize = parseFontSizeValue(resolveField('fontSize'));
+    if (fontSize !== null) {
+        textStyle.fontSize = fontSize;
+    } else {
+        addUnsupported(path, 'Typography token is missing or has invalid fontSize');
+    }
+
+    const lineHeight = parseLineHeightValue(resolveField('lineHeight'));
+    if (lineHeight) textStyle.lineHeight = lineHeight;
+
+    const letterSpacing = parseLetterSpacingValue(resolveField('letterSpacing'));
+    if (letterSpacing) textStyle.letterSpacing = letterSpacing;
+
+    const paragraphSpacing = parseNumericTokenValue(resolveField('paragraphSpacing'));
+    if (paragraphSpacing !== null) textStyle.paragraphSpacing = paragraphSpacing;
+
+    const textCase = parseTextCaseValue(resolveField('textCase'));
+    if (textCase) textStyle.textCase = textCase;
+
+    const textDecoration = parseTextDecorationValue(resolveField('textDecoration'));
+    if (textDecoration) textStyle.textDecoration = textDecoration;
+}
+
 function safelySetValueForMode(variable, modeId, value, path, addUnsupported) {
     try {
         variable.setValueForMode(modeId, value);
@@ -308,13 +556,20 @@ async function importVariables(data) {
 
     // Existing variables in this collection (name → Variable)
     const primExistingVars = buildVarNameMap(primCol);
+    const existingTextStyleMap = buildTextStyleNameMap();
 
     // Path → Variable map used for alias resolution across collections.
     const aliasVarMap = {};
+    const aliasTokenMap = {};
 
     function registerPrimitiveAliases(tokenPath, variable) {
         aliasVarMap[tokenPath] = variable;
         aliasVarMap[tokenPath.replace(/^primitive\./, '')] = variable;
+    }
+
+    function registerPrimitiveTokenAliases(tokenPath, token) {
+        aliasTokenMap[tokenPath] = token;
+        aliasTokenMap[tokenPath.replace(/^primitive\./, '')] = token;
     }
 
     function registerCollectionAliases(collectionKey, modeName, tokenPath, variable) {
@@ -323,8 +578,38 @@ async function importVariables(data) {
         aliasVarMap[`${collectionKey}/${modeName}.${tokenPath}`] = variable;
     }
 
+    function registerCollectionTokenAliases(collectionKey, modeName, tokenPath, token) {
+        aliasTokenMap[`${collectionKey}.${tokenPath}`] = token;
+        aliasTokenMap[`${collectionKey}/${modeName.toLowerCase()}.${tokenPath}`] = token;
+        aliasTokenMap[`${collectionKey}/${modeName}.${tokenPath}`] = token;
+    }
+
+    function resolveRawTokenValue(path, rawValue, seen) {
+        if (!isAliasLike(rawValue)) return rawValue;
+
+        const refPath = rawValue.slice(1, -1);
+        const visited = seen || new Set();
+        if (visited.has(refPath)) {
+            addUnsupported(path, `Circular alias ${rawValue}`);
+            return null;
+        }
+        visited.add(refPath);
+
+        const refToken = aliasTokenMap[refPath] || aliasTokenMap[refPath.replace(/^primitive\./, '')];
+        if (!refToken) {
+            addUnsupported(path, `Unresolved alias ${rawValue}`);
+            return null;
+        }
+        return resolveRawTokenValue(path, refToken.value, visited);
+    }
+
+    for (const token of primTokens) {
+        registerPrimitiveTokenAliases(token.path, token);
+    }
+
     for (const token of primTokens) {
         if (isMissingValue(token.value)) continue;
+        if (isTypographyVariableType(token.type)) continue;
         const displayName = token.path.replace(/^primitive\./, '').replace(/\./g, '/');
         const figmaType = TYPE_MAP[token.type] || 'STRING';
         if (!TYPE_MAP[token.type]) {
@@ -348,6 +633,20 @@ async function importVariables(data) {
         }
 
         registerPrimitiveAliases(token.path, variable);
+    }
+
+    for (const token of primTokens) {
+        if (isMissingValue(token.value) || token.type !== TYPOGRAPHY_STYLE_TYPE) continue;
+        const displayName = token.path.replace(/^primitive\./, '').replace(/\./g, '/');
+        await upsertTypographyStyle(
+            token.path,
+            `Primitive/${displayName}`,
+            token.value,
+            token.description,
+            existingTextStyleMap,
+            resolveRawTokenValue,
+            addUnsupported
+        );
     }
     const existingStyleMap = buildStyleNameMap();
 
@@ -449,6 +748,7 @@ async function importVariables(data) {
             const byPath = {};
             for (const token of tokens) {
                 byPath[token.path] = token;
+                registerCollectionTokenAliases(collection.key, modeName, token.path, token);
                 if (!seenPaths.has(token.path)) {
                     seenPaths.add(token.path);
                     tokenPaths.push(token.path);
@@ -460,6 +760,27 @@ async function importVariables(data) {
         for (const tokenPath of tokenPaths) {
             const seedToken = modeNames.map(modeName => tokensByMode[modeName][tokenPath]).find(Boolean);
             if (!seedToken || isMissingValue(seedToken.value)) continue;
+            if (seedToken.type === TYPOGRAPHY_STYLE_TYPE) {
+                for (const modeName of modeNames) {
+                    const modeToken = tokensByMode[modeName][tokenPath];
+                    if (!modeToken || isMissingValue(modeToken.value)) continue;
+                    const displayName = tokenPath.replace(/\./g, '/');
+                    const styleName = modeNames.length > 1
+                        ? `${collection.figmaName}/${modeName}/${displayName}`
+                        : `${collection.figmaName}/${displayName}`;
+                    await upsertTypographyStyle(
+                        `${collection.key}/${modeName.toLowerCase()}.${tokenPath}`,
+                        styleName,
+                        modeToken.value,
+                        modeToken.description,
+                        existingTextStyleMap,
+                        resolveRawTokenValue,
+                        addUnsupported
+                    );
+                }
+                continue;
+            }
+            if (isTypographyVariableType(seedToken.type)) continue;
 
             const displayName = tokenPath.replace(/\./g, '/');
             if (seedToken.type === 'gradient') {

@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Design System Tokens</title>
+<script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Fira Code', monospace;
+    font-size: 12px;
+    line-height: 1.6;
+    color: #111D4A;
+    background: #F9FAFB;
+    padding: 40px 48px;
+  }
+
+  h1 { font-size: 18px; font-weight: 500; margin-bottom: 4px; }
+  h2 { font-size: 13px; font-weight: 500; margin: 40px 0 16px; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(17,29,74,0.4); border-bottom: 1px solid rgba(17,29,74,0.08); padding-bottom: 8px; }
+  h3 { font-size: 11px; font-weight: 500; margin: 24px 0 12px; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(17,29,74,0.5); }
+
+  .meta { font-size: 11px; color: rgba(17,29,74,0.4); margin-bottom: 40px; }
+  .meta span { margin-right: 16px; }
+
+  /* LAYER BADGE */
+  .badge {
+    display: inline-block;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 1px 5px;
+    border-radius: 3px;
+    vertical-align: middle;
+    margin-left: 6px;
+  }
+  .badge-primitive { background: #F0F1F3; color: rgba(17,29,74,0.5); }
+  .badge-semantic  { background: #D6EBFF; color: #007FFF; }
+  .badge-pattern   { background: rgba(0,127,255,0.1); color: #066BD2; }
+  .badge-component { background: rgba(17,29,74,0.06); color: #111D4A; }
+
+  /* COLOR GRID */
+  .color-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 8px;
+  }
+
+  .color-tile {
+    border: 1px solid rgba(17,29,74,0.08);
+    border-radius: 6px;
+    overflow: hidden;
+    background: #fff;
+  }
+  .color-swatch {
+    height: 48px;
+    width: 100%;
+    position: relative;
+  }
+  .color-swatch.checkerboard::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(45deg,#ccc 25%,transparent 25%),
+      linear-gradient(-45deg,#ccc 25%,transparent 25%),
+      linear-gradient(45deg,transparent 75%,#ccc 75%),
+      linear-gradient(-45deg,transparent 75%,#ccc 75%);
+    background-size: 10px 10px;
+    background-position: 0 0,0 5px,5px -5px,-5px 0;
+  }
+  .color-swatch .overlay {
+    position: absolute;
+    inset: 0;
+  }
+  .color-info {
+    padding: 8px 10px;
+  }
+  .color-name { font-weight: 500; font-size: 11px; color: #111D4A; word-break: break-all; }
+  .color-value { font-size: 10px; color: rgba(17,29,74,0.5); margin-top: 2px; }
+  .color-desc { font-size: 10px; color: rgba(17,29,74,0.4); margin-top: 4px; line-height: 1.4; }
+  .color-ref { font-size: 9px; color: #007FFF; margin-top: 3px; }
+
+  /* SCALE BARS (spacing / size) */
+  .scale-list { display: flex; flex-direction: column; gap: 6px; }
+  .scale-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .scale-label {
+    width: 100px;
+    flex-shrink: 0;
+    font-size: 11px;
+    color: #111D4A;
+  }
+  .scale-bar-wrap {
+    flex: 1;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .scale-bar {
+    height: 8px;
+    background: #111D4A;
+    border-radius: 2px;
+    min-width: 2px;
+  }
+  .scale-value {
+    font-size: 10px;
+    color: rgba(17,29,74,0.5);
+    white-space: nowrap;
+  }
+  .scale-desc {
+    font-size: 10px;
+    color: rgba(17,29,74,0.35);
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  /* SEMANTIC / THEMED TOKEN TABLE */
+  .token-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 11px;
+  }
+  .token-table th {
+    text-align: left;
+    padding: 6px 10px;
+    font-weight: 400;
+    color: rgba(17,29,74,0.4);
+    border-bottom: 1px solid rgba(17,29,74,0.08);
+    background: transparent;
+  }
+  .token-table td {
+    padding: 7px 10px;
+    border-bottom: 1px solid rgba(17,29,74,0.05);
+    vertical-align: middle;
+  }
+  .token-table tr:last-child td { border-bottom: none; }
+
+  .swatch-inline {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border-radius: 3px;
+    border: 1px solid rgba(17,29,74,0.1);
+    vertical-align: middle;
+    margin-right: 6px;
+    flex-shrink: 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .swatch-inline.checker::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(45deg,#ddd 25%,transparent 25%),
+      linear-gradient(-45deg,#ddd 25%,transparent 25%),
+      linear-gradient(45deg,transparent 75%,#ddd 75%),
+      linear-gradient(-45deg,transparent 75%,#ddd 75%);
+    background-size: 6px 6px;
+    background-position: 0 0,0 3px,3px -3px,-3px 0;
+  }
+  .swatch-overlay {
+    position: absolute;
+    inset: 0;
+  }
+
+  .cell-color { display: flex; align-items: center; }
+
+  .grad-swatch {
+    display: inline-block;
+    width: 80px;
+    height: 16px;
+    border-radius: 3px;
+    border: 1px solid rgba(17,29,74,0.1);
+    vertical-align: middle;
+    margin-right: 6px;
+  }
+
+  .token-ref { font-size: 9px; color: #007FFF; }
+
+  /* MISSING badge */
+  .missing { color: #B6B7C1; font-style: italic; }
+
+  /* RADIUS SECTION */
+  .radius-grid {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    align-items: flex-end;
+  }
+  .radius-tile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+  }
+  .radius-box {
+    background: rgba(17,29,74,0.06);
+    border: 1.5px solid rgba(17,29,74,0.15);
+    width: 60px;
+    height: 60px;
+  }
+  .radius-box-sm  { border-radius: 4px; }
+  .radius-box-md  { border-radius: 10px; }
+  .radius-box-lg  { border-radius: 16px; }
+  .radius-box-full { border-radius: 9999px; }
+  .radius-name { font-size: 10px; color: #111D4A; }
+  .radius-val  { font-size: 9px; color: rgba(17,29,74,0.4); }
+
+  /* GRADIENT swatch */
+  .grad-preview {
+    height: 28px;
+    border-radius: 4px;
+    border: 1px solid rgba(17,29,74,0.08);
+    margin-bottom: 4px;
+    width: 100%;
+  }
+
+  section { margin-bottom: 8px; }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  @media (max-width: 800px) { .two-col { grid-template-columns: 1fr; } }
+
+  .panel {
+    background: #fff;
+    border: 1px solid rgba(17,29,74,0.08);
+    border-radius: 8px;
+    padding: 16px;
+  }
+  .panel-label { font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(17,29,74,0.35); margin-bottom: 10px; }
+
+  /* ---- THEME PANELS ---- */
+  .theme-panels {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border: 1px solid rgba(17,29,74,0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 4px;
+  }
+  .theme-panel { padding: 20px 24px; }
+  .theme-panel-light { background: #FFFFFF; }
+  .theme-panel-dark  { background: #1C1C1E; border-left: 1px solid rgba(255,255,255,0.07); }
+
+  .tp-label { font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; margin-bottom: 14px; }
+  .theme-panel-light .tp-label { color: rgba(17,29,74,0.3); }
+  .theme-panel-dark  .tp-label { color: rgba(255,255,255,0.2); }
+
+  .tp-group { font-size: 9px; letter-spacing: 0.07em; text-transform: uppercase; padding: 12px 0 4px; margin-bottom: 2px; border-bottom: 1px solid; }
+  .theme-panel-light .tp-group { color: rgba(17,29,74,0.3); border-color: rgba(17,29,74,0.08); }
+  .theme-panel-dark  .tp-group { color: rgba(255,255,255,0.2); border-color: rgba(255,255,255,0.07); }
+
+  .tp-row { display: flex; align-items: center; gap: 10px; padding: 6px 0; border-bottom: 1px solid; }
+  .theme-panel-light .tp-row { border-color: rgba(17,29,74,0.06); }
+  .theme-panel-dark  .tp-row { border-color: rgba(255,255,255,0.06); }
+  .tp-row:last-child { border-bottom: none; }
+
+  .tp-swatch { width: 20px; height: 20px; border-radius: 4px; flex-shrink: 0; position: relative; overflow: hidden; }
+  .theme-panel-light .tp-swatch { border: 1px solid rgba(17,29,74,0.14); }
+  .theme-panel-dark  .tp-swatch { border: 1px solid rgba(255,255,255,0.14); }
+  .tp-swatch.ck::before {
+    content: ''; position: absolute; inset: 0;
+    background-image: linear-gradient(45deg,#d0d0d0 25%,transparent 25%), linear-gradient(-45deg,#d0d0d0 25%,transparent 25%), linear-gradient(45deg,transparent 75%,#d0d0d0 75%), linear-gradient(-45deg,transparent 75%,#d0d0d0 75%);
+    background-size: 8px 8px; background-position: 0 0,0 4px,4px -4px,-4px 0;
+  }
+  .tp-swatch.ck-dark::before {
+    content: ''; position: absolute; inset: 0;
+    background-image: linear-gradient(45deg,#383838 25%,transparent 25%), linear-gradient(-45deg,#383838 25%,transparent 25%), linear-gradient(45deg,transparent 75%,#383838 75%), linear-gradient(-45deg,transparent 75%,#383838 75%);
+    background-size: 8px 8px; background-position: 0 0,0 4px,4px -4px,-4px 0;
+  }
+  .tp-fill { position: absolute; inset: 0; }
+
+  .tp-info { flex: 1; min-width: 0; }
+  .tp-name { font-size: 11px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .theme-panel-light .tp-name { color: #111D4A; }
+  .theme-panel-dark  .tp-name { color: #D6D7E0; }
+  .tp-val { font-size: 10px; margin-top: 1px; }
+  .theme-panel-light .tp-val { color: rgba(17,29,74,0.4); }
+  .theme-panel-dark  .tp-val { color: rgba(255,255,255,0.28); }
+
+  .dim-table { width: 100%; border-collapse: collapse; font-size: 11px; }
+  .dim-table th { text-align: left; padding: 6px 10px; font-weight: 400; color: rgba(17,29,74,0.4); border-bottom: 1px solid rgba(17,29,74,0.08); }
+  .dim-table td { padding: 7px 10px; border-bottom: 1px solid rgba(17,29,74,0.05); }
+  .dim-table tr:last-child td { border-bottom: none; }
+</style>
+</head>
+<body>
+
+<h1>Design System Tokens</h1>
+<p class="meta">
+  <span>source: adapters/ai/ai.tokens.json</span>
+  <span>themes: light / dark</span>
+  <span>layers: primitive &rarr; semantic &rarr; pattern &rarr; component</span>
+</p>
+
+
+<!-- =========================================================
+     PRIMITIVE — COLOR
+     ========================================================= -->
+<h2>Primitive &mdash; Color <span class="badge badge-primitive">primitive</span></h2>
+
+<h3>White &amp; Black</h3>
+<div class="color-grid">
+
+  <div class="color-tile">
+    <div class="color-swatch">
+      <div class="overlay" style="background:#FFFFFF; border-bottom:1px solid #eee;"></div>
+    </div>
+    <div class="color-info">
+      <div class="color-name">white</div>
+      <div class="color-value">#FFFFFF</div>
+      <div class="color-desc">Pure white — light mode surfaces, text on dark bg.</div>
+    </div>
+  </div>
+
+  <div class="color-tile">
+    <div class="color-swatch checkerboard">
+      <div class="overlay" style="background:rgba(255,255,255,0.8);"></div>
+    </div>
+    <div class="color-info">
+      <div class="color-name">white_a80</div>
+      <div class="color-value">rgba(255,255,255,0.8)</div>
+      <div class="color-desc">Frosted glass / backdrop blur, light mode.</div>
+    </div>
+  </div>
+
+  <div class="color-tile">
+    <div class="color-swatch checkerboard">
+      <div class="overlay" style="background:rgba(255,255,255,0.6);"></div>
+    </div>
+    <div class="color-info">
+      <div class="color-name">white_a60</div>
+      <div class="color-value">rgba(255,255,255,0.6)</div>
+      <div class="color-desc">Glassmorphism card surface overlay.</div>
+    </div>
+  </div>
+
+  <div class="color-tile">
+    <div class="color-swatch checkerboard">
+      <div class="overlay" style="background:rgba(255,255,255,0.2);"></div>
+    </div>
+    <div class="color-info">
+      <div class="color-name">white_a20</div>
+      <div class="color-value">rgba(255,255,255,0.2)</div>
+      <div class="color-desc">Placeholder / hint text on dark backgrounds.</div>
+    </div>
+  </div>
+
+  <div class="color-tile">
+    <div class="color-swatch checkerboard">
+      <div class="overlay" style="background:rgba(255,255,255,0);"></div>
+    </div>
+    <div class="color-info">
+      <div class="color-name">white_a0</div>
+      <div class="color-value">rgba(255,255,255,0)</div>
+      <div class="color-desc">Gradient feathered edge start (transparent).</div>
+    </div>
+  </div>
+
+  <div class="color-tile">
+    <div class="color-swatch">
+      <div class="overlay" style="background:#000000;"></div>
+    </div>
+    <div class="color-info">
+      <div class="color-name">black</div>
+      <div class="color-value">#000000</div>
+      <div class="color-desc">OLED-optimized dark mode gradient base.</div>
+    </div>
+  </div>
+
+  <div class="color-tile">
+    <div class="color-swatch checkerboard">
+      <div class="overlay" style="background:rgba(0,0,0,0.8);"></div>
+    </div>
+    <div class="color-info">
+      <div class="color-name">black_a80</div>
+      <div class="color-value">rgba(0,0,0,0.8)</div>
+      <div class="color-desc">Modal backdrop scrim, dark mode.</div>
+    </div>
+  </div>
+
+  <div class="color-tile">
+    <div class="color-swatch checkerboard">
+      <div class="overlay" style="background:rgba(21,20,23,0.7);"></div>
+    </div>
+    <div class="color-info">
+      <div class="color-name">custom_21_20_23_a70</div>
+      <div class="color-value">rgba(21,20,23,0.7)</div>
+      <div class="color-desc">Near-black warm glassmorphism overlay, dark mode.</div>
+    </div>
+  </div>
+
+</div>
+
+<h3>Gray Scale</h3>
+<div class="color-grid">
+
+  <div class="color-tile">
+    <div class="color-swatch"><div class="overlay" style="background:#F9FAFB;"></div></div>
+    <div class="color-info"><div class="color-name">gray.50</div><div class="color-value">#F9FAFB</div><div class="color-desc">Lightest gray — subtle page background tint.</div></div>
+  </div>
+
+  <div class="color-tile">
+    <div class="color-swatch"><div class="overlay" style="background:#F0F1F3;"></div></div>
+    <div class="color-info"><div class="color-name">gray.100</div><div class="color-value">#F0F1F3</div><div class="color-desc">Secondary surfaces, chip backgrounds.</div></div>
+  </div>
+
+  <div class="color-tile">
+    <div class="color-swatch"><div class="overlay" style="background:#D6D7E0;"></div></div>
+    <div class="color-info"><div class="color-name">gray.300</div><div class="color-value">#D6D7E0</div><div class="color-desc">Primary body text in dark mode.</div></div>
+  </div>
+
+  <div class="color-tile">
+    <div class="color-swatch"><div class="overlay" style="background:#B6B7C1;"></div></div>
+    <div class="color-info"><div class="color-name">gray.500</div><div class="color-value">#B6B7C1</div><div class="color-desc">Solid medium gray for dark surface emphasis.</div></div>
+  </div>
+
+  <div class="color-tile">
+    <div class="color-swatch checkerboard"><div class="overlay" style="background:rgba(221,222,234,0.08);"></div></div>
+    <div class="color-info"><div class="color-name">gray.400_a8</div><div class="color-value">rgba(221,222,234,0.08)</div><div class="color-desc">Ultra-subtle divider on dark surfaces.</div></div>
+  </div>
+
+  <div class="color-tile">
+    <div class="color-swatch checkerboard"><div class="overlay" style="background:rgba(221,222,234,0.4);"></div></div>
+    <div class="color-info"><div class="color-name">gray.400_a40</div><div class="color-value">rgba(221,222,234,0.4)</div><div class="color-desc">Secondary text / de-emphasized icons, dark.</div></div>
+  </div>
+
+  <div class="color-tile">
+    <div class="color-swatch checkerboard"><div class="overlay" style="background:rgba(221,222,234,0.8);"></div></div>
+    <div class="color-info"><div class="color-name">gray.400_a80</div><div class="color-value">rgba(221,222,234,0.8)</div><div class="color-desc">Primary icon stroke / secondary button fill, dark.</div></div>
+  </div>
+
+  <div class="color-tile">
+    <div class="color-swatch"><div class="overlay" style="background:#2C2C2E;"></div></div>
+    <div class="color-info"><div class="color-name">gray.800</div><div class="color-value">#2C2C2E</div><div class="color-desc">Elevated card / modal section surface, dark mode.</div></div>
+  </div>
+
+  <div class="color-tile">
+    <div class="color-swatch"><div class="overlay" style="background:#1F1F1F;"></div></div>
+    <div class="color-info"><div class="color-name">gray.850</div><div class="color-value">#1F1F1F</div><div class="color-desc">Secondary gradient stop for dark page background.</div></div>
+  </div>
+
+  <div class="color-tile">
+    <div class="color-swatch"><div class="overlay" style="background:#1C1C1E;"></div></div>
+    <div class="color-info"><div class="color-name">gray.900</div><div class="color-value">#1C1C1E</div><div class="color-desc">Primary dark mode surface — iOS system black.</div></div>
+  </div>
+
+  <div class="color-tile">
+    <div class="color-swatch"><div class="overlay" style="background:#010306;"></div></div>
+    <div class="color-info"><div class="color-name">gray.950</div><div class="color-value">#010306</div><div class="color-desc">OLED-optimized tab bar backdrop gradient end.</div></div>
+  </div>
+
+  <div class="color-tile">
+    <div class="color-swatch checkerboard"><div class="overlay" style="background:rgba(1,3,6,0);"></div></div>
+    <div class="color-info"><div class="color-name">gray.950_a0</div><div class="color-value">rgba(1,3,6,0)</div><div class="color-desc">Gradient feathered edge start, dark tab bar.</div></div>
+  </div>
+
+</div>
+
+<h3>Navy Scale</h3>
+<div class="color-grid">
+
+  <div class="color-tile">
+    <div class="color-swatch"><div class="overlay" style="background:#003160;"></div></div>
+    <div class="color-info"><div class="color-name">navy.800</div><div class="color-value">#003160</div><div class="color-desc">Deep navy — branded hero gradient end, dark mode.</div></div>
+  </div>
+
+  <div class="color-tile">
+    <div class="color-swatch"><div class="overlay" style="background:#111D4A;"></div></div>
+    <div class="color-info"><div class="color-name">navy.900</div><div class="color-value">#111D4A</div><div class="color-desc">Primary text, icon, fill — max contrast, light mode.</div></div>
+  </div>
+
+  <div class="color-tile">
+    <div class="color-swatch checkerboard"><div class="overlay" style="background:rgba(17,29,74,0.08);"></div></div>
+    <div class="color-info"><div class="color-name">navy.900_a8</div><div class="color-value">rgba(17,29,74,0.08)</div><div class="color-desc">Ultra-subtle card border / separator, light mode.</div></div>
+  </div>
+
+  <div class="color-tile">
+    <div class="color-swatch checkerboard"><div class="overlay" style="background:rgba(17,29,74,0.2);"></div></div>
+    <div class="color-info"><div class="color-name">navy.900_a20</div><div class="color-value">rgba(17,29,74,0.2)</div><div class="color-desc">Placeholder / empty state hint text, light mode.</div></div>
+  </div>
+
+  <div class="color-tile">
+    <div class="color-swatch checkerboard"><div class="overlay" style="background:rgba(17,29,74,0.4);"></div></div>
+    <div class="color-info"><div class="color-name">navy.900_a40</div><div class="color-value">rgba(17,29,74,0.4)</div><div class="color-desc">Secondary text, captions, de-emphasized icons, light.</div></div>
+  </div>
+
+</div>
+
+<h3>Blue Scale</h3>
+<div class="color-grid">
+
+  <div class="color-tile">
+    <div class="color-swatch"><div class="overlay" style="background:#F9FDFF;"></div></div>
+    <div class="color-info"><div class="color-name">blue.50</div><div class="color-value">#F9FDFF</div><div class="color-desc">Near-white blue — page gradient start, light mode.</div></div>
+  </div>
+
+  <div class="color-tile">
+    <div class="color-swatch"><div class="overlay" style="background:#D6EBFF;"></div></div>
+    <div class="color-info"><div class="color-name">blue.100</div><div class="color-value">#D6EBFF</div><div class="color-desc">Hero gradient end color, light mode.</div></div>
+  </div>
+
+  <div class="color-tile">
+    <div class="color-swatch"><div class="overlay" style="background:#EEF7FF;"></div></div>
+    <div class="color-info"><div class="color-name">blue.200</div><div class="color-value">#EEF7FF</div><div class="color-desc">XAUT card gradient accent / secondary stop.</div></div>
+  </div>
+
+  <div class="color-tile">
+    <div class="color-swatch"><div class="overlay" style="background:#007FFF;"></div></div>
+    <div class="color-info"><div class="color-name">blue.500</div><div class="color-value">#007FFF</div><div class="color-desc">Brand blue — primary action, links, CTA.</div></div>
+  </div>
+
+  <div class="color-tile">
+    <div class="color-swatch"><div class="overlay" style="background:#066BD2;"></div></div>
+    <div class="color-info"><div class="color-name">blue.600</div><div class="color-value">#066BD2</div><div class="color-desc">Dark-surface brand blue — solid action emphasis.</div></div>
+  </div>
+
+  <div class="color-tile">
+    <div class="color-swatch checkerboard"><div class="overlay" style="background:rgba(0,127,255,0.8);"></div></div>
+    <div class="color-info"><div class="color-name">blue.500_a80</div><div class="color-value">rgba(0,127,255,0.8)</div><div class="color-desc">Softened brand blue for dark mode surfaces.</div></div>
+  </div>
+
+</div>
+
+
+<!-- =========================================================
+     PRIMITIVE — SPACING
+     ========================================================= -->
+<h2>Primitive &mdash; Spacing <span class="badge badge-primitive">primitive</span></h2>
+<div class="scale-list">
+  <!-- max reference = 72px, bar max-width = 400px; scale = 400/72 ≈ 5.55 -->
+  <div class="scale-row">
+    <div class="scale-label">spacing.4</div>
+    <div class="scale-bar-wrap">
+      <div class="scale-bar" style="width:22px;"></div>
+      <div class="scale-value">4px</div>
+      <div class="scale-desc">Compact internal gaps and thin offsets.</div>
+    </div>
+  </div>
+  <div class="scale-row">
+    <div class="scale-label">spacing.8</div>
+    <div class="scale-bar-wrap">
+      <div class="scale-bar" style="width:44px;"></div>
+      <div class="scale-value">8px</div>
+      <div class="scale-desc">Tight row gaps and small vertical rhythm.</div>
+    </div>
+  </div>
+  <div class="scale-row">
+    <div class="scale-label">spacing.12</div>
+    <div class="scale-bar-wrap">
+      <div class="scale-bar" style="width:67px;"></div>
+      <div class="scale-value">12px</div>
+      <div class="scale-desc">Field padding and compact list gaps.</div>
+    </div>
+  </div>
+  <div class="scale-row">
+    <div class="scale-label">spacing.16</div>
+    <div class="scale-bar-wrap">
+      <div class="scale-bar" style="width:89px;"></div>
+      <div class="scale-value">16px</div>
+      <div class="scale-desc">Standard container padding and section insets.</div>
+    </div>
+  </div>
+  <div class="scale-row">
+    <div class="scale-label">spacing.20</div>
+    <div class="scale-bar-wrap">
+      <div class="scale-bar" style="width:111px;"></div>
+      <div class="scale-value">20px</div>
+      <div class="scale-desc">Medium content separation.</div>
+    </div>
+  </div>
+  <div class="scale-row">
+    <div class="scale-label">spacing.24</div>
+    <div class="scale-bar-wrap">
+      <div class="scale-bar" style="width:133px;"></div>
+      <div class="scale-value">24px</div>
+      <div class="scale-desc">Larger intra-section gaps.</div>
+    </div>
+  </div>
+  <div class="scale-row">
+    <div class="scale-label">spacing.32</div>
+    <div class="scale-bar-wrap">
+      <div class="scale-bar" style="width:178px;"></div>
+      <div class="scale-value">32px</div>
+      <div class="scale-desc">Section-level separation and action groups.</div>
+    </div>
+  </div>
+  <div class="scale-row">
+    <div class="scale-label">spacing.40</div>
+    <div class="scale-bar-wrap">
+      <div class="scale-bar" style="width:222px;"></div>
+      <div class="scale-value">40px</div>
+      <div class="scale-desc">Large content separation.</div>
+    </div>
+  </div>
+  <div class="scale-row">
+    <div class="scale-label">spacing.42</div>
+    <div class="scale-bar-wrap">
+      <div class="scale-bar" style="width:233px;"></div>
+      <div class="scale-value">42px</div>
+      <div class="scale-desc">Preserved from observed layout offsets.</div>
+    </div>
+  </div>
+  <div class="scale-row">
+    <div class="scale-label">spacing.72</div>
+    <div class="scale-bar-wrap">
+      <div class="scale-bar" style="width:400px;"></div>
+      <div class="scale-value">72px</div>
+      <div class="scale-desc">Large top offsets — modal content separation.</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- =========================================================
+     PRIMITIVE — SIZE
+     ========================================================= -->
+<h2>Primitive &mdash; Size <span class="badge badge-primitive">primitive</span></h2>
+<div class="scale-list">
+  <!-- max reference = 90px for visual scale, bar max-width = 360px; scale = 4px/px -->
+  <div class="scale-row">
+    <div class="scale-label">size.4</div>
+    <div class="scale-bar-wrap">
+      <div class="scale-bar" style="width:16px; background:#007FFF;"></div>
+      <div class="scale-value">4px</div>
+      <div class="scale-desc">Drag handle height.</div>
+    </div>
+  </div>
+  <div class="scale-row">
+    <div class="scale-label">size.16</div>
+    <div class="scale-bar-wrap">
+      <div class="scale-bar" style="width:64px; background:#007FFF;"></div>
+      <div class="scale-value">16px</div>
+      <div class="scale-desc">Compact icons and small square affordances.</div>
+    </div>
+  </div>
+  <div class="scale-row">
+    <div class="scale-label">size.20</div>
+    <div class="scale-bar-wrap">
+      <div class="scale-bar" style="width:80px; background:#007FFF;"></div>
+      <div class="scale-value">20px</div>
+      <div class="scale-desc">Small status-row icons.</div>
+    </div>
+  </div>
+  <div class="scale-row">
+    <div class="scale-label">size.24</div>
+    <div class="scale-bar-wrap">
+      <div class="scale-bar" style="width:96px; background:#007FFF;"></div>
+      <div class="scale-value">24px</div>
+      <div class="scale-desc">Standard compact controls and icons.</div>
+    </div>
+  </div>
+  <div class="scale-row">
+    <div class="scale-label">size.32</div>
+    <div class="scale-bar-wrap">
+      <div class="scale-bar" style="width:128px; background:#007FFF;"></div>
+      <div class="scale-value">32px</div>
+      <div class="scale-desc">Compact control heights and square icon buttons.</div>
+    </div>
+  </div>
+  <div class="scale-row">
+    <div class="scale-label">size.36</div>
+    <div class="scale-bar-wrap">
+      <div class="scale-bar" style="width:144px; background:#007FFF;"></div>
+      <div class="scale-value">36px</div>
+      <div class="scale-desc">Drag handle width.</div>
+    </div>
+  </div>
+  <div class="scale-row">
+    <div class="scale-label">size.40</div>
+    <div class="scale-bar-wrap">
+      <div class="scale-bar" style="width:160px; background:#007FFF;"></div>
+      <div class="scale-value">40px</div>
+      <div class="scale-desc">Large list icons and prominent square affordances.</div>
+    </div>
+  </div>
+  <div class="scale-row">
+    <div class="scale-label">size.44</div>
+    <div class="scale-bar-wrap">
+      <div class="scale-bar" style="width:176px; background:#007FFF;"></div>
+      <div class="scale-value">44px</div>
+      <div class="scale-desc">Touch-friendly compact control height.</div>
+    </div>
+  </div>
+  <div class="scale-row">
+    <div class="scale-label">size.48</div>
+    <div class="scale-bar-wrap">
+      <div class="scale-bar" style="width:192px; background:#007FFF;"></div>
+      <div class="scale-value">48px</div>
+      <div class="scale-desc">Field heights and medium touch controls.</div>
+    </div>
+  </div>
+  <div class="scale-row">
+    <div class="scale-label">size.52</div>
+    <div class="scale-bar-wrap">
+      <div class="scale-bar" style="width:208px; background:#007FFF;"></div>
+      <div class="scale-value">52px</div>
+      <div class="scale-desc">Primary button height.</div>
+    </div>
+  </div>
+  <div class="scale-row">
+    <div class="scale-label">size.56</div>
+    <div class="scale-bar-wrap">
+      <div class="scale-bar" style="width:224px; background:#007FFF;"></div>
+      <div class="scale-value">56px</div>
+      <div class="scale-desc">Secondary mobile navigation height.</div>
+    </div>
+  </div>
+  <div class="scale-row">
+    <div class="scale-label">size.62</div>
+    <div class="scale-bar-wrap">
+      <div class="scale-bar" style="width:248px; background:#007FFF;"></div>
+      <div class="scale-value">62px</div>
+      <div class="scale-desc">Token list row height.</div>
+    </div>
+  </div>
+  <div class="scale-row">
+    <div class="scale-label">size.64</div>
+    <div class="scale-bar-wrap">
+      <div class="scale-bar" style="width:256px; background:#007FFF;"></div>
+      <div class="scale-value">64px</div>
+      <div class="scale-desc">Tall compact containers and touch targets.</div>
+    </div>
+  </div>
+  <div class="scale-row">
+    <div class="scale-label">size.68</div>
+    <div class="scale-bar-wrap">
+      <div class="scale-bar" style="width:272px; background:#007FFF;"></div>
+      <div class="scale-value">68px</div>
+      <div class="scale-desc">Web navigation height.</div>
+    </div>
+  </div>
+  <div class="scale-row">
+    <div class="scale-label">size.90</div>
+    <div class="scale-bar-wrap">
+      <div class="scale-bar" style="width:360px; background:#007FFF;"></div>
+      <div class="scale-value">90px</div>
+      <div class="scale-desc">Primary mobile navigation height.</div>
+    </div>
+  </div>
+  <div class="scale-row">
+    <div class="scale-label">size.343</div>
+    <div class="scale-bar-wrap">
+      <div class="scale-value" style="color:#111D4A;">343px</div>
+      <div class="scale-desc">Canonical compact container width.</div>
+    </div>
+  </div>
+  <div class="scale-row">
+    <div class="scale-label">size.356</div>
+    <div class="scale-bar-wrap">
+      <div class="scale-value" style="color:#111D4A;">356px</div>
+      <div class="scale-desc">Canonical container width.</div>
+    </div>
+  </div>
+  <div class="scale-row">
+    <div class="scale-label">size.375</div>
+    <div class="scale-bar-wrap">
+      <div class="scale-value" style="color:#111D4A;">375px</div>
+      <div class="scale-desc">Canonical mobile frame width.</div>
+    </div>
+  </div>
+  <div class="scale-row">
+    <div class="scale-label">size.1200</div>
+    <div class="scale-bar-wrap">
+      <div class="scale-value" style="color:#111D4A;">1200px</div>
+      <div class="scale-desc">Canonical wide web container width.</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- =========================================================
+     PRIMITIVE — RADIUS
+     ========================================================= -->
+<h2>Primitive &mdash; Radius <span class="badge badge-primitive">primitive</span></h2>
+<div class="radius-grid">
+  <div class="radius-tile">
+    <div class="radius-box radius-box-sm"></div>
+    <div class="radius-name">radius.sm</div>
+    <div class="radius-val missing">[MISSING]</div>
+  </div>
+  <div class="radius-tile">
+    <div class="radius-box radius-box-md"></div>
+    <div class="radius-name">radius.md</div>
+    <div class="radius-val missing">[MISSING]</div>
+  </div>
+  <div class="radius-tile">
+    <div class="radius-box radius-box-lg"></div>
+    <div class="radius-name">radius.lg</div>
+    <div class="radius-val missing">[MISSING]</div>
+  </div>
+  <div class="radius-tile">
+    <div class="radius-box radius-box-full"></div>
+    <div class="radius-name">radius.full</div>
+    <div class="radius-val missing">[MISSING]</div>
+  </div>
+</div>
+<p style="font-size:10px;color:rgba(17,29,74,0.35);margin-top:10px;">Shapes above are illustrative; exact pixel values pending confirmation from source design data.</p>
+
+
+<!-- =========================================================
+     SEMANTIC — BACKGROUND
+     ========================================================= -->
+<h2>Semantic &mdash; Background <span class="badge badge-semantic">semantic</span></h2>
+<div class="theme-panels">
+  <div class="theme-panel theme-panel-light">
+    <div class="tp-label">Light</div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#FFFFFF;"></div></div><div class="tp-info"><div class="tp-name">background.general</div><div class="tp-val">#FFFFFF — Primary app background</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#FFFFFF;"></div></div><div class="tp-info"><div class="tp-name">background.card</div><div class="tp-val">#FFFFFF — Card surface</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#F9FAFB;"></div></div><div class="tp-info"><div class="tp-name">background.modal</div><div class="tp-val">#F9FAFB — Modal container</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#FFFFFF;"></div></div><div class="tp-info"><div class="tp-name">background.modal_section</div><div class="tp-val">#FFFFFF — Modal section panel</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#F0F1F3;"></div></div><div class="tp-info"><div class="tp-name">background.modal_section_inner</div><div class="tp-val">#F0F1F3 — Inner modal subsection</div></div></div>
+    <div class="tp-row"><div class="tp-swatch ck"><div class="tp-fill" style="background:rgba(255,255,255,0.8);"></div></div><div class="tp-info"><div class="tp-name">background.backdrop</div><div class="tp-val">rgba(255,255,255,0.8) — Frosted glass overlay</div></div></div>
+  </div>
+  <div class="theme-panel theme-panel-dark">
+    <div class="tp-label">Dark</div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#1C1C1E;"></div></div><div class="tp-info"><div class="tp-name">background.general</div><div class="tp-val">#1C1C1E</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#1C1C1E;"></div></div><div class="tp-info"><div class="tp-name">background.card</div><div class="tp-val">#1C1C1E</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#1C1C1E;"></div></div><div class="tp-info"><div class="tp-name">background.modal</div><div class="tp-val">#1C1C1E</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#2C2C2E;"></div></div><div class="tp-info"><div class="tp-name">background.modal_section</div><div class="tp-val">#2C2C2E — Elevated surface</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#1C1C1E;"></div></div><div class="tp-info"><div class="tp-name">background.modal_section_inner</div><div class="tp-val">#1C1C1E</div></div></div>
+    <div class="tp-row"><div class="tp-swatch ck-dark"><div class="tp-fill" style="background:rgba(0,0,0,0.8);"></div></div><div class="tp-info"><div class="tp-name">background.backdrop</div><div class="tp-val">rgba(0,0,0,0.8)</div></div></div>
+  </div>
+</div>
+
+
+<!-- =========================================================
+     SEMANTIC — TEXT
+     ========================================================= -->
+<h2>Semantic &mdash; Text <span class="badge badge-semantic">semantic</span></h2>
+<div class="theme-panels">
+  <div class="theme-panel theme-panel-light">
+    <div class="tp-label">Light</div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#111D4A;"></div></div><div class="tp-info"><div class="tp-name">text.core</div><div class="tp-val">#111D4A — Balance, page headings</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#111D4A;"></div></div><div class="tp-info"><div class="tp-name">text.primary</div><div class="tp-val">#111D4A — Titles, main content</div></div></div>
+    <div class="tp-row"><div class="tp-swatch ck"><div class="tp-fill" style="background:rgba(17,29,74,0.4);"></div></div><div class="tp-info"><div class="tp-name">text.secondary</div><div class="tp-val">rgba(17,29,74,0.4) — Captions, metadata</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#007FFF;"></div></div><div class="tp-info"><div class="tp-name">text.action</div><div class="tp-val">#007FFF — Links, CTAs</div></div></div>
+    <div class="tp-row"><div class="tp-swatch ck"><div class="tp-fill" style="background:rgba(17,29,74,0.2);"></div></div><div class="tp-info"><div class="tp-name">text.placeholder</div><div class="tp-val">rgba(17,29,74,0.2) — Hint text</div></div></div>
+  </div>
+  <div class="theme-panel theme-panel-dark">
+    <div class="tp-label">Dark</div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#FFFFFF;"></div></div><div class="tp-info"><div class="tp-name">text.core</div><div class="tp-val">#FFFFFF</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#D6D7E0;"></div></div><div class="tp-info"><div class="tp-name">text.primary</div><div class="tp-val">#D6D7E0</div></div></div>
+    <div class="tp-row"><div class="tp-swatch ck-dark"><div class="tp-fill" style="background:rgba(221,222,234,0.4);"></div></div><div class="tp-info"><div class="tp-name">text.secondary</div><div class="tp-val">rgba(221,222,234,0.4)</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#066BD2;"></div></div><div class="tp-info"><div class="tp-name">text.action</div><div class="tp-val">#066BD2</div></div></div>
+    <div class="tp-row"><div class="tp-swatch ck-dark"><div class="tp-fill" style="background:rgba(255,255,255,0.2);"></div></div><div class="tp-info"><div class="tp-name">text.placeholder</div><div class="tp-val">rgba(255,255,255,0.2)</div></div></div>
+  </div>
+</div>
+
+
+<!-- =========================================================
+     SEMANTIC — STROKE / BORDER / FILL
+     ========================================================= -->
+<h2>Semantic &mdash; Stroke, Border &amp; Fill <span class="badge badge-semantic">semantic</span></h2>
+<div class="theme-panels">
+  <div class="theme-panel theme-panel-light">
+    <div class="tp-label">Light</div>
+    <div class="tp-group">stroke</div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#111D4A;"></div></div><div class="tp-info"><div class="tp-name">stroke.icon_primary</div><div class="tp-val">#111D4A</div></div></div>
+    <div class="tp-row"><div class="tp-swatch ck"><div class="tp-fill" style="background:rgba(17,29,74,0.4);"></div></div><div class="tp-info"><div class="tp-name">stroke.icon_secondary</div><div class="tp-val">rgba(17,29,74,0.4)</div></div></div>
+    <div class="tp-group">border</div>
+    <div class="tp-row"><div class="tp-swatch ck"><div class="tp-fill" style="background:rgba(17,29,74,0.08);"></div></div><div class="tp-info"><div class="tp-name">border.default</div><div class="tp-val">rgba(17,29,74,0.08)</div></div></div>
+    <div class="tp-group">fill</div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#F0F1F3;"></div></div><div class="tp-info"><div class="tp-name">fill.icon_chip</div><div class="tp-val">#F0F1F3 — Icon chip pill</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#111D4A;"></div></div><div class="tp-info"><div class="tp-name">fill.secondary</div><div class="tp-val">#111D4A — Secondary buttons</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#FFFFFF;"></div></div><div class="tp-info"><div class="tp-name">fill.tertiary</div><div class="tp-val">#FFFFFF — Ghost buttons</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#111D4A;"></div></div><div class="tp-info"><div class="tp-name">fill.logo</div><div class="tp-val">#111D4A</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#FFFFFF;"></div></div><div class="tp-info"><div class="tp-name">fill.color_1</div><div class="tp-val">#FFFFFF — Brand slot 1</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#FFFFFF;"></div></div><div class="tp-info"><div class="tp-name">fill.color_2</div><div class="tp-val">#FFFFFF — Brand slot 2</div></div></div>
+  </div>
+  <div class="theme-panel theme-panel-dark">
+    <div class="tp-label">Dark</div>
+    <div class="tp-group">stroke</div>
+    <div class="tp-row"><div class="tp-swatch ck-dark"><div class="tp-fill" style="background:rgba(221,222,234,0.8);"></div></div><div class="tp-info"><div class="tp-name">stroke.icon_primary</div><div class="tp-val">rgba(221,222,234,0.8)</div></div></div>
+    <div class="tp-row"><div class="tp-swatch ck-dark"><div class="tp-fill" style="background:rgba(221,222,234,0.4);"></div></div><div class="tp-info"><div class="tp-name">stroke.icon_secondary</div><div class="tp-val">rgba(221,222,234,0.4)</div></div></div>
+    <div class="tp-group">border</div>
+    <div class="tp-row"><div class="tp-swatch ck-dark"><div class="tp-fill" style="background:rgba(221,222,234,0.08);"></div></div><div class="tp-info"><div class="tp-name">border.default</div><div class="tp-val">rgba(221,222,234,0.08)</div></div></div>
+    <div class="tp-group">fill</div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#2C2C2E;"></div></div><div class="tp-info"><div class="tp-name">fill.icon_chip</div><div class="tp-val">#2C2C2E</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#B6B7C1;"></div></div><div class="tp-info"><div class="tp-name">fill.secondary</div><div class="tp-val">#B6B7C1</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#1C1C1E;"></div></div><div class="tp-info"><div class="tp-name">fill.tertiary</div><div class="tp-val">#1C1C1E</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#FFFFFF;"></div></div><div class="tp-info"><div class="tp-name">fill.logo</div><div class="tp-val">#FFFFFF</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#FFFFFF;"></div></div><div class="tp-info"><div class="tp-name">fill.color_1</div><div class="tp-val">#FFFFFF</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#FFFFFF;"></div></div><div class="tp-info"><div class="tp-name">fill.color_2</div><div class="tp-val">#FFFFFF</div></div></div>
+  </div>
+</div>
+
+
+<!-- =========================================================
+     SEMANTIC — GRADIENT
+     ========================================================= -->
+<h2>Semantic &mdash; Gradient <span class="badge badge-semantic">semantic</span></h2>
+<div class="two-col">
+
+  <div>
+    <div class="panel-label">gradient.general</div>
+    <div class="two-col" style="gap:12px;">
+      <div class="panel">
+        <div class="panel-label">light</div>
+        <div class="grad-preview" style="background:linear-gradient(180deg,#F9FDFF 0%,#F0F1F3 100%);"></div>
+        <div style="font-size:10px;color:rgba(17,29,74,0.5);">#F9FDFF &rarr; #F0F1F3</div>
+        <div style="font-size:10px;color:rgba(17,29,74,0.35);margin-top:2px;">near-white blue → light gray</div>
+      </div>
+      <div class="panel" style="background:#111;">
+        <div class="panel-label" style="color:rgba(255,255,255,0.4);">dark</div>
+        <div class="grad-preview" style="background:linear-gradient(180deg,#000000 0%,#1F1F1F 100%);"></div>
+        <div style="font-size:10px;color:rgba(255,255,255,0.4);">#000000 &rarr; #1F1F1F</div>
+        <div style="font-size:10px;color:rgba(255,255,255,0.25);margin-top:2px;">black → gray.850</div>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <div class="panel-label">gradient.main (hero)</div>
+    <div class="two-col" style="gap:12px;">
+      <div class="panel">
+        <div class="panel-label">light</div>
+        <div class="grad-preview" style="background:linear-gradient(180deg,#F9FDFF 0%,#D6EBFF 100%);"></div>
+        <div style="font-size:10px;color:rgba(17,29,74,0.5);">#F9FDFF &rarr; #D6EBFF</div>
+        <div style="font-size:10px;color:rgba(17,29,74,0.35);margin-top:2px;">near-white blue → light blue</div>
+      </div>
+      <div class="panel" style="background:#111;">
+        <div class="panel-label" style="color:rgba(255,255,255,0.4);">dark</div>
+        <div class="grad-preview" style="background:linear-gradient(180deg,#000000 0%,#003160 100%);"></div>
+        <div style="font-size:10px;color:rgba(255,255,255,0.4);">#000000 &rarr; #003160</div>
+        <div style="font-size:10px;color:rgba(255,255,255,0.25);margin-top:2px;">black → navy.800</div>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <div class="panel-label">gradient.xaut_card</div>
+    <div class="two-col" style="gap:12px;">
+      <div class="panel">
+        <div class="panel-label">light</div>
+        <div class="grad-preview" style="background:linear-gradient(180deg,rgba(255,255,255,0.6) 0%,#EEF7FF 100%); border:1px solid rgba(17,29,74,0.08);"></div>
+        <div style="font-size:10px;color:rgba(17,29,74,0.5);">white_a60 &rarr; #EEF7FF</div>
+        <div style="font-size:10px;color:rgba(17,29,74,0.35);margin-top:2px;">glass overlay → pale blue</div>
+      </div>
+      <div class="panel" style="background:#111;">
+        <div class="panel-label" style="color:rgba(255,255,255,0.4);">dark</div>
+        <div class="grad-preview" style="background:linear-gradient(180deg,rgba(21,20,23,0.7) 0%,#2C2C2E 100%);"></div>
+        <div style="font-size:10px;color:rgba(255,255,255,0.4);">custom_a70 &rarr; #2C2C2E</div>
+        <div style="font-size:10px;color:rgba(255,255,255,0.25);margin-top:2px;">warm near-black → gray.800</div>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <div class="panel-label">gradient.bar_backdrop</div>
+    <div class="two-col" style="gap:12px;">
+      <div class="panel">
+        <div class="panel-label">light</div>
+        <div class="grad-preview" style="background:linear-gradient(180deg,rgba(255,255,255,0) 0%,#FFFFFF 100%); border:1px solid rgba(17,29,74,0.08);"></div>
+        <div style="font-size:10px;color:rgba(17,29,74,0.5);">white_a0 &rarr; #FFFFFF</div>
+        <div style="font-size:10px;color:rgba(17,29,74,0.35);margin-top:2px;">transparent → white (feathered)</div>
+      </div>
+      <div class="panel" style="background:#111;">
+        <div class="panel-label" style="color:rgba(255,255,255,0.4);">dark</div>
+        <div class="grad-preview" style="background:linear-gradient(180deg,rgba(1,3,6,0) 0%,#010306 100%);"></div>
+        <div style="font-size:10px;color:rgba(255,255,255,0.4);">gray.950_a0 &rarr; #010306</div>
+        <div style="font-size:10px;color:rgba(255,255,255,0.25);margin-top:2px;">transparent → OLED black</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<!-- =========================================================
+     PATTERN
+     ========================================================= -->
+<h2>Pattern <span class="badge badge-pattern">pattern</span></h2>
+
+<h3>Color tokens</h3>
+<div class="theme-panels">
+  <div class="theme-panel theme-panel-light">
+    <div class="tp-label">Light</div>
+    <div class="tp-group">surface.card</div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#FFFFFF;"></div></div><div class="tp-info"><div class="tp-name">surface.card.background</div><div class="tp-val">#FFFFFF</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#111D4A;"></div></div><div class="tp-info"><div class="tp-name">surface.card.title</div><div class="tp-val">#111D4A</div></div></div>
+    <div class="tp-row"><div class="tp-swatch ck"><div class="tp-fill" style="background:rgba(17,29,74,0.4);"></div></div><div class="tp-info"><div class="tp-name">surface.card.body</div><div class="tp-val">rgba(17,29,74,0.4)</div></div></div>
+    <div class="tp-group">modal.form</div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#111D4A;"></div></div><div class="tp-info"><div class="tp-name">modal.form.title</div><div class="tp-val">#111D4A</div></div></div>
+    <div class="tp-row"><div class="tp-swatch ck"><div class="tp-fill" style="background:rgba(17,29,74,0.4);"></div></div><div class="tp-info"><div class="tp-name">modal.form.body</div><div class="tp-val">rgba(17,29,74,0.4)</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#FFFFFF;"></div></div><div class="tp-info"><div class="tp-name">modal.form.fieldBackground</div><div class="tp-val">#FFFFFF</div></div></div>
+    <div class="tp-group">list.tokenItem</div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#111D4A;"></div></div><div class="tp-info"><div class="tp-name">list.tokenItem.text</div><div class="tp-val">#111D4A</div></div></div>
+    <div class="tp-row"><div class="tp-swatch ck"><div class="tp-fill" style="background:rgba(17,29,74,0.4);"></div></div><div class="tp-info"><div class="tp-name">list.tokenItem.subtext</div><div class="tp-val">rgba(17,29,74,0.4)</div></div></div>
+    <div class="tp-group">list.statusRow</div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#111D4A;"></div></div><div class="tp-info"><div class="tp-name">list.statusRow.title</div><div class="tp-val">#111D4A</div></div></div>
+    <div class="tp-row"><div class="tp-swatch ck"><div class="tp-fill" style="background:rgba(17,29,74,0.4);"></div></div><div class="tp-info"><div class="tp-name">list.statusRow.meta</div><div class="tp-val">rgba(17,29,74,0.4)</div></div></div>
+  </div>
+  <div class="theme-panel theme-panel-dark">
+    <div class="tp-label">Dark</div>
+    <div class="tp-group">surface.card</div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#1C1C1E;"></div></div><div class="tp-info"><div class="tp-name">surface.card.background</div><div class="tp-val">#1C1C1E</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#D6D7E0;"></div></div><div class="tp-info"><div class="tp-name">surface.card.title</div><div class="tp-val">#D6D7E0</div></div></div>
+    <div class="tp-row"><div class="tp-swatch ck-dark"><div class="tp-fill" style="background:rgba(221,222,234,0.4);"></div></div><div class="tp-info"><div class="tp-name">surface.card.body</div><div class="tp-val">rgba(221,222,234,0.4)</div></div></div>
+    <div class="tp-group">modal.form</div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#D6D7E0;"></div></div><div class="tp-info"><div class="tp-name">modal.form.title</div><div class="tp-val">#D6D7E0</div></div></div>
+    <div class="tp-row"><div class="tp-swatch ck-dark"><div class="tp-fill" style="background:rgba(221,222,234,0.4);"></div></div><div class="tp-info"><div class="tp-name">modal.form.body</div><div class="tp-val">rgba(221,222,234,0.4)</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#2C2C2E;"></div></div><div class="tp-info"><div class="tp-name">modal.form.fieldBackground</div><div class="tp-val">#2C2C2E</div></div></div>
+    <div class="tp-group">list.tokenItem</div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#D6D7E0;"></div></div><div class="tp-info"><div class="tp-name">list.tokenItem.text</div><div class="tp-val">#D6D7E0</div></div></div>
+    <div class="tp-row"><div class="tp-swatch ck-dark"><div class="tp-fill" style="background:rgba(221,222,234,0.4);"></div></div><div class="tp-info"><div class="tp-name">list.tokenItem.subtext</div><div class="tp-val">rgba(221,222,234,0.4)</div></div></div>
+    <div class="tp-group">list.statusRow</div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#D6D7E0;"></div></div><div class="tp-info"><div class="tp-name">list.statusRow.title</div><div class="tp-val">#D6D7E0</div></div></div>
+    <div class="tp-row"><div class="tp-swatch ck-dark"><div class="tp-fill" style="background:rgba(221,222,234,0.4);"></div></div><div class="tp-info"><div class="tp-name">list.statusRow.meta</div><div class="tp-val">rgba(221,222,234,0.4)</div></div></div>
+  </div>
+</div>
+
+<h3>Dimensions &amp; strings</h3>
+<table class="dim-table">
+  <tr><th style="width:280px;">Token</th><th style="width:80px;">Value</th><th>Description</th></tr>
+  <tr><td>surface.card.padding</td><td>16px</td><td>Internal card padding.</td></tr>
+  <tr><td>surface.card.radius</td><td class="missing">[MISSING] → radius.md</td><td>Card corner radius.</td></tr>
+  <tr><td>modal.form.fieldPaddingX</td><td>12px</td><td>Field horizontal padding.</td></tr>
+  <tr><td>modal.form.fieldHeight</td><td>48px</td><td>Field height.</td></tr>
+  <tr><td>modal.form.sectionGap</td><td>32px</td><td>Section gap.</td></tr>
+  <tr><td>modal.form.actionGap</td><td>32px</td><td>Action group gap.</td></tr>
+  <tr><td>list.tokenItem.iconSize</td><td>40px</td><td>Icon size.</td></tr>
+  <tr><td>list.tokenItem.gap</td><td>12px</td><td>Internal gap between icon and text.</td></tr>
+  <tr><td>list.tokenItem.height</td><td>62px</td><td>Row height.</td></tr>
+  <tr><td>list.statusRow.iconSize</td><td>20px</td><td>Icon size.</td></tr>
+  <tr><td>list.statusRow.rowGap</td><td>8px</td><td>Internal row gap.</td></tr>
+  <tr><td>list.statusRow.paddingY</td><td>16px</td><td>Vertical row padding.</td></tr>
+</table>
+
+
+<!-- =========================================================
+     COMPONENT
+     ========================================================= -->
+<h2>Component <span class="badge badge-component">component</span></h2>
+
+<h3>Color tokens</h3>
+<div class="theme-panels">
+  <div class="theme-panel theme-panel-light">
+    <div class="tp-label">Light</div>
+    <div class="tp-group">mobileNav / primary</div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#111D4A;"></div></div><div class="tp-info"><div class="tp-name">mobileNav.primary.default.title</div><div class="tp-val">#111D4A</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#111D4A;"></div></div><div class="tp-info"><div class="tp-name">mobileNav.primary.default.icon</div><div class="tp-val">#111D4A</div></div></div>
+    <div class="tp-group">mobileNav / secondary</div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#111D4A;"></div></div><div class="tp-info"><div class="tp-name">mobileNav.secondary.default.title</div><div class="tp-val">#111D4A</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#111D4A;"></div></div><div class="tp-info"><div class="tp-name">mobileNav.secondary.default.icon</div><div class="tp-val">#111D4A</div></div></div>
+    <div class="tp-group">webNav</div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#FFFFFF;"></div></div><div class="tp-info"><div class="tp-name">webNav.default.default.background</div><div class="tp-val">#FFFFFF</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#111D4A;"></div></div><div class="tp-info"><div class="tp-name">webNav.default.default.title</div><div class="tp-val">#111D4A</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#111D4A;"></div></div><div class="tp-info"><div class="tp-name">webNav.default.default.icon</div><div class="tp-val">#111D4A</div></div></div>
+    <div class="tp-row"><div class="tp-swatch ck"><div class="tp-fill" style="background:rgba(17,29,74,0.08);"></div></div><div class="tp-info"><div class="tp-name">webNav.default.default.border</div><div class="tp-val">rgba(17,29,74,0.08)</div></div></div>
+    <div class="tp-group">modal</div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#F9FAFB;"></div></div><div class="tp-info"><div class="tp-name">modal.default.default.background</div><div class="tp-val">#F9FAFB</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#111D4A;"></div></div><div class="tp-info"><div class="tp-name">modal.default.default.title</div><div class="tp-val">#111D4A</div></div></div>
+    <div class="tp-row"><div class="tp-swatch ck"><div class="tp-fill" style="background:rgba(17,29,74,0.4);"></div></div><div class="tp-info"><div class="tp-name">modal.default.default.body</div><div class="tp-val">rgba(17,29,74,0.4)</div></div></div>
+    <div class="tp-group">button / primary</div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#111D4A;"></div></div><div class="tp-info"><div class="tp-name">button.primary.default.background</div><div class="tp-val">#111D4A</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#007FFF;"></div></div><div class="tp-info"><div class="tp-name">button.primary.default.text</div><div class="tp-val">#007FFF</div></div></div>
+    <div class="tp-group">menu</div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#FFFFFF;"></div></div><div class="tp-info"><div class="tp-name">menu.default.signedOut.background</div><div class="tp-val">#FFFFFF</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#FFFFFF;"></div></div><div class="tp-info"><div class="tp-name">menu.default.signedIn.background</div><div class="tp-val">#FFFFFF</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#111D4A;"></div></div><div class="tp-info"><div class="tp-name">menu.default.default.title</div><div class="tp-val">#111D4A</div></div></div>
+    <div class="tp-row"><div class="tp-swatch ck"><div class="tp-fill" style="background:rgba(17,29,74,0.4);"></div></div><div class="tp-info"><div class="tp-name">menu.default.default.body</div><div class="tp-val">rgba(17,29,74,0.4)</div></div></div>
+  </div>
+  <div class="theme-panel theme-panel-dark">
+    <div class="tp-label">Dark</div>
+    <div class="tp-group">mobileNav / primary</div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#D6D7E0;"></div></div><div class="tp-info"><div class="tp-name">mobileNav.primary.default.title</div><div class="tp-val">#D6D7E0</div></div></div>
+    <div class="tp-row"><div class="tp-swatch ck-dark"><div class="tp-fill" style="background:rgba(221,222,234,0.8);"></div></div><div class="tp-info"><div class="tp-name">mobileNav.primary.default.icon</div><div class="tp-val">rgba(221,222,234,0.8)</div></div></div>
+    <div class="tp-group">mobileNav / secondary</div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#D6D7E0;"></div></div><div class="tp-info"><div class="tp-name">mobileNav.secondary.default.title</div><div class="tp-val">#D6D7E0</div></div></div>
+    <div class="tp-row"><div class="tp-swatch ck-dark"><div class="tp-fill" style="background:rgba(221,222,234,0.8);"></div></div><div class="tp-info"><div class="tp-name">mobileNav.secondary.default.icon</div><div class="tp-val">rgba(221,222,234,0.8)</div></div></div>
+    <div class="tp-group">webNav</div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#1C1C1E;"></div></div><div class="tp-info"><div class="tp-name">webNav.default.default.background</div><div class="tp-val">#1C1C1E</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#D6D7E0;"></div></div><div class="tp-info"><div class="tp-name">webNav.default.default.title</div><div class="tp-val">#D6D7E0</div></div></div>
+    <div class="tp-row"><div class="tp-swatch ck-dark"><div class="tp-fill" style="background:rgba(221,222,234,0.8);"></div></div><div class="tp-info"><div class="tp-name">webNav.default.default.icon</div><div class="tp-val">rgba(221,222,234,0.8)</div></div></div>
+    <div class="tp-row"><div class="tp-swatch ck-dark"><div class="tp-fill" style="background:rgba(221,222,234,0.08);"></div></div><div class="tp-info"><div class="tp-name">webNav.default.default.border</div><div class="tp-val">rgba(221,222,234,0.08)</div></div></div>
+    <div class="tp-group">modal</div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#1C1C1E;"></div></div><div class="tp-info"><div class="tp-name">modal.default.default.background</div><div class="tp-val">#1C1C1E</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#D6D7E0;"></div></div><div class="tp-info"><div class="tp-name">modal.default.default.title</div><div class="tp-val">#D6D7E0</div></div></div>
+    <div class="tp-row"><div class="tp-swatch ck-dark"><div class="tp-fill" style="background:rgba(221,222,234,0.4);"></div></div><div class="tp-info"><div class="tp-name">modal.default.default.body</div><div class="tp-val">rgba(221,222,234,0.4)</div></div></div>
+    <div class="tp-group">button / primary</div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#B6B7C1;"></div></div><div class="tp-info"><div class="tp-name">button.primary.default.background</div><div class="tp-val">#B6B7C1</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#066BD2;"></div></div><div class="tp-info"><div class="tp-name">button.primary.default.text</div><div class="tp-val">#066BD2</div></div></div>
+    <div class="tp-group">menu</div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#1C1C1E;"></div></div><div class="tp-info"><div class="tp-name">menu.default.signedOut.background</div><div class="tp-val">#1C1C1E</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#1C1C1E;"></div></div><div class="tp-info"><div class="tp-name">menu.default.signedIn.background</div><div class="tp-val">#1C1C1E</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#D6D7E0;"></div></div><div class="tp-info"><div class="tp-name">menu.default.default.title</div><div class="tp-val">#D6D7E0</div></div></div>
+    <div class="tp-row"><div class="tp-swatch ck-dark"><div class="tp-fill" style="background:rgba(221,222,234,0.4);"></div></div><div class="tp-info"><div class="tp-name">menu.default.default.body</div><div class="tp-val">rgba(221,222,234,0.4)</div></div></div>
+  </div>
+</div>
+
+<h3>Dimensions &amp; strings</h3>
+<table class="dim-table">
+  <tr><th style="width:340px;">Token</th><th style="width:80px;">Value</th><th>Description</th></tr>
+  <tr><td>mobileNav.primary.default.height</td><td>90px</td><td>Primary mobile nav height.</td></tr>
+  <tr><td>mobileNav.primary.default.paddingX</td><td>16px</td><td>Horizontal padding.</td></tr>
+  <tr><td>mobileNav.secondary.default.height</td><td>56px</td><td>Secondary mobile nav height.</td></tr>
+  <tr><td>mobileNav.secondary.default.paddingX</td><td>16px</td><td>Horizontal padding.</td></tr>
+  <tr><td>webNav.default.signedOut.height</td><td>68px</td><td>Signed-out web nav height.</td></tr>
+  <tr><td>webNav.default.signedIn.height</td><td>68px</td><td>Signed-in web nav height.</td></tr>
+  <tr><td>modal.default.default.paddingX</td><td>16px</td><td>Horizontal padding.</td></tr>
+  <tr><td>modal.default.default.paddingTop</td><td>8px</td><td>Top padding.</td></tr>
+  <tr><td>modal.default.default.contentTopGap</td><td>72px</td><td>Content top gap (below handle + header).</td></tr>
+  <tr><td>modal.default.default.closeButtonSize</td><td>32px</td><td>Close button size.</td></tr>
+  <tr><td>modal.default.default.dragHandleWidth</td><td>36px</td><td>Drag handle width.</td></tr>
+  <tr><td>modal.default.default.dragHandleHeight</td><td>4px</td><td>Drag handle height.</td></tr>
+  <tr><td>modal.default.default.radius</td><td class="missing">[MISSING] → radius.lg</td><td>Modal corner radius.</td></tr>
+  <tr><td>button.primary.default.height</td><td>52px</td><td>Primary button height.</td></tr>
+  <tr><td>button.primary.default.paddingX</td><td>16px</td><td>Horizontal padding.</td></tr>
+  <tr><td>button.primary.default.radius</td><td class="missing">[MISSING] → radius.md</td><td>Button corner radius.</td></tr>
+  <tr><td>menu.default.default.padding</td><td>16px</td><td>Menu internal padding.</td></tr>
+</table>
+
+<p style="font-size:10px;color:rgba(17,29,74,0.3);margin-top:48px;padding-top:16px;border-top:1px solid rgba(17,29,74,0.08);">
+  generated from adapters/ai/ai.tokens.json &mdash; 2026-03-22
+</p>
+
+</body>
+</html>
