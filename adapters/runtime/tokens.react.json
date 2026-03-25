@@ -290,7 +290,7 @@
         }
       },
       "textStyle": {
-        "titleLarge": {
+        "heroTitle": {
           "value": {
             "fontFamily": "Noto Sans",
             "fontWeight": 700,
@@ -301,11 +301,11 @@
               "unit": "%"
             }
           },
-          "sourceRef": "semantic.textStyle.titleLarge",
+          "sourceRef": "semantic.textStyle.heroTitle",
           "type": "typography",
           "description": "Largest title style from Figma, used for article titles and special large amount emphasis."
         },
-        "amountLarge": {
+        "heroAmount": {
           "value": {
             "fontFamily": "Noto Sans",
             "fontWeight": 700,
@@ -316,11 +316,11 @@
               "unit": "%"
             }
           },
-          "sourceRef": "semantic.textStyle.amountLarge",
+          "sourceRef": "semantic.textStyle.heroAmount",
           "type": "typography",
           "description": "Large amount and article-title style from Figma."
         },
-        "guideTitle": {
+        "sectionLead": {
           "value": {
             "fontFamily": "Noto Sans",
             "fontWeight": 500,
@@ -331,11 +331,11 @@
               "unit": "%"
             }
           },
-          "sourceRef": "semantic.textStyle.guideTitle",
+          "sourceRef": "semantic.textStyle.sectionLead",
           "type": "typography",
           "description": "Guide title style from Figma."
         },
-        "titleMedium": {
+        "navTitle": {
           "value": {
             "fontFamily": "Noto Sans",
             "fontWeight": 700,
@@ -346,11 +346,11 @@
               "unit": "%"
             }
           },
-          "sourceRef": "semantic.textStyle.titleMedium",
+          "sourceRef": "semantic.textStyle.navTitle",
           "type": "typography",
           "description": "Medium title style from Figma, used for navigation headings."
         },
-        "bodyMedium": {
+        "bodyPrimary": {
           "value": {
             "fontFamily": "Noto Sans",
             "fontWeight": 500,
@@ -361,11 +361,11 @@
               "unit": "%"
             }
           },
-          "sourceRef": "semantic.textStyle.bodyMedium",
+          "sourceRef": "semantic.textStyle.bodyPrimary",
           "type": "typography",
           "description": "Primary body content style from Figma."
         },
-        "buttonText": {
+        "actionLabel": {
           "value": {
             "fontFamily": "Noto Sans",
             "fontWeight": 400,
@@ -376,11 +376,11 @@
               "unit": "%"
             }
           },
-          "sourceRef": "semantic.textStyle.buttonText",
+          "sourceRef": "semantic.textStyle.actionLabel",
           "type": "typography",
           "description": "Button label style from Figma."
         },
-        "bodySmall": {
+        "bodySecondary": {
           "value": {
             "fontFamily": "Noto Sans",
             "fontWeight": 400,
@@ -391,11 +391,11 @@
               "unit": "%"
             }
           },
-          "sourceRef": "semantic.textStyle.bodySmall",
+          "sourceRef": "semantic.textStyle.bodySecondary",
           "type": "typography",
           "description": "Secondary body content style from Figma."
         },
-        "groupTitle": {
+        "sectionTitle": {
           "value": {
             "fontFamily": "Noto Sans",
             "fontWeight": 500,
@@ -406,11 +406,11 @@
               "unit": "%"
             }
           },
-          "sourceRef": "semantic.textStyle.groupTitle",
+          "sourceRef": "semantic.textStyle.sectionTitle",
           "type": "typography",
           "description": "Grouped section title style from Figma."
         },
-        "caption": {
+        "supportingText": {
           "value": {
             "fontFamily": "Noto Sans",
             "fontWeight": 400,
@@ -421,11 +421,11 @@
               "unit": "%"
             }
           },
-          "sourceRef": "semantic.textStyle.caption",
+          "sourceRef": "semantic.textStyle.supportingText",
           "type": "typography",
           "description": "Auxiliary information, annotation, and label style from Figma."
         },
-        "xSmall": {
+        "tabLabel": {
           "value": {
             "fontFamily": "Noto Sans",
             "fontWeight": 400,
@@ -436,7 +436,7 @@
               "unit": "%"
             }
           },
-          "sourceRef": "semantic.textStyle.xSmall",
+          "sourceRef": "semantic.textStyle.tabLabel",
           "type": "typography",
           "description": "Bottom navigation special-case small text style from Figma."
         }
@@ -452,16 +452,34 @@
             "description": "Reusable card surface background alias for light mode."
           },
           "title": {
-            "value": "#111D4A",
+            "value": {
+              "fontFamily": "Noto Sans",
+              "fontWeight": 500,
+              "fontSize": 14,
+              "lineHeight": "140%",
+              "letterSpacing": {
+                "value": 4,
+                "unit": "%"
+              }
+            },
             "sourceRef": "pattern.surface.card.title",
-            "type": "color",
-            "description": "Reusable card title alias for light mode."
+            "type": "typography",
+            "description": "Reusable card title alias aligned to the section title text style for light mode."
           },
           "body": {
-            "value": "#A0A5B7",
+            "value": {
+              "fontFamily": "Noto Sans",
+              "fontWeight": 400,
+              "fontSize": 14,
+              "lineHeight": "140%",
+              "letterSpacing": {
+                "value": 4,
+                "unit": "%"
+              }
+            },
             "sourceRef": "pattern.surface.card.body",
-            "type": "color",
-            "description": "Reusable card body text alias for light mode."
+            "type": "typography",
+            "description": "Reusable card body text alias aligned to the secondary body text style for light mode."
           },
           "padding": {
             "value": "16px",
@@ -480,16 +498,34 @@
       "modal": {
         "form": {
           "title": {
-            "value": "#111D4A",
+            "value": {
+              "fontFamily": "Noto Sans",
+              "fontWeight": 500,
+              "fontSize": 14,
+              "lineHeight": "140%",
+              "letterSpacing": {
+                "value": 4,
+                "unit": "%"
+              }
+            },
             "sourceRef": "pattern.modal.form.title",
-            "type": "color",
-            "description": "Modal form title alias for light mode."
+            "type": "typography",
+            "description": "Modal form title alias aligned to the section title text style for light mode."
           },
           "body": {
-            "value": "#A0A5B7",
+            "value": {
+              "fontFamily": "Noto Sans",
+              "fontWeight": 400,
+              "fontSize": 14,
+              "lineHeight": "140%",
+              "letterSpacing": {
+                "value": 4,
+                "unit": "%"
+              }
+            },
             "sourceRef": "pattern.modal.form.body",
-            "type": "color",
-            "description": "Modal form body text alias for light mode."
+            "type": "typography",
+            "description": "Modal form body text alias aligned to the secondary body text style for light mode."
           },
           "fieldBackground": {
             "value": "#FFFFFF",
@@ -526,16 +562,34 @@
       "list": {
         "tokenItem": {
           "text": {
-            "value": "#111D4A",
+            "value": {
+              "fontFamily": "Noto Sans",
+              "fontWeight": 500,
+              "fontSize": 16,
+              "lineHeight": "140%",
+              "letterSpacing": {
+                "value": 4,
+                "unit": "%"
+              }
+            },
             "sourceRef": "pattern.list.tokenItem.text",
-            "type": "color",
-            "description": "Token list item primary text alias for light mode."
+            "type": "typography",
+            "description": "Token list item primary text alias aligned to the primary body text style for light mode."
           },
           "subtext": {
-            "value": "#A0A5B7",
+            "value": {
+              "fontFamily": "Noto Sans",
+              "fontWeight": 400,
+              "fontSize": 14,
+              "lineHeight": "140%",
+              "letterSpacing": {
+                "value": 4,
+                "unit": "%"
+              }
+            },
             "sourceRef": "pattern.list.tokenItem.subtext",
-            "type": "color",
-            "description": "Token list item secondary text alias for light mode."
+            "type": "typography",
+            "description": "Token list item secondary text alias aligned to the secondary body text style for light mode."
           },
           "iconSize": {
             "value": "40px",
@@ -558,16 +612,34 @@
         },
         "statusRow": {
           "title": {
-            "value": "#111D4A",
+            "value": {
+              "fontFamily": "Noto Sans",
+              "fontWeight": 500,
+              "fontSize": 14,
+              "lineHeight": "140%",
+              "letterSpacing": {
+                "value": 4,
+                "unit": "%"
+              }
+            },
             "sourceRef": "pattern.list.statusRow.title",
-            "type": "color",
-            "description": "Status row title alias for light mode."
+            "type": "typography",
+            "description": "Status row title alias aligned to the section title text style for light mode."
           },
           "meta": {
-            "value": "#A0A5B7",
+            "value": {
+              "fontFamily": "Noto Sans",
+              "fontWeight": 400,
+              "fontSize": 12,
+              "lineHeight": "130%",
+              "letterSpacing": {
+                "value": 4,
+                "unit": "%"
+              }
+            },
             "sourceRef": "pattern.list.statusRow.meta",
-            "type": "color",
-            "description": "Status row metadata text alias for light mode."
+            "type": "typography",
+            "description": "Status row metadata text alias aligned to the supporting text style for light mode."
           },
           "iconSize": {
             "value": "20px",
@@ -607,10 +679,19 @@
               "description": "Primary mobile nav horizontal padding alias."
             },
             "title": {
-              "value": "#111D4A",
+              "value": {
+                "fontFamily": "Noto Sans",
+                "fontWeight": 700,
+                "fontSize": 16,
+                "lineHeight": "140%",
+                "letterSpacing": {
+                  "value": 4,
+                  "unit": "%"
+                }
+              },
               "sourceRef": "component.mobileNav.primary.default.title",
-              "type": "color",
-              "description": "Primary mobile nav title alias for light mode."
+              "type": "typography",
+              "description": "Primary mobile nav title alias aligned to the navigation title text style for light mode."
             },
             "icon": {
               "value": "#111D4A",
@@ -635,10 +716,19 @@
               "description": "Secondary mobile nav horizontal padding alias."
             },
             "title": {
-              "value": "#111D4A",
+              "value": {
+                "fontFamily": "Noto Sans",
+                "fontWeight": 700,
+                "fontSize": 16,
+                "lineHeight": "140%",
+                "letterSpacing": {
+                  "value": 4,
+                  "unit": "%"
+                }
+              },
               "sourceRef": "component.mobileNav.secondary.default.title",
-              "type": "color",
-              "description": "Secondary mobile nav title alias for light mode."
+              "type": "typography",
+              "description": "Secondary mobile nav title alias aligned to the navigation title text style for light mode."
             },
             "icon": {
               "value": "#111D4A",
@@ -675,10 +765,19 @@
               "description": "Web nav background alias for light mode."
             },
             "title": {
-              "value": "#111D4A",
+              "value": {
+                "fontFamily": "Noto Sans",
+                "fontWeight": 700,
+                "fontSize": 16,
+                "lineHeight": "140%",
+                "letterSpacing": {
+                  "value": 4,
+                  "unit": "%"
+                }
+              },
               "sourceRef": "component.webNav.default.default.title",
-              "type": "color",
-              "description": "Web nav title alias for light mode."
+              "type": "typography",
+              "description": "Web nav title alias aligned to the navigation title text style for light mode."
             },
             "icon": {
               "value": "#111D4A",
@@ -705,16 +804,34 @@
               "description": "Modal container background alias for light mode."
             },
             "title": {
-              "value": "#111D4A",
+              "value": {
+                "fontFamily": "Noto Sans",
+                "fontWeight": 500,
+                "fontSize": 14,
+                "lineHeight": "140%",
+                "letterSpacing": {
+                  "value": 4,
+                  "unit": "%"
+                }
+              },
               "sourceRef": "component.modal.default.default.title",
-              "type": "color",
-              "description": "Modal title alias for light mode."
+              "type": "typography",
+              "description": "Modal title alias aligned to the section title text style for light mode."
             },
             "body": {
-              "value": "#A0A5B7",
+              "value": {
+                "fontFamily": "Noto Sans",
+                "fontWeight": 400,
+                "fontSize": 14,
+                "lineHeight": "140%",
+                "letterSpacing": {
+                  "value": 4,
+                  "unit": "%"
+                }
+              },
               "sourceRef": "component.modal.default.default.body",
-              "type": "color",
-              "description": "Modal body text alias for light mode."
+              "type": "typography",
+              "description": "Modal body text alias aligned to the secondary body text style for light mode."
             },
             "paddingX": {
               "value": "16px",
@@ -783,10 +900,19 @@
               "description": "Primary button background alias for light mode."
             },
             "text": {
-              "value": "#007FFF",
+              "value": {
+                "fontFamily": "Noto Sans",
+                "fontWeight": 400,
+                "fontSize": 16,
+                "lineHeight": "140%",
+                "letterSpacing": {
+                  "value": 4,
+                  "unit": "%"
+                }
+              },
               "sourceRef": "component.button.primary.default.text",
-              "type": "color",
-              "description": "Primary button text alias resolved to semantic action text."
+              "type": "typography",
+              "description": "Primary button text alias aligned to the action label text style."
             },
             "radius": {
               "value": "[MISSING]",
@@ -817,16 +943,34 @@
           },
           "default": {
             "title": {
-              "value": "#111D4A",
+              "value": {
+                "fontFamily": "Noto Sans",
+                "fontWeight": 500,
+                "fontSize": 14,
+                "lineHeight": "140%",
+                "letterSpacing": {
+                  "value": 4,
+                  "unit": "%"
+                }
+              },
               "sourceRef": "component.menu.default.default.title",
-              "type": "color",
-              "description": "Menu title alias for light mode."
+              "type": "typography",
+              "description": "Menu title alias aligned to the section title text style for light mode."
             },
             "body": {
-              "value": "#A0A5B7",
+              "value": {
+                "fontFamily": "Noto Sans",
+                "fontWeight": 400,
+                "fontSize": 14,
+                "lineHeight": "140%",
+                "letterSpacing": {
+                  "value": 4,
+                  "unit": "%"
+                }
+              },
               "sourceRef": "component.menu.default.default.body",
-              "type": "color",
-              "description": "Menu body text alias for light mode."
+              "type": "typography",
+              "description": "Menu body text alias aligned to the secondary body text style for light mode."
             },
             "padding": {
               "value": "16px",
@@ -847,10 +991,19 @@
               "description": "Default token list control height alias."
             },
             "text": {
-              "value": "#111D4A",
+              "value": {
+                "fontFamily": "Noto Sans",
+                "fontWeight": 500,
+                "fontSize": 16,
+                "lineHeight": "140%",
+                "letterSpacing": {
+                  "value": 4,
+                  "unit": "%"
+                }
+              },
               "sourceRef": "component.tokenList.default.default.text",
-              "type": "color",
-              "description": "Default token list text alias for light mode."
+              "type": "typography",
+              "description": "Default token list text alias aligned to the primary body text style for light mode."
             },
             "icon": {
               "value": "#111D4A",
@@ -869,10 +1022,19 @@
               "description": "Expanded token list control height alias."
             },
             "text": {
-              "value": "#111D4A",
+              "value": {
+                "fontFamily": "Noto Sans",
+                "fontWeight": 500,
+                "fontSize": 16,
+                "lineHeight": "140%",
+                "letterSpacing": {
+                  "value": 4,
+                  "unit": "%"
+                }
+              },
               "sourceRef": "component.tokenList.expand.default.text",
-              "type": "color",
-              "description": "Expanded token list text alias for light mode."
+              "type": "typography",
+              "description": "Expanded token list text alias aligned to the primary body text style for light mode."
             },
             "icon": {
               "value": "#111D4A",
@@ -1176,7 +1338,7 @@
         }
       },
       "textStyle": {
-        "titleLarge": {
+        "heroTitle": {
           "value": {
             "fontFamily": "Noto Sans",
             "fontWeight": 700,
@@ -1187,11 +1349,11 @@
               "unit": "%"
             }
           },
-          "sourceRef": "semantic.textStyle.titleLarge",
+          "sourceRef": "semantic.textStyle.heroTitle",
           "type": "typography",
           "description": "Largest title style from Figma, used for article titles and special large amount emphasis."
         },
-        "amountLarge": {
+        "heroAmount": {
           "value": {
             "fontFamily": "Noto Sans",
             "fontWeight": 700,
@@ -1202,11 +1364,11 @@
               "unit": "%"
             }
           },
-          "sourceRef": "semantic.textStyle.amountLarge",
+          "sourceRef": "semantic.textStyle.heroAmount",
           "type": "typography",
           "description": "Large amount and article-title style from Figma."
         },
-        "guideTitle": {
+        "sectionLead": {
           "value": {
             "fontFamily": "Noto Sans",
             "fontWeight": 500,
@@ -1217,11 +1379,11 @@
               "unit": "%"
             }
           },
-          "sourceRef": "semantic.textStyle.guideTitle",
+          "sourceRef": "semantic.textStyle.sectionLead",
           "type": "typography",
           "description": "Guide title style from Figma."
         },
-        "titleMedium": {
+        "navTitle": {
           "value": {
             "fontFamily": "Noto Sans",
             "fontWeight": 700,
@@ -1232,11 +1394,11 @@
               "unit": "%"
             }
           },
-          "sourceRef": "semantic.textStyle.titleMedium",
+          "sourceRef": "semantic.textStyle.navTitle",
           "type": "typography",
           "description": "Medium title style from Figma, used for navigation headings."
         },
-        "bodyMedium": {
+        "bodyPrimary": {
           "value": {
             "fontFamily": "Noto Sans",
             "fontWeight": 500,
@@ -1247,11 +1409,11 @@
               "unit": "%"
             }
           },
-          "sourceRef": "semantic.textStyle.bodyMedium",
+          "sourceRef": "semantic.textStyle.bodyPrimary",
           "type": "typography",
           "description": "Primary body content style from Figma."
         },
-        "buttonText": {
+        "actionLabel": {
           "value": {
             "fontFamily": "Noto Sans",
             "fontWeight": 400,
@@ -1262,11 +1424,11 @@
               "unit": "%"
             }
           },
-          "sourceRef": "semantic.textStyle.buttonText",
+          "sourceRef": "semantic.textStyle.actionLabel",
           "type": "typography",
           "description": "Button label style from Figma."
         },
-        "bodySmall": {
+        "bodySecondary": {
           "value": {
             "fontFamily": "Noto Sans",
             "fontWeight": 400,
@@ -1277,11 +1439,11 @@
               "unit": "%"
             }
           },
-          "sourceRef": "semantic.textStyle.bodySmall",
+          "sourceRef": "semantic.textStyle.bodySecondary",
           "type": "typography",
           "description": "Secondary body content style from Figma."
         },
-        "groupTitle": {
+        "sectionTitle": {
           "value": {
             "fontFamily": "Noto Sans",
             "fontWeight": 500,
@@ -1292,11 +1454,11 @@
               "unit": "%"
             }
           },
-          "sourceRef": "semantic.textStyle.groupTitle",
+          "sourceRef": "semantic.textStyle.sectionTitle",
           "type": "typography",
           "description": "Grouped section title style from Figma."
         },
-        "caption": {
+        "supportingText": {
           "value": {
             "fontFamily": "Noto Sans",
             "fontWeight": 400,
@@ -1307,11 +1469,11 @@
               "unit": "%"
             }
           },
-          "sourceRef": "semantic.textStyle.caption",
+          "sourceRef": "semantic.textStyle.supportingText",
           "type": "typography",
           "description": "Auxiliary information, annotation, and label style from Figma."
         },
-        "xSmall": {
+        "tabLabel": {
           "value": {
             "fontFamily": "Noto Sans",
             "fontWeight": 400,
@@ -1322,7 +1484,7 @@
               "unit": "%"
             }
           },
-          "sourceRef": "semantic.textStyle.xSmall",
+          "sourceRef": "semantic.textStyle.tabLabel",
           "type": "typography",
           "description": "Bottom navigation special-case small text style from Figma."
         }
@@ -1338,16 +1500,34 @@
             "description": "Reusable card surface background alias for light mode."
           },
           "title": {
-            "value": "#D6D7E0",
+            "value": {
+              "fontFamily": "Noto Sans",
+              "fontWeight": 500,
+              "fontSize": 14,
+              "lineHeight": "140%",
+              "letterSpacing": {
+                "value": 4,
+                "unit": "%"
+              }
+            },
             "sourceRef": "pattern.surface.card.title",
-            "type": "color",
-            "description": "Reusable card title alias for light mode."
+            "type": "typography",
+            "description": "Reusable card title alias aligned to the section title text style for light mode."
           },
           "body": {
-            "value": "#8B8B91",
+            "value": {
+              "fontFamily": "Noto Sans",
+              "fontWeight": 400,
+              "fontSize": 14,
+              "lineHeight": "140%",
+              "letterSpacing": {
+                "value": 4,
+                "unit": "%"
+              }
+            },
             "sourceRef": "pattern.surface.card.body",
-            "type": "color",
-            "description": "Reusable card body text alias for light mode."
+            "type": "typography",
+            "description": "Reusable card body text alias aligned to the secondary body text style for light mode."
           },
           "padding": {
             "value": "16px",
@@ -1366,16 +1546,34 @@
       "modal": {
         "form": {
           "title": {
-            "value": "#D6D7E0",
+            "value": {
+              "fontFamily": "Noto Sans",
+              "fontWeight": 500,
+              "fontSize": 14,
+              "lineHeight": "140%",
+              "letterSpacing": {
+                "value": 4,
+                "unit": "%"
+              }
+            },
             "sourceRef": "pattern.modal.form.title",
-            "type": "color",
-            "description": "Modal form title alias for light mode."
+            "type": "typography",
+            "description": "Modal form title alias aligned to the section title text style for light mode."
           },
           "body": {
-            "value": "#8B8B91",
+            "value": {
+              "fontFamily": "Noto Sans",
+              "fontWeight": 400,
+              "fontSize": 14,
+              "lineHeight": "140%",
+              "letterSpacing": {
+                "value": 4,
+                "unit": "%"
+              }
+            },
             "sourceRef": "pattern.modal.form.body",
-            "type": "color",
-            "description": "Modal form body text alias for light mode."
+            "type": "typography",
+            "description": "Modal form body text alias aligned to the secondary body text style for light mode."
           },
           "fieldBackground": {
             "value": "#2C2C2E",
@@ -1412,16 +1610,34 @@
       "list": {
         "tokenItem": {
           "text": {
-            "value": "#D6D7E0",
+            "value": {
+              "fontFamily": "Noto Sans",
+              "fontWeight": 500,
+              "fontSize": 16,
+              "lineHeight": "140%",
+              "letterSpacing": {
+                "value": 4,
+                "unit": "%"
+              }
+            },
             "sourceRef": "pattern.list.tokenItem.text",
-            "type": "color",
-            "description": "Token list item primary text alias for light mode."
+            "type": "typography",
+            "description": "Token list item primary text alias aligned to the primary body text style for light mode."
           },
           "subtext": {
-            "value": "#8B8B91",
+            "value": {
+              "fontFamily": "Noto Sans",
+              "fontWeight": 400,
+              "fontSize": 14,
+              "lineHeight": "140%",
+              "letterSpacing": {
+                "value": 4,
+                "unit": "%"
+              }
+            },
             "sourceRef": "pattern.list.tokenItem.subtext",
-            "type": "color",
-            "description": "Token list item secondary text alias for light mode."
+            "type": "typography",
+            "description": "Token list item secondary text alias aligned to the secondary body text style for light mode."
           },
           "iconSize": {
             "value": "40px",
@@ -1444,16 +1660,34 @@
         },
         "statusRow": {
           "title": {
-            "value": "#D6D7E0",
+            "value": {
+              "fontFamily": "Noto Sans",
+              "fontWeight": 500,
+              "fontSize": 14,
+              "lineHeight": "140%",
+              "letterSpacing": {
+                "value": 4,
+                "unit": "%"
+              }
+            },
             "sourceRef": "pattern.list.statusRow.title",
-            "type": "color",
-            "description": "Status row title alias for light mode."
+            "type": "typography",
+            "description": "Status row title alias aligned to the section title text style for light mode."
           },
           "meta": {
-            "value": "#8B8B91",
+            "value": {
+              "fontFamily": "Noto Sans",
+              "fontWeight": 400,
+              "fontSize": 12,
+              "lineHeight": "130%",
+              "letterSpacing": {
+                "value": 4,
+                "unit": "%"
+              }
+            },
             "sourceRef": "pattern.list.statusRow.meta",
-            "type": "color",
-            "description": "Status row metadata text alias for light mode."
+            "type": "typography",
+            "description": "Status row metadata text alias aligned to the supporting text style for light mode."
           },
           "iconSize": {
             "value": "20px",
@@ -1493,10 +1727,19 @@
               "description": "Primary mobile nav horizontal padding alias."
             },
             "title": {
-              "value": "#D6D7E0",
+              "value": {
+                "fontFamily": "Noto Sans",
+                "fontWeight": 700,
+                "fontSize": 16,
+                "lineHeight": "140%",
+                "letterSpacing": {
+                  "value": 4,
+                  "unit": "%"
+                }
+              },
               "sourceRef": "component.mobileNav.primary.default.title",
-              "type": "color",
-              "description": "Primary mobile nav title alias for light mode."
+              "type": "typography",
+              "description": "Primary mobile nav title alias aligned to the navigation title text style for light mode."
             },
             "icon": {
               "value": "#B4B4BC",
@@ -1521,10 +1764,19 @@
               "description": "Secondary mobile nav horizontal padding alias."
             },
             "title": {
-              "value": "#D6D7E0",
+              "value": {
+                "fontFamily": "Noto Sans",
+                "fontWeight": 700,
+                "fontSize": 16,
+                "lineHeight": "140%",
+                "letterSpacing": {
+                  "value": 4,
+                  "unit": "%"
+                }
+              },
               "sourceRef": "component.mobileNav.secondary.default.title",
-              "type": "color",
-              "description": "Secondary mobile nav title alias for light mode."
+              "type": "typography",
+              "description": "Secondary mobile nav title alias aligned to the navigation title text style for light mode."
             },
             "icon": {
               "value": "#B4B4BC",
@@ -1561,10 +1813,19 @@
               "description": "Web nav background alias for light mode."
             },
             "title": {
-              "value": "#D6D7E0",
+              "value": {
+                "fontFamily": "Noto Sans",
+                "fontWeight": 700,
+                "fontSize": 16,
+                "lineHeight": "140%",
+                "letterSpacing": {
+                  "value": 4,
+                  "unit": "%"
+                }
+              },
               "sourceRef": "component.webNav.default.default.title",
-              "type": "color",
-              "description": "Web nav title alias for light mode."
+              "type": "typography",
+              "description": "Web nav title alias aligned to the navigation title text style for light mode."
             },
             "icon": {
               "value": "#B4B4BC",
@@ -1591,16 +1852,34 @@
               "description": "Modal container background alias for light mode."
             },
             "title": {
-              "value": "#D6D7E0",
+              "value": {
+                "fontFamily": "Noto Sans",
+                "fontWeight": 500,
+                "fontSize": 14,
+                "lineHeight": "140%",
+                "letterSpacing": {
+                  "value": 4,
+                  "unit": "%"
+                }
+              },
               "sourceRef": "component.modal.default.default.title",
-              "type": "color",
-              "description": "Modal title alias for light mode."
+              "type": "typography",
+              "description": "Modal title alias aligned to the section title text style for light mode."
             },
             "body": {
-              "value": "#8B8B91",
+              "value": {
+                "fontFamily": "Noto Sans",
+                "fontWeight": 400,
+                "fontSize": 14,
+                "lineHeight": "140%",
+                "letterSpacing": {
+                  "value": 4,
+                  "unit": "%"
+                }
+              },
               "sourceRef": "component.modal.default.default.body",
-              "type": "color",
-              "description": "Modal body text alias for light mode."
+              "type": "typography",
+              "description": "Modal body text alias aligned to the secondary body text style for light mode."
             },
             "paddingX": {
               "value": "16px",
@@ -1669,10 +1948,19 @@
               "description": "Primary button background alias for light mode."
             },
             "text": {
-              "value": "#066BD2",
+              "value": {
+                "fontFamily": "Noto Sans",
+                "fontWeight": 400,
+                "fontSize": 16,
+                "lineHeight": "140%",
+                "letterSpacing": {
+                  "value": 4,
+                  "unit": "%"
+                }
+              },
               "sourceRef": "component.button.primary.default.text",
-              "type": "color",
-              "description": "Primary button text alias resolved to semantic action text."
+              "type": "typography",
+              "description": "Primary button text alias aligned to the action label text style."
             },
             "radius": {
               "value": "[MISSING]",
@@ -1703,16 +1991,34 @@
           },
           "default": {
             "title": {
-              "value": "#D6D7E0",
+              "value": {
+                "fontFamily": "Noto Sans",
+                "fontWeight": 500,
+                "fontSize": 14,
+                "lineHeight": "140%",
+                "letterSpacing": {
+                  "value": 4,
+                  "unit": "%"
+                }
+              },
               "sourceRef": "component.menu.default.default.title",
-              "type": "color",
-              "description": "Menu title alias for light mode."
+              "type": "typography",
+              "description": "Menu title alias aligned to the section title text style for light mode."
             },
             "body": {
-              "value": "#8B8B91",
+              "value": {
+                "fontFamily": "Noto Sans",
+                "fontWeight": 400,
+                "fontSize": 14,
+                "lineHeight": "140%",
+                "letterSpacing": {
+                  "value": 4,
+                  "unit": "%"
+                }
+              },
               "sourceRef": "component.menu.default.default.body",
-              "type": "color",
-              "description": "Menu body text alias for light mode."
+              "type": "typography",
+              "description": "Menu body text alias aligned to the secondary body text style for light mode."
             },
             "padding": {
               "value": "16px",
@@ -1733,10 +2039,19 @@
               "description": "Default token list control height alias."
             },
             "text": {
-              "value": "#D6D7E0",
+              "value": {
+                "fontFamily": "Noto Sans",
+                "fontWeight": 500,
+                "fontSize": 16,
+                "lineHeight": "140%",
+                "letterSpacing": {
+                  "value": 4,
+                  "unit": "%"
+                }
+              },
               "sourceRef": "component.tokenList.default.default.text",
-              "type": "color",
-              "description": "Default token list text alias for light mode."
+              "type": "typography",
+              "description": "Default token list text alias aligned to the primary body text style for light mode."
             },
             "icon": {
               "value": "#B4B4BC",
@@ -1755,10 +2070,19 @@
               "description": "Expanded token list control height alias."
             },
             "text": {
-              "value": "#D6D7E0",
+              "value": {
+                "fontFamily": "Noto Sans",
+                "fontWeight": 500,
+                "fontSize": 16,
+                "lineHeight": "140%",
+                "letterSpacing": {
+                  "value": 4,
+                  "unit": "%"
+                }
+              },
               "sourceRef": "component.tokenList.expand.default.text",
-              "type": "color",
-              "description": "Expanded token list text alias for light mode."
+              "type": "typography",
+              "description": "Expanded token list text alias aligned to the primary body text style for light mode."
             },
             "icon": {
               "value": "#B4B4BC",

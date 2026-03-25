@@ -401,24 +401,24 @@
       },
       "radius": {
         "sm": {
-          "$type": "string",
-          "$value": "[MISSING]",
-          "$description": "Shared small radius token. Exact value is intentionally left unverified until confirmed from source design data."
+          "$type": "borderRadius",
+          "$value": 4,
+          "$description": "Shared small radius token aligned to the documented 4px small corner radius."
         },
         "md": {
-          "$type": "string",
-          "$value": "[MISSING]",
-          "$description": "Shared medium radius token. Exact value is intentionally left unverified until confirmed from source design data."
+          "$type": "borderRadius",
+          "$value": 10,
+          "$description": "Shared medium radius token aligned to the documented 10px default corner radius."
         },
         "lg": {
-          "$type": "string",
-          "$value": "[MISSING]",
-          "$description": "Shared large radius token. Exact value is intentionally left unverified until confirmed from source design data."
+          "$type": "borderRadius",
+          "$value": 16,
+          "$description": "Shared large radius token aligned to the documented 16px modal corner radius."
         },
         "full": {
-          "$type": "string",
-          "$value": "[MISSING]",
-          "$description": "Shared fully rounded radius token. Exact value is intentionally left unverified until confirmed from source design data."
+          "$type": "borderRadius",
+          "$value": 9999,
+          "$description": "Shared fully rounded radius token aligned to the documented pill radius."
         }
       },
       "typography": {
@@ -771,8 +771,8 @@
           "$description": "Subtle warning surface in light mode for chips, highlights, and caution backgrounds."
         }
       },
-      "textStyle": {
-        "titleLarge": {
+      "font": {
+        "heroTitle": {
           "$type": "typography",
           "$value": {
             "fontFamily": "{primitive.typography.family.sans}",
@@ -783,7 +783,7 @@
           },
           "$description": "Largest title style from Figma, used for article titles and special large amount emphasis."
         },
-        "amountLarge": {
+        "heroAmount": {
           "$type": "typography",
           "$value": {
             "fontFamily": "{primitive.typography.family.sans}",
@@ -794,7 +794,7 @@
           },
           "$description": "Large amount and article-title style from Figma."
         },
-        "guideTitle": {
+        "sectionLead": {
           "$type": "typography",
           "$value": {
             "fontFamily": "{primitive.typography.family.sans}",
@@ -805,7 +805,7 @@
           },
           "$description": "Guide title style from Figma."
         },
-        "titleMedium": {
+        "navTitle": {
           "$type": "typography",
           "$value": {
             "fontFamily": "{primitive.typography.family.sans}",
@@ -816,7 +816,7 @@
           },
           "$description": "Medium title style from Figma, used for navigation headings."
         },
-        "bodyMedium": {
+        "bodyPrimary": {
           "$type": "typography",
           "$value": {
             "fontFamily": "{primitive.typography.family.sans}",
@@ -827,7 +827,7 @@
           },
           "$description": "Primary body content style from Figma."
         },
-        "buttonText": {
+        "actionLabel": {
           "$type": "typography",
           "$value": {
             "fontFamily": "{primitive.typography.family.sans}",
@@ -838,7 +838,7 @@
           },
           "$description": "Button label style from Figma."
         },
-        "bodySmall": {
+        "bodySecondary": {
           "$type": "typography",
           "$value": {
             "fontFamily": "{primitive.typography.family.sans}",
@@ -849,7 +849,7 @@
           },
           "$description": "Secondary body content style from Figma."
         },
-        "groupTitle": {
+        "sectionTitle": {
           "$type": "typography",
           "$value": {
             "fontFamily": "{primitive.typography.family.sans}",
@@ -860,7 +860,7 @@
           },
           "$description": "Grouped section title style from Figma."
         },
-        "caption": {
+        "supportingText": {
           "$type": "typography",
           "$value": {
             "fontFamily": "{primitive.typography.family.sans}",
@@ -871,7 +871,7 @@
           },
           "$description": "Auxiliary information, annotation, and label style from Figma."
         },
-        "xSmall": {
+        "tabLabel": {
           "$type": "typography",
           "$value": {
             "fontFamily": "{primitive.typography.family.sans}",
@@ -892,12 +892,12 @@
             "$description": "Reusable card surface background alias for light mode."
           },
           "title": {
-            "$value": "{semantic.text.primary}",
-            "$description": "Reusable card title alias for light mode."
+            "$value": "{semantic.font.sectionTitle}",
+            "$description": "Reusable card title alias aligned to the section title text style for light mode."
           },
           "body": {
-            "$value": "{semantic.text.secondary}",
-            "$description": "Reusable card body text alias for light mode."
+            "$value": "{semantic.font.bodySecondary}",
+            "$description": "Reusable card body text alias aligned to the secondary body text style for light mode."
           },
           "padding": {
             "$value": "{primitive.spacing.16}",
@@ -912,12 +912,12 @@
       "modal": {
         "form": {
           "title": {
-            "$value": "{semantic.text.primary}",
-            "$description": "Modal form title alias for light mode."
+            "$value": "{semantic.font.sectionTitle}",
+            "$description": "Modal form title alias aligned to the section title text style for light mode."
           },
           "body": {
-            "$value": "{semantic.text.secondary}",
-            "$description": "Modal form body text alias for light mode."
+            "$value": "{semantic.font.bodySecondary}",
+            "$description": "Modal form body text alias aligned to the secondary body text style for light mode."
           },
           "fieldBackground": {
             "$value": "{semantic.background.modal_section}",
@@ -944,12 +944,12 @@
       "list": {
         "tokenItem": {
           "text": {
-            "$value": "{semantic.text.primary}",
-            "$description": "Token list item primary text alias for light mode."
+            "$value": "{semantic.font.bodyPrimary}",
+            "$description": "Token list item primary text alias aligned to the primary body text style for light mode."
           },
           "subtext": {
-            "$value": "{semantic.text.secondary}",
-            "$description": "Token list item secondary text alias for light mode."
+            "$value": "{semantic.font.bodySecondary}",
+            "$description": "Token list item secondary text alias aligned to the secondary body text style for light mode."
           },
           "iconSize": {
             "$value": "{primitive.size.40}",
@@ -966,12 +966,12 @@
         },
         "statusRow": {
           "title": {
-            "$value": "{semantic.text.primary}",
-            "$description": "Status row title alias for light mode."
+            "$value": "{semantic.font.sectionTitle}",
+            "$description": "Status row title alias aligned to the section title text style for light mode."
           },
           "meta": {
-            "$value": "{semantic.text.secondary}",
-            "$description": "Status row metadata text alias for light mode."
+            "$value": "{semantic.font.supportingText}",
+            "$description": "Status row metadata text alias aligned to the supporting text style for light mode."
           },
           "iconSize": {
             "$value": "{primitive.size.20}",
@@ -1001,8 +1001,8 @@
               "$description": "Primary mobile nav horizontal padding alias."
             },
             "title": {
-              "$value": "{semantic.text.primary}",
-              "$description": "Primary mobile nav title alias for light mode."
+              "$value": "{semantic.font.navTitle}",
+              "$description": "Primary mobile nav title alias aligned to the navigation title text style for light mode."
             },
             "icon": {
               "$value": "{semantic.stroke.icon_primary}",
@@ -1021,8 +1021,8 @@
               "$description": "Secondary mobile nav horizontal padding alias."
             },
             "title": {
-              "$value": "{semantic.text.primary}",
-              "$description": "Secondary mobile nav title alias for light mode."
+              "$value": "{semantic.font.navTitle}",
+              "$description": "Secondary mobile nav title alias aligned to the navigation title text style for light mode."
             },
             "icon": {
               "$value": "{semantic.stroke.icon_primary}",
@@ -1051,8 +1051,8 @@
               "$description": "Web nav background alias for light mode."
             },
             "title": {
-              "$value": "{semantic.text.primary}",
-              "$description": "Web nav title alias for light mode."
+              "$value": "{semantic.font.navTitle}",
+              "$description": "Web nav title alias aligned to the navigation title text style for light mode."
             },
             "icon": {
               "$value": "{semantic.stroke.icon_primary}",
@@ -1073,12 +1073,12 @@
               "$description": "Modal container background alias for light mode."
             },
             "title": {
-              "$value": "{semantic.text.primary}",
-              "$description": "Modal title alias for light mode."
+              "$value": "{semantic.font.sectionTitle}",
+              "$description": "Modal title alias aligned to the section title text style for light mode."
             },
             "body": {
-              "$value": "{semantic.text.secondary}",
-              "$description": "Modal body text alias for light mode."
+              "$value": "{semantic.font.bodySecondary}",
+              "$description": "Modal body text alias aligned to the secondary body text style for light mode."
             },
             "paddingX": {
               "$value": "{primitive.spacing.16}",
@@ -1127,8 +1127,8 @@
               "$description": "Primary button background alias for light mode."
             },
             "text": {
-              "$value": "{semantic.text.action}",
-              "$description": "Primary button text alias resolved to semantic action text."
+              "$value": "{semantic.font.actionLabel}",
+              "$description": "Primary button text alias aligned to the action label text style."
             },
             "radius": {
               "$value": "{primitive.radius.md}",
@@ -1153,12 +1153,12 @@
           },
           "default": {
             "title": {
-              "$value": "{semantic.text.primary}",
-              "$description": "Menu title alias for light mode."
+              "$value": "{semantic.font.sectionTitle}",
+              "$description": "Menu title alias aligned to the section title text style for light mode."
             },
             "body": {
-              "$value": "{semantic.text.secondary}",
-              "$description": "Menu body text alias for light mode."
+              "$value": "{semantic.font.bodySecondary}",
+              "$description": "Menu body text alias aligned to the secondary body text style for light mode."
             },
             "padding": {
               "$value": "{primitive.spacing.16}",
@@ -1175,8 +1175,8 @@
               "$description": "Default token list control height alias."
             },
             "text": {
-              "$value": "{semantic.text.primary}",
-              "$description": "Default token list text alias for light mode."
+              "$value": "{semantic.font.bodyPrimary}",
+              "$description": "Default token list text alias aligned to the primary body text style for light mode."
             },
             "icon": {
               "$value": "{semantic.stroke.icon_primary}",
@@ -1191,8 +1191,8 @@
               "$description": "Expanded token list control height alias."
             },
             "text": {
-              "$value": "{semantic.text.primary}",
-              "$description": "Expanded token list text alias for light mode."
+              "$value": "{semantic.font.bodyPrimary}",
+              "$description": "Expanded token list text alias aligned to the primary body text style for light mode."
             },
             "icon": {
               "$value": "{semantic.stroke.icon_primary}",
@@ -1456,8 +1456,8 @@
           "$description": "Subtle warning surface in dark mode for chips, highlights, and caution backgrounds."
         }
       },
-      "textStyle": {
-        "titleLarge": {
+      "font": {
+        "heroTitle": {
           "$type": "typography",
           "$value": {
             "fontFamily": "{primitive.typography.family.sans}",
@@ -1468,7 +1468,7 @@
           },
           "$description": "Largest title style from Figma, used for article titles and special large amount emphasis."
         },
-        "amountLarge": {
+        "heroAmount": {
           "$type": "typography",
           "$value": {
             "fontFamily": "{primitive.typography.family.sans}",
@@ -1479,7 +1479,7 @@
           },
           "$description": "Large amount and article-title style from Figma."
         },
-        "guideTitle": {
+        "sectionLead": {
           "$type": "typography",
           "$value": {
             "fontFamily": "{primitive.typography.family.sans}",
@@ -1490,7 +1490,7 @@
           },
           "$description": "Guide title style from Figma."
         },
-        "titleMedium": {
+        "navTitle": {
           "$type": "typography",
           "$value": {
             "fontFamily": "{primitive.typography.family.sans}",
@@ -1501,7 +1501,7 @@
           },
           "$description": "Medium title style from Figma, used for navigation headings."
         },
-        "bodyMedium": {
+        "bodyPrimary": {
           "$type": "typography",
           "$value": {
             "fontFamily": "{primitive.typography.family.sans}",
@@ -1512,7 +1512,7 @@
           },
           "$description": "Primary body content style from Figma."
         },
-        "buttonText": {
+        "actionLabel": {
           "$type": "typography",
           "$value": {
             "fontFamily": "{primitive.typography.family.sans}",
@@ -1523,7 +1523,7 @@
           },
           "$description": "Button label style from Figma."
         },
-        "bodySmall": {
+        "bodySecondary": {
           "$type": "typography",
           "$value": {
             "fontFamily": "{primitive.typography.family.sans}",
@@ -1534,7 +1534,7 @@
           },
           "$description": "Secondary body content style from Figma."
         },
-        "groupTitle": {
+        "sectionTitle": {
           "$type": "typography",
           "$value": {
             "fontFamily": "{primitive.typography.family.sans}",
@@ -1545,7 +1545,7 @@
           },
           "$description": "Grouped section title style from Figma."
         },
-        "caption": {
+        "supportingText": {
           "$type": "typography",
           "$value": {
             "fontFamily": "{primitive.typography.family.sans}",
@@ -1556,7 +1556,7 @@
           },
           "$description": "Auxiliary information, annotation, and label style from Figma."
         },
-        "xSmall": {
+        "tabLabel": {
           "$type": "typography",
           "$value": {
             "fontFamily": "{primitive.typography.family.sans}",
@@ -1577,12 +1577,12 @@
             "$description": "Reusable card surface background alias for dark mode."
           },
           "title": {
-            "$value": "{semantic.text.primary}",
-            "$description": "Reusable card title alias for dark mode."
+            "$value": "{semantic.font.sectionTitle}",
+            "$description": "Reusable card title alias aligned to the section title text style for dark mode."
           },
           "body": {
-            "$value": "{semantic.text.secondary}",
-            "$description": "Reusable card body text alias for dark mode."
+            "$value": "{semantic.font.bodySecondary}",
+            "$description": "Reusable card body text alias aligned to the secondary body text style for dark mode."
           },
           "padding": {
             "$value": "{primitive.spacing.16}",
@@ -1597,12 +1597,12 @@
       "modal": {
         "form": {
           "title": {
-            "$value": "{semantic.text.primary}",
-            "$description": "Modal form title alias for dark mode."
+            "$value": "{semantic.font.sectionTitle}",
+            "$description": "Modal form title alias aligned to the section title text style for dark mode."
           },
           "body": {
-            "$value": "{semantic.text.secondary}",
-            "$description": "Modal form body text alias for dark mode."
+            "$value": "{semantic.font.bodySecondary}",
+            "$description": "Modal form body text alias aligned to the secondary body text style for dark mode."
           },
           "fieldBackground": {
             "$value": "{semantic.background.modal_section}",
@@ -1629,12 +1629,12 @@
       "list": {
         "tokenItem": {
           "text": {
-            "$value": "{semantic.text.primary}",
-            "$description": "Token list item primary text alias for dark mode."
+            "$value": "{semantic.font.bodyPrimary}",
+            "$description": "Token list item primary text alias aligned to the primary body text style for dark mode."
           },
           "subtext": {
-            "$value": "{semantic.text.secondary}",
-            "$description": "Token list item secondary text alias for dark mode."
+            "$value": "{semantic.font.bodySecondary}",
+            "$description": "Token list item secondary text alias aligned to the secondary body text style for dark mode."
           },
           "iconSize": {
             "$value": "{primitive.size.40}",
@@ -1651,12 +1651,12 @@
         },
         "statusRow": {
           "title": {
-            "$value": "{semantic.text.primary}",
-            "$description": "Status row title alias for dark mode."
+            "$value": "{semantic.font.sectionTitle}",
+            "$description": "Status row title alias aligned to the section title text style for dark mode."
           },
           "meta": {
-            "$value": "{semantic.text.secondary}",
-            "$description": "Status row metadata text alias for dark mode."
+            "$value": "{semantic.font.supportingText}",
+            "$description": "Status row metadata text alias aligned to the supporting text style for dark mode."
           },
           "iconSize": {
             "$value": "{primitive.size.20}",
@@ -1686,8 +1686,8 @@
               "$description": "Primary mobile nav horizontal padding alias."
             },
             "title": {
-              "$value": "{semantic.text.primary}",
-              "$description": "Primary mobile nav title alias for dark mode."
+              "$value": "{semantic.font.navTitle}",
+              "$description": "Primary mobile nav title alias aligned to the navigation title text style for dark mode."
             },
             "icon": {
               "$value": "{semantic.stroke.icon_primary}",
@@ -1706,8 +1706,8 @@
               "$description": "Secondary mobile nav horizontal padding alias."
             },
             "title": {
-              "$value": "{semantic.text.primary}",
-              "$description": "Secondary mobile nav title alias for dark mode."
+              "$value": "{semantic.font.navTitle}",
+              "$description": "Secondary mobile nav title alias aligned to the navigation title text style for dark mode."
             },
             "icon": {
               "$value": "{semantic.stroke.icon_primary}",
@@ -1736,8 +1736,8 @@
               "$description": "Web nav background alias for dark mode."
             },
             "title": {
-              "$value": "{semantic.text.primary}",
-              "$description": "Web nav title alias for dark mode."
+              "$value": "{semantic.font.navTitle}",
+              "$description": "Web nav title alias aligned to the navigation title text style for dark mode."
             },
             "icon": {
               "$value": "{semantic.stroke.icon_primary}",
@@ -1758,12 +1758,12 @@
               "$description": "Modal container background alias for dark mode."
             },
             "title": {
-              "$value": "{semantic.text.primary}",
-              "$description": "Modal title alias for dark mode."
+              "$value": "{semantic.font.sectionTitle}",
+              "$description": "Modal title alias aligned to the section title text style for dark mode."
             },
             "body": {
-              "$value": "{semantic.text.secondary}",
-              "$description": "Modal body text alias for dark mode."
+              "$value": "{semantic.font.bodySecondary}",
+              "$description": "Modal body text alias aligned to the secondary body text style for dark mode."
             },
             "paddingX": {
               "$value": "{primitive.spacing.16}",
@@ -1812,8 +1812,8 @@
               "$description": "Primary button background alias for dark mode."
             },
             "text": {
-              "$value": "{semantic.text.action}",
-              "$description": "Primary button text alias resolved to semantic action text."
+              "$value": "{semantic.font.actionLabel}",
+              "$description": "Primary button text alias aligned to the action label text style."
             },
             "radius": {
               "$value": "{primitive.radius.md}",
@@ -1838,12 +1838,12 @@
           },
           "default": {
             "title": {
-              "$value": "{semantic.text.primary}",
-              "$description": "Menu title alias for dark mode."
+              "$value": "{semantic.font.sectionTitle}",
+              "$description": "Menu title alias aligned to the section title text style for dark mode."
             },
             "body": {
-              "$value": "{semantic.text.secondary}",
-              "$description": "Menu body text alias for dark mode."
+              "$value": "{semantic.font.bodySecondary}",
+              "$description": "Menu body text alias aligned to the secondary body text style for dark mode."
             },
             "padding": {
               "$value": "{primitive.spacing.16}",
@@ -1860,8 +1860,8 @@
               "$description": "Default token list control height alias."
             },
             "text": {
-              "$value": "{semantic.text.primary}",
-              "$description": "Default token list text alias for dark mode."
+              "$value": "{semantic.font.bodyPrimary}",
+              "$description": "Default token list text alias aligned to the primary body text style for dark mode."
             },
             "icon": {
               "$value": "{semantic.stroke.icon_primary}",
@@ -1876,8 +1876,8 @@
               "$description": "Expanded token list control height alias."
             },
             "text": {
-              "$value": "{semantic.text.primary}",
-              "$description": "Expanded token list text alias for dark mode."
+              "$value": "{semantic.font.bodyPrimary}",
+              "$description": "Expanded token list text alias aligned to the primary body text style for dark mode."
             },
             "icon": {
               "$value": "{semantic.stroke.icon_primary}",
@@ -1918,6 +1918,6 @@
     ],
     "generatedFrom": "source_token_v4.json",
     "version": "v5",
-    "notes": "Extended v4 with first-class typography primitives and semantic textStyle tokens; typography values are now sourced from Figma node 33297:16462 in the imToken Design System beta file."
+    "notes": "Extended v4 with first-class typography primitives and semantic font tokens; typography values are now sourced from Figma node 33297:16462 in the imToken Design System beta file."
   }
 }

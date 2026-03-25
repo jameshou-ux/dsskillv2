@@ -1,6 +1,6 @@
 {
   "$metadata": {
-    "generatedFrom": "source_token_v5.json",
+    "generatedFrom": "Iteration temp/source_token_v5.json",
     "adapter": "ai",
     "themes": [
       "light",
@@ -1888,11 +1888,11 @@
         }
       },
       "textStyle": {
-        "titleLarge": {
+        "heroTitle": {
           "layer": "semantic",
           "type": "typography",
           "description": "Largest title style from Figma, used for article titles and special large amount emphasis.",
-          "sourceRef": "semantic.textStyle.titleLarge",
+          "sourceRef": "semantic.textStyle.heroTitle",
           "light": {
             "value": {
               "fontFamily": "{primitive.typography.family.sans}",
@@ -1946,11 +1946,11 @@
             ]
           }
         },
-        "amountLarge": {
+        "heroAmount": {
           "layer": "semantic",
           "type": "typography",
           "description": "Large amount and article-title style from Figma.",
-          "sourceRef": "semantic.textStyle.amountLarge",
+          "sourceRef": "semantic.textStyle.heroAmount",
           "light": {
             "value": {
               "fontFamily": "{primitive.typography.family.sans}",
@@ -2004,11 +2004,11 @@
             ]
           }
         },
-        "guideTitle": {
+        "sectionLead": {
           "layer": "semantic",
           "type": "typography",
           "description": "Guide title style from Figma.",
-          "sourceRef": "semantic.textStyle.guideTitle",
+          "sourceRef": "semantic.textStyle.sectionLead",
           "light": {
             "value": {
               "fontFamily": "{primitive.typography.family.sans}",
@@ -2062,11 +2062,11 @@
             ]
           }
         },
-        "titleMedium": {
+        "navTitle": {
           "layer": "semantic",
           "type": "typography",
           "description": "Medium title style from Figma, used for navigation headings.",
-          "sourceRef": "semantic.textStyle.titleMedium",
+          "sourceRef": "semantic.textStyle.navTitle",
           "light": {
             "value": {
               "fontFamily": "{primitive.typography.family.sans}",
@@ -2120,11 +2120,11 @@
             ]
           }
         },
-        "bodyMedium": {
+        "bodyPrimary": {
           "layer": "semantic",
           "type": "typography",
           "description": "Primary body content style from Figma.",
-          "sourceRef": "semantic.textStyle.bodyMedium",
+          "sourceRef": "semantic.textStyle.bodyPrimary",
           "light": {
             "value": {
               "fontFamily": "{primitive.typography.family.sans}",
@@ -2178,11 +2178,11 @@
             ]
           }
         },
-        "buttonText": {
+        "actionLabel": {
           "layer": "semantic",
           "type": "typography",
           "description": "Button label style from Figma.",
-          "sourceRef": "semantic.textStyle.buttonText",
+          "sourceRef": "semantic.textStyle.actionLabel",
           "light": {
             "value": {
               "fontFamily": "{primitive.typography.family.sans}",
@@ -2236,11 +2236,11 @@
             ]
           }
         },
-        "bodySmall": {
+        "bodySecondary": {
           "layer": "semantic",
           "type": "typography",
           "description": "Secondary body content style from Figma.",
-          "sourceRef": "semantic.textStyle.bodySmall",
+          "sourceRef": "semantic.textStyle.bodySecondary",
           "light": {
             "value": {
               "fontFamily": "{primitive.typography.family.sans}",
@@ -2294,11 +2294,11 @@
             ]
           }
         },
-        "groupTitle": {
+        "sectionTitle": {
           "layer": "semantic",
           "type": "typography",
           "description": "Grouped section title style from Figma.",
-          "sourceRef": "semantic.textStyle.groupTitle",
+          "sourceRef": "semantic.textStyle.sectionTitle",
           "light": {
             "value": {
               "fontFamily": "{primitive.typography.family.sans}",
@@ -2352,11 +2352,11 @@
             ]
           }
         },
-        "caption": {
+        "supportingText": {
           "layer": "semantic",
           "type": "typography",
           "description": "Auxiliary information, annotation, and label style from Figma.",
-          "sourceRef": "semantic.textStyle.caption",
+          "sourceRef": "semantic.textStyle.supportingText",
           "light": {
             "value": {
               "fontFamily": "{primitive.typography.family.sans}",
@@ -2410,11 +2410,11 @@
             ]
           }
         },
-        "xSmall": {
+        "tabLabel": {
           "layer": "semantic",
           "type": "typography",
           "description": "Bottom navigation special-case small text style from Figma.",
-          "sourceRef": "semantic.textStyle.xSmall",
+          "sourceRef": "semantic.textStyle.tabLabel",
           "light": {
             "value": {
               "fontFamily": "{primitive.typography.family.sans}",
@@ -2495,41 +2495,77 @@
           },
           "title": {
             "layer": "pattern",
-            "type": "color",
-            "description": "Reusable card title alias for light mode.",
+            "type": "typography",
+            "description": "Reusable card title alias aligned to the section title text style for light mode.",
             "sourceRef": "pattern.surface.card.title",
             "light": {
-              "value": "{semantic.text.primary}",
-              "resolved": "#111D4A",
+              "value": "{semantic.textStyle.sectionTitle}",
+              "resolved": {
+                "fontFamily": "Noto Sans",
+                "fontWeight": 500,
+                "fontSize": 14,
+                "lineHeight": "140%",
+                "letterSpacing": {
+                  "value": 4,
+                  "unit": "%"
+                }
+              },
               "references": [
-                "semantic.text.primary"
+                "semantic.textStyle.sectionTitle"
               ]
             },
             "dark": {
-              "value": "{semantic.text.primary}",
-              "resolved": "#D6D7E0",
+              "value": "{semantic.textStyle.sectionTitle}",
+              "resolved": {
+                "fontFamily": "Noto Sans",
+                "fontWeight": 500,
+                "fontSize": 14,
+                "lineHeight": "140%",
+                "letterSpacing": {
+                  "value": 4,
+                  "unit": "%"
+                }
+              },
               "references": [
-                "semantic.text.primary"
+                "semantic.textStyle.sectionTitle"
               ]
             }
           },
           "body": {
             "layer": "pattern",
-            "type": "color",
-            "description": "Reusable card body text alias for light mode.",
+            "type": "typography",
+            "description": "Reusable card body text alias aligned to the secondary body text style for light mode.",
             "sourceRef": "pattern.surface.card.body",
             "light": {
-              "value": "{semantic.text.secondary}",
-              "resolved": "#A0A5B7",
+              "value": "{semantic.textStyle.bodySecondary}",
+              "resolved": {
+                "fontFamily": "Noto Sans",
+                "fontWeight": 400,
+                "fontSize": 14,
+                "lineHeight": "140%",
+                "letterSpacing": {
+                  "value": 4,
+                  "unit": "%"
+                }
+              },
               "references": [
-                "semantic.text.secondary"
+                "semantic.textStyle.bodySecondary"
               ]
             },
             "dark": {
-              "value": "{semantic.text.secondary}",
-              "resolved": "#8B8B91",
+              "value": "{semantic.textStyle.bodySecondary}",
+              "resolved": {
+                "fontFamily": "Noto Sans",
+                "fontWeight": 400,
+                "fontSize": 14,
+                "lineHeight": "140%",
+                "letterSpacing": {
+                  "value": 4,
+                  "unit": "%"
+                }
+              },
               "references": [
-                "semantic.text.secondary"
+                "semantic.textStyle.bodySecondary"
               ]
             }
           },
@@ -2579,41 +2615,77 @@
         "form": {
           "title": {
             "layer": "pattern",
-            "type": "color",
-            "description": "Modal form title alias for light mode.",
+            "type": "typography",
+            "description": "Modal form title alias aligned to the section title text style for light mode.",
             "sourceRef": "pattern.modal.form.title",
             "light": {
-              "value": "{semantic.text.primary}",
-              "resolved": "#111D4A",
+              "value": "{semantic.textStyle.sectionTitle}",
+              "resolved": {
+                "fontFamily": "Noto Sans",
+                "fontWeight": 500,
+                "fontSize": 14,
+                "lineHeight": "140%",
+                "letterSpacing": {
+                  "value": 4,
+                  "unit": "%"
+                }
+              },
               "references": [
-                "semantic.text.primary"
+                "semantic.textStyle.sectionTitle"
               ]
             },
             "dark": {
-              "value": "{semantic.text.primary}",
-              "resolved": "#D6D7E0",
+              "value": "{semantic.textStyle.sectionTitle}",
+              "resolved": {
+                "fontFamily": "Noto Sans",
+                "fontWeight": 500,
+                "fontSize": 14,
+                "lineHeight": "140%",
+                "letterSpacing": {
+                  "value": 4,
+                  "unit": "%"
+                }
+              },
               "references": [
-                "semantic.text.primary"
+                "semantic.textStyle.sectionTitle"
               ]
             }
           },
           "body": {
             "layer": "pattern",
-            "type": "color",
-            "description": "Modal form body text alias for light mode.",
+            "type": "typography",
+            "description": "Modal form body text alias aligned to the secondary body text style for light mode.",
             "sourceRef": "pattern.modal.form.body",
             "light": {
-              "value": "{semantic.text.secondary}",
-              "resolved": "#A0A5B7",
+              "value": "{semantic.textStyle.bodySecondary}",
+              "resolved": {
+                "fontFamily": "Noto Sans",
+                "fontWeight": 400,
+                "fontSize": 14,
+                "lineHeight": "140%",
+                "letterSpacing": {
+                  "value": 4,
+                  "unit": "%"
+                }
+              },
               "references": [
-                "semantic.text.secondary"
+                "semantic.textStyle.bodySecondary"
               ]
             },
             "dark": {
-              "value": "{semantic.text.secondary}",
-              "resolved": "#8B8B91",
+              "value": "{semantic.textStyle.bodySecondary}",
+              "resolved": {
+                "fontFamily": "Noto Sans",
+                "fontWeight": 400,
+                "fontSize": 14,
+                "lineHeight": "140%",
+                "letterSpacing": {
+                  "value": 4,
+                  "unit": "%"
+                }
+              },
               "references": [
-                "semantic.text.secondary"
+                "semantic.textStyle.bodySecondary"
               ]
             }
           },
@@ -2723,41 +2795,77 @@
         "tokenItem": {
           "text": {
             "layer": "pattern",
-            "type": "color",
-            "description": "Token list item primary text alias for light mode.",
+            "type": "typography",
+            "description": "Token list item primary text alias aligned to the primary body text style for light mode.",
             "sourceRef": "pattern.list.tokenItem.text",
             "light": {
-              "value": "{semantic.text.primary}",
-              "resolved": "#111D4A",
+              "value": "{semantic.textStyle.bodyPrimary}",
+              "resolved": {
+                "fontFamily": "Noto Sans",
+                "fontWeight": 500,
+                "fontSize": 16,
+                "lineHeight": "140%",
+                "letterSpacing": {
+                  "value": 4,
+                  "unit": "%"
+                }
+              },
               "references": [
-                "semantic.text.primary"
+                "semantic.textStyle.bodyPrimary"
               ]
             },
             "dark": {
-              "value": "{semantic.text.primary}",
-              "resolved": "#D6D7E0",
+              "value": "{semantic.textStyle.bodyPrimary}",
+              "resolved": {
+                "fontFamily": "Noto Sans",
+                "fontWeight": 500,
+                "fontSize": 16,
+                "lineHeight": "140%",
+                "letterSpacing": {
+                  "value": 4,
+                  "unit": "%"
+                }
+              },
               "references": [
-                "semantic.text.primary"
+                "semantic.textStyle.bodyPrimary"
               ]
             }
           },
           "subtext": {
             "layer": "pattern",
-            "type": "color",
-            "description": "Token list item secondary text alias for light mode.",
+            "type": "typography",
+            "description": "Token list item secondary text alias aligned to the secondary body text style for light mode.",
             "sourceRef": "pattern.list.tokenItem.subtext",
             "light": {
-              "value": "{semantic.text.secondary}",
-              "resolved": "#A0A5B7",
+              "value": "{semantic.textStyle.bodySecondary}",
+              "resolved": {
+                "fontFamily": "Noto Sans",
+                "fontWeight": 400,
+                "fontSize": 14,
+                "lineHeight": "140%",
+                "letterSpacing": {
+                  "value": 4,
+                  "unit": "%"
+                }
+              },
               "references": [
-                "semantic.text.secondary"
+                "semantic.textStyle.bodySecondary"
               ]
             },
             "dark": {
-              "value": "{semantic.text.secondary}",
-              "resolved": "#8B8B91",
+              "value": "{semantic.textStyle.bodySecondary}",
+              "resolved": {
+                "fontFamily": "Noto Sans",
+                "fontWeight": 400,
+                "fontSize": 14,
+                "lineHeight": "140%",
+                "letterSpacing": {
+                  "value": 4,
+                  "unit": "%"
+                }
+              },
               "references": [
-                "semantic.text.secondary"
+                "semantic.textStyle.bodySecondary"
               ]
             }
           },
@@ -2825,41 +2933,77 @@
         "statusRow": {
           "title": {
             "layer": "pattern",
-            "type": "color",
-            "description": "Status row title alias for light mode.",
+            "type": "typography",
+            "description": "Status row title alias aligned to the section title text style for light mode.",
             "sourceRef": "pattern.list.statusRow.title",
             "light": {
-              "value": "{semantic.text.primary}",
-              "resolved": "#111D4A",
+              "value": "{semantic.textStyle.sectionTitle}",
+              "resolved": {
+                "fontFamily": "Noto Sans",
+                "fontWeight": 500,
+                "fontSize": 14,
+                "lineHeight": "140%",
+                "letterSpacing": {
+                  "value": 4,
+                  "unit": "%"
+                }
+              },
               "references": [
-                "semantic.text.primary"
+                "semantic.textStyle.sectionTitle"
               ]
             },
             "dark": {
-              "value": "{semantic.text.primary}",
-              "resolved": "#D6D7E0",
+              "value": "{semantic.textStyle.sectionTitle}",
+              "resolved": {
+                "fontFamily": "Noto Sans",
+                "fontWeight": 500,
+                "fontSize": 14,
+                "lineHeight": "140%",
+                "letterSpacing": {
+                  "value": 4,
+                  "unit": "%"
+                }
+              },
               "references": [
-                "semantic.text.primary"
+                "semantic.textStyle.sectionTitle"
               ]
             }
           },
           "meta": {
             "layer": "pattern",
-            "type": "color",
-            "description": "Status row metadata text alias for light mode.",
+            "type": "typography",
+            "description": "Status row metadata text alias aligned to the supporting text style for light mode.",
             "sourceRef": "pattern.list.statusRow.meta",
             "light": {
-              "value": "{semantic.text.secondary}",
-              "resolved": "#A0A5B7",
+              "value": "{semantic.textStyle.supportingText}",
+              "resolved": {
+                "fontFamily": "Noto Sans",
+                "fontWeight": 400,
+                "fontSize": 12,
+                "lineHeight": "130%",
+                "letterSpacing": {
+                  "value": 4,
+                  "unit": "%"
+                }
+              },
               "references": [
-                "semantic.text.secondary"
+                "semantic.textStyle.supportingText"
               ]
             },
             "dark": {
-              "value": "{semantic.text.secondary}",
-              "resolved": "#8B8B91",
+              "value": "{semantic.textStyle.supportingText}",
+              "resolved": {
+                "fontFamily": "Noto Sans",
+                "fontWeight": 400,
+                "fontSize": 12,
+                "lineHeight": "130%",
+                "letterSpacing": {
+                  "value": 4,
+                  "unit": "%"
+                }
+              },
               "references": [
-                "semantic.text.secondary"
+                "semantic.textStyle.supportingText"
               ]
             }
           },
@@ -2972,21 +3116,39 @@
             },
             "title": {
               "layer": "component",
-              "type": "color",
-              "description": "Primary mobile nav title alias for light mode.",
+              "type": "typography",
+              "description": "Primary mobile nav title alias aligned to the navigation title text style for light mode.",
               "sourceRef": "component.mobileNav.primary.default.title",
               "light": {
-                "value": "{semantic.text.primary}",
-                "resolved": "#111D4A",
+                "value": "{semantic.textStyle.navTitle}",
+                "resolved": {
+                  "fontFamily": "Noto Sans",
+                  "fontWeight": 700,
+                  "fontSize": 16,
+                  "lineHeight": "140%",
+                  "letterSpacing": {
+                    "value": 4,
+                    "unit": "%"
+                  }
+                },
                 "references": [
-                  "semantic.text.primary"
+                  "semantic.textStyle.navTitle"
                 ]
               },
               "dark": {
-                "value": "{semantic.text.primary}",
-                "resolved": "#D6D7E0",
+                "value": "{semantic.textStyle.navTitle}",
+                "resolved": {
+                  "fontFamily": "Noto Sans",
+                  "fontWeight": 700,
+                  "fontSize": 16,
+                  "lineHeight": "140%",
+                  "letterSpacing": {
+                    "value": 4,
+                    "unit": "%"
+                  }
+                },
                 "references": [
-                  "semantic.text.primary"
+                  "semantic.textStyle.navTitle"
                 ]
               }
             },
@@ -3056,21 +3218,39 @@
             },
             "title": {
               "layer": "component",
-              "type": "color",
-              "description": "Secondary mobile nav title alias for light mode.",
+              "type": "typography",
+              "description": "Secondary mobile nav title alias aligned to the navigation title text style for light mode.",
               "sourceRef": "component.mobileNav.secondary.default.title",
               "light": {
-                "value": "{semantic.text.primary}",
-                "resolved": "#111D4A",
+                "value": "{semantic.textStyle.navTitle}",
+                "resolved": {
+                  "fontFamily": "Noto Sans",
+                  "fontWeight": 700,
+                  "fontSize": 16,
+                  "lineHeight": "140%",
+                  "letterSpacing": {
+                    "value": 4,
+                    "unit": "%"
+                  }
+                },
                 "references": [
-                  "semantic.text.primary"
+                  "semantic.textStyle.navTitle"
                 ]
               },
               "dark": {
-                "value": "{semantic.text.primary}",
-                "resolved": "#D6D7E0",
+                "value": "{semantic.textStyle.navTitle}",
+                "resolved": {
+                  "fontFamily": "Noto Sans",
+                  "fontWeight": 700,
+                  "fontSize": 16,
+                  "lineHeight": "140%",
+                  "letterSpacing": {
+                    "value": 4,
+                    "unit": "%"
+                  }
+                },
                 "references": [
-                  "semantic.text.primary"
+                  "semantic.textStyle.navTitle"
                 ]
               }
             },
@@ -3166,21 +3346,39 @@
             },
             "title": {
               "layer": "component",
-              "type": "color",
-              "description": "Web nav title alias for light mode.",
+              "type": "typography",
+              "description": "Web nav title alias aligned to the navigation title text style for light mode.",
               "sourceRef": "component.webNav.default.default.title",
               "light": {
-                "value": "{semantic.text.primary}",
-                "resolved": "#111D4A",
+                "value": "{semantic.textStyle.navTitle}",
+                "resolved": {
+                  "fontFamily": "Noto Sans",
+                  "fontWeight": 700,
+                  "fontSize": 16,
+                  "lineHeight": "140%",
+                  "letterSpacing": {
+                    "value": 4,
+                    "unit": "%"
+                  }
+                },
                 "references": [
-                  "semantic.text.primary"
+                  "semantic.textStyle.navTitle"
                 ]
               },
               "dark": {
-                "value": "{semantic.text.primary}",
-                "resolved": "#D6D7E0",
+                "value": "{semantic.textStyle.navTitle}",
+                "resolved": {
+                  "fontFamily": "Noto Sans",
+                  "fontWeight": 700,
+                  "fontSize": 16,
+                  "lineHeight": "140%",
+                  "letterSpacing": {
+                    "value": 4,
+                    "unit": "%"
+                  }
+                },
                 "references": [
-                  "semantic.text.primary"
+                  "semantic.textStyle.navTitle"
                 ]
               }
             },
@@ -3252,41 +3450,77 @@
             },
             "title": {
               "layer": "component",
-              "type": "color",
-              "description": "Modal title alias for light mode.",
+              "type": "typography",
+              "description": "Modal title alias aligned to the section title text style for light mode.",
               "sourceRef": "component.modal.default.default.title",
               "light": {
-                "value": "{semantic.text.primary}",
-                "resolved": "#111D4A",
+                "value": "{semantic.textStyle.sectionTitle}",
+                "resolved": {
+                  "fontFamily": "Noto Sans",
+                  "fontWeight": 500,
+                  "fontSize": 14,
+                  "lineHeight": "140%",
+                  "letterSpacing": {
+                    "value": 4,
+                    "unit": "%"
+                  }
+                },
                 "references": [
-                  "semantic.text.primary"
+                  "semantic.textStyle.sectionTitle"
                 ]
               },
               "dark": {
-                "value": "{semantic.text.primary}",
-                "resolved": "#D6D7E0",
+                "value": "{semantic.textStyle.sectionTitle}",
+                "resolved": {
+                  "fontFamily": "Noto Sans",
+                  "fontWeight": 500,
+                  "fontSize": 14,
+                  "lineHeight": "140%",
+                  "letterSpacing": {
+                    "value": 4,
+                    "unit": "%"
+                  }
+                },
                 "references": [
-                  "semantic.text.primary"
+                  "semantic.textStyle.sectionTitle"
                 ]
               }
             },
             "body": {
               "layer": "component",
-              "type": "color",
-              "description": "Modal body text alias for light mode.",
+              "type": "typography",
+              "description": "Modal body text alias aligned to the secondary body text style for light mode.",
               "sourceRef": "component.modal.default.default.body",
               "light": {
-                "value": "{semantic.text.secondary}",
-                "resolved": "#A0A5B7",
+                "value": "{semantic.textStyle.bodySecondary}",
+                "resolved": {
+                  "fontFamily": "Noto Sans",
+                  "fontWeight": 400,
+                  "fontSize": 14,
+                  "lineHeight": "140%",
+                  "letterSpacing": {
+                    "value": 4,
+                    "unit": "%"
+                  }
+                },
                 "references": [
-                  "semantic.text.secondary"
+                  "semantic.textStyle.bodySecondary"
                 ]
               },
               "dark": {
-                "value": "{semantic.text.secondary}",
-                "resolved": "#8B8B91",
+                "value": "{semantic.textStyle.bodySecondary}",
+                "resolved": {
+                  "fontFamily": "Noto Sans",
+                  "fontWeight": 400,
+                  "fontSize": 14,
+                  "lineHeight": "140%",
+                  "letterSpacing": {
+                    "value": 4,
+                    "unit": "%"
+                  }
+                },
                 "references": [
-                  "semantic.text.secondary"
+                  "semantic.textStyle.bodySecondary"
                 ]
               }
             },
@@ -3498,21 +3732,39 @@
             },
             "text": {
               "layer": "component",
-              "type": "color",
-              "description": "Primary button text alias resolved to semantic action text.",
+              "type": "typography",
+              "description": "Primary button text alias aligned to the action label text style.",
               "sourceRef": "component.button.primary.default.text",
               "light": {
-                "value": "{semantic.text.action}",
-                "resolved": "#007FFF",
+                "value": "{semantic.textStyle.actionLabel}",
+                "resolved": {
+                  "fontFamily": "Noto Sans",
+                  "fontWeight": 400,
+                  "fontSize": 16,
+                  "lineHeight": "140%",
+                  "letterSpacing": {
+                    "value": 4,
+                    "unit": "%"
+                  }
+                },
                 "references": [
-                  "semantic.text.action"
+                  "semantic.textStyle.actionLabel"
                 ]
               },
               "dark": {
-                "value": "{semantic.text.action}",
-                "resolved": "#066BD2",
+                "value": "{semantic.textStyle.actionLabel}",
+                "resolved": {
+                  "fontFamily": "Noto Sans",
+                  "fontWeight": 400,
+                  "fontSize": 16,
+                  "lineHeight": "140%",
+                  "letterSpacing": {
+                    "value": 4,
+                    "unit": "%"
+                  }
+                },
                 "references": [
-                  "semantic.text.action"
+                  "semantic.textStyle.actionLabel"
                 ]
               }
             },
@@ -3588,41 +3840,77 @@
           "default": {
             "title": {
               "layer": "component",
-              "type": "color",
-              "description": "Menu title alias for light mode.",
+              "type": "typography",
+              "description": "Menu title alias aligned to the section title text style for light mode.",
               "sourceRef": "component.menu.default.default.title",
               "light": {
-                "value": "{semantic.text.primary}",
-                "resolved": "#111D4A",
+                "value": "{semantic.textStyle.sectionTitle}",
+                "resolved": {
+                  "fontFamily": "Noto Sans",
+                  "fontWeight": 500,
+                  "fontSize": 14,
+                  "lineHeight": "140%",
+                  "letterSpacing": {
+                    "value": 4,
+                    "unit": "%"
+                  }
+                },
                 "references": [
-                  "semantic.text.primary"
+                  "semantic.textStyle.sectionTitle"
                 ]
               },
               "dark": {
-                "value": "{semantic.text.primary}",
-                "resolved": "#D6D7E0",
+                "value": "{semantic.textStyle.sectionTitle}",
+                "resolved": {
+                  "fontFamily": "Noto Sans",
+                  "fontWeight": 500,
+                  "fontSize": 14,
+                  "lineHeight": "140%",
+                  "letterSpacing": {
+                    "value": 4,
+                    "unit": "%"
+                  }
+                },
                 "references": [
-                  "semantic.text.primary"
+                  "semantic.textStyle.sectionTitle"
                 ]
               }
             },
             "body": {
               "layer": "component",
-              "type": "color",
-              "description": "Menu body text alias for light mode.",
+              "type": "typography",
+              "description": "Menu body text alias aligned to the secondary body text style for light mode.",
               "sourceRef": "component.menu.default.default.body",
               "light": {
-                "value": "{semantic.text.secondary}",
-                "resolved": "#A0A5B7",
+                "value": "{semantic.textStyle.bodySecondary}",
+                "resolved": {
+                  "fontFamily": "Noto Sans",
+                  "fontWeight": 400,
+                  "fontSize": 14,
+                  "lineHeight": "140%",
+                  "letterSpacing": {
+                    "value": 4,
+                    "unit": "%"
+                  }
+                },
                 "references": [
-                  "semantic.text.secondary"
+                  "semantic.textStyle.bodySecondary"
                 ]
               },
               "dark": {
-                "value": "{semantic.text.secondary}",
-                "resolved": "#8B8B91",
+                "value": "{semantic.textStyle.bodySecondary}",
+                "resolved": {
+                  "fontFamily": "Noto Sans",
+                  "fontWeight": 400,
+                  "fontSize": 14,
+                  "lineHeight": "140%",
+                  "letterSpacing": {
+                    "value": 4,
+                    "unit": "%"
+                  }
+                },
                 "references": [
-                  "semantic.text.secondary"
+                  "semantic.textStyle.bodySecondary"
                 ]
               }
             },
@@ -3674,21 +3962,39 @@
             },
             "text": {
               "layer": "component",
-              "type": "color",
-              "description": "Default token list text alias for light mode.",
+              "type": "typography",
+              "description": "Default token list text alias aligned to the primary body text style for light mode.",
               "sourceRef": "component.tokenList.default.default.text",
               "light": {
-                "value": "{semantic.text.primary}",
-                "resolved": "#111D4A",
+                "value": "{semantic.textStyle.bodyPrimary}",
+                "resolved": {
+                  "fontFamily": "Noto Sans",
+                  "fontWeight": 500,
+                  "fontSize": 16,
+                  "lineHeight": "140%",
+                  "letterSpacing": {
+                    "value": 4,
+                    "unit": "%"
+                  }
+                },
                 "references": [
-                  "semantic.text.primary"
+                  "semantic.textStyle.bodyPrimary"
                 ]
               },
               "dark": {
-                "value": "{semantic.text.primary}",
-                "resolved": "#D6D7E0",
+                "value": "{semantic.textStyle.bodyPrimary}",
+                "resolved": {
+                  "fontFamily": "Noto Sans",
+                  "fontWeight": 500,
+                  "fontSize": 16,
+                  "lineHeight": "140%",
+                  "letterSpacing": {
+                    "value": 4,
+                    "unit": "%"
+                  }
+                },
                 "references": [
-                  "semantic.text.primary"
+                  "semantic.textStyle.bodyPrimary"
                 ]
               }
             },
@@ -3738,21 +4044,39 @@
             },
             "text": {
               "layer": "component",
-              "type": "color",
-              "description": "Expanded token list text alias for light mode.",
+              "type": "typography",
+              "description": "Expanded token list text alias aligned to the primary body text style for light mode.",
               "sourceRef": "component.tokenList.expand.default.text",
               "light": {
-                "value": "{semantic.text.primary}",
-                "resolved": "#111D4A",
+                "value": "{semantic.textStyle.bodyPrimary}",
+                "resolved": {
+                  "fontFamily": "Noto Sans",
+                  "fontWeight": 500,
+                  "fontSize": 16,
+                  "lineHeight": "140%",
+                  "letterSpacing": {
+                    "value": 4,
+                    "unit": "%"
+                  }
+                },
                 "references": [
-                  "semantic.text.primary"
+                  "semantic.textStyle.bodyPrimary"
                 ]
               },
               "dark": {
-                "value": "{semantic.text.primary}",
-                "resolved": "#D6D7E0",
+                "value": "{semantic.textStyle.bodyPrimary}",
+                "resolved": {
+                  "fontFamily": "Noto Sans",
+                  "fontWeight": 500,
+                  "fontSize": 16,
+                  "lineHeight": "140%",
+                  "letterSpacing": {
+                    "value": 4,
+                    "unit": "%"
+                  }
+                },
                 "references": [
-                  "semantic.text.primary"
+                  "semantic.textStyle.bodyPrimary"
                 ]
               }
             },
@@ -3864,41 +4188,77 @@
     },
     "component.button.primary.default.text": {
       "layer": "component",
-      "type": "color",
-      "description": "Primary button text alias resolved to semantic action text.",
+      "type": "typography",
+      "description": "Primary button text alias aligned to the action label text style.",
       "sourceRef": "component.button.primary.default.text",
       "light": {
-        "value": "{semantic.text.action}",
-        "resolved": "#007FFF",
+        "value": "{semantic.textStyle.actionLabel}",
+        "resolved": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 400,
+          "fontSize": 16,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "references": [
-          "semantic.text.action"
+          "semantic.textStyle.actionLabel"
         ]
       },
       "dark": {
-        "value": "{semantic.text.action}",
-        "resolved": "#066BD2",
+        "value": "{semantic.textStyle.actionLabel}",
+        "resolved": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 400,
+          "fontSize": 16,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "references": [
-          "semantic.text.action"
+          "semantic.textStyle.actionLabel"
         ]
       }
     },
     "component.menu.default.default.body": {
       "layer": "component",
-      "type": "color",
-      "description": "Menu body text alias for light mode.",
+      "type": "typography",
+      "description": "Menu body text alias aligned to the secondary body text style for light mode.",
       "sourceRef": "component.menu.default.default.body",
       "light": {
-        "value": "{semantic.text.secondary}",
-        "resolved": "#A0A5B7",
+        "value": "{semantic.textStyle.bodySecondary}",
+        "resolved": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 400,
+          "fontSize": 14,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "references": [
-          "semantic.text.secondary"
+          "semantic.textStyle.bodySecondary"
         ]
       },
       "dark": {
-        "value": "{semantic.text.secondary}",
-        "resolved": "#8B8B91",
+        "value": "{semantic.textStyle.bodySecondary}",
+        "resolved": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 400,
+          "fontSize": 14,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "references": [
-          "semantic.text.secondary"
+          "semantic.textStyle.bodySecondary"
         ]
       }
     },
@@ -3924,21 +4284,39 @@
     },
     "component.menu.default.default.title": {
       "layer": "component",
-      "type": "color",
-      "description": "Menu title alias for light mode.",
+      "type": "typography",
+      "description": "Menu title alias aligned to the section title text style for light mode.",
       "sourceRef": "component.menu.default.default.title",
       "light": {
-        "value": "{semantic.text.primary}",
-        "resolved": "#111D4A",
+        "value": "{semantic.textStyle.sectionTitle}",
+        "resolved": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 500,
+          "fontSize": 14,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "references": [
-          "semantic.text.primary"
+          "semantic.textStyle.sectionTitle"
         ]
       },
       "dark": {
-        "value": "{semantic.text.primary}",
-        "resolved": "#D6D7E0",
+        "value": "{semantic.textStyle.sectionTitle}",
+        "resolved": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 500,
+          "fontSize": 14,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "references": [
-          "semantic.text.primary"
+          "semantic.textStyle.sectionTitle"
         ]
       }
     },
@@ -4044,21 +4422,39 @@
     },
     "component.mobileNav.primary.default.title": {
       "layer": "component",
-      "type": "color",
-      "description": "Primary mobile nav title alias for light mode.",
+      "type": "typography",
+      "description": "Primary mobile nav title alias aligned to the navigation title text style for light mode.",
       "sourceRef": "component.mobileNav.primary.default.title",
       "light": {
-        "value": "{semantic.text.primary}",
-        "resolved": "#111D4A",
+        "value": "{semantic.textStyle.navTitle}",
+        "resolved": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 700,
+          "fontSize": 16,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "references": [
-          "semantic.text.primary"
+          "semantic.textStyle.navTitle"
         ]
       },
       "dark": {
-        "value": "{semantic.text.primary}",
-        "resolved": "#D6D7E0",
+        "value": "{semantic.textStyle.navTitle}",
+        "resolved": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 700,
+          "fontSize": 16,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "references": [
-          "semantic.text.primary"
+          "semantic.textStyle.navTitle"
         ]
       }
     },
@@ -4124,21 +4520,39 @@
     },
     "component.mobileNav.secondary.default.title": {
       "layer": "component",
-      "type": "color",
-      "description": "Secondary mobile nav title alias for light mode.",
+      "type": "typography",
+      "description": "Secondary mobile nav title alias aligned to the navigation title text style for light mode.",
       "sourceRef": "component.mobileNav.secondary.default.title",
       "light": {
-        "value": "{semantic.text.primary}",
-        "resolved": "#111D4A",
+        "value": "{semantic.textStyle.navTitle}",
+        "resolved": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 700,
+          "fontSize": 16,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "references": [
-          "semantic.text.primary"
+          "semantic.textStyle.navTitle"
         ]
       },
       "dark": {
-        "value": "{semantic.text.primary}",
-        "resolved": "#D6D7E0",
+        "value": "{semantic.textStyle.navTitle}",
+        "resolved": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 700,
+          "fontSize": 16,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "references": [
-          "semantic.text.primary"
+          "semantic.textStyle.navTitle"
         ]
       }
     },
@@ -4164,21 +4578,39 @@
     },
     "component.modal.default.default.body": {
       "layer": "component",
-      "type": "color",
-      "description": "Modal body text alias for light mode.",
+      "type": "typography",
+      "description": "Modal body text alias aligned to the secondary body text style for light mode.",
       "sourceRef": "component.modal.default.default.body",
       "light": {
-        "value": "{semantic.text.secondary}",
-        "resolved": "#A0A5B7",
+        "value": "{semantic.textStyle.bodySecondary}",
+        "resolved": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 400,
+          "fontSize": 14,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "references": [
-          "semantic.text.secondary"
+          "semantic.textStyle.bodySecondary"
         ]
       },
       "dark": {
-        "value": "{semantic.text.secondary}",
-        "resolved": "#8B8B91",
+        "value": "{semantic.textStyle.bodySecondary}",
+        "resolved": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 400,
+          "fontSize": 14,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "references": [
-          "semantic.text.secondary"
+          "semantic.textStyle.bodySecondary"
         ]
       }
     },
@@ -4324,21 +4756,39 @@
     },
     "component.modal.default.default.title": {
       "layer": "component",
-      "type": "color",
-      "description": "Modal title alias for light mode.",
+      "type": "typography",
+      "description": "Modal title alias aligned to the section title text style for light mode.",
       "sourceRef": "component.modal.default.default.title",
       "light": {
-        "value": "{semantic.text.primary}",
-        "resolved": "#111D4A",
+        "value": "{semantic.textStyle.sectionTitle}",
+        "resolved": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 500,
+          "fontSize": 14,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "references": [
-          "semantic.text.primary"
+          "semantic.textStyle.sectionTitle"
         ]
       },
       "dark": {
-        "value": "{semantic.text.primary}",
-        "resolved": "#D6D7E0",
+        "value": "{semantic.textStyle.sectionTitle}",
+        "resolved": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 500,
+          "fontSize": 14,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "references": [
-          "semantic.text.primary"
+          "semantic.textStyle.sectionTitle"
         ]
       }
     },
@@ -4384,21 +4834,39 @@
     },
     "component.tokenList.default.default.text": {
       "layer": "component",
-      "type": "color",
-      "description": "Default token list text alias for light mode.",
+      "type": "typography",
+      "description": "Default token list text alias aligned to the primary body text style for light mode.",
       "sourceRef": "component.tokenList.default.default.text",
       "light": {
-        "value": "{semantic.text.primary}",
-        "resolved": "#111D4A",
+        "value": "{semantic.textStyle.bodyPrimary}",
+        "resolved": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 500,
+          "fontSize": 16,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "references": [
-          "semantic.text.primary"
+          "semantic.textStyle.bodyPrimary"
         ]
       },
       "dark": {
-        "value": "{semantic.text.primary}",
-        "resolved": "#D6D7E0",
+        "value": "{semantic.textStyle.bodyPrimary}",
+        "resolved": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 500,
+          "fontSize": 16,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "references": [
-          "semantic.text.primary"
+          "semantic.textStyle.bodyPrimary"
         ]
       }
     },
@@ -4444,21 +4912,39 @@
     },
     "component.tokenList.expand.default.text": {
       "layer": "component",
-      "type": "color",
-      "description": "Expanded token list text alias for light mode.",
+      "type": "typography",
+      "description": "Expanded token list text alias aligned to the primary body text style for light mode.",
       "sourceRef": "component.tokenList.expand.default.text",
       "light": {
-        "value": "{semantic.text.primary}",
-        "resolved": "#111D4A",
+        "value": "{semantic.textStyle.bodyPrimary}",
+        "resolved": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 500,
+          "fontSize": 16,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "references": [
-          "semantic.text.primary"
+          "semantic.textStyle.bodyPrimary"
         ]
       },
       "dark": {
-        "value": "{semantic.text.primary}",
-        "resolved": "#D6D7E0",
+        "value": "{semantic.textStyle.bodyPrimary}",
+        "resolved": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 500,
+          "fontSize": 16,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "references": [
-          "semantic.text.primary"
+          "semantic.textStyle.bodyPrimary"
         ]
       }
     },
@@ -4524,21 +5010,39 @@
     },
     "component.webNav.default.default.title": {
       "layer": "component",
-      "type": "color",
-      "description": "Web nav title alias for light mode.",
+      "type": "typography",
+      "description": "Web nav title alias aligned to the navigation title text style for light mode.",
       "sourceRef": "component.webNav.default.default.title",
       "light": {
-        "value": "{semantic.text.primary}",
-        "resolved": "#111D4A",
+        "value": "{semantic.textStyle.navTitle}",
+        "resolved": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 700,
+          "fontSize": 16,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "references": [
-          "semantic.text.primary"
+          "semantic.textStyle.navTitle"
         ]
       },
       "dark": {
-        "value": "{semantic.text.primary}",
-        "resolved": "#D6D7E0",
+        "value": "{semantic.textStyle.navTitle}",
+        "resolved": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 700,
+          "fontSize": 16,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "references": [
-          "semantic.text.primary"
+          "semantic.textStyle.navTitle"
         ]
       }
     },
@@ -4604,21 +5108,39 @@
     },
     "pattern.list.statusRow.meta": {
       "layer": "pattern",
-      "type": "color",
-      "description": "Status row metadata text alias for light mode.",
+      "type": "typography",
+      "description": "Status row metadata text alias aligned to the supporting text style for light mode.",
       "sourceRef": "pattern.list.statusRow.meta",
       "light": {
-        "value": "{semantic.text.secondary}",
-        "resolved": "#A0A5B7",
+        "value": "{semantic.textStyle.supportingText}",
+        "resolved": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 400,
+          "fontSize": 12,
+          "lineHeight": "130%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "references": [
-          "semantic.text.secondary"
+          "semantic.textStyle.supportingText"
         ]
       },
       "dark": {
-        "value": "{semantic.text.secondary}",
-        "resolved": "#8B8B91",
+        "value": "{semantic.textStyle.supportingText}",
+        "resolved": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 400,
+          "fontSize": 12,
+          "lineHeight": "130%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "references": [
-          "semantic.text.secondary"
+          "semantic.textStyle.supportingText"
         ]
       }
     },
@@ -4664,21 +5186,39 @@
     },
     "pattern.list.statusRow.title": {
       "layer": "pattern",
-      "type": "color",
-      "description": "Status row title alias for light mode.",
+      "type": "typography",
+      "description": "Status row title alias aligned to the section title text style for light mode.",
       "sourceRef": "pattern.list.statusRow.title",
       "light": {
-        "value": "{semantic.text.primary}",
-        "resolved": "#111D4A",
+        "value": "{semantic.textStyle.sectionTitle}",
+        "resolved": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 500,
+          "fontSize": 14,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "references": [
-          "semantic.text.primary"
+          "semantic.textStyle.sectionTitle"
         ]
       },
       "dark": {
-        "value": "{semantic.text.primary}",
-        "resolved": "#D6D7E0",
+        "value": "{semantic.textStyle.sectionTitle}",
+        "resolved": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 500,
+          "fontSize": 14,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "references": [
-          "semantic.text.primary"
+          "semantic.textStyle.sectionTitle"
         ]
       }
     },
@@ -4744,41 +5284,77 @@
     },
     "pattern.list.tokenItem.subtext": {
       "layer": "pattern",
-      "type": "color",
-      "description": "Token list item secondary text alias for light mode.",
+      "type": "typography",
+      "description": "Token list item secondary text alias aligned to the secondary body text style for light mode.",
       "sourceRef": "pattern.list.tokenItem.subtext",
       "light": {
-        "value": "{semantic.text.secondary}",
-        "resolved": "#A0A5B7",
+        "value": "{semantic.textStyle.bodySecondary}",
+        "resolved": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 400,
+          "fontSize": 14,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "references": [
-          "semantic.text.secondary"
+          "semantic.textStyle.bodySecondary"
         ]
       },
       "dark": {
-        "value": "{semantic.text.secondary}",
-        "resolved": "#8B8B91",
+        "value": "{semantic.textStyle.bodySecondary}",
+        "resolved": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 400,
+          "fontSize": 14,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "references": [
-          "semantic.text.secondary"
+          "semantic.textStyle.bodySecondary"
         ]
       }
     },
     "pattern.list.tokenItem.text": {
       "layer": "pattern",
-      "type": "color",
-      "description": "Token list item primary text alias for light mode.",
+      "type": "typography",
+      "description": "Token list item primary text alias aligned to the primary body text style for light mode.",
       "sourceRef": "pattern.list.tokenItem.text",
       "light": {
-        "value": "{semantic.text.primary}",
-        "resolved": "#111D4A",
+        "value": "{semantic.textStyle.bodyPrimary}",
+        "resolved": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 500,
+          "fontSize": 16,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "references": [
-          "semantic.text.primary"
+          "semantic.textStyle.bodyPrimary"
         ]
       },
       "dark": {
-        "value": "{semantic.text.primary}",
-        "resolved": "#D6D7E0",
+        "value": "{semantic.textStyle.bodyPrimary}",
+        "resolved": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 500,
+          "fontSize": 16,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "references": [
-          "semantic.text.primary"
+          "semantic.textStyle.bodyPrimary"
         ]
       }
     },
@@ -4804,21 +5380,39 @@
     },
     "pattern.modal.form.body": {
       "layer": "pattern",
-      "type": "color",
-      "description": "Modal form body text alias for light mode.",
+      "type": "typography",
+      "description": "Modal form body text alias aligned to the secondary body text style for light mode.",
       "sourceRef": "pattern.modal.form.body",
       "light": {
-        "value": "{semantic.text.secondary}",
-        "resolved": "#A0A5B7",
+        "value": "{semantic.textStyle.bodySecondary}",
+        "resolved": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 400,
+          "fontSize": 14,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "references": [
-          "semantic.text.secondary"
+          "semantic.textStyle.bodySecondary"
         ]
       },
       "dark": {
-        "value": "{semantic.text.secondary}",
-        "resolved": "#8B8B91",
+        "value": "{semantic.textStyle.bodySecondary}",
+        "resolved": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 400,
+          "fontSize": 14,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "references": [
-          "semantic.text.secondary"
+          "semantic.textStyle.bodySecondary"
         ]
       }
     },
@@ -4904,21 +5498,39 @@
     },
     "pattern.modal.form.title": {
       "layer": "pattern",
-      "type": "color",
-      "description": "Modal form title alias for light mode.",
+      "type": "typography",
+      "description": "Modal form title alias aligned to the section title text style for light mode.",
       "sourceRef": "pattern.modal.form.title",
       "light": {
-        "value": "{semantic.text.primary}",
-        "resolved": "#111D4A",
+        "value": "{semantic.textStyle.sectionTitle}",
+        "resolved": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 500,
+          "fontSize": 14,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "references": [
-          "semantic.text.primary"
+          "semantic.textStyle.sectionTitle"
         ]
       },
       "dark": {
-        "value": "{semantic.text.primary}",
-        "resolved": "#D6D7E0",
+        "value": "{semantic.textStyle.sectionTitle}",
+        "resolved": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 500,
+          "fontSize": 14,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "references": [
-          "semantic.text.primary"
+          "semantic.textStyle.sectionTitle"
         ]
       }
     },
@@ -4944,21 +5556,39 @@
     },
     "pattern.surface.card.body": {
       "layer": "pattern",
-      "type": "color",
-      "description": "Reusable card body text alias for light mode.",
+      "type": "typography",
+      "description": "Reusable card body text alias aligned to the secondary body text style for light mode.",
       "sourceRef": "pattern.surface.card.body",
       "light": {
-        "value": "{semantic.text.secondary}",
-        "resolved": "#A0A5B7",
+        "value": "{semantic.textStyle.bodySecondary}",
+        "resolved": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 400,
+          "fontSize": 14,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "references": [
-          "semantic.text.secondary"
+          "semantic.textStyle.bodySecondary"
         ]
       },
       "dark": {
-        "value": "{semantic.text.secondary}",
-        "resolved": "#8B8B91",
+        "value": "{semantic.textStyle.bodySecondary}",
+        "resolved": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 400,
+          "fontSize": 14,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "references": [
-          "semantic.text.secondary"
+          "semantic.textStyle.bodySecondary"
         ]
       }
     },
@@ -5004,21 +5634,39 @@
     },
     "pattern.surface.card.title": {
       "layer": "pattern",
-      "type": "color",
-      "description": "Reusable card title alias for light mode.",
+      "type": "typography",
+      "description": "Reusable card title alias aligned to the section title text style for light mode.",
       "sourceRef": "pattern.surface.card.title",
       "light": {
-        "value": "{semantic.text.primary}",
-        "resolved": "#111D4A",
+        "value": "{semantic.textStyle.sectionTitle}",
+        "resolved": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 500,
+          "fontSize": 14,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "references": [
-          "semantic.text.primary"
+          "semantic.textStyle.sectionTitle"
         ]
       },
       "dark": {
-        "value": "{semantic.text.primary}",
-        "resolved": "#D6D7E0",
+        "value": "{semantic.textStyle.sectionTitle}",
+        "resolved": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 500,
+          "fontSize": 14,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "references": [
-          "semantic.text.primary"
+          "semantic.textStyle.sectionTitle"
         ]
       }
     },
@@ -6873,185 +7521,11 @@
         ]
       }
     },
-    "semantic.textStyle.amountLarge": {
-      "layer": "semantic",
-      "type": "typography",
-      "description": "Large amount and article-title style from Figma.",
-      "sourceRef": "semantic.textStyle.amountLarge",
-      "light": {
-        "value": {
-          "fontFamily": "{primitive.typography.family.sans}",
-          "fontWeight": "{primitive.typography.weight.bold}",
-          "fontSize": "{primitive.typography.size.2xl}",
-          "lineHeight": "{primitive.typography.lineHeight.normal}",
-          "letterSpacing": "{primitive.typography.letterSpacing.normal}"
-        },
-        "resolved": {
-          "fontFamily": "Noto Sans",
-          "fontWeight": 700,
-          "fontSize": 24,
-          "lineHeight": "140%",
-          "letterSpacing": {
-            "value": 4,
-            "unit": "%"
-          }
-        },
-        "references": [
-          "primitive.typography.family.sans",
-          "primitive.typography.weight.bold",
-          "primitive.typography.size.2xl",
-          "primitive.typography.lineHeight.normal",
-          "primitive.typography.letterSpacing.normal"
-        ]
-      },
-      "dark": {
-        "value": {
-          "fontFamily": "{primitive.typography.family.sans}",
-          "fontWeight": "{primitive.typography.weight.bold}",
-          "fontSize": "{primitive.typography.size.2xl}",
-          "lineHeight": "{primitive.typography.lineHeight.normal}",
-          "letterSpacing": "{primitive.typography.letterSpacing.normal}"
-        },
-        "resolved": {
-          "fontFamily": "Noto Sans",
-          "fontWeight": 700,
-          "fontSize": 24,
-          "lineHeight": "140%",
-          "letterSpacing": {
-            "value": 4,
-            "unit": "%"
-          }
-        },
-        "references": [
-          "primitive.typography.family.sans",
-          "primitive.typography.weight.bold",
-          "primitive.typography.size.2xl",
-          "primitive.typography.lineHeight.normal",
-          "primitive.typography.letterSpacing.normal"
-        ]
-      }
-    },
-    "semantic.textStyle.bodyMedium": {
-      "layer": "semantic",
-      "type": "typography",
-      "description": "Primary body content style from Figma.",
-      "sourceRef": "semantic.textStyle.bodyMedium",
-      "light": {
-        "value": {
-          "fontFamily": "{primitive.typography.family.sans}",
-          "fontWeight": "{primitive.typography.weight.medium}",
-          "fontSize": "{primitive.typography.size.lg}",
-          "lineHeight": "{primitive.typography.lineHeight.normal}",
-          "letterSpacing": "{primitive.typography.letterSpacing.normal}"
-        },
-        "resolved": {
-          "fontFamily": "Noto Sans",
-          "fontWeight": 500,
-          "fontSize": 16,
-          "lineHeight": "140%",
-          "letterSpacing": {
-            "value": 4,
-            "unit": "%"
-          }
-        },
-        "references": [
-          "primitive.typography.family.sans",
-          "primitive.typography.weight.medium",
-          "primitive.typography.size.lg",
-          "primitive.typography.lineHeight.normal",
-          "primitive.typography.letterSpacing.normal"
-        ]
-      },
-      "dark": {
-        "value": {
-          "fontFamily": "{primitive.typography.family.sans}",
-          "fontWeight": "{primitive.typography.weight.medium}",
-          "fontSize": "{primitive.typography.size.lg}",
-          "lineHeight": "{primitive.typography.lineHeight.normal}",
-          "letterSpacing": "{primitive.typography.letterSpacing.normal}"
-        },
-        "resolved": {
-          "fontFamily": "Noto Sans",
-          "fontWeight": 500,
-          "fontSize": 16,
-          "lineHeight": "140%",
-          "letterSpacing": {
-            "value": 4,
-            "unit": "%"
-          }
-        },
-        "references": [
-          "primitive.typography.family.sans",
-          "primitive.typography.weight.medium",
-          "primitive.typography.size.lg",
-          "primitive.typography.lineHeight.normal",
-          "primitive.typography.letterSpacing.normal"
-        ]
-      }
-    },
-    "semantic.textStyle.bodySmall": {
-      "layer": "semantic",
-      "type": "typography",
-      "description": "Secondary body content style from Figma.",
-      "sourceRef": "semantic.textStyle.bodySmall",
-      "light": {
-        "value": {
-          "fontFamily": "{primitive.typography.family.sans}",
-          "fontWeight": "{primitive.typography.weight.regular}",
-          "fontSize": "{primitive.typography.size.md}",
-          "lineHeight": "{primitive.typography.lineHeight.normal}",
-          "letterSpacing": "{primitive.typography.letterSpacing.normal}"
-        },
-        "resolved": {
-          "fontFamily": "Noto Sans",
-          "fontWeight": 400,
-          "fontSize": 14,
-          "lineHeight": "140%",
-          "letterSpacing": {
-            "value": 4,
-            "unit": "%"
-          }
-        },
-        "references": [
-          "primitive.typography.family.sans",
-          "primitive.typography.weight.regular",
-          "primitive.typography.size.md",
-          "primitive.typography.lineHeight.normal",
-          "primitive.typography.letterSpacing.normal"
-        ]
-      },
-      "dark": {
-        "value": {
-          "fontFamily": "{primitive.typography.family.sans}",
-          "fontWeight": "{primitive.typography.weight.regular}",
-          "fontSize": "{primitive.typography.size.md}",
-          "lineHeight": "{primitive.typography.lineHeight.normal}",
-          "letterSpacing": "{primitive.typography.letterSpacing.normal}"
-        },
-        "resolved": {
-          "fontFamily": "Noto Sans",
-          "fontWeight": 400,
-          "fontSize": 14,
-          "lineHeight": "140%",
-          "letterSpacing": {
-            "value": 4,
-            "unit": "%"
-          }
-        },
-        "references": [
-          "primitive.typography.family.sans",
-          "primitive.typography.weight.regular",
-          "primitive.typography.size.md",
-          "primitive.typography.lineHeight.normal",
-          "primitive.typography.letterSpacing.normal"
-        ]
-      }
-    },
-    "semantic.textStyle.buttonText": {
+    "semantic.textStyle.actionLabel": {
       "layer": "semantic",
       "type": "typography",
       "description": "Button label style from Figma.",
-      "sourceRef": "semantic.textStyle.buttonText",
+      "sourceRef": "semantic.textStyle.actionLabel",
       "light": {
         "value": {
           "fontFamily": "{primitive.typography.family.sans}",
@@ -7105,80 +7579,80 @@
         ]
       }
     },
-    "semantic.textStyle.caption": {
+    "semantic.textStyle.bodyPrimary": {
       "layer": "semantic",
       "type": "typography",
-      "description": "Auxiliary information, annotation, and label style from Figma.",
-      "sourceRef": "semantic.textStyle.caption",
-      "light": {
-        "value": {
-          "fontFamily": "{primitive.typography.family.sans}",
-          "fontWeight": "{primitive.typography.weight.regular}",
-          "fontSize": "{primitive.typography.size.sm}",
-          "lineHeight": "{primitive.typography.lineHeight.tight}",
-          "letterSpacing": "{primitive.typography.letterSpacing.normal}"
-        },
-        "resolved": {
-          "fontFamily": "Noto Sans",
-          "fontWeight": 400,
-          "fontSize": 12,
-          "lineHeight": "130%",
-          "letterSpacing": {
-            "value": 4,
-            "unit": "%"
-          }
-        },
-        "references": [
-          "primitive.typography.family.sans",
-          "primitive.typography.weight.regular",
-          "primitive.typography.size.sm",
-          "primitive.typography.lineHeight.tight",
-          "primitive.typography.letterSpacing.normal"
-        ]
-      },
-      "dark": {
-        "value": {
-          "fontFamily": "{primitive.typography.family.sans}",
-          "fontWeight": "{primitive.typography.weight.regular}",
-          "fontSize": "{primitive.typography.size.sm}",
-          "lineHeight": "{primitive.typography.lineHeight.tight}",
-          "letterSpacing": "{primitive.typography.letterSpacing.normal}"
-        },
-        "resolved": {
-          "fontFamily": "Noto Sans",
-          "fontWeight": 400,
-          "fontSize": 12,
-          "lineHeight": "130%",
-          "letterSpacing": {
-            "value": 4,
-            "unit": "%"
-          }
-        },
-        "references": [
-          "primitive.typography.family.sans",
-          "primitive.typography.weight.regular",
-          "primitive.typography.size.sm",
-          "primitive.typography.lineHeight.tight",
-          "primitive.typography.letterSpacing.normal"
-        ]
-      }
-    },
-    "semantic.textStyle.groupTitle": {
-      "layer": "semantic",
-      "type": "typography",
-      "description": "Grouped section title style from Figma.",
-      "sourceRef": "semantic.textStyle.groupTitle",
+      "description": "Primary body content style from Figma.",
+      "sourceRef": "semantic.textStyle.bodyPrimary",
       "light": {
         "value": {
           "fontFamily": "{primitive.typography.family.sans}",
           "fontWeight": "{primitive.typography.weight.medium}",
-          "fontSize": "{primitive.typography.size.md}",
+          "fontSize": "{primitive.typography.size.lg}",
           "lineHeight": "{primitive.typography.lineHeight.normal}",
           "letterSpacing": "{primitive.typography.letterSpacing.normal}"
         },
         "resolved": {
           "fontFamily": "Noto Sans",
           "fontWeight": 500,
+          "fontSize": 16,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
+        "references": [
+          "primitive.typography.family.sans",
+          "primitive.typography.weight.medium",
+          "primitive.typography.size.lg",
+          "primitive.typography.lineHeight.normal",
+          "primitive.typography.letterSpacing.normal"
+        ]
+      },
+      "dark": {
+        "value": {
+          "fontFamily": "{primitive.typography.family.sans}",
+          "fontWeight": "{primitive.typography.weight.medium}",
+          "fontSize": "{primitive.typography.size.lg}",
+          "lineHeight": "{primitive.typography.lineHeight.normal}",
+          "letterSpacing": "{primitive.typography.letterSpacing.normal}"
+        },
+        "resolved": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 500,
+          "fontSize": 16,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
+        "references": [
+          "primitive.typography.family.sans",
+          "primitive.typography.weight.medium",
+          "primitive.typography.size.lg",
+          "primitive.typography.lineHeight.normal",
+          "primitive.typography.letterSpacing.normal"
+        ]
+      }
+    },
+    "semantic.textStyle.bodySecondary": {
+      "layer": "semantic",
+      "type": "typography",
+      "description": "Secondary body content style from Figma.",
+      "sourceRef": "semantic.textStyle.bodySecondary",
+      "light": {
+        "value": {
+          "fontFamily": "{primitive.typography.family.sans}",
+          "fontWeight": "{primitive.typography.weight.regular}",
+          "fontSize": "{primitive.typography.size.md}",
+          "lineHeight": "{primitive.typography.lineHeight.normal}",
+          "letterSpacing": "{primitive.typography.letterSpacing.normal}"
+        },
+        "resolved": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 400,
           "fontSize": 14,
           "lineHeight": "140%",
           "letterSpacing": {
@@ -7188,7 +7662,7 @@
         },
         "references": [
           "primitive.typography.family.sans",
-          "primitive.typography.weight.medium",
+          "primitive.typography.weight.regular",
           "primitive.typography.size.md",
           "primitive.typography.lineHeight.normal",
           "primitive.typography.letterSpacing.normal"
@@ -7197,14 +7671,14 @@
       "dark": {
         "value": {
           "fontFamily": "{primitive.typography.family.sans}",
-          "fontWeight": "{primitive.typography.weight.medium}",
+          "fontWeight": "{primitive.typography.weight.regular}",
           "fontSize": "{primitive.typography.size.md}",
           "lineHeight": "{primitive.typography.lineHeight.normal}",
           "letterSpacing": "{primitive.typography.letterSpacing.normal}"
         },
         "resolved": {
           "fontFamily": "Noto Sans",
-          "fontWeight": 500,
+          "fontWeight": 400,
           "fontSize": 14,
           "lineHeight": "140%",
           "letterSpacing": {
@@ -7214,30 +7688,30 @@
         },
         "references": [
           "primitive.typography.family.sans",
-          "primitive.typography.weight.medium",
+          "primitive.typography.weight.regular",
           "primitive.typography.size.md",
           "primitive.typography.lineHeight.normal",
           "primitive.typography.letterSpacing.normal"
         ]
       }
     },
-    "semantic.textStyle.guideTitle": {
+    "semantic.textStyle.heroAmount": {
       "layer": "semantic",
       "type": "typography",
-      "description": "Guide title style from Figma.",
-      "sourceRef": "semantic.textStyle.guideTitle",
+      "description": "Large amount and article-title style from Figma.",
+      "sourceRef": "semantic.textStyle.heroAmount",
       "light": {
         "value": {
           "fontFamily": "{primitive.typography.family.sans}",
-          "fontWeight": "{primitive.typography.weight.medium}",
-          "fontSize": "{primitive.typography.size.xl}",
+          "fontWeight": "{primitive.typography.weight.bold}",
+          "fontSize": "{primitive.typography.size.2xl}",
           "lineHeight": "{primitive.typography.lineHeight.normal}",
           "letterSpacing": "{primitive.typography.letterSpacing.normal}"
         },
         "resolved": {
           "fontFamily": "Noto Sans",
-          "fontWeight": 500,
-          "fontSize": 20,
+          "fontWeight": 700,
+          "fontSize": 24,
           "lineHeight": "140%",
           "letterSpacing": {
             "value": 4,
@@ -7246,8 +7720,8 @@
         },
         "references": [
           "primitive.typography.family.sans",
-          "primitive.typography.weight.medium",
-          "primitive.typography.size.xl",
+          "primitive.typography.weight.bold",
+          "primitive.typography.size.2xl",
           "primitive.typography.lineHeight.normal",
           "primitive.typography.letterSpacing.normal"
         ]
@@ -7255,15 +7729,15 @@
       "dark": {
         "value": {
           "fontFamily": "{primitive.typography.family.sans}",
-          "fontWeight": "{primitive.typography.weight.medium}",
-          "fontSize": "{primitive.typography.size.xl}",
+          "fontWeight": "{primitive.typography.weight.bold}",
+          "fontSize": "{primitive.typography.size.2xl}",
           "lineHeight": "{primitive.typography.lineHeight.normal}",
           "letterSpacing": "{primitive.typography.letterSpacing.normal}"
         },
         "resolved": {
           "fontFamily": "Noto Sans",
-          "fontWeight": 500,
-          "fontSize": 20,
+          "fontWeight": 700,
+          "fontSize": 24,
           "lineHeight": "140%",
           "letterSpacing": {
             "value": 4,
@@ -7272,18 +7746,18 @@
         },
         "references": [
           "primitive.typography.family.sans",
-          "primitive.typography.weight.medium",
-          "primitive.typography.size.xl",
+          "primitive.typography.weight.bold",
+          "primitive.typography.size.2xl",
           "primitive.typography.lineHeight.normal",
           "primitive.typography.letterSpacing.normal"
         ]
       }
     },
-    "semantic.textStyle.titleLarge": {
+    "semantic.textStyle.heroTitle": {
       "layer": "semantic",
       "type": "typography",
       "description": "Largest title style from Figma, used for article titles and special large amount emphasis.",
-      "sourceRef": "semantic.textStyle.titleLarge",
+      "sourceRef": "semantic.textStyle.heroTitle",
       "light": {
         "value": {
           "fontFamily": "{primitive.typography.family.sans}",
@@ -7337,11 +7811,11 @@
         ]
       }
     },
-    "semantic.textStyle.titleMedium": {
+    "semantic.textStyle.navTitle": {
       "layer": "semantic",
       "type": "typography",
       "description": "Medium title style from Figma, used for navigation headings.",
-      "sourceRef": "semantic.textStyle.titleMedium",
+      "sourceRef": "semantic.textStyle.navTitle",
       "light": {
         "value": {
           "fontFamily": "{primitive.typography.family.sans}",
@@ -7395,11 +7869,185 @@
         ]
       }
     },
-    "semantic.textStyle.xSmall": {
+    "semantic.textStyle.sectionLead": {
+      "layer": "semantic",
+      "type": "typography",
+      "description": "Guide title style from Figma.",
+      "sourceRef": "semantic.textStyle.sectionLead",
+      "light": {
+        "value": {
+          "fontFamily": "{primitive.typography.family.sans}",
+          "fontWeight": "{primitive.typography.weight.medium}",
+          "fontSize": "{primitive.typography.size.xl}",
+          "lineHeight": "{primitive.typography.lineHeight.normal}",
+          "letterSpacing": "{primitive.typography.letterSpacing.normal}"
+        },
+        "resolved": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 500,
+          "fontSize": 20,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
+        "references": [
+          "primitive.typography.family.sans",
+          "primitive.typography.weight.medium",
+          "primitive.typography.size.xl",
+          "primitive.typography.lineHeight.normal",
+          "primitive.typography.letterSpacing.normal"
+        ]
+      },
+      "dark": {
+        "value": {
+          "fontFamily": "{primitive.typography.family.sans}",
+          "fontWeight": "{primitive.typography.weight.medium}",
+          "fontSize": "{primitive.typography.size.xl}",
+          "lineHeight": "{primitive.typography.lineHeight.normal}",
+          "letterSpacing": "{primitive.typography.letterSpacing.normal}"
+        },
+        "resolved": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 500,
+          "fontSize": 20,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
+        "references": [
+          "primitive.typography.family.sans",
+          "primitive.typography.weight.medium",
+          "primitive.typography.size.xl",
+          "primitive.typography.lineHeight.normal",
+          "primitive.typography.letterSpacing.normal"
+        ]
+      }
+    },
+    "semantic.textStyle.sectionTitle": {
+      "layer": "semantic",
+      "type": "typography",
+      "description": "Grouped section title style from Figma.",
+      "sourceRef": "semantic.textStyle.sectionTitle",
+      "light": {
+        "value": {
+          "fontFamily": "{primitive.typography.family.sans}",
+          "fontWeight": "{primitive.typography.weight.medium}",
+          "fontSize": "{primitive.typography.size.md}",
+          "lineHeight": "{primitive.typography.lineHeight.normal}",
+          "letterSpacing": "{primitive.typography.letterSpacing.normal}"
+        },
+        "resolved": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 500,
+          "fontSize": 14,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
+        "references": [
+          "primitive.typography.family.sans",
+          "primitive.typography.weight.medium",
+          "primitive.typography.size.md",
+          "primitive.typography.lineHeight.normal",
+          "primitive.typography.letterSpacing.normal"
+        ]
+      },
+      "dark": {
+        "value": {
+          "fontFamily": "{primitive.typography.family.sans}",
+          "fontWeight": "{primitive.typography.weight.medium}",
+          "fontSize": "{primitive.typography.size.md}",
+          "lineHeight": "{primitive.typography.lineHeight.normal}",
+          "letterSpacing": "{primitive.typography.letterSpacing.normal}"
+        },
+        "resolved": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 500,
+          "fontSize": 14,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
+        "references": [
+          "primitive.typography.family.sans",
+          "primitive.typography.weight.medium",
+          "primitive.typography.size.md",
+          "primitive.typography.lineHeight.normal",
+          "primitive.typography.letterSpacing.normal"
+        ]
+      }
+    },
+    "semantic.textStyle.supportingText": {
+      "layer": "semantic",
+      "type": "typography",
+      "description": "Auxiliary information, annotation, and label style from Figma.",
+      "sourceRef": "semantic.textStyle.supportingText",
+      "light": {
+        "value": {
+          "fontFamily": "{primitive.typography.family.sans}",
+          "fontWeight": "{primitive.typography.weight.regular}",
+          "fontSize": "{primitive.typography.size.sm}",
+          "lineHeight": "{primitive.typography.lineHeight.tight}",
+          "letterSpacing": "{primitive.typography.letterSpacing.normal}"
+        },
+        "resolved": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 400,
+          "fontSize": 12,
+          "lineHeight": "130%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
+        "references": [
+          "primitive.typography.family.sans",
+          "primitive.typography.weight.regular",
+          "primitive.typography.size.sm",
+          "primitive.typography.lineHeight.tight",
+          "primitive.typography.letterSpacing.normal"
+        ]
+      },
+      "dark": {
+        "value": {
+          "fontFamily": "{primitive.typography.family.sans}",
+          "fontWeight": "{primitive.typography.weight.regular}",
+          "fontSize": "{primitive.typography.size.sm}",
+          "lineHeight": "{primitive.typography.lineHeight.tight}",
+          "letterSpacing": "{primitive.typography.letterSpacing.normal}"
+        },
+        "resolved": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 400,
+          "fontSize": 12,
+          "lineHeight": "130%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
+        "references": [
+          "primitive.typography.family.sans",
+          "primitive.typography.weight.regular",
+          "primitive.typography.size.sm",
+          "primitive.typography.lineHeight.tight",
+          "primitive.typography.letterSpacing.normal"
+        ]
+      }
+    },
+    "semantic.textStyle.tabLabel": {
       "layer": "semantic",
       "type": "typography",
       "description": "Bottom navigation special-case small text style from Figma.",
-      "sourceRef": "semantic.textStyle.xSmall",
+      "sourceRef": "semantic.textStyle.tabLabel",
       "light": {
         "value": {
           "fontFamily": "{primitive.typography.family.sans}",
@@ -7501,20 +8149,38 @@
                 },
                 "title": {
                   "path": "component.mobileNav.primary.default.title",
-                  "type": "color",
-                  "description": "Primary mobile nav title alias for light mode.",
+                  "type": "typography",
+                  "description": "Primary mobile nav title alias aligned to the navigation title text style for light mode.",
                   "light": {
-                    "value": "{semantic.text.primary}",
-                    "resolved": "#111D4A",
+                    "value": "{semantic.textStyle.navTitle}",
+                    "resolved": {
+                      "fontFamily": "Noto Sans",
+                      "fontWeight": 700,
+                      "fontSize": 16,
+                      "lineHeight": "140%",
+                      "letterSpacing": {
+                        "value": 4,
+                        "unit": "%"
+                      }
+                    },
                     "references": [
-                      "semantic.text.primary"
+                      "semantic.textStyle.navTitle"
                     ]
                   },
                   "dark": {
-                    "value": "{semantic.text.primary}",
-                    "resolved": "#D6D7E0",
+                    "value": "{semantic.textStyle.navTitle}",
+                    "resolved": {
+                      "fontFamily": "Noto Sans",
+                      "fontWeight": 700,
+                      "fontSize": 16,
+                      "lineHeight": "140%",
+                      "letterSpacing": {
+                        "value": 4,
+                        "unit": "%"
+                      }
+                    },
                     "references": [
-                      "semantic.text.primary"
+                      "semantic.textStyle.navTitle"
                     ]
                   }
                 },
@@ -7585,20 +8251,38 @@
                 },
                 "title": {
                   "path": "component.mobileNav.secondary.default.title",
-                  "type": "color",
-                  "description": "Secondary mobile nav title alias for light mode.",
+                  "type": "typography",
+                  "description": "Secondary mobile nav title alias aligned to the navigation title text style for light mode.",
                   "light": {
-                    "value": "{semantic.text.primary}",
-                    "resolved": "#111D4A",
+                    "value": "{semantic.textStyle.navTitle}",
+                    "resolved": {
+                      "fontFamily": "Noto Sans",
+                      "fontWeight": 700,
+                      "fontSize": 16,
+                      "lineHeight": "140%",
+                      "letterSpacing": {
+                        "value": 4,
+                        "unit": "%"
+                      }
+                    },
                     "references": [
-                      "semantic.text.primary"
+                      "semantic.textStyle.navTitle"
                     ]
                   },
                   "dark": {
-                    "value": "{semantic.text.primary}",
-                    "resolved": "#D6D7E0",
+                    "value": "{semantic.textStyle.navTitle}",
+                    "resolved": {
+                      "fontFamily": "Noto Sans",
+                      "fontWeight": 700,
+                      "fontSize": 16,
+                      "lineHeight": "140%",
+                      "letterSpacing": {
+                        "value": 4,
+                        "unit": "%"
+                      }
+                    },
                     "references": [
-                      "semantic.text.primary"
+                      "semantic.textStyle.navTitle"
                     ]
                   }
                 },
@@ -7700,20 +8384,38 @@
                 },
                 "title": {
                   "path": "component.webNav.default.default.title",
-                  "type": "color",
-                  "description": "Web nav title alias for light mode.",
+                  "type": "typography",
+                  "description": "Web nav title alias aligned to the navigation title text style for light mode.",
                   "light": {
-                    "value": "{semantic.text.primary}",
-                    "resolved": "#111D4A",
+                    "value": "{semantic.textStyle.navTitle}",
+                    "resolved": {
+                      "fontFamily": "Noto Sans",
+                      "fontWeight": 700,
+                      "fontSize": 16,
+                      "lineHeight": "140%",
+                      "letterSpacing": {
+                        "value": 4,
+                        "unit": "%"
+                      }
+                    },
                     "references": [
-                      "semantic.text.primary"
+                      "semantic.textStyle.navTitle"
                     ]
                   },
                   "dark": {
-                    "value": "{semantic.text.primary}",
-                    "resolved": "#D6D7E0",
+                    "value": "{semantic.textStyle.navTitle}",
+                    "resolved": {
+                      "fontFamily": "Noto Sans",
+                      "fontWeight": 700,
+                      "fontSize": 16,
+                      "lineHeight": "140%",
+                      "letterSpacing": {
+                        "value": 4,
+                        "unit": "%"
+                      }
+                    },
                     "references": [
-                      "semantic.text.primary"
+                      "semantic.textStyle.navTitle"
                     ]
                   }
                 },
@@ -7788,39 +8490,75 @@
                 },
                 "title": {
                   "path": "component.modal.default.default.title",
-                  "type": "color",
-                  "description": "Modal title alias for light mode.",
+                  "type": "typography",
+                  "description": "Modal title alias aligned to the section title text style for light mode.",
                   "light": {
-                    "value": "{semantic.text.primary}",
-                    "resolved": "#111D4A",
+                    "value": "{semantic.textStyle.sectionTitle}",
+                    "resolved": {
+                      "fontFamily": "Noto Sans",
+                      "fontWeight": 500,
+                      "fontSize": 14,
+                      "lineHeight": "140%",
+                      "letterSpacing": {
+                        "value": 4,
+                        "unit": "%"
+                      }
+                    },
                     "references": [
-                      "semantic.text.primary"
+                      "semantic.textStyle.sectionTitle"
                     ]
                   },
                   "dark": {
-                    "value": "{semantic.text.primary}",
-                    "resolved": "#D6D7E0",
+                    "value": "{semantic.textStyle.sectionTitle}",
+                    "resolved": {
+                      "fontFamily": "Noto Sans",
+                      "fontWeight": 500,
+                      "fontSize": 14,
+                      "lineHeight": "140%",
+                      "letterSpacing": {
+                        "value": 4,
+                        "unit": "%"
+                      }
+                    },
                     "references": [
-                      "semantic.text.primary"
+                      "semantic.textStyle.sectionTitle"
                     ]
                   }
                 },
                 "body": {
                   "path": "component.modal.default.default.body",
-                  "type": "color",
-                  "description": "Modal body text alias for light mode.",
+                  "type": "typography",
+                  "description": "Modal body text alias aligned to the secondary body text style for light mode.",
                   "light": {
-                    "value": "{semantic.text.secondary}",
-                    "resolved": "#A0A5B7",
+                    "value": "{semantic.textStyle.bodySecondary}",
+                    "resolved": {
+                      "fontFamily": "Noto Sans",
+                      "fontWeight": 400,
+                      "fontSize": 14,
+                      "lineHeight": "140%",
+                      "letterSpacing": {
+                        "value": 4,
+                        "unit": "%"
+                      }
+                    },
                     "references": [
-                      "semantic.text.secondary"
+                      "semantic.textStyle.bodySecondary"
                     ]
                   },
                   "dark": {
-                    "value": "{semantic.text.secondary}",
-                    "resolved": "#8B8B91",
+                    "value": "{semantic.textStyle.bodySecondary}",
+                    "resolved": {
+                      "fontFamily": "Noto Sans",
+                      "fontWeight": 400,
+                      "fontSize": 14,
+                      "lineHeight": "140%",
+                      "letterSpacing": {
+                        "value": 4,
+                        "unit": "%"
+                      }
+                    },
                     "references": [
-                      "semantic.text.secondary"
+                      "semantic.textStyle.bodySecondary"
                     ]
                   }
                 },
@@ -8028,20 +8766,38 @@
                 },
                 "text": {
                   "path": "component.button.primary.default.text",
-                  "type": "color",
-                  "description": "Primary button text alias resolved to semantic action text.",
+                  "type": "typography",
+                  "description": "Primary button text alias aligned to the action label text style.",
                   "light": {
-                    "value": "{semantic.text.action}",
-                    "resolved": "#007FFF",
+                    "value": "{semantic.textStyle.actionLabel}",
+                    "resolved": {
+                      "fontFamily": "Noto Sans",
+                      "fontWeight": 400,
+                      "fontSize": 16,
+                      "lineHeight": "140%",
+                      "letterSpacing": {
+                        "value": 4,
+                        "unit": "%"
+                      }
+                    },
                     "references": [
-                      "semantic.text.action"
+                      "semantic.textStyle.actionLabel"
                     ]
                   },
                   "dark": {
-                    "value": "{semantic.text.action}",
-                    "resolved": "#066BD2",
+                    "value": "{semantic.textStyle.actionLabel}",
+                    "resolved": {
+                      "fontFamily": "Noto Sans",
+                      "fontWeight": 400,
+                      "fontSize": 16,
+                      "lineHeight": "140%",
+                      "letterSpacing": {
+                        "value": 4,
+                        "unit": "%"
+                      }
+                    },
                     "references": [
-                      "semantic.text.action"
+                      "semantic.textStyle.actionLabel"
                     ]
                   }
                 },
@@ -8124,39 +8880,75 @@
               "properties": {
                 "title": {
                   "path": "component.menu.default.default.title",
-                  "type": "color",
-                  "description": "Menu title alias for light mode.",
+                  "type": "typography",
+                  "description": "Menu title alias aligned to the section title text style for light mode.",
                   "light": {
-                    "value": "{semantic.text.primary}",
-                    "resolved": "#111D4A",
+                    "value": "{semantic.textStyle.sectionTitle}",
+                    "resolved": {
+                      "fontFamily": "Noto Sans",
+                      "fontWeight": 500,
+                      "fontSize": 14,
+                      "lineHeight": "140%",
+                      "letterSpacing": {
+                        "value": 4,
+                        "unit": "%"
+                      }
+                    },
                     "references": [
-                      "semantic.text.primary"
+                      "semantic.textStyle.sectionTitle"
                     ]
                   },
                   "dark": {
-                    "value": "{semantic.text.primary}",
-                    "resolved": "#D6D7E0",
+                    "value": "{semantic.textStyle.sectionTitle}",
+                    "resolved": {
+                      "fontFamily": "Noto Sans",
+                      "fontWeight": 500,
+                      "fontSize": 14,
+                      "lineHeight": "140%",
+                      "letterSpacing": {
+                        "value": 4,
+                        "unit": "%"
+                      }
+                    },
                     "references": [
-                      "semantic.text.primary"
+                      "semantic.textStyle.sectionTitle"
                     ]
                   }
                 },
                 "body": {
                   "path": "component.menu.default.default.body",
-                  "type": "color",
-                  "description": "Menu body text alias for light mode.",
+                  "type": "typography",
+                  "description": "Menu body text alias aligned to the secondary body text style for light mode.",
                   "light": {
-                    "value": "{semantic.text.secondary}",
-                    "resolved": "#A0A5B7",
+                    "value": "{semantic.textStyle.bodySecondary}",
+                    "resolved": {
+                      "fontFamily": "Noto Sans",
+                      "fontWeight": 400,
+                      "fontSize": 14,
+                      "lineHeight": "140%",
+                      "letterSpacing": {
+                        "value": 4,
+                        "unit": "%"
+                      }
+                    },
                     "references": [
-                      "semantic.text.secondary"
+                      "semantic.textStyle.bodySecondary"
                     ]
                   },
                   "dark": {
-                    "value": "{semantic.text.secondary}",
-                    "resolved": "#8B8B91",
+                    "value": "{semantic.textStyle.bodySecondary}",
+                    "resolved": {
+                      "fontFamily": "Noto Sans",
+                      "fontWeight": 400,
+                      "fontSize": 14,
+                      "lineHeight": "140%",
+                      "letterSpacing": {
+                        "value": 4,
+                        "unit": "%"
+                      }
+                    },
                     "references": [
-                      "semantic.text.secondary"
+                      "semantic.textStyle.bodySecondary"
                     ]
                   }
                 },
@@ -8212,20 +9004,38 @@
                 },
                 "text": {
                   "path": "component.tokenList.default.default.text",
-                  "type": "color",
-                  "description": "Default token list text alias for light mode.",
+                  "type": "typography",
+                  "description": "Default token list text alias aligned to the primary body text style for light mode.",
                   "light": {
-                    "value": "{semantic.text.primary}",
-                    "resolved": "#111D4A",
+                    "value": "{semantic.textStyle.bodyPrimary}",
+                    "resolved": {
+                      "fontFamily": "Noto Sans",
+                      "fontWeight": 500,
+                      "fontSize": 16,
+                      "lineHeight": "140%",
+                      "letterSpacing": {
+                        "value": 4,
+                        "unit": "%"
+                      }
+                    },
                     "references": [
-                      "semantic.text.primary"
+                      "semantic.textStyle.bodyPrimary"
                     ]
                   },
                   "dark": {
-                    "value": "{semantic.text.primary}",
-                    "resolved": "#D6D7E0",
+                    "value": "{semantic.textStyle.bodyPrimary}",
+                    "resolved": {
+                      "fontFamily": "Noto Sans",
+                      "fontWeight": 500,
+                      "fontSize": 16,
+                      "lineHeight": "140%",
+                      "letterSpacing": {
+                        "value": 4,
+                        "unit": "%"
+                      }
+                    },
                     "references": [
-                      "semantic.text.primary"
+                      "semantic.textStyle.bodyPrimary"
                     ]
                   }
                 },
@@ -8277,20 +9087,38 @@
                 },
                 "text": {
                   "path": "component.tokenList.expand.default.text",
-                  "type": "color",
-                  "description": "Expanded token list text alias for light mode.",
+                  "type": "typography",
+                  "description": "Expanded token list text alias aligned to the primary body text style for light mode.",
                   "light": {
-                    "value": "{semantic.text.primary}",
-                    "resolved": "#111D4A",
+                    "value": "{semantic.textStyle.bodyPrimary}",
+                    "resolved": {
+                      "fontFamily": "Noto Sans",
+                      "fontWeight": 500,
+                      "fontSize": 16,
+                      "lineHeight": "140%",
+                      "letterSpacing": {
+                        "value": 4,
+                        "unit": "%"
+                      }
+                    },
                     "references": [
-                      "semantic.text.primary"
+                      "semantic.textStyle.bodyPrimary"
                     ]
                   },
                   "dark": {
-                    "value": "{semantic.text.primary}",
-                    "resolved": "#D6D7E0",
+                    "value": "{semantic.textStyle.bodyPrimary}",
+                    "resolved": {
+                      "fontFamily": "Noto Sans",
+                      "fontWeight": 500,
+                      "fontSize": 16,
+                      "lineHeight": "140%",
+                      "letterSpacing": {
+                        "value": 4,
+                        "unit": "%"
+                      }
+                    },
                     "references": [
-                      "semantic.text.primary"
+                      "semantic.textStyle.bodyPrimary"
                     ]
                   }
                 },

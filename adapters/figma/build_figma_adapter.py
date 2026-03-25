@@ -70,7 +70,7 @@ def infer_type_from_path(path):
         return "lineHeights"
     if ".typography.letterSpacing." in path:
         return "letterSpacing"
-    if ".textStyle." in path:
+    if ".font." in path:
         return "typography"
     if any(
         segment in path

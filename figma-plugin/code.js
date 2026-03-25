@@ -39,9 +39,25 @@ figma.ui.onmessage = async (msg) => {
 // ─── Color helpers ─────────────────────────────────────────────────────────
 
 function hexToFigmaColor(hex) {
-    const r = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-    if (!r) return null;
-    return { r: parseInt(r[1], 16) / 255, g: parseInt(r[2], 16) / 255, b: parseInt(r[3], 16) / 255, a: 1 };
+    const normalized = String(hex || '').trim();
+    const rgb = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(normalized);
+    if (rgb) {
+        return {
+            r: parseInt(rgb[1], 16) / 255,
+            g: parseInt(rgb[2], 16) / 255,
+            b: parseInt(rgb[3], 16) / 255,
+            a: 1
+        };
+    }
+
+    const rgba = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(normalized);
+    if (!rgba) return null;
+    return {
+        r: parseInt(rgba[1], 16) / 255,
+        g: parseInt(rgba[2], 16) / 255,
+        b: parseInt(rgba[3], 16) / 255,
+        a: parseInt(rgba[4], 16) / 255
+    };
 }
 
 function rgbaToFigmaColor(str) {
@@ -110,6 +126,12 @@ function flattenTokens(obj, prefix) {
         const path = prefix ? `${prefix}.${key}` : key;
         if (val && val.$type && (TYPE_MAP[val.$type] || val.$type === TYPOGRAPHY_STYLE_TYPE)) {
             out.push({ path, type: val.$type, value: val.$value, description: val.$description || '' });
+            const childNodes = Object.fromEntries(
+                Object.entries(val).filter(([childKey]) => !childKey.startsWith('$'))
+            );
+            if (Object.keys(childNodes).length) {
+                out.push(...flattenTokens(childNodes, path));
+            }
         } else if (val && typeof val === 'object' && !Array.isArray(val)) {
             out.push(...flattenTokens(val, path));
         }
@@ -530,6 +552,10 @@ function safelySetValueForMode(variable, modeId, value, path, addUnsupported) {
     }
 }
 
+function stringifyComparableValue(value) {
+    return JSON.stringify(value);
+}
+
 // ─── Main import ───────────────────────────────────────────────────────────
 
 async function importVariables(data) {
@@ -620,9 +646,12 @@ async function importVariables(data) {
         const variable = getOrCreateVariable(displayName, primCol, figmaType, primExistingVars);
         if (token.description) variable.description = token.description;
 
-        // Hide primitives: not visible in publish panel or inspector
+        // Keep primitive colors out of the binding picker, but leave numeric primitives
+        // bindable so spacing, size, and radius tokens can drive Auto Layout properties.
         variable.hiddenFromPublishing = true;
-        variable.scopes = [];
+        if (figmaType === 'COLOR' || figmaType === 'STRING') {
+            variable.scopes = [];
+        }
 
         const val = resolvePrimitiveValue(token.type, token.value);
         if (val !== null) {
@@ -761,6 +790,32 @@ async function importVariables(data) {
             const seedToken = modeNames.map(modeName => tokensByMode[modeName][tokenPath]).find(Boolean);
             if (!seedToken || isMissingValue(seedToken.value)) continue;
             if (seedToken.type === TYPOGRAPHY_STYLE_TYPE) {
+                const isSemanticTextStyle = collection.key === 'semantic' && tokenPath.startsWith('font.');
+                if (isSemanticTextStyle) {
+                    const semanticStyleValues = modeNames
+                        .map(modeName => tokensByMode[modeName][tokenPath])
+                        .filter(Boolean)
+                        .filter(token => !isMissingValue(token.value))
+                        .map(token => stringifyComparableValue(token.value));
+                    const allModesMatch = semanticStyleValues.every(value => value === semanticStyleValues[0]);
+                    const semanticToken = modeNames
+                        .map(modeName => tokensByMode[modeName][tokenPath])
+                        .find(token => token && !isMissingValue(token.value));
+                    if (semanticToken && allModesMatch) {
+                        const displayName = tokenPath.replace(/^font\./, '').replace(/\./g, '/');
+                        await upsertTypographyStyle(
+                            `${collection.key}.${tokenPath}`,
+                            displayName,
+                            semanticToken.value,
+                            semanticToken.description,
+                            existingTextStyleMap,
+                            resolveRawTokenValue,
+                            addUnsupported
+                        );
+                        continue;
+                    }
+                }
+
                 for (const modeName of modeNames) {
                     const modeToken = tokensByMode[modeName][tokenPath];
                     if (!modeToken || isMissingValue(modeToken.value)) continue;
@@ -788,9 +843,12 @@ async function importVariables(data) {
                     for (const modeName of modeNames) {
                         const modeToken = tokensByMode[modeName][tokenPath];
                         if (!modeToken || isMissingValue(modeToken.value)) continue;
+                        const gradientStyleName = collection.key === 'semantic'
+                            ? `${modeName}/${displayName}`
+                            : `${collection.figmaName}/${modeName}/${displayName}`;
                         upsertGradientStyle(
                             `${collection.key}.${tokenPath}`,
-                            `${collection.figmaName}/${modeName}/${displayName}`,
+                            gradientStyleName,
                             modeToken.value,
                             modeToken.description
                         );

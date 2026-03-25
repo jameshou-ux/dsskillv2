@@ -238,7 +238,7 @@
         "sourceRef": "semantic.status.warning_subtle",
         "type": "color"
       },
-      "semantic.textStyle.titleLarge": {
+      "semantic.textStyle.heroTitle": {
         "value": {
           "fontFamily": "Noto Sans",
           "fontWeight": 700,
@@ -249,10 +249,10 @@
             "unit": "%"
           }
         },
-        "sourceRef": "semantic.textStyle.titleLarge",
+        "sourceRef": "semantic.textStyle.heroTitle",
         "type": "typography"
       },
-      "semantic.textStyle.amountLarge": {
+      "semantic.textStyle.heroAmount": {
         "value": {
           "fontFamily": "Noto Sans",
           "fontWeight": 700,
@@ -263,10 +263,10 @@
             "unit": "%"
           }
         },
-        "sourceRef": "semantic.textStyle.amountLarge",
+        "sourceRef": "semantic.textStyle.heroAmount",
         "type": "typography"
       },
-      "semantic.textStyle.guideTitle": {
+      "semantic.textStyle.sectionLead": {
         "value": {
           "fontFamily": "Noto Sans",
           "fontWeight": 500,
@@ -277,10 +277,10 @@
             "unit": "%"
           }
         },
-        "sourceRef": "semantic.textStyle.guideTitle",
+        "sourceRef": "semantic.textStyle.sectionLead",
         "type": "typography"
       },
-      "semantic.textStyle.titleMedium": {
+      "semantic.textStyle.navTitle": {
         "value": {
           "fontFamily": "Noto Sans",
           "fontWeight": 700,
@@ -291,10 +291,10 @@
             "unit": "%"
           }
         },
-        "sourceRef": "semantic.textStyle.titleMedium",
+        "sourceRef": "semantic.textStyle.navTitle",
         "type": "typography"
       },
-      "semantic.textStyle.bodyMedium": {
+      "semantic.textStyle.bodyPrimary": {
         "value": {
           "fontFamily": "Noto Sans",
           "fontWeight": 500,
@@ -305,10 +305,10 @@
             "unit": "%"
           }
         },
-        "sourceRef": "semantic.textStyle.bodyMedium",
+        "sourceRef": "semantic.textStyle.bodyPrimary",
         "type": "typography"
       },
-      "semantic.textStyle.buttonText": {
+      "semantic.textStyle.actionLabel": {
         "value": {
           "fontFamily": "Noto Sans",
           "fontWeight": 400,
@@ -319,10 +319,10 @@
             "unit": "%"
           }
         },
-        "sourceRef": "semantic.textStyle.buttonText",
+        "sourceRef": "semantic.textStyle.actionLabel",
         "type": "typography"
       },
-      "semantic.textStyle.bodySmall": {
+      "semantic.textStyle.bodySecondary": {
         "value": {
           "fontFamily": "Noto Sans",
           "fontWeight": 400,
@@ -333,10 +333,10 @@
             "unit": "%"
           }
         },
-        "sourceRef": "semantic.textStyle.bodySmall",
+        "sourceRef": "semantic.textStyle.bodySecondary",
         "type": "typography"
       },
-      "semantic.textStyle.groupTitle": {
+      "semantic.textStyle.sectionTitle": {
         "value": {
           "fontFamily": "Noto Sans",
           "fontWeight": 500,
@@ -347,10 +347,10 @@
             "unit": "%"
           }
         },
-        "sourceRef": "semantic.textStyle.groupTitle",
+        "sourceRef": "semantic.textStyle.sectionTitle",
         "type": "typography"
       },
-      "semantic.textStyle.caption": {
+      "semantic.textStyle.supportingText": {
         "value": {
           "fontFamily": "Noto Sans",
           "fontWeight": 400,
@@ -361,10 +361,10 @@
             "unit": "%"
           }
         },
-        "sourceRef": "semantic.textStyle.caption",
+        "sourceRef": "semantic.textStyle.supportingText",
         "type": "typography"
       },
-      "semantic.textStyle.xSmall": {
+      "semantic.textStyle.tabLabel": {
         "value": {
           "fontFamily": "Noto Sans",
           "fontWeight": 400,
@@ -375,7 +375,7 @@
             "unit": "%"
           }
         },
-        "sourceRef": "semantic.textStyle.xSmall",
+        "sourceRef": "semantic.textStyle.tabLabel",
         "type": "typography"
       },
       "pattern.surface.card.background": {
@@ -384,14 +384,32 @@
         "type": "color"
       },
       "pattern.surface.card.title": {
-        "value": "#111D4A",
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 500,
+          "fontSize": 14,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "sourceRef": "pattern.surface.card.title",
-        "type": "color"
+        "type": "typography"
       },
       "pattern.surface.card.body": {
-        "value": "#A0A5B7",
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 400,
+          "fontSize": 14,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "sourceRef": "pattern.surface.card.body",
-        "type": "color"
+        "type": "typography"
       },
       "pattern.surface.card.padding": {
         "value": "16px",
@@ -404,14 +422,32 @@
         "type": "string"
       },
       "pattern.modal.form.title": {
-        "value": "#111D4A",
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 500,
+          "fontSize": 14,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "sourceRef": "pattern.modal.form.title",
-        "type": "color"
+        "type": "typography"
       },
       "pattern.modal.form.body": {
-        "value": "#A0A5B7",
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 400,
+          "fontSize": 14,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "sourceRef": "pattern.modal.form.body",
-        "type": "color"
+        "type": "typography"
       },
       "pattern.modal.form.fieldBackground": {
         "value": "#FFFFFF",
@@ -439,14 +475,32 @@
         "type": "dimension"
       },
       "pattern.list.tokenItem.text": {
-        "value": "#111D4A",
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 500,
+          "fontSize": 16,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "sourceRef": "pattern.list.tokenItem.text",
-        "type": "color"
+        "type": "typography"
       },
       "pattern.list.tokenItem.subtext": {
-        "value": "#A0A5B7",
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 400,
+          "fontSize": 14,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "sourceRef": "pattern.list.tokenItem.subtext",
-        "type": "color"
+        "type": "typography"
       },
       "pattern.list.tokenItem.iconSize": {
         "value": "40px",
@@ -464,14 +518,32 @@
         "type": "dimension"
       },
       "pattern.list.statusRow.title": {
-        "value": "#111D4A",
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 500,
+          "fontSize": 14,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "sourceRef": "pattern.list.statusRow.title",
-        "type": "color"
+        "type": "typography"
       },
       "pattern.list.statusRow.meta": {
-        "value": "#A0A5B7",
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 400,
+          "fontSize": 12,
+          "lineHeight": "130%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "sourceRef": "pattern.list.statusRow.meta",
-        "type": "color"
+        "type": "typography"
       },
       "pattern.list.statusRow.iconSize": {
         "value": "20px",
@@ -499,9 +571,18 @@
         "type": "dimension"
       },
       "component.mobileNav.primary.default.title": {
-        "value": "#111D4A",
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 700,
+          "fontSize": 16,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "sourceRef": "component.mobileNav.primary.default.title",
-        "type": "color"
+        "type": "typography"
       },
       "component.mobileNav.primary.default.icon": {
         "value": "#111D4A",
@@ -519,9 +600,18 @@
         "type": "dimension"
       },
       "component.mobileNav.secondary.default.title": {
-        "value": "#111D4A",
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 700,
+          "fontSize": 16,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "sourceRef": "component.mobileNav.secondary.default.title",
-        "type": "color"
+        "type": "typography"
       },
       "component.mobileNav.secondary.default.icon": {
         "value": "#111D4A",
@@ -544,9 +634,18 @@
         "type": "color"
       },
       "component.webNav.default.default.title": {
-        "value": "#111D4A",
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 700,
+          "fontSize": 16,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "sourceRef": "component.webNav.default.default.title",
-        "type": "color"
+        "type": "typography"
       },
       "component.webNav.default.default.icon": {
         "value": "#111D4A",
@@ -564,14 +663,32 @@
         "type": "color"
       },
       "component.modal.default.default.title": {
-        "value": "#111D4A",
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 500,
+          "fontSize": 14,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "sourceRef": "component.modal.default.default.title",
-        "type": "color"
+        "type": "typography"
       },
       "component.modal.default.default.body": {
-        "value": "#A0A5B7",
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 400,
+          "fontSize": 14,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "sourceRef": "component.modal.default.default.body",
-        "type": "color"
+        "type": "typography"
       },
       "component.modal.default.default.paddingX": {
         "value": "16px",
@@ -624,9 +741,18 @@
         "type": "color"
       },
       "component.button.primary.default.text": {
-        "value": "#007FFF",
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 400,
+          "fontSize": 16,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "sourceRef": "component.button.primary.default.text",
-        "type": "color"
+        "type": "typography"
       },
       "component.button.primary.default.radius": {
         "value": "[MISSING]",
@@ -644,14 +770,32 @@
         "type": "color"
       },
       "component.menu.default.default.title": {
-        "value": "#111D4A",
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 500,
+          "fontSize": 14,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "sourceRef": "component.menu.default.default.title",
-        "type": "color"
+        "type": "typography"
       },
       "component.menu.default.default.body": {
-        "value": "#A0A5B7",
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 400,
+          "fontSize": 14,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "sourceRef": "component.menu.default.default.body",
-        "type": "color"
+        "type": "typography"
       },
       "component.menu.default.default.padding": {
         "value": "16px",
@@ -664,9 +808,18 @@
         "type": "dimension"
       },
       "component.tokenList.default.default.text": {
-        "value": "#111D4A",
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 500,
+          "fontSize": 16,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "sourceRef": "component.tokenList.default.default.text",
-        "type": "color"
+        "type": "typography"
       },
       "component.tokenList.default.default.icon": {
         "value": "#111D4A",
@@ -679,9 +832,18 @@
         "type": "dimension"
       },
       "component.tokenList.expand.default.text": {
-        "value": "#111D4A",
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 500,
+          "fontSize": 16,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "sourceRef": "component.tokenList.expand.default.text",
-        "type": "color"
+        "type": "typography"
       },
       "component.tokenList.expand.default.icon": {
         "value": "#111D4A",
@@ -927,7 +1089,7 @@
         "sourceRef": "semantic.status.warning_subtle",
         "type": "color"
       },
-      "semantic.textStyle.titleLarge": {
+      "semantic.textStyle.heroTitle": {
         "value": {
           "fontFamily": "Noto Sans",
           "fontWeight": 700,
@@ -938,10 +1100,10 @@
             "unit": "%"
           }
         },
-        "sourceRef": "semantic.textStyle.titleLarge",
+        "sourceRef": "semantic.textStyle.heroTitle",
         "type": "typography"
       },
-      "semantic.textStyle.amountLarge": {
+      "semantic.textStyle.heroAmount": {
         "value": {
           "fontFamily": "Noto Sans",
           "fontWeight": 700,
@@ -952,10 +1114,10 @@
             "unit": "%"
           }
         },
-        "sourceRef": "semantic.textStyle.amountLarge",
+        "sourceRef": "semantic.textStyle.heroAmount",
         "type": "typography"
       },
-      "semantic.textStyle.guideTitle": {
+      "semantic.textStyle.sectionLead": {
         "value": {
           "fontFamily": "Noto Sans",
           "fontWeight": 500,
@@ -966,10 +1128,10 @@
             "unit": "%"
           }
         },
-        "sourceRef": "semantic.textStyle.guideTitle",
+        "sourceRef": "semantic.textStyle.sectionLead",
         "type": "typography"
       },
-      "semantic.textStyle.titleMedium": {
+      "semantic.textStyle.navTitle": {
         "value": {
           "fontFamily": "Noto Sans",
           "fontWeight": 700,
@@ -980,10 +1142,10 @@
             "unit": "%"
           }
         },
-        "sourceRef": "semantic.textStyle.titleMedium",
+        "sourceRef": "semantic.textStyle.navTitle",
         "type": "typography"
       },
-      "semantic.textStyle.bodyMedium": {
+      "semantic.textStyle.bodyPrimary": {
         "value": {
           "fontFamily": "Noto Sans",
           "fontWeight": 500,
@@ -994,10 +1156,10 @@
             "unit": "%"
           }
         },
-        "sourceRef": "semantic.textStyle.bodyMedium",
+        "sourceRef": "semantic.textStyle.bodyPrimary",
         "type": "typography"
       },
-      "semantic.textStyle.buttonText": {
+      "semantic.textStyle.actionLabel": {
         "value": {
           "fontFamily": "Noto Sans",
           "fontWeight": 400,
@@ -1008,10 +1170,10 @@
             "unit": "%"
           }
         },
-        "sourceRef": "semantic.textStyle.buttonText",
+        "sourceRef": "semantic.textStyle.actionLabel",
         "type": "typography"
       },
-      "semantic.textStyle.bodySmall": {
+      "semantic.textStyle.bodySecondary": {
         "value": {
           "fontFamily": "Noto Sans",
           "fontWeight": 400,
@@ -1022,10 +1184,10 @@
             "unit": "%"
           }
         },
-        "sourceRef": "semantic.textStyle.bodySmall",
+        "sourceRef": "semantic.textStyle.bodySecondary",
         "type": "typography"
       },
-      "semantic.textStyle.groupTitle": {
+      "semantic.textStyle.sectionTitle": {
         "value": {
           "fontFamily": "Noto Sans",
           "fontWeight": 500,
@@ -1036,10 +1198,10 @@
             "unit": "%"
           }
         },
-        "sourceRef": "semantic.textStyle.groupTitle",
+        "sourceRef": "semantic.textStyle.sectionTitle",
         "type": "typography"
       },
-      "semantic.textStyle.caption": {
+      "semantic.textStyle.supportingText": {
         "value": {
           "fontFamily": "Noto Sans",
           "fontWeight": 400,
@@ -1050,10 +1212,10 @@
             "unit": "%"
           }
         },
-        "sourceRef": "semantic.textStyle.caption",
+        "sourceRef": "semantic.textStyle.supportingText",
         "type": "typography"
       },
-      "semantic.textStyle.xSmall": {
+      "semantic.textStyle.tabLabel": {
         "value": {
           "fontFamily": "Noto Sans",
           "fontWeight": 400,
@@ -1064,7 +1226,7 @@
             "unit": "%"
           }
         },
-        "sourceRef": "semantic.textStyle.xSmall",
+        "sourceRef": "semantic.textStyle.tabLabel",
         "type": "typography"
       },
       "pattern.surface.card.background": {
@@ -1073,14 +1235,32 @@
         "type": "color"
       },
       "pattern.surface.card.title": {
-        "value": "#D6D7E0",
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 500,
+          "fontSize": 14,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "sourceRef": "pattern.surface.card.title",
-        "type": "color"
+        "type": "typography"
       },
       "pattern.surface.card.body": {
-        "value": "#8B8B91",
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 400,
+          "fontSize": 14,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "sourceRef": "pattern.surface.card.body",
-        "type": "color"
+        "type": "typography"
       },
       "pattern.surface.card.padding": {
         "value": "16px",
@@ -1093,14 +1273,32 @@
         "type": "string"
       },
       "pattern.modal.form.title": {
-        "value": "#D6D7E0",
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 500,
+          "fontSize": 14,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "sourceRef": "pattern.modal.form.title",
-        "type": "color"
+        "type": "typography"
       },
       "pattern.modal.form.body": {
-        "value": "#8B8B91",
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 400,
+          "fontSize": 14,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "sourceRef": "pattern.modal.form.body",
-        "type": "color"
+        "type": "typography"
       },
       "pattern.modal.form.fieldBackground": {
         "value": "#2C2C2E",
@@ -1128,14 +1326,32 @@
         "type": "dimension"
       },
       "pattern.list.tokenItem.text": {
-        "value": "#D6D7E0",
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 500,
+          "fontSize": 16,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "sourceRef": "pattern.list.tokenItem.text",
-        "type": "color"
+        "type": "typography"
       },
       "pattern.list.tokenItem.subtext": {
-        "value": "#8B8B91",
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 400,
+          "fontSize": 14,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "sourceRef": "pattern.list.tokenItem.subtext",
-        "type": "color"
+        "type": "typography"
       },
       "pattern.list.tokenItem.iconSize": {
         "value": "40px",
@@ -1153,14 +1369,32 @@
         "type": "dimension"
       },
       "pattern.list.statusRow.title": {
-        "value": "#D6D7E0",
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 500,
+          "fontSize": 14,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "sourceRef": "pattern.list.statusRow.title",
-        "type": "color"
+        "type": "typography"
       },
       "pattern.list.statusRow.meta": {
-        "value": "#8B8B91",
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 400,
+          "fontSize": 12,
+          "lineHeight": "130%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "sourceRef": "pattern.list.statusRow.meta",
-        "type": "color"
+        "type": "typography"
       },
       "pattern.list.statusRow.iconSize": {
         "value": "20px",
@@ -1188,9 +1422,18 @@
         "type": "dimension"
       },
       "component.mobileNav.primary.default.title": {
-        "value": "#D6D7E0",
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 700,
+          "fontSize": 16,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "sourceRef": "component.mobileNav.primary.default.title",
-        "type": "color"
+        "type": "typography"
       },
       "component.mobileNav.primary.default.icon": {
         "value": "#B4B4BC",
@@ -1208,9 +1451,18 @@
         "type": "dimension"
       },
       "component.mobileNav.secondary.default.title": {
-        "value": "#D6D7E0",
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 700,
+          "fontSize": 16,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "sourceRef": "component.mobileNav.secondary.default.title",
-        "type": "color"
+        "type": "typography"
       },
       "component.mobileNav.secondary.default.icon": {
         "value": "#B4B4BC",
@@ -1233,9 +1485,18 @@
         "type": "color"
       },
       "component.webNav.default.default.title": {
-        "value": "#D6D7E0",
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 700,
+          "fontSize": 16,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "sourceRef": "component.webNav.default.default.title",
-        "type": "color"
+        "type": "typography"
       },
       "component.webNav.default.default.icon": {
         "value": "#B4B4BC",
@@ -1253,14 +1514,32 @@
         "type": "color"
       },
       "component.modal.default.default.title": {
-        "value": "#D6D7E0",
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 500,
+          "fontSize": 14,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "sourceRef": "component.modal.default.default.title",
-        "type": "color"
+        "type": "typography"
       },
       "component.modal.default.default.body": {
-        "value": "#8B8B91",
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 400,
+          "fontSize": 14,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "sourceRef": "component.modal.default.default.body",
-        "type": "color"
+        "type": "typography"
       },
       "component.modal.default.default.paddingX": {
         "value": "16px",
@@ -1313,9 +1592,18 @@
         "type": "color"
       },
       "component.button.primary.default.text": {
-        "value": "#066BD2",
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 400,
+          "fontSize": 16,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "sourceRef": "component.button.primary.default.text",
-        "type": "color"
+        "type": "typography"
       },
       "component.button.primary.default.radius": {
         "value": "[MISSING]",
@@ -1333,14 +1621,32 @@
         "type": "color"
       },
       "component.menu.default.default.title": {
-        "value": "#D6D7E0",
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 500,
+          "fontSize": 14,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "sourceRef": "component.menu.default.default.title",
-        "type": "color"
+        "type": "typography"
       },
       "component.menu.default.default.body": {
-        "value": "#8B8B91",
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 400,
+          "fontSize": 14,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "sourceRef": "component.menu.default.default.body",
-        "type": "color"
+        "type": "typography"
       },
       "component.menu.default.default.padding": {
         "value": "16px",
@@ -1353,9 +1659,18 @@
         "type": "dimension"
       },
       "component.tokenList.default.default.text": {
-        "value": "#D6D7E0",
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 500,
+          "fontSize": 16,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "sourceRef": "component.tokenList.default.default.text",
-        "type": "color"
+        "type": "typography"
       },
       "component.tokenList.default.default.icon": {
         "value": "#B4B4BC",
@@ -1368,9 +1683,18 @@
         "type": "dimension"
       },
       "component.tokenList.expand.default.text": {
-        "value": "#D6D7E0",
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 500,
+          "fontSize": 16,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "sourceRef": "component.tokenList.expand.default.text",
-        "type": "color"
+        "type": "typography"
       },
       "component.tokenList.expand.default.icon": {
         "value": "#B4B4BC",
@@ -1618,7 +1942,7 @@
         "sourceRef": "semantic.status.warning_subtle",
         "type": "color"
       },
-      "semantic.textStyle.titleLarge": {
+      "semantic.textStyle.heroTitle": {
         "value": {
           "fontFamily": "Noto Sans",
           "fontWeight": 700,
@@ -1629,10 +1953,10 @@
             "unit": "%"
           }
         },
-        "sourceRef": "semantic.textStyle.titleLarge",
+        "sourceRef": "semantic.textStyle.heroTitle",
         "type": "typography"
       },
-      "semantic.textStyle.amountLarge": {
+      "semantic.textStyle.heroAmount": {
         "value": {
           "fontFamily": "Noto Sans",
           "fontWeight": 700,
@@ -1643,10 +1967,10 @@
             "unit": "%"
           }
         },
-        "sourceRef": "semantic.textStyle.amountLarge",
+        "sourceRef": "semantic.textStyle.heroAmount",
         "type": "typography"
       },
-      "semantic.textStyle.guideTitle": {
+      "semantic.textStyle.sectionLead": {
         "value": {
           "fontFamily": "Noto Sans",
           "fontWeight": 500,
@@ -1657,10 +1981,10 @@
             "unit": "%"
           }
         },
-        "sourceRef": "semantic.textStyle.guideTitle",
+        "sourceRef": "semantic.textStyle.sectionLead",
         "type": "typography"
       },
-      "semantic.textStyle.titleMedium": {
+      "semantic.textStyle.navTitle": {
         "value": {
           "fontFamily": "Noto Sans",
           "fontWeight": 700,
@@ -1671,10 +1995,10 @@
             "unit": "%"
           }
         },
-        "sourceRef": "semantic.textStyle.titleMedium",
+        "sourceRef": "semantic.textStyle.navTitle",
         "type": "typography"
       },
-      "semantic.textStyle.bodyMedium": {
+      "semantic.textStyle.bodyPrimary": {
         "value": {
           "fontFamily": "Noto Sans",
           "fontWeight": 500,
@@ -1685,10 +2009,10 @@
             "unit": "%"
           }
         },
-        "sourceRef": "semantic.textStyle.bodyMedium",
+        "sourceRef": "semantic.textStyle.bodyPrimary",
         "type": "typography"
       },
-      "semantic.textStyle.buttonText": {
+      "semantic.textStyle.actionLabel": {
         "value": {
           "fontFamily": "Noto Sans",
           "fontWeight": 400,
@@ -1699,10 +2023,10 @@
             "unit": "%"
           }
         },
-        "sourceRef": "semantic.textStyle.buttonText",
+        "sourceRef": "semantic.textStyle.actionLabel",
         "type": "typography"
       },
-      "semantic.textStyle.bodySmall": {
+      "semantic.textStyle.bodySecondary": {
         "value": {
           "fontFamily": "Noto Sans",
           "fontWeight": 400,
@@ -1713,10 +2037,10 @@
             "unit": "%"
           }
         },
-        "sourceRef": "semantic.textStyle.bodySmall",
+        "sourceRef": "semantic.textStyle.bodySecondary",
         "type": "typography"
       },
-      "semantic.textStyle.groupTitle": {
+      "semantic.textStyle.sectionTitle": {
         "value": {
           "fontFamily": "Noto Sans",
           "fontWeight": 500,
@@ -1727,10 +2051,10 @@
             "unit": "%"
           }
         },
-        "sourceRef": "semantic.textStyle.groupTitle",
+        "sourceRef": "semantic.textStyle.sectionTitle",
         "type": "typography"
       },
-      "semantic.textStyle.caption": {
+      "semantic.textStyle.supportingText": {
         "value": {
           "fontFamily": "Noto Sans",
           "fontWeight": 400,
@@ -1741,10 +2065,10 @@
             "unit": "%"
           }
         },
-        "sourceRef": "semantic.textStyle.caption",
+        "sourceRef": "semantic.textStyle.supportingText",
         "type": "typography"
       },
-      "semantic.textStyle.xSmall": {
+      "semantic.textStyle.tabLabel": {
         "value": {
           "fontFamily": "Noto Sans",
           "fontWeight": 400,
@@ -1755,7 +2079,7 @@
             "unit": "%"
           }
         },
-        "sourceRef": "semantic.textStyle.xSmall",
+        "sourceRef": "semantic.textStyle.tabLabel",
         "type": "typography"
       },
       "pattern.surface.card.background": {
@@ -1764,14 +2088,32 @@
         "type": "color"
       },
       "pattern.surface.card.title": {
-        "value": "#111D4A",
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 500,
+          "fontSize": 14,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "sourceRef": "pattern.surface.card.title",
-        "type": "color"
+        "type": "typography"
       },
       "pattern.surface.card.body": {
-        "value": "#A0A5B7",
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 400,
+          "fontSize": 14,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "sourceRef": "pattern.surface.card.body",
-        "type": "color"
+        "type": "typography"
       },
       "pattern.surface.card.padding": {
         "value": "16px",
@@ -1784,14 +2126,32 @@
         "type": "string"
       },
       "pattern.modal.form.title": {
-        "value": "#111D4A",
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 500,
+          "fontSize": 14,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "sourceRef": "pattern.modal.form.title",
-        "type": "color"
+        "type": "typography"
       },
       "pattern.modal.form.body": {
-        "value": "#A0A5B7",
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 400,
+          "fontSize": 14,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "sourceRef": "pattern.modal.form.body",
-        "type": "color"
+        "type": "typography"
       },
       "pattern.modal.form.fieldBackground": {
         "value": "#FFFFFF",
@@ -1819,14 +2179,32 @@
         "type": "dimension"
       },
       "pattern.list.tokenItem.text": {
-        "value": "#111D4A",
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 500,
+          "fontSize": 16,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "sourceRef": "pattern.list.tokenItem.text",
-        "type": "color"
+        "type": "typography"
       },
       "pattern.list.tokenItem.subtext": {
-        "value": "#A0A5B7",
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 400,
+          "fontSize": 14,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "sourceRef": "pattern.list.tokenItem.subtext",
-        "type": "color"
+        "type": "typography"
       },
       "pattern.list.tokenItem.iconSize": {
         "value": "40px",
@@ -1844,14 +2222,32 @@
         "type": "dimension"
       },
       "pattern.list.statusRow.title": {
-        "value": "#111D4A",
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 500,
+          "fontSize": 14,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "sourceRef": "pattern.list.statusRow.title",
-        "type": "color"
+        "type": "typography"
       },
       "pattern.list.statusRow.meta": {
-        "value": "#A0A5B7",
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 400,
+          "fontSize": 12,
+          "lineHeight": "130%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "sourceRef": "pattern.list.statusRow.meta",
-        "type": "color"
+        "type": "typography"
       },
       "pattern.list.statusRow.iconSize": {
         "value": "20px",
@@ -1879,9 +2275,18 @@
         "type": "dimension"
       },
       "component.mobileNav.primary.default.title": {
-        "value": "#111D4A",
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 700,
+          "fontSize": 16,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "sourceRef": "component.mobileNav.primary.default.title",
-        "type": "color"
+        "type": "typography"
       },
       "component.mobileNav.primary.default.icon": {
         "value": "#111D4A",
@@ -1899,9 +2304,18 @@
         "type": "dimension"
       },
       "component.mobileNav.secondary.default.title": {
-        "value": "#111D4A",
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 700,
+          "fontSize": 16,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "sourceRef": "component.mobileNav.secondary.default.title",
-        "type": "color"
+        "type": "typography"
       },
       "component.mobileNav.secondary.default.icon": {
         "value": "#111D4A",
@@ -1924,9 +2338,18 @@
         "type": "color"
       },
       "component.webNav.default.default.title": {
-        "value": "#111D4A",
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 700,
+          "fontSize": 16,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "sourceRef": "component.webNav.default.default.title",
-        "type": "color"
+        "type": "typography"
       },
       "component.webNav.default.default.icon": {
         "value": "#111D4A",
@@ -1944,14 +2367,32 @@
         "type": "color"
       },
       "component.modal.default.default.title": {
-        "value": "#111D4A",
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 500,
+          "fontSize": 14,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "sourceRef": "component.modal.default.default.title",
-        "type": "color"
+        "type": "typography"
       },
       "component.modal.default.default.body": {
-        "value": "#A0A5B7",
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 400,
+          "fontSize": 14,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "sourceRef": "component.modal.default.default.body",
-        "type": "color"
+        "type": "typography"
       },
       "component.modal.default.default.paddingX": {
         "value": "16px",
@@ -2004,9 +2445,18 @@
         "type": "color"
       },
       "component.button.primary.default.text": {
-        "value": "#007FFF",
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 400,
+          "fontSize": 16,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "sourceRef": "component.button.primary.default.text",
-        "type": "color"
+        "type": "typography"
       },
       "component.button.primary.default.radius": {
         "value": "[MISSING]",
@@ -2024,14 +2474,32 @@
         "type": "color"
       },
       "component.menu.default.default.title": {
-        "value": "#111D4A",
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 500,
+          "fontSize": 14,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "sourceRef": "component.menu.default.default.title",
-        "type": "color"
+        "type": "typography"
       },
       "component.menu.default.default.body": {
-        "value": "#A0A5B7",
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 400,
+          "fontSize": 14,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "sourceRef": "component.menu.default.default.body",
-        "type": "color"
+        "type": "typography"
       },
       "component.menu.default.default.padding": {
         "value": "16px",
@@ -2044,9 +2512,18 @@
         "type": "dimension"
       },
       "component.tokenList.default.default.text": {
-        "value": "#111D4A",
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 500,
+          "fontSize": 16,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "sourceRef": "component.tokenList.default.default.text",
-        "type": "color"
+        "type": "typography"
       },
       "component.tokenList.default.default.icon": {
         "value": "#111D4A",
@@ -2059,9 +2536,18 @@
         "type": "dimension"
       },
       "component.tokenList.expand.default.text": {
-        "value": "#111D4A",
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 500,
+          "fontSize": 16,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "sourceRef": "component.tokenList.expand.default.text",
-        "type": "color"
+        "type": "typography"
       },
       "component.tokenList.expand.default.icon": {
         "value": "#111D4A",
@@ -2307,7 +2793,7 @@
         "sourceRef": "semantic.status.warning_subtle",
         "type": "color"
       },
-      "semantic.textStyle.titleLarge": {
+      "semantic.textStyle.heroTitle": {
         "value": {
           "fontFamily": "Noto Sans",
           "fontWeight": 700,
@@ -2318,10 +2804,10 @@
             "unit": "%"
           }
         },
-        "sourceRef": "semantic.textStyle.titleLarge",
+        "sourceRef": "semantic.textStyle.heroTitle",
         "type": "typography"
       },
-      "semantic.textStyle.amountLarge": {
+      "semantic.textStyle.heroAmount": {
         "value": {
           "fontFamily": "Noto Sans",
           "fontWeight": 700,
@@ -2332,10 +2818,10 @@
             "unit": "%"
           }
         },
-        "sourceRef": "semantic.textStyle.amountLarge",
+        "sourceRef": "semantic.textStyle.heroAmount",
         "type": "typography"
       },
-      "semantic.textStyle.guideTitle": {
+      "semantic.textStyle.sectionLead": {
         "value": {
           "fontFamily": "Noto Sans",
           "fontWeight": 500,
@@ -2346,10 +2832,10 @@
             "unit": "%"
           }
         },
-        "sourceRef": "semantic.textStyle.guideTitle",
+        "sourceRef": "semantic.textStyle.sectionLead",
         "type": "typography"
       },
-      "semantic.textStyle.titleMedium": {
+      "semantic.textStyle.navTitle": {
         "value": {
           "fontFamily": "Noto Sans",
           "fontWeight": 700,
@@ -2360,10 +2846,10 @@
             "unit": "%"
           }
         },
-        "sourceRef": "semantic.textStyle.titleMedium",
+        "sourceRef": "semantic.textStyle.navTitle",
         "type": "typography"
       },
-      "semantic.textStyle.bodyMedium": {
+      "semantic.textStyle.bodyPrimary": {
         "value": {
           "fontFamily": "Noto Sans",
           "fontWeight": 500,
@@ -2374,10 +2860,10 @@
             "unit": "%"
           }
         },
-        "sourceRef": "semantic.textStyle.bodyMedium",
+        "sourceRef": "semantic.textStyle.bodyPrimary",
         "type": "typography"
       },
-      "semantic.textStyle.buttonText": {
+      "semantic.textStyle.actionLabel": {
         "value": {
           "fontFamily": "Noto Sans",
           "fontWeight": 400,
@@ -2388,10 +2874,10 @@
             "unit": "%"
           }
         },
-        "sourceRef": "semantic.textStyle.buttonText",
+        "sourceRef": "semantic.textStyle.actionLabel",
         "type": "typography"
       },
-      "semantic.textStyle.bodySmall": {
+      "semantic.textStyle.bodySecondary": {
         "value": {
           "fontFamily": "Noto Sans",
           "fontWeight": 400,
@@ -2402,10 +2888,10 @@
             "unit": "%"
           }
         },
-        "sourceRef": "semantic.textStyle.bodySmall",
+        "sourceRef": "semantic.textStyle.bodySecondary",
         "type": "typography"
       },
-      "semantic.textStyle.groupTitle": {
+      "semantic.textStyle.sectionTitle": {
         "value": {
           "fontFamily": "Noto Sans",
           "fontWeight": 500,
@@ -2416,10 +2902,10 @@
             "unit": "%"
           }
         },
-        "sourceRef": "semantic.textStyle.groupTitle",
+        "sourceRef": "semantic.textStyle.sectionTitle",
         "type": "typography"
       },
-      "semantic.textStyle.caption": {
+      "semantic.textStyle.supportingText": {
         "value": {
           "fontFamily": "Noto Sans",
           "fontWeight": 400,
@@ -2430,10 +2916,10 @@
             "unit": "%"
           }
         },
-        "sourceRef": "semantic.textStyle.caption",
+        "sourceRef": "semantic.textStyle.supportingText",
         "type": "typography"
       },
-      "semantic.textStyle.xSmall": {
+      "semantic.textStyle.tabLabel": {
         "value": {
           "fontFamily": "Noto Sans",
           "fontWeight": 400,
@@ -2444,7 +2930,7 @@
             "unit": "%"
           }
         },
-        "sourceRef": "semantic.textStyle.xSmall",
+        "sourceRef": "semantic.textStyle.tabLabel",
         "type": "typography"
       },
       "pattern.surface.card.background": {
@@ -2453,14 +2939,32 @@
         "type": "color"
       },
       "pattern.surface.card.title": {
-        "value": "#D6D7E0",
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 500,
+          "fontSize": 14,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "sourceRef": "pattern.surface.card.title",
-        "type": "color"
+        "type": "typography"
       },
       "pattern.surface.card.body": {
-        "value": "#8B8B91",
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 400,
+          "fontSize": 14,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "sourceRef": "pattern.surface.card.body",
-        "type": "color"
+        "type": "typography"
       },
       "pattern.surface.card.padding": {
         "value": "16px",
@@ -2473,14 +2977,32 @@
         "type": "string"
       },
       "pattern.modal.form.title": {
-        "value": "#D6D7E0",
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 500,
+          "fontSize": 14,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "sourceRef": "pattern.modal.form.title",
-        "type": "color"
+        "type": "typography"
       },
       "pattern.modal.form.body": {
-        "value": "#8B8B91",
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 400,
+          "fontSize": 14,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "sourceRef": "pattern.modal.form.body",
-        "type": "color"
+        "type": "typography"
       },
       "pattern.modal.form.fieldBackground": {
         "value": "#2C2C2E",
@@ -2508,14 +3030,32 @@
         "type": "dimension"
       },
       "pattern.list.tokenItem.text": {
-        "value": "#D6D7E0",
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 500,
+          "fontSize": 16,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "sourceRef": "pattern.list.tokenItem.text",
-        "type": "color"
+        "type": "typography"
       },
       "pattern.list.tokenItem.subtext": {
-        "value": "#8B8B91",
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 400,
+          "fontSize": 14,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "sourceRef": "pattern.list.tokenItem.subtext",
-        "type": "color"
+        "type": "typography"
       },
       "pattern.list.tokenItem.iconSize": {
         "value": "40px",
@@ -2533,14 +3073,32 @@
         "type": "dimension"
       },
       "pattern.list.statusRow.title": {
-        "value": "#D6D7E0",
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 500,
+          "fontSize": 14,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "sourceRef": "pattern.list.statusRow.title",
-        "type": "color"
+        "type": "typography"
       },
       "pattern.list.statusRow.meta": {
-        "value": "#8B8B91",
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 400,
+          "fontSize": 12,
+          "lineHeight": "130%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "sourceRef": "pattern.list.statusRow.meta",
-        "type": "color"
+        "type": "typography"
       },
       "pattern.list.statusRow.iconSize": {
         "value": "20px",
@@ -2568,9 +3126,18 @@
         "type": "dimension"
       },
       "component.mobileNav.primary.default.title": {
-        "value": "#D6D7E0",
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 700,
+          "fontSize": 16,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "sourceRef": "component.mobileNav.primary.default.title",
-        "type": "color"
+        "type": "typography"
       },
       "component.mobileNav.primary.default.icon": {
         "value": "#B4B4BC",
@@ -2588,9 +3155,18 @@
         "type": "dimension"
       },
       "component.mobileNav.secondary.default.title": {
-        "value": "#D6D7E0",
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 700,
+          "fontSize": 16,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "sourceRef": "component.mobileNav.secondary.default.title",
-        "type": "color"
+        "type": "typography"
       },
       "component.mobileNav.secondary.default.icon": {
         "value": "#B4B4BC",
@@ -2613,9 +3189,18 @@
         "type": "color"
       },
       "component.webNav.default.default.title": {
-        "value": "#D6D7E0",
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 700,
+          "fontSize": 16,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "sourceRef": "component.webNav.default.default.title",
-        "type": "color"
+        "type": "typography"
       },
       "component.webNav.default.default.icon": {
         "value": "#B4B4BC",
@@ -2633,14 +3218,32 @@
         "type": "color"
       },
       "component.modal.default.default.title": {
-        "value": "#D6D7E0",
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 500,
+          "fontSize": 14,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "sourceRef": "component.modal.default.default.title",
-        "type": "color"
+        "type": "typography"
       },
       "component.modal.default.default.body": {
-        "value": "#8B8B91",
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 400,
+          "fontSize": 14,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "sourceRef": "component.modal.default.default.body",
-        "type": "color"
+        "type": "typography"
       },
       "component.modal.default.default.paddingX": {
         "value": "16px",
@@ -2693,9 +3296,18 @@
         "type": "color"
       },
       "component.button.primary.default.text": {
-        "value": "#066BD2",
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 400,
+          "fontSize": 16,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "sourceRef": "component.button.primary.default.text",
-        "type": "color"
+        "type": "typography"
       },
       "component.button.primary.default.radius": {
         "value": "[MISSING]",
@@ -2713,14 +3325,32 @@
         "type": "color"
       },
       "component.menu.default.default.title": {
-        "value": "#D6D7E0",
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 500,
+          "fontSize": 14,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "sourceRef": "component.menu.default.default.title",
-        "type": "color"
+        "type": "typography"
       },
       "component.menu.default.default.body": {
-        "value": "#8B8B91",
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 400,
+          "fontSize": 14,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "sourceRef": "component.menu.default.default.body",
-        "type": "color"
+        "type": "typography"
       },
       "component.menu.default.default.padding": {
         "value": "16px",
@@ -2733,9 +3363,18 @@
         "type": "dimension"
       },
       "component.tokenList.default.default.text": {
-        "value": "#D6D7E0",
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 500,
+          "fontSize": 16,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "sourceRef": "component.tokenList.default.default.text",
-        "type": "color"
+        "type": "typography"
       },
       "component.tokenList.default.default.icon": {
         "value": "#B4B4BC",
@@ -2748,9 +3387,18 @@
         "type": "dimension"
       },
       "component.tokenList.expand.default.text": {
-        "value": "#D6D7E0",
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 500,
+          "fontSize": 16,
+          "lineHeight": "140%",
+          "letterSpacing": {
+            "value": 4,
+            "unit": "%"
+          }
+        },
         "sourceRef": "component.tokenList.expand.default.text",
-        "type": "color"
+        "type": "typography"
       },
       "component.tokenList.expand.default.icon": {
         "value": "#B4B4BC",

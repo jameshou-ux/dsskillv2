@@ -401,24 +401,24 @@
       },
       "radius": {
         "sm": {
-          "$type": "string",
-          "$value": "[MISSING]",
-          "$description": "Shared small radius token. Exact value is intentionally left unverified until confirmed from source design data."
+          "$type": "borderRadius",
+          "$value": 4,
+          "$description": "Shared small radius token aligned to the documented 4px small corner radius."
         },
         "md": {
-          "$type": "string",
-          "$value": "[MISSING]",
-          "$description": "Shared medium radius token. Exact value is intentionally left unverified until confirmed from source design data."
+          "$type": "borderRadius",
+          "$value": 10,
+          "$description": "Shared medium radius token aligned to the documented 10px default corner radius."
         },
         "lg": {
-          "$type": "string",
-          "$value": "[MISSING]",
-          "$description": "Shared large radius token. Exact value is intentionally left unverified until confirmed from source design data."
+          "$type": "borderRadius",
+          "$value": 16,
+          "$description": "Shared large radius token aligned to the documented 16px modal corner radius."
         },
         "full": {
-          "$type": "string",
-          "$value": "[MISSING]",
-          "$description": "Shared fully rounded radius token. Exact value is intentionally left unverified until confirmed from source design data."
+          "$type": "borderRadius",
+          "$value": 9999,
+          "$description": "Shared fully rounded radius token aligned to the documented pill radius."
         }
       },
       "typography": {
@@ -770,8 +770,8 @@
         "$description": "Subtle warning surface in light mode for chips, highlights, and caution backgrounds."
       }
     },
-    "textStyle": {
-      "titleLarge": {
+    "font": {
+      "heroTitle": {
         "$type": "typography",
         "$value": {
           "fontFamily": "{primitive.typography.family.sans}",
@@ -782,7 +782,7 @@
         },
         "$description": "Largest title style from Figma, used for article titles and special large amount emphasis."
       },
-      "amountLarge": {
+      "heroAmount": {
         "$type": "typography",
         "$value": {
           "fontFamily": "{primitive.typography.family.sans}",
@@ -793,7 +793,7 @@
         },
         "$description": "Large amount and article-title style from Figma."
       },
-      "guideTitle": {
+      "sectionLead": {
         "$type": "typography",
         "$value": {
           "fontFamily": "{primitive.typography.family.sans}",
@@ -804,7 +804,7 @@
         },
         "$description": "Guide title style from Figma."
       },
-      "titleMedium": {
+      "navTitle": {
         "$type": "typography",
         "$value": {
           "fontFamily": "{primitive.typography.family.sans}",
@@ -815,7 +815,7 @@
         },
         "$description": "Medium title style from Figma, used for navigation headings."
       },
-      "bodyMedium": {
+      "bodyPrimary": {
         "$type": "typography",
         "$value": {
           "fontFamily": "{primitive.typography.family.sans}",
@@ -826,7 +826,7 @@
         },
         "$description": "Primary body content style from Figma."
       },
-      "buttonText": {
+      "actionLabel": {
         "$type": "typography",
         "$value": {
           "fontFamily": "{primitive.typography.family.sans}",
@@ -837,7 +837,7 @@
         },
         "$description": "Button label style from Figma."
       },
-      "bodySmall": {
+      "bodySecondary": {
         "$type": "typography",
         "$value": {
           "fontFamily": "{primitive.typography.family.sans}",
@@ -848,7 +848,7 @@
         },
         "$description": "Secondary body content style from Figma."
       },
-      "groupTitle": {
+      "sectionTitle": {
         "$type": "typography",
         "$value": {
           "fontFamily": "{primitive.typography.family.sans}",
@@ -859,7 +859,7 @@
         },
         "$description": "Grouped section title style from Figma."
       },
-      "caption": {
+      "supportingText": {
         "$type": "typography",
         "$value": {
           "fontFamily": "{primitive.typography.family.sans}",
@@ -870,7 +870,7 @@
         },
         "$description": "Auxiliary information, annotation, and label style from Figma."
       },
-      "xSmall": {
+      "tabLabel": {
         "$type": "typography",
         "$value": {
           "fontFamily": "{primitive.typography.family.sans}",
@@ -883,386 +883,8 @@
       }
     }
   },
-  "pattern/light": {
-    "surface": {
-      "card": {
-        "background": {
-          "$value": "{semantic/light.background.card}",
-          "$description": "Reusable card surface background alias for light mode.",
-          "$type": "color"
-        },
-        "title": {
-          "$value": "{semantic/light.text.primary}",
-          "$description": "Reusable card title alias for light mode.",
-          "$type": "color"
-        },
-        "body": {
-          "$value": "{semantic/light.text.secondary}",
-          "$description": "Reusable card body text alias for light mode.",
-          "$type": "color"
-        },
-        "padding": {
-          "$value": "{primitive.spacing.16}",
-          "$description": "Reusable card internal padding alias.",
-          "$type": "dimension"
-        },
-        "radius": {
-          "$value": "{primitive.radius.md}",
-          "$description": "Reusable card radius alias bound to the shared primitive radius scale.",
-          "$type": "string"
-        }
-      }
-    },
-    "modal": {
-      "form": {
-        "title": {
-          "$value": "{semantic/light.text.primary}",
-          "$description": "Modal form title alias for light mode.",
-          "$type": "color"
-        },
-        "body": {
-          "$value": "{semantic/light.text.secondary}",
-          "$description": "Modal form body text alias for light mode.",
-          "$type": "color"
-        },
-        "fieldBackground": {
-          "$value": "{semantic/light.background.modal_section}",
-          "$description": "Modal form field background alias for light mode.",
-          "$type": "color"
-        },
-        "fieldPaddingX": {
-          "$value": "{primitive.spacing.12}",
-          "$description": "Modal form field horizontal padding alias.",
-          "$type": "dimension"
-        },
-        "fieldHeight": {
-          "$value": "{primitive.size.48}",
-          "$description": "Modal form field height alias.",
-          "$type": "dimension"
-        },
-        "sectionGap": {
-          "$value": "{primitive.spacing.32}",
-          "$description": "Modal form section gap alias.",
-          "$type": "dimension"
-        },
-        "actionGap": {
-          "$value": "{primitive.spacing.32}",
-          "$description": "Modal form action group gap alias.",
-          "$type": "dimension"
-        }
-      }
-    },
-    "list": {
-      "tokenItem": {
-        "text": {
-          "$value": "{semantic/light.text.primary}",
-          "$description": "Token list item primary text alias for light mode.",
-          "$type": "color"
-        },
-        "subtext": {
-          "$value": "{semantic/light.text.secondary}",
-          "$description": "Token list item secondary text alias for light mode.",
-          "$type": "color"
-        },
-        "iconSize": {
-          "$value": "{primitive.size.40}",
-          "$description": "Token list item icon size alias.",
-          "$type": "dimension"
-        },
-        "gap": {
-          "$value": "{primitive.spacing.12}",
-          "$description": "Token list item internal gap alias.",
-          "$type": "dimension"
-        },
-        "height": {
-          "$value": "{primitive.size.62}",
-          "$description": "Token list item row height alias preserved from the reviewed design examples.",
-          "$type": "dimension"
-        }
-      },
-      "statusRow": {
-        "title": {
-          "$value": "{semantic/light.text.primary}",
-          "$description": "Status row title alias for light mode.",
-          "$type": "color"
-        },
-        "meta": {
-          "$value": "{semantic/light.text.secondary}",
-          "$description": "Status row metadata text alias for light mode.",
-          "$type": "color"
-        },
-        "iconSize": {
-          "$value": "{primitive.size.20}",
-          "$description": "Status row icon size alias.",
-          "$type": "dimension"
-        },
-        "rowGap": {
-          "$value": "{primitive.spacing.8}",
-          "$description": "Status row internal gap alias.",
-          "$type": "dimension"
-        },
-        "paddingY": {
-          "$value": "{primitive.spacing.16}",
-          "$description": "Status row vertical padding alias.",
-          "$type": "dimension"
-        }
-      }
-    }
-  },
-  "component/light": {
-    "mobileNav": {
-      "primary": {
-        "default": {
-          "height": {
-            "$value": "{primitive.size.90}",
-            "$description": "Primary mobile nav height alias.",
-            "$type": "dimension"
-          },
-          "paddingX": {
-            "$value": "{primitive.spacing.16}",
-            "$description": "Primary mobile nav horizontal padding alias.",
-            "$type": "dimension"
-          },
-          "title": {
-            "$value": "{semantic/light.text.primary}",
-            "$description": "Primary mobile nav title alias for light mode.",
-            "$type": "color"
-          },
-          "icon": {
-            "$value": "{semantic/light.stroke.icon_primary}",
-            "$description": "Primary mobile nav icon alias for light mode.",
-            "$type": "color"
-          }
-        }
-      },
-      "secondary": {
-        "default": {
-          "height": {
-            "$value": "{primitive.size.56}",
-            "$description": "Secondary mobile nav height alias.",
-            "$type": "dimension"
-          },
-          "paddingX": {
-            "$value": "{primitive.spacing.16}",
-            "$description": "Secondary mobile nav horizontal padding alias.",
-            "$type": "dimension"
-          },
-          "title": {
-            "$value": "{semantic/light.text.primary}",
-            "$description": "Secondary mobile nav title alias for light mode.",
-            "$type": "color"
-          },
-          "icon": {
-            "$value": "{semantic/light.stroke.icon_primary}",
-            "$description": "Secondary mobile nav icon alias for light mode.",
-            "$type": "color"
-          }
-        }
-      }
-    },
-    "webNav": {
-      "default": {
-        "signedOut": {
-          "height": {
-            "$value": "{primitive.size.68}",
-            "$description": "Signed-out web nav height alias.",
-            "$type": "dimension"
-          }
-        },
-        "signedIn": {
-          "height": {
-            "$value": "{primitive.size.68}",
-            "$description": "Signed-in web nav height alias.",
-            "$type": "dimension"
-          }
-        },
-        "default": {
-          "background": {
-            "$value": "{semantic/light.background.general}",
-            "$description": "Web nav background alias for light mode.",
-            "$type": "color"
-          },
-          "title": {
-            "$value": "{semantic/light.text.primary}",
-            "$description": "Web nav title alias for light mode.",
-            "$type": "color"
-          },
-          "icon": {
-            "$value": "{semantic/light.stroke.icon_primary}",
-            "$description": "Web nav icon alias for light mode.",
-            "$type": "color"
-          },
-          "border": {
-            "$value": "{semantic/light.border.default}",
-            "$description": "Web nav border alias for light mode.",
-            "$type": "color"
-          }
-        }
-      }
-    },
-    "modal": {
-      "default": {
-        "default": {
-          "background": {
-            "$value": "{semantic/light.background.modal}",
-            "$description": "Modal container background alias for light mode.",
-            "$type": "color"
-          },
-          "title": {
-            "$value": "{semantic/light.text.primary}",
-            "$description": "Modal title alias for light mode.",
-            "$type": "color"
-          },
-          "body": {
-            "$value": "{semantic/light.text.secondary}",
-            "$description": "Modal body text alias for light mode.",
-            "$type": "color"
-          },
-          "paddingX": {
-            "$value": "{primitive.spacing.16}",
-            "$description": "Modal horizontal padding alias.",
-            "$type": "dimension"
-          },
-          "paddingTop": {
-            "$value": "{primitive.spacing.8}",
-            "$description": "Modal top padding alias.",
-            "$type": "dimension"
-          },
-          "contentTopGap": {
-            "$value": "{primitive.spacing.72}",
-            "$description": "Modal content top gap alias.",
-            "$type": "dimension"
-          },
-          "closeButtonSize": {
-            "$value": "{primitive.size.32}",
-            "$description": "Modal close button size alias.",
-            "$type": "dimension"
-          },
-          "dragHandleWidth": {
-            "$value": "{primitive.size.36}",
-            "$description": "Modal drag handle width alias.",
-            "$type": "dimension"
-          },
-          "dragHandleHeight": {
-            "$value": "{primitive.size.4}",
-            "$description": "Modal drag handle height alias.",
-            "$type": "dimension"
-          },
-          "radius": {
-            "$value": "{primitive.radius.lg}",
-            "$description": "Modal radius alias bound to the shared primitive radius scale.",
-            "$type": "string"
-          }
-        }
-      }
-    },
-    "button": {
-      "primary": {
-        "default": {
-          "height": {
-            "$value": "{primitive.size.52}",
-            "$description": "Primary button height alias.",
-            "$type": "dimension"
-          },
-          "paddingX": {
-            "$value": "{primitive.spacing.16}",
-            "$description": "Primary button horizontal padding alias.",
-            "$type": "dimension"
-          },
-          "background": {
-            "$value": "{semantic/light.fill.secondary}",
-            "$description": "Primary button background alias for light mode.",
-            "$type": "color"
-          },
-          "text": {
-            "$value": "{semantic/light.text.action}",
-            "$description": "Primary button text alias resolved to semantic action text.",
-            "$type": "color"
-          },
-          "radius": {
-            "$value": "{primitive.radius.md}",
-            "$description": "Primary button radius alias bound to the shared primitive radius scale.",
-            "$type": "string"
-          }
-        }
-      }
-    },
-    "menu": {
-      "default": {
-        "signedOut": {
-          "background": {
-            "$value": "{semantic/light.background.card}",
-            "$description": "Signed-out menu background alias for light mode.",
-            "$type": "color"
-          }
-        },
-        "signedIn": {
-          "background": {
-            "$value": "{semantic/light.background.card}",
-            "$description": "Signed-in menu background alias for light mode.",
-            "$type": "color"
-          }
-        },
-        "default": {
-          "title": {
-            "$value": "{semantic/light.text.primary}",
-            "$description": "Menu title alias for light mode.",
-            "$type": "color"
-          },
-          "body": {
-            "$value": "{semantic/light.text.secondary}",
-            "$description": "Menu body text alias for light mode.",
-            "$type": "color"
-          },
-          "padding": {
-            "$value": "{primitive.spacing.16}",
-            "$description": "Menu internal padding alias.",
-            "$type": "dimension"
-          }
-        }
-      }
-    },
-    "tokenList": {
-      "default": {
-        "default": {
-          "height": {
-            "$value": "{primitive.size.32}",
-            "$description": "Default token list control height alias.",
-            "$type": "dimension"
-          },
-          "text": {
-            "$value": "{semantic/light.text.primary}",
-            "$description": "Default token list text alias for light mode.",
-            "$type": "color"
-          },
-          "icon": {
-            "$value": "{semantic/light.stroke.icon_primary}",
-            "$description": "Default token list icon alias for light mode.",
-            "$type": "color"
-          }
-        }
-      },
-      "expand": {
-        "default": {
-          "height": {
-            "$value": "{primitive.size.32}",
-            "$description": "Expanded token list control height alias.",
-            "$type": "dimension"
-          },
-          "text": {
-            "$value": "{semantic/light.text.primary}",
-            "$description": "Expanded token list text alias for light mode.",
-            "$type": "color"
-          },
-          "icon": {
-            "$value": "{semantic/light.stroke.icon_primary}",
-            "$description": "Expanded token list icon alias for light mode.",
-            "$type": "color"
-          }
-        }
-      }
-    }
-  },
+  "pattern/light": {},
+  "component/light": {},
   "semantic/dark": {
     "background": {
       "general": {
@@ -1515,8 +1137,8 @@
         "$description": "Subtle warning surface in dark mode for chips, highlights, and caution backgrounds."
       }
     },
-    "textStyle": {
-      "titleLarge": {
+    "font": {
+      "heroTitle": {
         "$type": "typography",
         "$value": {
           "fontFamily": "{primitive.typography.family.sans}",
@@ -1527,7 +1149,7 @@
         },
         "$description": "Largest title style from Figma, used for article titles and special large amount emphasis."
       },
-      "amountLarge": {
+      "heroAmount": {
         "$type": "typography",
         "$value": {
           "fontFamily": "{primitive.typography.family.sans}",
@@ -1538,7 +1160,7 @@
         },
         "$description": "Large amount and article-title style from Figma."
       },
-      "guideTitle": {
+      "sectionLead": {
         "$type": "typography",
         "$value": {
           "fontFamily": "{primitive.typography.family.sans}",
@@ -1549,7 +1171,7 @@
         },
         "$description": "Guide title style from Figma."
       },
-      "titleMedium": {
+      "navTitle": {
         "$type": "typography",
         "$value": {
           "fontFamily": "{primitive.typography.family.sans}",
@@ -1560,7 +1182,7 @@
         },
         "$description": "Medium title style from Figma, used for navigation headings."
       },
-      "bodyMedium": {
+      "bodyPrimary": {
         "$type": "typography",
         "$value": {
           "fontFamily": "{primitive.typography.family.sans}",
@@ -1571,7 +1193,7 @@
         },
         "$description": "Primary body content style from Figma."
       },
-      "buttonText": {
+      "actionLabel": {
         "$type": "typography",
         "$value": {
           "fontFamily": "{primitive.typography.family.sans}",
@@ -1582,7 +1204,7 @@
         },
         "$description": "Button label style from Figma."
       },
-      "bodySmall": {
+      "bodySecondary": {
         "$type": "typography",
         "$value": {
           "fontFamily": "{primitive.typography.family.sans}",
@@ -1593,7 +1215,7 @@
         },
         "$description": "Secondary body content style from Figma."
       },
-      "groupTitle": {
+      "sectionTitle": {
         "$type": "typography",
         "$value": {
           "fontFamily": "{primitive.typography.family.sans}",
@@ -1604,7 +1226,7 @@
         },
         "$description": "Grouped section title style from Figma."
       },
-      "caption": {
+      "supportingText": {
         "$type": "typography",
         "$value": {
           "fontFamily": "{primitive.typography.family.sans}",
@@ -1615,7 +1237,7 @@
         },
         "$description": "Auxiliary information, annotation, and label style from Figma."
       },
-      "xSmall": {
+      "tabLabel": {
         "$type": "typography",
         "$value": {
           "fontFamily": "{primitive.typography.family.sans}",
@@ -1628,386 +1250,8 @@
       }
     }
   },
-  "pattern/dark": {
-    "surface": {
-      "card": {
-        "background": {
-          "$value": "{semantic/dark.background.card}",
-          "$description": "Reusable card surface background alias for dark mode.",
-          "$type": "color"
-        },
-        "title": {
-          "$value": "{semantic/dark.text.primary}",
-          "$description": "Reusable card title alias for dark mode.",
-          "$type": "color"
-        },
-        "body": {
-          "$value": "{semantic/dark.text.secondary}",
-          "$description": "Reusable card body text alias for dark mode.",
-          "$type": "color"
-        },
-        "padding": {
-          "$value": "{primitive.spacing.16}",
-          "$description": "Reusable card internal padding alias.",
-          "$type": "dimension"
-        },
-        "radius": {
-          "$value": "{primitive.radius.md}",
-          "$description": "Reusable card radius alias bound to the shared primitive radius scale.",
-          "$type": "string"
-        }
-      }
-    },
-    "modal": {
-      "form": {
-        "title": {
-          "$value": "{semantic/dark.text.primary}",
-          "$description": "Modal form title alias for dark mode.",
-          "$type": "color"
-        },
-        "body": {
-          "$value": "{semantic/dark.text.secondary}",
-          "$description": "Modal form body text alias for dark mode.",
-          "$type": "color"
-        },
-        "fieldBackground": {
-          "$value": "{semantic/dark.background.modal_section}",
-          "$description": "Modal form field background alias for dark mode.",
-          "$type": "color"
-        },
-        "fieldPaddingX": {
-          "$value": "{primitive.spacing.12}",
-          "$description": "Modal form field horizontal padding alias.",
-          "$type": "dimension"
-        },
-        "fieldHeight": {
-          "$value": "{primitive.size.48}",
-          "$description": "Modal form field height alias.",
-          "$type": "dimension"
-        },
-        "sectionGap": {
-          "$value": "{primitive.spacing.32}",
-          "$description": "Modal form section gap alias.",
-          "$type": "dimension"
-        },
-        "actionGap": {
-          "$value": "{primitive.spacing.32}",
-          "$description": "Modal form action group gap alias.",
-          "$type": "dimension"
-        }
-      }
-    },
-    "list": {
-      "tokenItem": {
-        "text": {
-          "$value": "{semantic/dark.text.primary}",
-          "$description": "Token list item primary text alias for dark mode.",
-          "$type": "color"
-        },
-        "subtext": {
-          "$value": "{semantic/dark.text.secondary}",
-          "$description": "Token list item secondary text alias for dark mode.",
-          "$type": "color"
-        },
-        "iconSize": {
-          "$value": "{primitive.size.40}",
-          "$description": "Token list item icon size alias.",
-          "$type": "dimension"
-        },
-        "gap": {
-          "$value": "{primitive.spacing.12}",
-          "$description": "Token list item internal gap alias.",
-          "$type": "dimension"
-        },
-        "height": {
-          "$value": "{primitive.size.62}",
-          "$description": "Token list item row height alias preserved from the reviewed design examples.",
-          "$type": "dimension"
-        }
-      },
-      "statusRow": {
-        "title": {
-          "$value": "{semantic/dark.text.primary}",
-          "$description": "Status row title alias for dark mode.",
-          "$type": "color"
-        },
-        "meta": {
-          "$value": "{semantic/dark.text.secondary}",
-          "$description": "Status row metadata text alias for dark mode.",
-          "$type": "color"
-        },
-        "iconSize": {
-          "$value": "{primitive.size.20}",
-          "$description": "Status row icon size alias.",
-          "$type": "dimension"
-        },
-        "rowGap": {
-          "$value": "{primitive.spacing.8}",
-          "$description": "Status row internal gap alias.",
-          "$type": "dimension"
-        },
-        "paddingY": {
-          "$value": "{primitive.spacing.16}",
-          "$description": "Status row vertical padding alias.",
-          "$type": "dimension"
-        }
-      }
-    }
-  },
-  "component/dark": {
-    "mobileNav": {
-      "primary": {
-        "default": {
-          "height": {
-            "$value": "{primitive.size.90}",
-            "$description": "Primary mobile nav height alias.",
-            "$type": "dimension"
-          },
-          "paddingX": {
-            "$value": "{primitive.spacing.16}",
-            "$description": "Primary mobile nav horizontal padding alias.",
-            "$type": "dimension"
-          },
-          "title": {
-            "$value": "{semantic/dark.text.primary}",
-            "$description": "Primary mobile nav title alias for dark mode.",
-            "$type": "color"
-          },
-          "icon": {
-            "$value": "{semantic/dark.stroke.icon_primary}",
-            "$description": "Primary mobile nav icon alias for dark mode.",
-            "$type": "color"
-          }
-        }
-      },
-      "secondary": {
-        "default": {
-          "height": {
-            "$value": "{primitive.size.56}",
-            "$description": "Secondary mobile nav height alias.",
-            "$type": "dimension"
-          },
-          "paddingX": {
-            "$value": "{primitive.spacing.16}",
-            "$description": "Secondary mobile nav horizontal padding alias.",
-            "$type": "dimension"
-          },
-          "title": {
-            "$value": "{semantic/dark.text.primary}",
-            "$description": "Secondary mobile nav title alias for dark mode.",
-            "$type": "color"
-          },
-          "icon": {
-            "$value": "{semantic/dark.stroke.icon_primary}",
-            "$description": "Secondary mobile nav icon alias for dark mode.",
-            "$type": "color"
-          }
-        }
-      }
-    },
-    "webNav": {
-      "default": {
-        "signedOut": {
-          "height": {
-            "$value": "{primitive.size.68}",
-            "$description": "Signed-out web nav height alias.",
-            "$type": "dimension"
-          }
-        },
-        "signedIn": {
-          "height": {
-            "$value": "{primitive.size.68}",
-            "$description": "Signed-in web nav height alias.",
-            "$type": "dimension"
-          }
-        },
-        "default": {
-          "background": {
-            "$value": "{semantic/dark.background.general}",
-            "$description": "Web nav background alias for dark mode.",
-            "$type": "color"
-          },
-          "title": {
-            "$value": "{semantic/dark.text.primary}",
-            "$description": "Web nav title alias for dark mode.",
-            "$type": "color"
-          },
-          "icon": {
-            "$value": "{semantic/dark.stroke.icon_primary}",
-            "$description": "Web nav icon alias for dark mode.",
-            "$type": "color"
-          },
-          "border": {
-            "$value": "{semantic/dark.border.default}",
-            "$description": "Web nav border alias for dark mode.",
-            "$type": "color"
-          }
-        }
-      }
-    },
-    "modal": {
-      "default": {
-        "default": {
-          "background": {
-            "$value": "{semantic/dark.background.modal}",
-            "$description": "Modal container background alias for dark mode.",
-            "$type": "color"
-          },
-          "title": {
-            "$value": "{semantic/dark.text.primary}",
-            "$description": "Modal title alias for dark mode.",
-            "$type": "color"
-          },
-          "body": {
-            "$value": "{semantic/dark.text.secondary}",
-            "$description": "Modal body text alias for dark mode.",
-            "$type": "color"
-          },
-          "paddingX": {
-            "$value": "{primitive.spacing.16}",
-            "$description": "Modal horizontal padding alias.",
-            "$type": "dimension"
-          },
-          "paddingTop": {
-            "$value": "{primitive.spacing.8}",
-            "$description": "Modal top padding alias.",
-            "$type": "dimension"
-          },
-          "contentTopGap": {
-            "$value": "{primitive.spacing.72}",
-            "$description": "Modal content top gap alias.",
-            "$type": "dimension"
-          },
-          "closeButtonSize": {
-            "$value": "{primitive.size.32}",
-            "$description": "Modal close button size alias.",
-            "$type": "dimension"
-          },
-          "dragHandleWidth": {
-            "$value": "{primitive.size.36}",
-            "$description": "Modal drag handle width alias.",
-            "$type": "dimension"
-          },
-          "dragHandleHeight": {
-            "$value": "{primitive.size.4}",
-            "$description": "Modal drag handle height alias.",
-            "$type": "dimension"
-          },
-          "radius": {
-            "$value": "{primitive.radius.lg}",
-            "$description": "Modal radius alias bound to the shared primitive radius scale.",
-            "$type": "string"
-          }
-        }
-      }
-    },
-    "button": {
-      "primary": {
-        "default": {
-          "height": {
-            "$value": "{primitive.size.52}",
-            "$description": "Primary button height alias.",
-            "$type": "dimension"
-          },
-          "paddingX": {
-            "$value": "{primitive.spacing.16}",
-            "$description": "Primary button horizontal padding alias.",
-            "$type": "dimension"
-          },
-          "background": {
-            "$value": "{semantic/dark.fill.secondary}",
-            "$description": "Primary button background alias for dark mode.",
-            "$type": "color"
-          },
-          "text": {
-            "$value": "{semantic/dark.text.action}",
-            "$description": "Primary button text alias resolved to semantic action text.",
-            "$type": "color"
-          },
-          "radius": {
-            "$value": "{primitive.radius.md}",
-            "$description": "Primary button radius alias bound to the shared primitive radius scale.",
-            "$type": "string"
-          }
-        }
-      }
-    },
-    "menu": {
-      "default": {
-        "signedOut": {
-          "background": {
-            "$value": "{semantic/dark.background.card}",
-            "$description": "Signed-out menu background alias for dark mode.",
-            "$type": "color"
-          }
-        },
-        "signedIn": {
-          "background": {
-            "$value": "{semantic/dark.background.card}",
-            "$description": "Signed-in menu background alias for dark mode.",
-            "$type": "color"
-          }
-        },
-        "default": {
-          "title": {
-            "$value": "{semantic/dark.text.primary}",
-            "$description": "Menu title alias for dark mode.",
-            "$type": "color"
-          },
-          "body": {
-            "$value": "{semantic/dark.text.secondary}",
-            "$description": "Menu body text alias for dark mode.",
-            "$type": "color"
-          },
-          "padding": {
-            "$value": "{primitive.spacing.16}",
-            "$description": "Menu internal padding alias.",
-            "$type": "dimension"
-          }
-        }
-      }
-    },
-    "tokenList": {
-      "default": {
-        "default": {
-          "height": {
-            "$value": "{primitive.size.32}",
-            "$description": "Default token list control height alias.",
-            "$type": "dimension"
-          },
-          "text": {
-            "$value": "{semantic/dark.text.primary}",
-            "$description": "Default token list text alias for dark mode.",
-            "$type": "color"
-          },
-          "icon": {
-            "$value": "{semantic/dark.stroke.icon_primary}",
-            "$description": "Default token list icon alias for dark mode.",
-            "$type": "color"
-          }
-        }
-      },
-      "expand": {
-        "default": {
-          "height": {
-            "$value": "{primitive.size.32}",
-            "$description": "Expanded token list control height alias.",
-            "$type": "dimension"
-          },
-          "text": {
-            "$value": "{semantic/dark.text.primary}",
-            "$description": "Expanded token list text alias for dark mode.",
-            "$type": "color"
-          },
-          "icon": {
-            "$value": "{semantic/dark.stroke.icon_primary}",
-            "$description": "Expanded token list icon alias for dark mode.",
-            "$type": "color"
-          }
-        }
-      }
-    }
-  },
+  "pattern/dark": {},
+  "component/dark": {},
   "$themes": [
     {
       "id": "light",
@@ -2037,7 +1281,7 @@
     }
   ],
   "$metadata": {
-    "generatedFrom": "source_token_v5.json",
+    "generatedFrom": "Iteration temp/source_token_v5.json",
     "tokenSetOrder": [
       "primitive",
       "semantic/light",
@@ -2046,6 +1290,21 @@
       "pattern/dark",
       "component/light",
       "component/dark"
-    ]
+    ],
+    "variant": "v2",
+    "generatedFromAdapter": "adapters/figma/figma_tokens_v2.json",
+    "figmaFilter": {
+      "pattern/component": "excluded"
+    },
+    "figmaImportPolicy": {
+      "sourceOfTruth": "source retains primitive, semantic, pattern, and component semantics",
+      "adapterExposure": "v2 exposes primitive and semantic only for Figma import",
+      "primitiveBinding": "primitive numeric tokens are the binding surface for spacing, size, and radius",
+      "semanticUsage": "semantic is the main source for color and typography intent",
+      "styleFlattening": {
+        "font": "semantic font styles import as top-level names without a semantic prefix",
+        "gradient": "semantic gradient paint styles import as Light/gradient/... and Dark/gradient/..."
+      }
+    }
   }
 }

@@ -191,16 +191,6 @@
         "sourceRef": "pattern.surface.card.background",
         "type": "color"
       },
-      "--pattern-surface-card-title": {
-        "value": "#111D4A",
-        "sourceRef": "pattern.surface.card.title",
-        "type": "color"
-      },
-      "--pattern-surface-card-body": {
-        "value": "#A0A5B7",
-        "sourceRef": "pattern.surface.card.body",
-        "type": "color"
-      },
       "--pattern-surface-card-padding": {
         "value": "16px",
         "sourceRef": "pattern.surface.card.padding",
@@ -210,16 +200,6 @@
         "value": "[MISSING]",
         "sourceRef": "pattern.surface.card.radius",
         "type": "string"
-      },
-      "--pattern-modal-form-title": {
-        "value": "#111D4A",
-        "sourceRef": "pattern.modal.form.title",
-        "type": "color"
-      },
-      "--pattern-modal-form-body": {
-        "value": "#A0A5B7",
-        "sourceRef": "pattern.modal.form.body",
-        "type": "color"
       },
       "--pattern-modal-form-fieldBackground": {
         "value": "#FFFFFF",
@@ -246,16 +226,6 @@
         "sourceRef": "pattern.modal.form.actionGap",
         "type": "dimension"
       },
-      "--pattern-list-tokenItem-text": {
-        "value": "#111D4A",
-        "sourceRef": "pattern.list.tokenItem.text",
-        "type": "color"
-      },
-      "--pattern-list-tokenItem-subtext": {
-        "value": "#A0A5B7",
-        "sourceRef": "pattern.list.tokenItem.subtext",
-        "type": "color"
-      },
       "--pattern-list-tokenItem-iconSize": {
         "value": "40px",
         "sourceRef": "pattern.list.tokenItem.iconSize",
@@ -270,16 +240,6 @@
         "value": "62px",
         "sourceRef": "pattern.list.tokenItem.height",
         "type": "dimension"
-      },
-      "--pattern-list-statusRow-title": {
-        "value": "#111D4A",
-        "sourceRef": "pattern.list.statusRow.title",
-        "type": "color"
-      },
-      "--pattern-list-statusRow-meta": {
-        "value": "#A0A5B7",
-        "sourceRef": "pattern.list.statusRow.meta",
-        "type": "color"
       },
       "--pattern-list-statusRow-iconSize": {
         "value": "20px",
@@ -306,11 +266,6 @@
         "sourceRef": "component.mobileNav.primary.default.paddingX",
         "type": "dimension"
       },
-      "--component-mobileNav-primary-default-title": {
-        "value": "#111D4A",
-        "sourceRef": "component.mobileNav.primary.default.title",
-        "type": "color"
-      },
       "--component-mobileNav-primary-default-icon": {
         "value": "#111D4A",
         "sourceRef": "component.mobileNav.primary.default.icon",
@@ -325,11 +280,6 @@
         "value": "16px",
         "sourceRef": "component.mobileNav.secondary.default.paddingX",
         "type": "dimension"
-      },
-      "--component-mobileNav-secondary-default-title": {
-        "value": "#111D4A",
-        "sourceRef": "component.mobileNav.secondary.default.title",
-        "type": "color"
       },
       "--component-mobileNav-secondary-default-icon": {
         "value": "#111D4A",
@@ -351,11 +301,6 @@
         "sourceRef": "component.webNav.default.default.background",
         "type": "color"
       },
-      "--component-webNav-default-default-title": {
-        "value": "#111D4A",
-        "sourceRef": "component.webNav.default.default.title",
-        "type": "color"
-      },
       "--component-webNav-default-default-icon": {
         "value": "#111D4A",
         "sourceRef": "component.webNav.default.default.icon",
@@ -369,16 +314,6 @@
       "--component-modal-default-default-background": {
         "value": "#F9FAFB",
         "sourceRef": "component.modal.default.default.background",
-        "type": "color"
-      },
-      "--component-modal-default-default-title": {
-        "value": "#111D4A",
-        "sourceRef": "component.modal.default.default.title",
-        "type": "color"
-      },
-      "--component-modal-default-default-body": {
-        "value": "#A0A5B7",
-        "sourceRef": "component.modal.default.default.body",
         "type": "color"
       },
       "--component-modal-default-default-paddingX": {
@@ -431,11 +366,6 @@
         "sourceRef": "component.button.primary.default.background",
         "type": "color"
       },
-      "--component-button-primary-default-text": {
-        "value": "#007FFF",
-        "sourceRef": "component.button.primary.default.text",
-        "type": "color"
-      },
       "--component-button-primary-default-radius": {
         "value": "[MISSING]",
         "sourceRef": "component.button.primary.default.radius",
@@ -451,16 +381,6 @@
         "sourceRef": "component.menu.default.signedIn.background",
         "type": "color"
       },
-      "--component-menu-default-default-title": {
-        "value": "#111D4A",
-        "sourceRef": "component.menu.default.default.title",
-        "type": "color"
-      },
-      "--component-menu-default-default-body": {
-        "value": "#A0A5B7",
-        "sourceRef": "component.menu.default.default.body",
-        "type": "color"
-      },
       "--component-menu-default-default-padding": {
         "value": "16px",
         "sourceRef": "component.menu.default.default.padding",
@@ -470,11 +390,6 @@
         "value": "32px",
         "sourceRef": "component.tokenList.default.default.height",
         "type": "dimension"
-      },
-      "--component-tokenList-default-default-text": {
-        "value": "#111D4A",
-        "sourceRef": "component.tokenList.default.default.text",
-        "type": "color"
       },
       "--component-tokenList-default-default-icon": {
         "value": "#111D4A",
@@ -486,11 +401,6 @@
         "sourceRef": "component.tokenList.expand.default.height",
         "type": "dimension"
       },
-      "--component-tokenList-expand-default-text": {
-        "value": "#111D4A",
-        "sourceRef": "component.tokenList.expand.default.text",
-        "type": "color"
-      },
       "--component-tokenList-expand-default-icon": {
         "value": "#111D4A",
         "sourceRef": "component.tokenList.expand.default.icon",
@@ -498,7 +408,7 @@
       }
     },
     "typography": {
-      "semantic-textStyle-titleLarge": {
+      "semantic-textStyle-heroTitle": {
         "value": {
           "fontFamily": "Noto Sans",
           "fontWeight": 700,
@@ -506,10 +416,10 @@
           "lineHeight": "140%",
           "letterSpacing": "4%"
         },
-        "sourceRef": "semantic.textStyle.titleLarge",
+        "sourceRef": "semantic.textStyle.heroTitle",
         "type": "typography"
       },
-      "semantic-textStyle-amountLarge": {
+      "semantic-textStyle-heroAmount": {
         "value": {
           "fontFamily": "Noto Sans",
           "fontWeight": 700,
@@ -517,10 +427,10 @@
           "lineHeight": "140%",
           "letterSpacing": "4%"
         },
-        "sourceRef": "semantic.textStyle.amountLarge",
+        "sourceRef": "semantic.textStyle.heroAmount",
         "type": "typography"
       },
-      "semantic-textStyle-guideTitle": {
+      "semantic-textStyle-sectionLead": {
         "value": {
           "fontFamily": "Noto Sans",
           "fontWeight": 500,
@@ -528,10 +438,10 @@
           "lineHeight": "140%",
           "letterSpacing": "4%"
         },
-        "sourceRef": "semantic.textStyle.guideTitle",
+        "sourceRef": "semantic.textStyle.sectionLead",
         "type": "typography"
       },
-      "semantic-textStyle-titleMedium": {
+      "semantic-textStyle-navTitle": {
         "value": {
           "fontFamily": "Noto Sans",
           "fontWeight": 700,
@@ -539,10 +449,10 @@
           "lineHeight": "140%",
           "letterSpacing": "4%"
         },
-        "sourceRef": "semantic.textStyle.titleMedium",
+        "sourceRef": "semantic.textStyle.navTitle",
         "type": "typography"
       },
-      "semantic-textStyle-bodyMedium": {
+      "semantic-textStyle-bodyPrimary": {
         "value": {
           "fontFamily": "Noto Sans",
           "fontWeight": 500,
@@ -550,10 +460,10 @@
           "lineHeight": "140%",
           "letterSpacing": "4%"
         },
-        "sourceRef": "semantic.textStyle.bodyMedium",
+        "sourceRef": "semantic.textStyle.bodyPrimary",
         "type": "typography"
       },
-      "semantic-textStyle-buttonText": {
+      "semantic-textStyle-actionLabel": {
         "value": {
           "fontFamily": "Noto Sans",
           "fontWeight": 400,
@@ -561,10 +471,10 @@
           "lineHeight": "140%",
           "letterSpacing": "4%"
         },
-        "sourceRef": "semantic.textStyle.buttonText",
+        "sourceRef": "semantic.textStyle.actionLabel",
         "type": "typography"
       },
-      "semantic-textStyle-bodySmall": {
+      "semantic-textStyle-bodySecondary": {
         "value": {
           "fontFamily": "Noto Sans",
           "fontWeight": 400,
@@ -572,10 +482,10 @@
           "lineHeight": "140%",
           "letterSpacing": "4%"
         },
-        "sourceRef": "semantic.textStyle.bodySmall",
+        "sourceRef": "semantic.textStyle.bodySecondary",
         "type": "typography"
       },
-      "semantic-textStyle-groupTitle": {
+      "semantic-textStyle-sectionTitle": {
         "value": {
           "fontFamily": "Noto Sans",
           "fontWeight": 500,
@@ -583,10 +493,10 @@
           "lineHeight": "140%",
           "letterSpacing": "4%"
         },
-        "sourceRef": "semantic.textStyle.groupTitle",
+        "sourceRef": "semantic.textStyle.sectionTitle",
         "type": "typography"
       },
-      "semantic-textStyle-caption": {
+      "semantic-textStyle-supportingText": {
         "value": {
           "fontFamily": "Noto Sans",
           "fontWeight": 400,
@@ -594,10 +504,10 @@
           "lineHeight": "130%",
           "letterSpacing": "4%"
         },
-        "sourceRef": "semantic.textStyle.caption",
+        "sourceRef": "semantic.textStyle.supportingText",
         "type": "typography"
       },
-      "semantic-textStyle-xSmall": {
+      "semantic-textStyle-tabLabel": {
         "value": {
           "fontFamily": "Noto Sans",
           "fontWeight": 400,
@@ -605,7 +515,205 @@
           "lineHeight": "140%",
           "letterSpacing": "4%"
         },
-        "sourceRef": "semantic.textStyle.xSmall",
+        "sourceRef": "semantic.textStyle.tabLabel",
+        "type": "typography"
+      },
+      "pattern-surface-card-title": {
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 500,
+          "fontSize": "14px",
+          "lineHeight": "140%",
+          "letterSpacing": "4%"
+        },
+        "sourceRef": "pattern.surface.card.title",
+        "type": "typography"
+      },
+      "pattern-surface-card-body": {
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 400,
+          "fontSize": "14px",
+          "lineHeight": "140%",
+          "letterSpacing": "4%"
+        },
+        "sourceRef": "pattern.surface.card.body",
+        "type": "typography"
+      },
+      "pattern-modal-form-title": {
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 500,
+          "fontSize": "14px",
+          "lineHeight": "140%",
+          "letterSpacing": "4%"
+        },
+        "sourceRef": "pattern.modal.form.title",
+        "type": "typography"
+      },
+      "pattern-modal-form-body": {
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 400,
+          "fontSize": "14px",
+          "lineHeight": "140%",
+          "letterSpacing": "4%"
+        },
+        "sourceRef": "pattern.modal.form.body",
+        "type": "typography"
+      },
+      "pattern-list-tokenItem-text": {
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 500,
+          "fontSize": "16px",
+          "lineHeight": "140%",
+          "letterSpacing": "4%"
+        },
+        "sourceRef": "pattern.list.tokenItem.text",
+        "type": "typography"
+      },
+      "pattern-list-tokenItem-subtext": {
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 400,
+          "fontSize": "14px",
+          "lineHeight": "140%",
+          "letterSpacing": "4%"
+        },
+        "sourceRef": "pattern.list.tokenItem.subtext",
+        "type": "typography"
+      },
+      "pattern-list-statusRow-title": {
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 500,
+          "fontSize": "14px",
+          "lineHeight": "140%",
+          "letterSpacing": "4%"
+        },
+        "sourceRef": "pattern.list.statusRow.title",
+        "type": "typography"
+      },
+      "pattern-list-statusRow-meta": {
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 400,
+          "fontSize": "12px",
+          "lineHeight": "130%",
+          "letterSpacing": "4%"
+        },
+        "sourceRef": "pattern.list.statusRow.meta",
+        "type": "typography"
+      },
+      "component-mobileNav-primary-default-title": {
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 700,
+          "fontSize": "16px",
+          "lineHeight": "140%",
+          "letterSpacing": "4%"
+        },
+        "sourceRef": "component.mobileNav.primary.default.title",
+        "type": "typography"
+      },
+      "component-mobileNav-secondary-default-title": {
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 700,
+          "fontSize": "16px",
+          "lineHeight": "140%",
+          "letterSpacing": "4%"
+        },
+        "sourceRef": "component.mobileNav.secondary.default.title",
+        "type": "typography"
+      },
+      "component-webNav-default-default-title": {
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 700,
+          "fontSize": "16px",
+          "lineHeight": "140%",
+          "letterSpacing": "4%"
+        },
+        "sourceRef": "component.webNav.default.default.title",
+        "type": "typography"
+      },
+      "component-modal-default-default-title": {
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 500,
+          "fontSize": "14px",
+          "lineHeight": "140%",
+          "letterSpacing": "4%"
+        },
+        "sourceRef": "component.modal.default.default.title",
+        "type": "typography"
+      },
+      "component-modal-default-default-body": {
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 400,
+          "fontSize": "14px",
+          "lineHeight": "140%",
+          "letterSpacing": "4%"
+        },
+        "sourceRef": "component.modal.default.default.body",
+        "type": "typography"
+      },
+      "component-button-primary-default-text": {
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 400,
+          "fontSize": "16px",
+          "lineHeight": "140%",
+          "letterSpacing": "4%"
+        },
+        "sourceRef": "component.button.primary.default.text",
+        "type": "typography"
+      },
+      "component-menu-default-default-title": {
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 500,
+          "fontSize": "14px",
+          "lineHeight": "140%",
+          "letterSpacing": "4%"
+        },
+        "sourceRef": "component.menu.default.default.title",
+        "type": "typography"
+      },
+      "component-menu-default-default-body": {
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 400,
+          "fontSize": "14px",
+          "lineHeight": "140%",
+          "letterSpacing": "4%"
+        },
+        "sourceRef": "component.menu.default.default.body",
+        "type": "typography"
+      },
+      "component-tokenList-default-default-text": {
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 500,
+          "fontSize": "16px",
+          "lineHeight": "140%",
+          "letterSpacing": "4%"
+        },
+        "sourceRef": "component.tokenList.default.default.text",
+        "type": "typography"
+      },
+      "component-tokenList-expand-default-text": {
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 500,
+          "fontSize": "16px",
+          "lineHeight": "140%",
+          "letterSpacing": "4%"
+        },
+        "sourceRef": "component.tokenList.expand.default.text",
         "type": "typography"
       }
     }
@@ -802,16 +910,6 @@
         "sourceRef": "pattern.surface.card.background",
         "type": "color"
       },
-      "--pattern-surface-card-title": {
-        "value": "#D6D7E0",
-        "sourceRef": "pattern.surface.card.title",
-        "type": "color"
-      },
-      "--pattern-surface-card-body": {
-        "value": "#8B8B91",
-        "sourceRef": "pattern.surface.card.body",
-        "type": "color"
-      },
       "--pattern-surface-card-padding": {
         "value": "16px",
         "sourceRef": "pattern.surface.card.padding",
@@ -821,16 +919,6 @@
         "value": "[MISSING]",
         "sourceRef": "pattern.surface.card.radius",
         "type": "string"
-      },
-      "--pattern-modal-form-title": {
-        "value": "#D6D7E0",
-        "sourceRef": "pattern.modal.form.title",
-        "type": "color"
-      },
-      "--pattern-modal-form-body": {
-        "value": "#8B8B91",
-        "sourceRef": "pattern.modal.form.body",
-        "type": "color"
       },
       "--pattern-modal-form-fieldBackground": {
         "value": "#2C2C2E",
@@ -857,16 +945,6 @@
         "sourceRef": "pattern.modal.form.actionGap",
         "type": "dimension"
       },
-      "--pattern-list-tokenItem-text": {
-        "value": "#D6D7E0",
-        "sourceRef": "pattern.list.tokenItem.text",
-        "type": "color"
-      },
-      "--pattern-list-tokenItem-subtext": {
-        "value": "#8B8B91",
-        "sourceRef": "pattern.list.tokenItem.subtext",
-        "type": "color"
-      },
       "--pattern-list-tokenItem-iconSize": {
         "value": "40px",
         "sourceRef": "pattern.list.tokenItem.iconSize",
@@ -881,16 +959,6 @@
         "value": "62px",
         "sourceRef": "pattern.list.tokenItem.height",
         "type": "dimension"
-      },
-      "--pattern-list-statusRow-title": {
-        "value": "#D6D7E0",
-        "sourceRef": "pattern.list.statusRow.title",
-        "type": "color"
-      },
-      "--pattern-list-statusRow-meta": {
-        "value": "#8B8B91",
-        "sourceRef": "pattern.list.statusRow.meta",
-        "type": "color"
       },
       "--pattern-list-statusRow-iconSize": {
         "value": "20px",
@@ -917,11 +985,6 @@
         "sourceRef": "component.mobileNav.primary.default.paddingX",
         "type": "dimension"
       },
-      "--component-mobileNav-primary-default-title": {
-        "value": "#D6D7E0",
-        "sourceRef": "component.mobileNav.primary.default.title",
-        "type": "color"
-      },
       "--component-mobileNav-primary-default-icon": {
         "value": "#B4B4BC",
         "sourceRef": "component.mobileNav.primary.default.icon",
@@ -936,11 +999,6 @@
         "value": "16px",
         "sourceRef": "component.mobileNav.secondary.default.paddingX",
         "type": "dimension"
-      },
-      "--component-mobileNav-secondary-default-title": {
-        "value": "#D6D7E0",
-        "sourceRef": "component.mobileNav.secondary.default.title",
-        "type": "color"
       },
       "--component-mobileNav-secondary-default-icon": {
         "value": "#B4B4BC",
@@ -962,11 +1020,6 @@
         "sourceRef": "component.webNav.default.default.background",
         "type": "color"
       },
-      "--component-webNav-default-default-title": {
-        "value": "#D6D7E0",
-        "sourceRef": "component.webNav.default.default.title",
-        "type": "color"
-      },
       "--component-webNav-default-default-icon": {
         "value": "#B4B4BC",
         "sourceRef": "component.webNav.default.default.icon",
@@ -980,16 +1033,6 @@
       "--component-modal-default-default-background": {
         "value": "#1C1C1E",
         "sourceRef": "component.modal.default.default.background",
-        "type": "color"
-      },
-      "--component-modal-default-default-title": {
-        "value": "#D6D7E0",
-        "sourceRef": "component.modal.default.default.title",
-        "type": "color"
-      },
-      "--component-modal-default-default-body": {
-        "value": "#8B8B91",
-        "sourceRef": "component.modal.default.default.body",
         "type": "color"
       },
       "--component-modal-default-default-paddingX": {
@@ -1042,11 +1085,6 @@
         "sourceRef": "component.button.primary.default.background",
         "type": "color"
       },
-      "--component-button-primary-default-text": {
-        "value": "#066BD2",
-        "sourceRef": "component.button.primary.default.text",
-        "type": "color"
-      },
       "--component-button-primary-default-radius": {
         "value": "[MISSING]",
         "sourceRef": "component.button.primary.default.radius",
@@ -1062,16 +1100,6 @@
         "sourceRef": "component.menu.default.signedIn.background",
         "type": "color"
       },
-      "--component-menu-default-default-title": {
-        "value": "#D6D7E0",
-        "sourceRef": "component.menu.default.default.title",
-        "type": "color"
-      },
-      "--component-menu-default-default-body": {
-        "value": "#8B8B91",
-        "sourceRef": "component.menu.default.default.body",
-        "type": "color"
-      },
       "--component-menu-default-default-padding": {
         "value": "16px",
         "sourceRef": "component.menu.default.default.padding",
@@ -1081,11 +1109,6 @@
         "value": "32px",
         "sourceRef": "component.tokenList.default.default.height",
         "type": "dimension"
-      },
-      "--component-tokenList-default-default-text": {
-        "value": "#D6D7E0",
-        "sourceRef": "component.tokenList.default.default.text",
-        "type": "color"
       },
       "--component-tokenList-default-default-icon": {
         "value": "#B4B4BC",
@@ -1097,11 +1120,6 @@
         "sourceRef": "component.tokenList.expand.default.height",
         "type": "dimension"
       },
-      "--component-tokenList-expand-default-text": {
-        "value": "#D6D7E0",
-        "sourceRef": "component.tokenList.expand.default.text",
-        "type": "color"
-      },
       "--component-tokenList-expand-default-icon": {
         "value": "#B4B4BC",
         "sourceRef": "component.tokenList.expand.default.icon",
@@ -1109,7 +1127,7 @@
       }
     },
     "typography": {
-      "semantic-textStyle-titleLarge": {
+      "semantic-textStyle-heroTitle": {
         "value": {
           "fontFamily": "Noto Sans",
           "fontWeight": 700,
@@ -1117,10 +1135,10 @@
           "lineHeight": "140%",
           "letterSpacing": "4%"
         },
-        "sourceRef": "semantic.textStyle.titleLarge",
+        "sourceRef": "semantic.textStyle.heroTitle",
         "type": "typography"
       },
-      "semantic-textStyle-amountLarge": {
+      "semantic-textStyle-heroAmount": {
         "value": {
           "fontFamily": "Noto Sans",
           "fontWeight": 700,
@@ -1128,10 +1146,10 @@
           "lineHeight": "140%",
           "letterSpacing": "4%"
         },
-        "sourceRef": "semantic.textStyle.amountLarge",
+        "sourceRef": "semantic.textStyle.heroAmount",
         "type": "typography"
       },
-      "semantic-textStyle-guideTitle": {
+      "semantic-textStyle-sectionLead": {
         "value": {
           "fontFamily": "Noto Sans",
           "fontWeight": 500,
@@ -1139,10 +1157,10 @@
           "lineHeight": "140%",
           "letterSpacing": "4%"
         },
-        "sourceRef": "semantic.textStyle.guideTitle",
+        "sourceRef": "semantic.textStyle.sectionLead",
         "type": "typography"
       },
-      "semantic-textStyle-titleMedium": {
+      "semantic-textStyle-navTitle": {
         "value": {
           "fontFamily": "Noto Sans",
           "fontWeight": 700,
@@ -1150,10 +1168,10 @@
           "lineHeight": "140%",
           "letterSpacing": "4%"
         },
-        "sourceRef": "semantic.textStyle.titleMedium",
+        "sourceRef": "semantic.textStyle.navTitle",
         "type": "typography"
       },
-      "semantic-textStyle-bodyMedium": {
+      "semantic-textStyle-bodyPrimary": {
         "value": {
           "fontFamily": "Noto Sans",
           "fontWeight": 500,
@@ -1161,10 +1179,10 @@
           "lineHeight": "140%",
           "letterSpacing": "4%"
         },
-        "sourceRef": "semantic.textStyle.bodyMedium",
+        "sourceRef": "semantic.textStyle.bodyPrimary",
         "type": "typography"
       },
-      "semantic-textStyle-buttonText": {
+      "semantic-textStyle-actionLabel": {
         "value": {
           "fontFamily": "Noto Sans",
           "fontWeight": 400,
@@ -1172,10 +1190,10 @@
           "lineHeight": "140%",
           "letterSpacing": "4%"
         },
-        "sourceRef": "semantic.textStyle.buttonText",
+        "sourceRef": "semantic.textStyle.actionLabel",
         "type": "typography"
       },
-      "semantic-textStyle-bodySmall": {
+      "semantic-textStyle-bodySecondary": {
         "value": {
           "fontFamily": "Noto Sans",
           "fontWeight": 400,
@@ -1183,10 +1201,10 @@
           "lineHeight": "140%",
           "letterSpacing": "4%"
         },
-        "sourceRef": "semantic.textStyle.bodySmall",
+        "sourceRef": "semantic.textStyle.bodySecondary",
         "type": "typography"
       },
-      "semantic-textStyle-groupTitle": {
+      "semantic-textStyle-sectionTitle": {
         "value": {
           "fontFamily": "Noto Sans",
           "fontWeight": 500,
@@ -1194,10 +1212,10 @@
           "lineHeight": "140%",
           "letterSpacing": "4%"
         },
-        "sourceRef": "semantic.textStyle.groupTitle",
+        "sourceRef": "semantic.textStyle.sectionTitle",
         "type": "typography"
       },
-      "semantic-textStyle-caption": {
+      "semantic-textStyle-supportingText": {
         "value": {
           "fontFamily": "Noto Sans",
           "fontWeight": 400,
@@ -1205,10 +1223,10 @@
           "lineHeight": "130%",
           "letterSpacing": "4%"
         },
-        "sourceRef": "semantic.textStyle.caption",
+        "sourceRef": "semantic.textStyle.supportingText",
         "type": "typography"
       },
-      "semantic-textStyle-xSmall": {
+      "semantic-textStyle-tabLabel": {
         "value": {
           "fontFamily": "Noto Sans",
           "fontWeight": 400,
@@ -1216,7 +1234,205 @@
           "lineHeight": "140%",
           "letterSpacing": "4%"
         },
-        "sourceRef": "semantic.textStyle.xSmall",
+        "sourceRef": "semantic.textStyle.tabLabel",
+        "type": "typography"
+      },
+      "pattern-surface-card-title": {
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 500,
+          "fontSize": "14px",
+          "lineHeight": "140%",
+          "letterSpacing": "4%"
+        },
+        "sourceRef": "pattern.surface.card.title",
+        "type": "typography"
+      },
+      "pattern-surface-card-body": {
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 400,
+          "fontSize": "14px",
+          "lineHeight": "140%",
+          "letterSpacing": "4%"
+        },
+        "sourceRef": "pattern.surface.card.body",
+        "type": "typography"
+      },
+      "pattern-modal-form-title": {
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 500,
+          "fontSize": "14px",
+          "lineHeight": "140%",
+          "letterSpacing": "4%"
+        },
+        "sourceRef": "pattern.modal.form.title",
+        "type": "typography"
+      },
+      "pattern-modal-form-body": {
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 400,
+          "fontSize": "14px",
+          "lineHeight": "140%",
+          "letterSpacing": "4%"
+        },
+        "sourceRef": "pattern.modal.form.body",
+        "type": "typography"
+      },
+      "pattern-list-tokenItem-text": {
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 500,
+          "fontSize": "16px",
+          "lineHeight": "140%",
+          "letterSpacing": "4%"
+        },
+        "sourceRef": "pattern.list.tokenItem.text",
+        "type": "typography"
+      },
+      "pattern-list-tokenItem-subtext": {
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 400,
+          "fontSize": "14px",
+          "lineHeight": "140%",
+          "letterSpacing": "4%"
+        },
+        "sourceRef": "pattern.list.tokenItem.subtext",
+        "type": "typography"
+      },
+      "pattern-list-statusRow-title": {
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 500,
+          "fontSize": "14px",
+          "lineHeight": "140%",
+          "letterSpacing": "4%"
+        },
+        "sourceRef": "pattern.list.statusRow.title",
+        "type": "typography"
+      },
+      "pattern-list-statusRow-meta": {
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 400,
+          "fontSize": "12px",
+          "lineHeight": "130%",
+          "letterSpacing": "4%"
+        },
+        "sourceRef": "pattern.list.statusRow.meta",
+        "type": "typography"
+      },
+      "component-mobileNav-primary-default-title": {
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 700,
+          "fontSize": "16px",
+          "lineHeight": "140%",
+          "letterSpacing": "4%"
+        },
+        "sourceRef": "component.mobileNav.primary.default.title",
+        "type": "typography"
+      },
+      "component-mobileNav-secondary-default-title": {
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 700,
+          "fontSize": "16px",
+          "lineHeight": "140%",
+          "letterSpacing": "4%"
+        },
+        "sourceRef": "component.mobileNav.secondary.default.title",
+        "type": "typography"
+      },
+      "component-webNav-default-default-title": {
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 700,
+          "fontSize": "16px",
+          "lineHeight": "140%",
+          "letterSpacing": "4%"
+        },
+        "sourceRef": "component.webNav.default.default.title",
+        "type": "typography"
+      },
+      "component-modal-default-default-title": {
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 500,
+          "fontSize": "14px",
+          "lineHeight": "140%",
+          "letterSpacing": "4%"
+        },
+        "sourceRef": "component.modal.default.default.title",
+        "type": "typography"
+      },
+      "component-modal-default-default-body": {
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 400,
+          "fontSize": "14px",
+          "lineHeight": "140%",
+          "letterSpacing": "4%"
+        },
+        "sourceRef": "component.modal.default.default.body",
+        "type": "typography"
+      },
+      "component-button-primary-default-text": {
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 400,
+          "fontSize": "16px",
+          "lineHeight": "140%",
+          "letterSpacing": "4%"
+        },
+        "sourceRef": "component.button.primary.default.text",
+        "type": "typography"
+      },
+      "component-menu-default-default-title": {
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 500,
+          "fontSize": "14px",
+          "lineHeight": "140%",
+          "letterSpacing": "4%"
+        },
+        "sourceRef": "component.menu.default.default.title",
+        "type": "typography"
+      },
+      "component-menu-default-default-body": {
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 400,
+          "fontSize": "14px",
+          "lineHeight": "140%",
+          "letterSpacing": "4%"
+        },
+        "sourceRef": "component.menu.default.default.body",
+        "type": "typography"
+      },
+      "component-tokenList-default-default-text": {
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 500,
+          "fontSize": "16px",
+          "lineHeight": "140%",
+          "letterSpacing": "4%"
+        },
+        "sourceRef": "component.tokenList.default.default.text",
+        "type": "typography"
+      },
+      "component-tokenList-expand-default-text": {
+        "value": {
+          "fontFamily": "Noto Sans",
+          "fontWeight": 500,
+          "fontSize": "16px",
+          "lineHeight": "140%",
+          "letterSpacing": "4%"
+        },
+        "sourceRef": "component.tokenList.expand.default.text",
         "type": "typography"
       }
     }

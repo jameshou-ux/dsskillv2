@@ -1,0 +1,1475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Design System Tokens v5</title>
+<script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Fira Code', monospace;
+    font-size: 12px;
+    line-height: 1.6;
+    color: #111D4A;
+    background: #F9FAFB;
+    padding: 40px 48px;
+  }
+
+  h1 { font-size: 18px; font-weight: 500; margin-bottom: 4px; }
+  h2 { font-size: 13px; font-weight: 500; margin: 40px 0 16px; letter-spacing: 0.08em; text-transform: uppercase; color: #A0A5B7; border-bottom: 1px solid #ECEDF0; padding-bottom: 8px; }
+  h3 { font-size: 11px; font-weight: 500; margin: 24px 0 12px; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(17,29,74,0.5); }
+
+  .layer-title {
+    margin: 56px 0 18px;
+    padding-top: 18px;
+    border-top: 2px solid #ECEDF0;
+  }
+  .layer-kicker {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #A0A5B7;
+    margin-bottom: 6px;
+  }
+  .layer-name {
+    font-size: 24px;
+    line-height: 1.2;
+    color: #111D4A;
+    font-weight: 500;
+  }
+
+  .meta { font-size: 11px; color: #A0A5B7; margin-bottom: 40px; }
+  .meta span { margin-right: 16px; }
+
+  /* LAYER BADGE */
+  .badge {
+    display: inline-block;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 1px 5px;
+    border-radius: 3px;
+    vertical-align: middle;
+    margin-left: 6px;
+  }
+  .badge-primitive { background: #F0F1F3; color: rgba(17,29,74,0.5); }
+  .badge-semantic  { background: #D6EBFF; color: #007FFF; }
+  .badge-pattern   { background: rgba(0,127,255,0.1); color: #066BD2; }
+  .badge-component { background: rgba(17,29,74,0.06); color: #111D4A; }
+
+  /* COLOR GRID */
+  .color-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 8px;
+  }
+
+  .color-tile {
+    border: 1px solid #ECEDF0;
+    border-radius: 6px;
+    overflow: hidden;
+    background: #fff;
+  }
+  .color-swatch {
+    height: 48px;
+    width: 100%;
+    position: relative;
+  }
+  .color-swatch.checkerboard::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(45deg,#ccc 25%,transparent 25%),
+      linear-gradient(-45deg,#ccc 25%,transparent 25%),
+      linear-gradient(45deg,transparent 75%,#ccc 75%),
+      linear-gradient(-45deg,transparent 75%,#ccc 75%);
+    background-size: 10px 10px;
+    background-position: 0 0,0 5px,5px -5px,-5px 0;
+  }
+  .color-swatch .overlay {
+    position: absolute;
+    inset: 0;
+  }
+  .color-info {
+    padding: 8px 10px;
+  }
+  .color-name { font-weight: 500; font-size: 11px; color: #111D4A; word-break: break-all; }
+  .color-value { font-size: 10px; color: rgba(17,29,74,0.5); margin-top: 2px; }
+  .color-desc { font-size: 10px; color: #A0A5B7; margin-top: 4px; line-height: 1.4; }
+  .color-ref { font-size: 9px; color: #007FFF; margin-top: 3px; }
+
+  /* SCALE BARS (spacing / size) */
+  .scale-list { display: flex; flex-direction: column; gap: 6px; }
+  .scale-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .scale-label {
+    width: 100px;
+    flex-shrink: 0;
+    font-size: 11px;
+    color: #111D4A;
+  }
+  .scale-bar-wrap {
+    flex: 1;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .scale-bar {
+    height: 8px;
+    background: #111D4A;
+    border-radius: 2px;
+    min-width: 2px;
+  }
+  .scale-value {
+    font-size: 10px;
+    color: rgba(17,29,74,0.5);
+    white-space: nowrap;
+  }
+  .scale-desc {
+    font-size: 10px;
+    color: rgba(17,29,74,0.35);
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  /* SEMANTIC / THEMED TOKEN TABLE */
+  .token-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 11px;
+  }
+  .token-table th {
+    text-align: left;
+    padding: 6px 10px;
+    font-weight: 400;
+    color: #A0A5B7;
+    border-bottom: 1px solid #ECEDF0;
+    background: transparent;
+  }
+  .token-table td {
+    padding: 7px 10px;
+    border-bottom: 1px solid rgba(17,29,74,0.05);
+    vertical-align: middle;
+  }
+  .token-table tr:last-child td { border-bottom: none; }
+
+  .swatch-inline {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border-radius: 3px;
+    border: 1px solid rgba(17,29,74,0.1);
+    vertical-align: middle;
+    margin-right: 6px;
+    flex-shrink: 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .swatch-inline.checker::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(45deg,#ddd 25%,transparent 25%),
+      linear-gradient(-45deg,#ddd 25%,transparent 25%),
+      linear-gradient(45deg,transparent 75%,#ddd 75%),
+      linear-gradient(-45deg,transparent 75%,#ddd 75%);
+    background-size: 6px 6px;
+    background-position: 0 0,0 3px,3px -3px,-3px 0;
+  }
+  .swatch-overlay {
+    position: absolute;
+    inset: 0;
+  }
+
+  .cell-color { display: flex; align-items: center; }
+
+  .grad-swatch {
+    display: inline-block;
+    width: 80px;
+    height: 16px;
+    border-radius: 3px;
+    border: 1px solid rgba(17,29,74,0.1);
+    vertical-align: middle;
+    margin-right: 6px;
+  }
+
+  .token-ref { font-size: 9px; color: #007FFF; }
+
+  /* MISSING badge */
+  .missing { color: #B6B7C1; font-style: italic; }
+
+  /* RADIUS SECTION */
+  .radius-grid {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    align-items: flex-end;
+  }
+  .radius-tile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+  }
+  .radius-box {
+    background: rgba(17,29,74,0.06);
+    border: 1.5px solid rgba(17,29,74,0.15);
+    width: 60px;
+    height: 60px;
+  }
+  .radius-box-sm  { border-radius: 4px; }
+  .radius-box-md  { border-radius: 10px; }
+  .radius-box-lg  { border-radius: 16px; }
+  .radius-box-full { border-radius: 9999px; }
+  .radius-name { font-size: 10px; color: #111D4A; }
+  .radius-val  { font-size: 9px; color: #A0A5B7; }
+
+  /* GRADIENT swatch */
+  .grad-preview {
+    height: 28px;
+    border-radius: 4px;
+    border: 1px solid #ECEDF0;
+    margin-bottom: 4px;
+    width: 100%;
+  }
+
+  section { margin-bottom: 8px; }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  @media (max-width: 800px) { .two-col { grid-template-columns: 1fr; } }
+
+  .panel {
+    background: #fff;
+    border: 1px solid #ECEDF0;
+    border-radius: 8px;
+    padding: 16px;
+  }
+  .panel-label { font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(17,29,74,0.35); margin-bottom: 10px; }
+
+  /* ---- THEME PANELS ---- */
+  .theme-panels {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border: 1px solid rgba(17,29,74,0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 4px;
+  }
+  .theme-panel { padding: 20px 24px; }
+  .theme-panel-light { background: #FFFFFF; }
+  .theme-panel-dark  { background: #1C1C1E; border-left: 1px solid rgba(255,255,255,0.07); }
+
+  .tp-label { font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; margin-bottom: 14px; }
+  .theme-panel-light .tp-label { color: rgba(17,29,74,0.3); }
+  .theme-panel-dark  .tp-label { color: #49494C; }
+
+  .tp-group { font-size: 9px; letter-spacing: 0.07em; text-transform: uppercase; padding: 12px 0 4px; margin-bottom: 2px; border-bottom: 1px solid; }
+  .theme-panel-light .tp-group { color: rgba(17,29,74,0.3); border-color: #ECEDF0; }
+  .theme-panel-dark  .tp-group { color: #49494C; border-color: rgba(255,255,255,0.07); }
+
+  .tp-row { display: flex; align-items: flex-start; gap: 10px; padding: 8px 0; border-bottom: 1px solid; }
+  .theme-panel-light .tp-row { border-color: rgba(17,29,74,0.06); }
+  .theme-panel-dark  .tp-row { border-color: rgba(255,255,255,0.06); }
+  .tp-row:last-child { border-bottom: none; }
+
+  .tp-swatch { width: 20px; height: 20px; border-radius: 4px; flex-shrink: 0; position: relative; overflow: hidden; }
+  .theme-panel-light .tp-swatch { border: 1px solid rgba(17,29,74,0.14); }
+  .theme-panel-dark  .tp-swatch { border: 1px solid rgba(255,255,255,0.14); }
+  .tp-swatch.ck::before {
+    content: ''; position: absolute; inset: 0;
+    background-image: linear-gradient(45deg,#d0d0d0 25%,transparent 25%), linear-gradient(-45deg,#d0d0d0 25%,transparent 25%), linear-gradient(45deg,transparent 75%,#d0d0d0 75%), linear-gradient(-45deg,transparent 75%,#d0d0d0 75%);
+    background-size: 8px 8px; background-position: 0 0,0 4px,4px -4px,-4px 0;
+  }
+  .tp-swatch.ck-dark::before {
+    content: ''; position: absolute; inset: 0;
+    background-image: linear-gradient(45deg,#383838 25%,transparent 25%), linear-gradient(-45deg,#383838 25%,transparent 25%), linear-gradient(45deg,transparent 75%,#383838 75%), linear-gradient(-45deg,transparent 75%,#383838 75%);
+    background-size: 8px 8px; background-position: 0 0,0 4px,4px -4px,-4px 0;
+  }
+  .tp-fill { position: absolute; inset: 0; }
+
+  .tp-info { flex: 1; min-width: 0; }
+  .tp-name {
+    font-size: 11px;
+    line-height: 1.45;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+  .theme-panel-light .tp-name { color: #111D4A; }
+  .theme-panel-dark  .tp-name { color: #D6D7E0; }
+  .tp-val {
+    font-size: 10px;
+    margin-top: 2px;
+    line-height: 1.45;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+  .theme-panel-light .tp-val { color: #A0A5B7; }
+  .theme-panel-dark  .tp-val { color: rgba(255,255,255,0.28); }
+
+  .dim-table { width: 100%; border-collapse: collapse; font-size: 11px; }
+  .dim-table th { text-align: left; padding: 6px 10px; font-weight: 400; color: #A0A5B7; border-bottom: 1px solid #ECEDF0; }
+  .dim-table td { padding: 7px 10px; border-bottom: 1px solid rgba(17,29,74,0.05); }
+  .dim-table tr:last-child td { border-bottom: none; }
+  .dim-table td, .dim-table th { vertical-align: top; overflow-wrap: anywhere; }
+
+  .token-card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 12px;
+  }
+  .token-card {
+    border: 1px solid #ECEDF0;
+    border-radius: 8px;
+    padding: 14px;
+    background: #fff;
+  }
+  .token-card-label {
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(17,29,74,0.35);
+    margin-bottom: 10px;
+  }
+  .token-card-list { display: grid; gap: 10px; }
+  .token-card-item {
+    padding-top: 10px;
+    border-top: 1px solid rgba(17,29,74,0.06);
+  }
+  .token-card-item:first-child {
+    padding-top: 0;
+    border-top: none;
+  }
+  .token-card-token {
+    font-size: 11px;
+    color: #111D4A;
+    line-height: 1.45;
+    overflow-wrap: anywhere;
+  }
+  .token-card-value {
+    display: inline-block;
+    margin-top: 6px;
+    padding: 2px 6px;
+    border-radius: 999px;
+    background: #F0F1F3;
+    color: rgba(17,29,74,0.72);
+    font-size: 10px;
+  }
+  .token-card-desc {
+    margin-top: 6px;
+    font-size: 10px;
+    line-height: 1.5;
+    color: #A0A5B7;
+  }
+</style>
+</head>
+<body>
+
+<h1>Design System Tokens v5</h1>
+<p class="meta">
+  <span>source: source_token_v5.json</span>
+  <span>themes: light / dark</span>
+  <span>layers: primitive &rarr; semantic &rarr; pattern &rarr; component</span>
+</p>
+
+
+<!-- =========================================================
+     PRIMITIVE — COLOR
+     ========================================================= -->
+<div class="layer-title">
+  <div class="layer-kicker">Layer</div>
+  <div class="layer-name">Primitive</div>
+</div>
+<h2>Primitive &mdash; Color <span class="badge badge-primitive">primitive</span></h2>
+
+<h3>White &amp; Black</h3>
+<div class="color-grid">
+
+  <div class="color-tile">
+    <div class="color-swatch">
+      <div class="overlay" style="background:#FFFFFF; border-bottom:1px solid #eee;"></div>
+    </div>
+    <div class="color-info">
+      <div class="color-name">white</div>
+      <div class="color-value">#FFFFFF</div>
+      <div class="color-desc">Pure white — light mode surfaces, text on dark bg.</div>
+    </div>
+  </div>
+
+  <div class="color-tile">
+    <div class="color-swatch">
+      <div class="overlay" style="background:#000000;"></div>
+    </div>
+    <div class="color-info">
+      <div class="color-name">black</div>
+      <div class="color-value">#000000</div>
+      <div class="color-desc">OLED-optimized dark mode gradient base.</div>
+    </div>
+  </div>
+
+  <div class="color-tile">
+    <div class="color-swatch">
+      <div class="overlay" style="background:#FFFFFFCC;"></div>
+    </div>
+    <div class="color-info">
+      <div class="color-name">white.80</div>
+      <div class="color-value">#FFFFFFCC</div>
+      <div class="color-desc">White at 80% opacity for frosted glass and light-mode backdrops.</div>
+    </div>
+  </div>
+
+  <div class="color-tile">
+    <div class="color-swatch">
+      <div class="overlay" style="background:linear-gradient(135deg, #FFFFFF00 0%, #FFFFFF2E 100%);"></div>
+    </div>
+    <div class="color-info">
+      <div class="color-name">white.0</div>
+      <div class="color-value">#FFFFFF00</div>
+      <div class="color-desc">Fully transparent white used as a feathered gradient edge start.</div>
+    </div>
+  </div>
+
+  <div class="color-tile">
+    <div class="color-swatch">
+      <div class="overlay" style="background:#000000CC;"></div>
+    </div>
+    <div class="color-info">
+      <div class="color-name">black.80</div>
+      <div class="color-value">#000000CC</div>
+      <div class="color-desc">Black at 80% opacity for strong dark-mode backdrop scrims.</div>
+    </div>
+  </div>
+
+</div>
+
+<h3>Gray Scale</h3>
+<div class="color-grid">
+
+  <div class="color-tile">
+    <div class="color-swatch"><div class="overlay" style="background:#F9FAFB;"></div></div>
+    <div class="color-info"><div class="color-name">gray.50</div><div class="color-value">#F9FAFB</div><div class="color-desc">Lightest gray — subtle page background tint.</div></div>
+  </div>
+
+  <div class="color-tile">
+    <div class="color-swatch"><div class="overlay" style="background:#F0F1F3;"></div></div>
+    <div class="color-info"><div class="color-name">gray.100</div><div class="color-value">#F0F1F3</div><div class="color-desc">Secondary surfaces, chip backgrounds.</div></div>
+  </div>
+
+  <div class="color-tile">
+    <div class="color-swatch"><div class="overlay" style="background:#D6D7E0;"></div></div>
+    <div class="color-info"><div class="color-name">gray.300</div><div class="color-value">#D6D7E0</div><div class="color-desc">Primary body text in dark mode.</div></div>
+  </div>
+
+  <div class="color-tile">
+    <div class="color-swatch"><div class="overlay" style="background:#8B8B91;"></div></div>
+    <div class="color-info"><div class="color-name">gray.350</div><div class="color-value">#8B8B91</div><div class="color-desc">Mid gray for dark-mode secondary text and secondary icons.</div></div>
+  </div>
+
+  <div class="color-tile">
+    <div class="color-swatch"><div class="overlay" style="background:#B4B4BC;"></div></div>
+    <div class="color-info"><div class="color-name">gray.450</div><div class="color-value">#B4B4BC</div><div class="color-desc">Light gray for dark-mode primary icon strokes.</div></div>
+  </div>
+
+  <div class="color-tile">
+    <div class="color-swatch"><div class="overlay" style="background:#B6B7C1;"></div></div>
+    <div class="color-info"><div class="color-name">gray.500</div><div class="color-value">#B6B7C1</div><div class="color-desc">Solid medium gray for dark surface emphasis.</div></div>
+  </div>
+
+  <div class="color-tile">
+    <div class="color-swatch"><div class="overlay" style="background:#49494C;"></div></div>
+    <div class="color-info"><div class="color-name">gray.700</div><div class="color-value">#49494C</div><div class="color-desc">Dark gray for dark-mode placeholder and hint text.</div></div>
+  </div>
+
+  <div class="color-tile">
+    <div class="color-swatch"><div class="overlay" style="background:#2C2C2E;"></div></div>
+    <div class="color-info"><div class="color-name">gray.800</div><div class="color-value">#2C2C2E</div><div class="color-desc">Elevated card / modal section surface, dark mode.</div></div>
+  </div>
+
+  <div class="color-tile">
+    <div class="color-swatch"><div class="overlay" style="background:#2C2C30;"></div></div>
+    <div class="color-info"><div class="color-name">gray.880</div><div class="color-value">#2C2C30</div><div class="color-desc">Near-surface gray for subtle dark-mode borders.</div></div>
+  </div>
+
+  <div class="color-tile">
+    <div class="color-swatch"><div class="overlay" style="background:#1F1F1F;"></div></div>
+    <div class="color-info"><div class="color-name">gray.850</div><div class="color-value">#1F1F1F</div><div class="color-desc">Secondary gradient stop for dark page background.</div></div>
+  </div>
+
+  <div class="color-tile">
+    <div class="color-swatch"><div class="overlay" style="background:#1C1C1E;"></div></div>
+    <div class="color-info"><div class="color-name">gray.900</div><div class="color-value">#1C1C1E</div><div class="color-desc">Primary dark mode surface — iOS system black.</div></div>
+  </div>
+
+  <div class="color-tile">
+    <div class="color-swatch"><div class="overlay" style="background:#010306;"></div></div>
+    <div class="color-info"><div class="color-name">gray.950</div><div class="color-value">#010306</div><div class="color-desc">OLED-optimized tab bar backdrop gradient end.</div></div>
+  </div>
+
+  <div class="color-tile">
+    <div class="color-swatch"><div class="overlay" style="background:linear-gradient(135deg, #01030600 0%, #01030638 100%);"></div></div>
+    <div class="color-info"><div class="color-name">gray.0</div><div class="color-value">#01030600</div><div class="color-desc">Transparent near-pure-black used as the feathered start of dark tab bar backdrops.</div></div>
+  </div>
+
+</div>
+
+<h3>Navy Scale</h3>
+<div class="color-grid">
+
+  <div class="color-tile">
+    <div class="color-swatch"><div class="overlay" style="background:#ECEDF0;"></div></div>
+    <div class="color-info"><div class="color-name">navy.50</div><div class="color-value">#ECEDF0</div><div class="color-desc">Near-white navy tint for subtle light-mode borders.</div></div>
+  </div>
+
+  <div class="color-tile">
+    <div class="color-swatch"><div class="overlay" style="background:#D0D2DB;"></div></div>
+    <div class="color-info"><div class="color-name">navy.200</div><div class="color-value">#D0D2DB</div><div class="color-desc">Pale navy tint for light-mode placeholder text.</div></div>
+  </div>
+
+  <div class="color-tile">
+    <div class="color-swatch"><div class="overlay" style="background:#A0A5B7;"></div></div>
+    <div class="color-info"><div class="color-name">navy.700</div><div class="color-value">#A0A5B7</div><div class="color-desc">Muted navy for light-mode secondary text and icons.</div></div>
+  </div>
+
+  <div class="color-tile">
+    <div class="color-swatch"><div class="overlay" style="background:#003160;"></div></div>
+    <div class="color-info"><div class="color-name">navy.800</div><div class="color-value">#003160</div><div class="color-desc">Deep navy — branded hero gradient end, dark mode.</div></div>
+  </div>
+
+  <div class="color-tile">
+    <div class="color-swatch"><div class="overlay" style="background:#111D4A;"></div></div>
+    <div class="color-info"><div class="color-name">navy.900</div><div class="color-value">#111D4A</div><div class="color-desc">Primary text, icon, fill — max contrast, light mode.</div></div>
+  </div>
+
+</div>
+
+<h3>Blue Scale</h3>
+<div class="color-grid">
+
+  <div class="color-tile">
+    <div class="color-swatch"><div class="overlay" style="background:#F9FDFF;"></div></div>
+    <div class="color-info"><div class="color-name">blue.50</div><div class="color-value">#F9FDFF</div><div class="color-desc">Near-white blue — page gradient start, light mode.</div></div>
+  </div>
+
+  <div class="color-tile">
+    <div class="color-swatch"><div class="overlay" style="background:#D6EBFF;"></div></div>
+    <div class="color-info"><div class="color-name">blue.100</div><div class="color-value">#D6EBFF</div><div class="color-desc">Hero gradient end color, light mode.</div></div>
+  </div>
+
+  <div class="color-tile">
+    <div class="color-swatch"><div class="overlay" style="background:#EEF7FF;"></div></div>
+    <div class="color-info"><div class="color-name">blue.200</div><div class="color-value">#EEF7FF</div><div class="color-desc">XAUT card gradient accent / secondary stop.</div></div>
+  </div>
+
+  <div class="color-tile">
+    <div class="color-swatch"><div class="overlay" style="background:#007FFF;"></div></div>
+    <div class="color-info"><div class="color-name">blue.500</div><div class="color-value">#007FFF</div><div class="color-desc">Brand blue — primary action, links, CTA.</div></div>
+  </div>
+
+  <div class="color-tile">
+    <div class="color-swatch"><div class="overlay" style="background:#066BD2;"></div></div>
+    <div class="color-info"><div class="color-name">blue.600</div><div class="color-value">#066BD2</div><div class="color-desc">Dark-surface brand blue — solid action emphasis.</div></div>
+  </div>
+
+  <div class="color-tile">
+    <div class="color-swatch"><div class="overlay" style="background:#004C99;"></div></div>
+    <div class="color-info"><div class="color-name">blue.800</div><div class="color-value">#004C99</div><div class="color-desc">Dark blue shade for pressed states, dense accents, and deeper branded emphasis.</div></div>
+  </div>
+
+  <div class="color-tile">
+    <div class="color-swatch"><div class="overlay" style="background:rgba(0,127,255,0.08);"></div></div>
+    <div class="color-info"><div class="color-name">blue.500_a8</div><div class="color-value">rgba(0, 127, 255, 0.08)</div><div class="color-desc">Subtle blue tint for low-emphasis informational surfaces.</div></div>
+  </div>
+
+  <div class="color-tile">
+    <div class="color-swatch"><div class="overlay" style="background:rgba(0,127,255,0.2);"></div></div>
+    <div class="color-info"><div class="color-name">blue.500_a20</div><div class="color-value">rgba(0, 127, 255, 0.2)</div><div class="color-desc">Soft blue fill for chips, badges, and info backgrounds.</div></div>
+  </div>
+
+  <div class="color-tile">
+    <div class="color-swatch"><div class="overlay" style="background:rgba(0,127,255,0.4);"></div></div>
+    <div class="color-info"><div class="color-name">blue.500_a40</div><div class="color-value">rgba(0, 127, 255, 0.4)</div><div class="color-desc">Medium blue tint for stronger informational emphasis.</div></div>
+  </div>
+
+  <div class="color-tile">
+    <div class="color-swatch"><div class="overlay" style="background:rgba(0,127,255,0.6);"></div></div>
+    <div class="color-info"><div class="color-name">blue.500_a60</div><div class="color-value">rgba(0, 127, 255, 0.6)</div><div class="color-desc">Strong blue tint for overlays and transitional emphasis states.</div></div>
+  </div>
+
+</div>
+
+<h3>Green Scale</h3>
+<div class="color-grid">
+
+  <div class="color-tile">
+    <div class="color-swatch"><div class="overlay" style="background:#4BCE71;"></div></div>
+    <div class="color-info"><div class="color-name">green.500</div><div class="color-value">#4BCE71</div><div class="color-desc">Canonical success green for connected, positive, and completed states.</div></div>
+  </div>
+
+  <div class="color-tile">
+    <div class="color-swatch"><div class="overlay" style="background:#2D7C44;"></div></div>
+    <div class="color-info"><div class="color-name">green.800</div><div class="color-value">#2D7C44</div><div class="color-desc">Dark green shade for pressed success states and deeper positive emphasis.</div></div>
+  </div>
+
+  <div class="color-tile">
+    <div class="color-swatch"><div class="overlay" style="background:rgba(75,206,113,0.2);"></div></div>
+    <div class="color-info"><div class="color-name">green.500_a20</div><div class="color-value">rgba(75, 206, 113, 0.2)</div><div class="color-desc">Soft success background and chip fill.</div></div>
+  </div>
+
+  <div class="color-tile">
+    <div class="color-swatch"><div class="overlay" style="background:rgba(75,206,113,0.4);"></div></div>
+    <div class="color-info"><div class="color-name">green.500_a40</div><div class="color-value">rgba(75, 206, 113, 0.4)</div><div class="color-desc">Medium success tint for stronger positive emphasis.</div></div>
+  </div>
+
+  <div class="color-tile">
+    <div class="color-swatch"><div class="overlay" style="background:rgba(75,206,113,0.6);"></div></div>
+    <div class="color-info"><div class="color-name">green.500_a60</div><div class="color-value">rgba(75, 206, 113, 0.6)</div><div class="color-desc">Strong success tint for overlays and dense positive surfaces.</div></div>
+  </div>
+
+</div>
+
+<h3>Red Scale</h3>
+<div class="color-grid">
+
+  <div class="color-tile">
+    <div class="color-swatch"><div class="overlay" style="background:#F3636F;"></div></div>
+    <div class="color-info"><div class="color-name">red.500</div><div class="color-value">#F3636F</div><div class="color-desc">Canonical error red for destructive, failed, and critical feedback states.</div></div>
+  </div>
+
+  <div class="color-tile">
+    <div class="color-swatch"><div class="overlay" style="background:#923B43;"></div></div>
+    <div class="color-info"><div class="color-name">red.800</div><div class="color-value">#923B43</div><div class="color-desc">Dark red shade for pressed destructive states and deeper alert emphasis.</div></div>
+  </div>
+
+  <div class="color-tile">
+    <div class="color-swatch"><div class="overlay" style="background:rgba(243,99,111,0.2);"></div></div>
+    <div class="color-info"><div class="color-name">red.500_a20</div><div class="color-value">rgba(243, 99, 111, 0.2)</div><div class="color-desc">Soft destructive background and alert chip fill.</div></div>
+  </div>
+
+  <div class="color-tile">
+    <div class="color-swatch"><div class="overlay" style="background:rgba(243,99,111,0.4);"></div></div>
+    <div class="color-info"><div class="color-name">red.500_a40</div><div class="color-value">rgba(243, 99, 111, 0.4)</div><div class="color-desc">Medium alert tint for stronger destructive emphasis.</div></div>
+  </div>
+
+  <div class="color-tile">
+    <div class="color-swatch"><div class="overlay" style="background:rgba(243,99,111,0.6);"></div></div>
+    <div class="color-info"><div class="color-name">red.500_a60</div><div class="color-value">rgba(243, 99, 111, 0.6)</div><div class="color-desc">Strong alert tint for overlays and dense destructive surfaces.</div></div>
+  </div>
+
+</div>
+
+<h3>Orange Scale</h3>
+<div class="color-grid">
+
+  <div class="color-tile">
+    <div class="color-swatch"><div class="overlay" style="background:#FC8C4D;"></div></div>
+    <div class="color-info"><div class="color-name">orange.500</div><div class="color-value">#FC8C4D</div><div class="color-desc">Canonical warning orange for caution, offline, and attention states.</div></div>
+  </div>
+
+  <div class="color-tile">
+    <div class="color-swatch"><div class="overlay" style="background:#97542E;"></div></div>
+    <div class="color-info"><div class="color-name">orange.800</div><div class="color-value">#97542E</div><div class="color-desc">Dark orange shade for stronger warning emphasis and pressed caution states.</div></div>
+  </div>
+
+  <div class="color-tile">
+    <div class="color-swatch"><div class="overlay" style="background:rgba(252,140,77,0.2);"></div></div>
+    <div class="color-info"><div class="color-name">orange.500_a20</div><div class="color-value">rgba(252, 140, 77, 0.2)</div><div class="color-desc">Soft warning background and offline chip fill.</div></div>
+  </div>
+
+  <div class="color-tile">
+    <div class="color-swatch"><div class="overlay" style="background:rgba(252,140,77,0.4);"></div></div>
+    <div class="color-info"><div class="color-name">orange.500_a40</div><div class="color-value">rgba(252, 140, 77, 0.4)</div><div class="color-desc">Medium warning tint for stronger caution emphasis.</div></div>
+  </div>
+
+</div>
+
+
+<!-- =========================================================
+     PRIMITIVE — SPACING
+     ========================================================= -->
+<h2>Primitive &mdash; Spacing <span class="badge badge-primitive">primitive</span></h2>
+<div class="scale-list">
+  <!-- max reference = 72px, bar max-width = 400px; scale = 400/72 ≈ 5.55 -->
+  <div class="scale-row">
+    <div class="scale-label">spacing.4</div>
+    <div class="scale-bar-wrap">
+      <div class="scale-bar" style="width:22px;"></div>
+      <div class="scale-value">4px</div>
+      <div class="scale-desc">Compact internal gaps and thin offsets.</div>
+    </div>
+  </div>
+  <div class="scale-row">
+    <div class="scale-label">spacing.8</div>
+    <div class="scale-bar-wrap">
+      <div class="scale-bar" style="width:44px;"></div>
+      <div class="scale-value">8px</div>
+      <div class="scale-desc">Tight row gaps and small vertical rhythm.</div>
+    </div>
+  </div>
+  <div class="scale-row">
+    <div class="scale-label">spacing.12</div>
+    <div class="scale-bar-wrap">
+      <div class="scale-bar" style="width:67px;"></div>
+      <div class="scale-value">12px</div>
+      <div class="scale-desc">Field padding and compact list gaps.</div>
+    </div>
+  </div>
+  <div class="scale-row">
+    <div class="scale-label">spacing.16</div>
+    <div class="scale-bar-wrap">
+      <div class="scale-bar" style="width:89px;"></div>
+      <div class="scale-value">16px</div>
+      <div class="scale-desc">Standard container padding and section insets.</div>
+    </div>
+  </div>
+  <div class="scale-row">
+    <div class="scale-label">spacing.20</div>
+    <div class="scale-bar-wrap">
+      <div class="scale-bar" style="width:111px;"></div>
+      <div class="scale-value">20px</div>
+      <div class="scale-desc">Medium content separation.</div>
+    </div>
+  </div>
+  <div class="scale-row">
+    <div class="scale-label">spacing.24</div>
+    <div class="scale-bar-wrap">
+      <div class="scale-bar" style="width:133px;"></div>
+      <div class="scale-value">24px</div>
+      <div class="scale-desc">Larger intra-section gaps.</div>
+    </div>
+  </div>
+  <div class="scale-row">
+    <div class="scale-label">spacing.32</div>
+    <div class="scale-bar-wrap">
+      <div class="scale-bar" style="width:178px;"></div>
+      <div class="scale-value">32px</div>
+      <div class="scale-desc">Section-level separation and action groups.</div>
+    </div>
+  </div>
+  <div class="scale-row">
+    <div class="scale-label">spacing.40</div>
+    <div class="scale-bar-wrap">
+      <div class="scale-bar" style="width:222px;"></div>
+      <div class="scale-value">40px</div>
+      <div class="scale-desc">Large content separation.</div>
+    </div>
+  </div>
+  <div class="scale-row">
+    <div class="scale-label">spacing.42</div>
+    <div class="scale-bar-wrap">
+      <div class="scale-bar" style="width:233px;"></div>
+      <div class="scale-value">42px</div>
+      <div class="scale-desc">Preserved from observed layout offsets.</div>
+    </div>
+  </div>
+  <div class="scale-row">
+    <div class="scale-label">spacing.72</div>
+    <div class="scale-bar-wrap">
+      <div class="scale-bar" style="width:400px;"></div>
+      <div class="scale-value">72px</div>
+      <div class="scale-desc">Large top offsets — modal content separation.</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- =========================================================
+     PRIMITIVE — SIZE
+     ========================================================= -->
+<h2>Primitive &mdash; Size <span class="badge badge-primitive">primitive</span></h2>
+<div class="scale-list">
+  <!-- max reference = 90px for visual scale, bar max-width = 360px; scale = 4px/px -->
+  <div class="scale-row">
+    <div class="scale-label">size.4</div>
+    <div class="scale-bar-wrap">
+      <div class="scale-bar" style="width:16px; background:#007FFF;"></div>
+      <div class="scale-value">4px</div>
+      <div class="scale-desc">Drag handle height.</div>
+    </div>
+  </div>
+  <div class="scale-row">
+    <div class="scale-label">size.16</div>
+    <div class="scale-bar-wrap">
+      <div class="scale-bar" style="width:64px; background:#007FFF;"></div>
+      <div class="scale-value">16px</div>
+      <div class="scale-desc">Compact icons and small square affordances.</div>
+    </div>
+  </div>
+  <div class="scale-row">
+    <div class="scale-label">size.20</div>
+    <div class="scale-bar-wrap">
+      <div class="scale-bar" style="width:80px; background:#007FFF;"></div>
+      <div class="scale-value">20px</div>
+      <div class="scale-desc">Small status-row icons.</div>
+    </div>
+  </div>
+  <div class="scale-row">
+    <div class="scale-label">size.24</div>
+    <div class="scale-bar-wrap">
+      <div class="scale-bar" style="width:96px; background:#007FFF;"></div>
+      <div class="scale-value">24px</div>
+      <div class="scale-desc">Standard compact controls and icons.</div>
+    </div>
+  </div>
+  <div class="scale-row">
+    <div class="scale-label">size.32</div>
+    <div class="scale-bar-wrap">
+      <div class="scale-bar" style="width:128px; background:#007FFF;"></div>
+      <div class="scale-value">32px</div>
+      <div class="scale-desc">Compact control heights and square icon buttons.</div>
+    </div>
+  </div>
+  <div class="scale-row">
+    <div class="scale-label">size.36</div>
+    <div class="scale-bar-wrap">
+      <div class="scale-bar" style="width:144px; background:#007FFF;"></div>
+      <div class="scale-value">36px</div>
+      <div class="scale-desc">Drag handle width.</div>
+    </div>
+  </div>
+  <div class="scale-row">
+    <div class="scale-label">size.40</div>
+    <div class="scale-bar-wrap">
+      <div class="scale-bar" style="width:160px; background:#007FFF;"></div>
+      <div class="scale-value">40px</div>
+      <div class="scale-desc">Large list icons and prominent square affordances.</div>
+    </div>
+  </div>
+  <div class="scale-row">
+    <div class="scale-label">size.44</div>
+    <div class="scale-bar-wrap">
+      <div class="scale-bar" style="width:176px; background:#007FFF;"></div>
+      <div class="scale-value">44px</div>
+      <div class="scale-desc">Touch-friendly compact control height.</div>
+    </div>
+  </div>
+  <div class="scale-row">
+    <div class="scale-label">size.48</div>
+    <div class="scale-bar-wrap">
+      <div class="scale-bar" style="width:192px; background:#007FFF;"></div>
+      <div class="scale-value">48px</div>
+      <div class="scale-desc">Field heights and medium touch controls.</div>
+    </div>
+  </div>
+  <div class="scale-row">
+    <div class="scale-label">size.52</div>
+    <div class="scale-bar-wrap">
+      <div class="scale-bar" style="width:208px; background:#007FFF;"></div>
+      <div class="scale-value">52px</div>
+      <div class="scale-desc">Primary button height.</div>
+    </div>
+  </div>
+  <div class="scale-row">
+    <div class="scale-label">size.56</div>
+    <div class="scale-bar-wrap">
+      <div class="scale-bar" style="width:224px; background:#007FFF;"></div>
+      <div class="scale-value">56px</div>
+      <div class="scale-desc">Secondary mobile navigation height.</div>
+    </div>
+  </div>
+  <div class="scale-row">
+    <div class="scale-label">size.62</div>
+    <div class="scale-bar-wrap">
+      <div class="scale-bar" style="width:248px; background:#007FFF;"></div>
+      <div class="scale-value">62px</div>
+      <div class="scale-desc">Token list row height.</div>
+    </div>
+  </div>
+  <div class="scale-row">
+    <div class="scale-label">size.64</div>
+    <div class="scale-bar-wrap">
+      <div class="scale-bar" style="width:256px; background:#007FFF;"></div>
+      <div class="scale-value">64px</div>
+      <div class="scale-desc">Tall compact containers and touch targets.</div>
+    </div>
+  </div>
+  <div class="scale-row">
+    <div class="scale-label">size.68</div>
+    <div class="scale-bar-wrap">
+      <div class="scale-bar" style="width:272px; background:#007FFF;"></div>
+      <div class="scale-value">68px</div>
+      <div class="scale-desc">Web navigation height.</div>
+    </div>
+  </div>
+  <div class="scale-row">
+    <div class="scale-label">size.90</div>
+    <div class="scale-bar-wrap">
+      <div class="scale-bar" style="width:360px; background:#007FFF;"></div>
+      <div class="scale-value">90px</div>
+      <div class="scale-desc">Primary mobile navigation height.</div>
+    </div>
+  </div>
+  <div class="scale-row">
+    <div class="scale-label">size.343</div>
+    <div class="scale-bar-wrap">
+      <div class="scale-value" style="color:#111D4A;">343px</div>
+      <div class="scale-desc">Canonical compact container width.</div>
+    </div>
+  </div>
+  <div class="scale-row">
+    <div class="scale-label">size.356</div>
+    <div class="scale-bar-wrap">
+      <div class="scale-value" style="color:#111D4A;">356px</div>
+      <div class="scale-desc">Canonical container width.</div>
+    </div>
+  </div>
+  <div class="scale-row">
+    <div class="scale-label">size.375</div>
+    <div class="scale-bar-wrap">
+      <div class="scale-value" style="color:#111D4A;">375px</div>
+      <div class="scale-desc">Canonical mobile frame width.</div>
+    </div>
+  </div>
+  <div class="scale-row">
+    <div class="scale-label">size.1200</div>
+    <div class="scale-bar-wrap">
+      <div class="scale-value" style="color:#111D4A;">1200px</div>
+      <div class="scale-desc">Canonical wide web container width.</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- =========================================================
+     PRIMITIVE — RADIUS
+     ========================================================= -->
+<h2>Primitive &mdash; Radius <span class="badge badge-primitive">primitive</span></h2>
+<div class="radius-grid">
+  <div class="radius-tile">
+    <div class="radius-box radius-box-sm"></div>
+    <div class="radius-name">radius.sm</div>
+    <div class="radius-val">4</div>
+  </div>
+  <div class="radius-tile">
+    <div class="radius-box radius-box-md"></div>
+    <div class="radius-name">radius.md</div>
+    <div class="radius-val">10</div>
+  </div>
+  <div class="radius-tile">
+    <div class="radius-box radius-box-lg"></div>
+    <div class="radius-name">radius.lg</div>
+    <div class="radius-val">16</div>
+  </div>
+  <div class="radius-tile">
+    <div class="radius-box radius-box-full"></div>
+    <div class="radius-name">radius.full</div>
+    <div class="radius-val">9999</div>
+  </div>
+</div>
+<p style="font-size:10px;color:rgba(17,29,74,0.35);margin-top:10px;">Shapes above reflect the confirmed primitive radius scale used by the current v5 token set.</p>
+
+
+<!-- =========================================================
+     SEMANTIC — BACKGROUND
+     ========================================================= -->
+<div class="layer-title">
+  <div class="layer-kicker">Layer</div>
+  <div class="layer-name">Semantic</div>
+</div>
+<h2>Semantic &mdash; Background <span class="badge badge-semantic">semantic</span></h2>
+<div class="theme-panels">
+  <div class="theme-panel theme-panel-light">
+    <div class="tp-label">Light</div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#FFFFFF;"></div></div><div class="tp-info"><div class="tp-name">background.general</div><div class="tp-val">{primitive.color.white} → #FFFFFF</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#FFFFFF;"></div></div><div class="tp-info"><div class="tp-name">background.card</div><div class="tp-val">{primitive.color.white} → #FFFFFF</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#F9FAFB;"></div></div><div class="tp-info"><div class="tp-name">background.modal</div><div class="tp-val">{primitive.color.gray.50} → #F9FAFB</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#FFFFFF;"></div></div><div class="tp-info"><div class="tp-name">background.modal_section</div><div class="tp-val">{primitive.color.white} → #FFFFFF</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#F0F1F3;"></div></div><div class="tp-info"><div class="tp-name">background.modal_section_inner</div><div class="tp-val">{primitive.color.gray.100} → #F0F1F3</div></div></div>
+    <div class="tp-row"><div class="tp-swatch ck"><div class="tp-fill" style="background:#FFFFFFCC;"></div></div><div class="tp-info"><div class="tp-name">background.backdrop</div><div class="tp-val">{primitive.color.white.80} → #FFFFFFCC</div></div></div>
+  </div>
+  <div class="theme-panel theme-panel-dark">
+    <div class="tp-label">Dark</div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#1C1C1E;"></div></div><div class="tp-info"><div class="tp-name">background.general</div><div class="tp-val">{primitive.color.gray.900} → #1C1C1E</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#1C1C1E;"></div></div><div class="tp-info"><div class="tp-name">background.card</div><div class="tp-val">{primitive.color.gray.900} → #1C1C1E</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#1C1C1E;"></div></div><div class="tp-info"><div class="tp-name">background.modal</div><div class="tp-val">{primitive.color.gray.900} → #1C1C1E</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#2C2C2E;"></div></div><div class="tp-info"><div class="tp-name">background.modal_section</div><div class="tp-val">{primitive.color.gray.800} → #2C2C2E</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#1C1C1E;"></div></div><div class="tp-info"><div class="tp-name">background.modal_section_inner</div><div class="tp-val">{primitive.color.gray.900} → #1C1C1E</div></div></div>
+    <div class="tp-row"><div class="tp-swatch ck-dark"><div class="tp-fill" style="background:#000000CC;"></div></div><div class="tp-info"><div class="tp-name">background.backdrop</div><div class="tp-val">{primitive.color.black.80} → #000000CC</div></div></div>
+  </div>
+</div>
+
+
+<!-- =========================================================
+     SEMANTIC — TEXT
+     ========================================================= -->
+<h2>Semantic &mdash; Text <span class="badge badge-semantic">semantic</span></h2>
+<div class="theme-panels">
+  <div class="theme-panel theme-panel-light">
+    <div class="tp-label">Light</div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#111D4A;"></div></div><div class="tp-info"><div class="tp-name">text.core</div><div class="tp-val">{primitive.color.navy.900} → #111D4A</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#111D4A;"></div></div><div class="tp-info"><div class="tp-name">text.primary</div><div class="tp-val">{primitive.color.navy.900} → #111D4A</div></div></div>
+    <div class="tp-row"><div class="tp-swatch ck"><div class="tp-fill" style="background:#A0A5B7;"></div></div><div class="tp-info"><div class="tp-name">text.secondary</div><div class="tp-val">{primitive.color.navy.700} → #A0A5B7</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#007FFF;"></div></div><div class="tp-info"><div class="tp-name">text.action</div><div class="tp-val">{primitive.color.blue.500} → #007FFF</div></div></div>
+    <div class="tp-row"><div class="tp-swatch ck"><div class="tp-fill" style="background:#D0D2DB;"></div></div><div class="tp-info"><div class="tp-name">text.placeholder</div><div class="tp-val">{primitive.color.navy.200} → #D0D2DB</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#4BCE71;"></div></div><div class="tp-info"><div class="tp-name">text.success</div><div class="tp-val">{primitive.color.green.500} → #4BCE71</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#F3636F;"></div></div><div class="tp-info"><div class="tp-name">text.error</div><div class="tp-val">{primitive.color.red.500} → #F3636F</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#FC8C4D;"></div></div><div class="tp-info"><div class="tp-name">text.warning</div><div class="tp-val">{primitive.color.orange.500} → #FC8C4D</div></div></div>
+  </div>
+  <div class="theme-panel theme-panel-dark">
+    <div class="tp-label">Dark</div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#FFFFFF;"></div></div><div class="tp-info"><div class="tp-name">text.core</div><div class="tp-val">{primitive.color.white} → #FFFFFF</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#D6D7E0;"></div></div><div class="tp-info"><div class="tp-name">text.primary</div><div class="tp-val">{primitive.color.gray.300} → #D6D7E0</div></div></div>
+    <div class="tp-row"><div class="tp-swatch ck-dark"><div class="tp-fill" style="background:#8B8B91;"></div></div><div class="tp-info"><div class="tp-name">text.secondary</div><div class="tp-val">{primitive.color.gray.350} → #8B8B91</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#066BD2;"></div></div><div class="tp-info"><div class="tp-name">text.action</div><div class="tp-val">{primitive.color.blue.600} → #066BD2</div></div></div>
+    <div class="tp-row"><div class="tp-swatch ck-dark"><div class="tp-fill" style="background:#49494C;"></div></div><div class="tp-info"><div class="tp-name">text.placeholder</div><div class="tp-val">{primitive.color.gray.700} → #49494C</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#4BCE71;"></div></div><div class="tp-info"><div class="tp-name">text.success</div><div class="tp-val">{primitive.color.green.500} → #4BCE71</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#F3636F;"></div></div><div class="tp-info"><div class="tp-name">text.error</div><div class="tp-val">{primitive.color.red.500} → #F3636F</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#FC8C4D;"></div></div><div class="tp-info"><div class="tp-name">text.warning</div><div class="tp-val">{primitive.color.orange.500} → #FC8C4D</div></div></div>
+  </div>
+</div>
+
+
+<!-- =========================================================
+     SEMANTIC — STATUS
+     ========================================================= -->
+<h2>Semantic &mdash; Status <span class="badge badge-semantic">semantic</span></h2>
+<div class="theme-panels">
+  <div class="theme-panel theme-panel-light">
+    <div class="tp-label">Light</div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#4BCE71;"></div></div><div class="tp-info"><div class="tp-name">status.success</div><div class="tp-val">{primitive.color.green.500} → #4BCE71</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:rgba(75,206,113,0.2);"></div></div><div class="tp-info"><div class="tp-name">status.success_subtle</div><div class="tp-val">{primitive.color.green.500_a20} → rgba(75, 206, 113, 0.2)</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#F3636F;"></div></div><div class="tp-info"><div class="tp-name">status.error</div><div class="tp-val">{primitive.color.red.500} → #F3636F</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:rgba(243,99,111,0.2);"></div></div><div class="tp-info"><div class="tp-name">status.error_subtle</div><div class="tp-val">{primitive.color.red.500_a20} → rgba(243, 99, 111, 0.2)</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#FC8C4D;"></div></div><div class="tp-info"><div class="tp-name">status.warning</div><div class="tp-val">{primitive.color.orange.500} → #FC8C4D</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:rgba(252,140,77,0.2);"></div></div><div class="tp-info"><div class="tp-name">status.warning_subtle</div><div class="tp-val">{primitive.color.orange.500_a20} → rgba(252, 140, 77, 0.2)</div></div></div>
+  </div>
+  <div class="theme-panel theme-panel-dark">
+    <div class="tp-label">Dark</div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#4BCE71;"></div></div><div class="tp-info"><div class="tp-name">status.success</div><div class="tp-val">{primitive.color.green.500} → #4BCE71</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:rgba(75,206,113,0.2);"></div></div><div class="tp-info"><div class="tp-name">status.success_subtle</div><div class="tp-val">{primitive.color.green.500_a20} → rgba(75, 206, 113, 0.2)</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#F3636F;"></div></div><div class="tp-info"><div class="tp-name">status.error</div><div class="tp-val">{primitive.color.red.500} → #F3636F</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:rgba(243,99,111,0.2);"></div></div><div class="tp-info"><div class="tp-name">status.error_subtle</div><div class="tp-val">{primitive.color.red.500_a20} → rgba(243, 99, 111, 0.2)</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#FC8C4D;"></div></div><div class="tp-info"><div class="tp-name">status.warning</div><div class="tp-val">{primitive.color.orange.500} → #FC8C4D</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:rgba(252,140,77,0.2);"></div></div><div class="tp-info"><div class="tp-name">status.warning_subtle</div><div class="tp-val">{primitive.color.orange.500_a20} → rgba(252, 140, 77, 0.2)</div></div></div>
+  </div>
+</div>
+
+
+<!-- =========================================================
+     SEMANTIC — STROKE / BORDER / FILL
+     ========================================================= -->
+<h2>Semantic &mdash; Stroke, Border &amp; Fill <span class="badge badge-semantic">semantic</span></h2>
+<div class="theme-panels">
+  <div class="theme-panel theme-panel-light">
+    <div class="tp-label">Light</div>
+    <div class="tp-group">stroke</div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#111D4A;"></div></div><div class="tp-info"><div class="tp-name">stroke.icon_primary</div><div class="tp-val">{primitive.color.navy.900} → #111D4A</div></div></div>
+    <div class="tp-row"><div class="tp-swatch ck"><div class="tp-fill" style="background:#A0A5B7;"></div></div><div class="tp-info"><div class="tp-name">stroke.icon_secondary</div><div class="tp-val">{primitive.color.navy.700} → #A0A5B7</div></div></div>
+    <div class="tp-group">border</div>
+    <div class="tp-row"><div class="tp-swatch ck"><div class="tp-fill" style="background:#ECEDF0;"></div></div><div class="tp-info"><div class="tp-name">border.default</div><div class="tp-val">{primitive.color.navy.50} → #ECEDF0</div></div></div>
+    <div class="tp-group">fill</div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#F0F1F3;"></div></div><div class="tp-info"><div class="tp-name">fill.icon_chip</div><div class="tp-val">{primitive.color.gray.100} → #F0F1F3</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#111D4A;"></div></div><div class="tp-info"><div class="tp-name">fill.secondary</div><div class="tp-val">{primitive.color.navy.900} → #111D4A</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#FFFFFF;"></div></div><div class="tp-info"><div class="tp-name">fill.tertiary</div><div class="tp-val">{primitive.color.white} → #FFFFFF</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#111D4A;"></div></div><div class="tp-info"><div class="tp-name">fill.logo</div><div class="tp-val">{primitive.color.navy.900} → #111D4A</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#4BCE71;"></div></div><div class="tp-info"><div class="tp-name">fill.success</div><div class="tp-val">{primitive.color.green.500} → #4BCE71</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:rgba(75,206,113,0.2);"></div></div><div class="tp-info"><div class="tp-name">fill.success_subtle</div><div class="tp-val">{primitive.color.green.500_a20} → rgba(75, 206, 113, 0.2)</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#F3636F;"></div></div><div class="tp-info"><div class="tp-name">fill.error</div><div class="tp-val">{primitive.color.red.500} → #F3636F</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:rgba(243,99,111,0.2);"></div></div><div class="tp-info"><div class="tp-name">fill.error_subtle</div><div class="tp-val">{primitive.color.red.500_a20} → rgba(243, 99, 111, 0.2)</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#FC8C4D;"></div></div><div class="tp-info"><div class="tp-name">fill.warning</div><div class="tp-val">{primitive.color.orange.500} → #FC8C4D</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:rgba(252,140,77,0.2);"></div></div><div class="tp-info"><div class="tp-name">fill.warning_subtle</div><div class="tp-val">{primitive.color.orange.500_a20} → rgba(252, 140, 77, 0.2)</div></div></div>
+  </div>
+  <div class="theme-panel theme-panel-dark">
+    <div class="tp-label">Dark</div>
+    <div class="tp-group">stroke</div>
+    <div class="tp-row"><div class="tp-swatch ck-dark"><div class="tp-fill" style="background:#B4B4BC;"></div></div><div class="tp-info"><div class="tp-name">stroke.icon_primary</div><div class="tp-val">{primitive.color.gray.450} → #B4B4BC</div></div></div>
+    <div class="tp-row"><div class="tp-swatch ck-dark"><div class="tp-fill" style="background:#8B8B91;"></div></div><div class="tp-info"><div class="tp-name">stroke.icon_secondary</div><div class="tp-val">{primitive.color.gray.350} → #8B8B91</div></div></div>
+    <div class="tp-group">border</div>
+    <div class="tp-row"><div class="tp-swatch ck-dark"><div class="tp-fill" style="background:#2C2C30;"></div></div><div class="tp-info"><div class="tp-name">border.default</div><div class="tp-val">{primitive.color.gray.880} → #2C2C30</div></div></div>
+    <div class="tp-group">fill</div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#2C2C2E;"></div></div><div class="tp-info"><div class="tp-name">fill.icon_chip</div><div class="tp-val">{primitive.color.gray.800} → #2C2C2E</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#B6B7C1;"></div></div><div class="tp-info"><div class="tp-name">fill.secondary</div><div class="tp-val">{primitive.color.gray.500} → #B6B7C1</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#1C1C1E;"></div></div><div class="tp-info"><div class="tp-name">fill.tertiary</div><div class="tp-val">{primitive.color.gray.900} → #1C1C1E</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#FFFFFF;"></div></div><div class="tp-info"><div class="tp-name">fill.logo</div><div class="tp-val">{primitive.color.white} → #FFFFFF</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#4BCE71;"></div></div><div class="tp-info"><div class="tp-name">fill.success</div><div class="tp-val">{primitive.color.green.500} → #4BCE71</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:rgba(75,206,113,0.2);"></div></div><div class="tp-info"><div class="tp-name">fill.success_subtle</div><div class="tp-val">{primitive.color.green.500_a20} → rgba(75, 206, 113, 0.2)</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#F3636F;"></div></div><div class="tp-info"><div class="tp-name">fill.error</div><div class="tp-val">{primitive.color.red.500} → #F3636F</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:rgba(243,99,111,0.2);"></div></div><div class="tp-info"><div class="tp-name">fill.error_subtle</div><div class="tp-val">{primitive.color.red.500_a20} → rgba(243, 99, 111, 0.2)</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#FC8C4D;"></div></div><div class="tp-info"><div class="tp-name">fill.warning</div><div class="tp-val">{primitive.color.orange.500} → #FC8C4D</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:rgba(252,140,77,0.2);"></div></div><div class="tp-info"><div class="tp-name">fill.warning_subtle</div><div class="tp-val">{primitive.color.orange.500_a20} → rgba(252, 140, 77, 0.2)</div></div></div>
+  </div>
+</div>
+
+
+<!-- =========================================================
+     SEMANTIC — GRADIENT
+     ========================================================= -->
+<h2>Semantic &mdash; Gradient <span class="badge badge-semantic">semantic</span></h2>
+<div class="two-col">
+
+  <div>
+    <div class="panel-label">gradient.general</div>
+    <div class="two-col" style="gap:12px;">
+      <div class="panel">
+        <div class="panel-label">light</div>
+        <div class="grad-preview" style="background:linear-gradient(180deg,#F9FDFF 0%,#F0F1F3 100%);"></div>
+        <div style="font-size:10px;color:rgba(17,29,74,0.5);">{primitive.color.blue.50} &rarr; {primitive.color.gray.100} → #F9FDFF &rarr; #F0F1F3</div>
+        <div style="font-size:10px;color:rgba(17,29,74,0.35);margin-top:2px;">near-white blue → light gray</div>
+      </div>
+      <div class="panel" style="background:#111;">
+        <div class="panel-label" style="color:rgba(255,255,255,0.4);">dark</div>
+        <div class="grad-preview" style="background:linear-gradient(180deg,#000000 0%,#1F1F1F 100%);"></div>
+        <div style="font-size:10px;color:rgba(255,255,255,0.4);">{primitive.color.black} &rarr; {primitive.color.gray.850} → #000000 &rarr; #1F1F1F</div>
+        <div style="font-size:10px;color:rgba(255,255,255,0.25);margin-top:2px;">black → gray.850</div>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <div class="panel-label">gradient.main (hero)</div>
+    <div class="two-col" style="gap:12px;">
+      <div class="panel">
+        <div class="panel-label">light</div>
+        <div class="grad-preview" style="background:linear-gradient(180deg,#F9FDFF 0%,#D6EBFF 100%);"></div>
+        <div style="font-size:10px;color:rgba(17,29,74,0.5);">{primitive.color.blue.50} &rarr; {primitive.color.blue.100} → #F9FDFF &rarr; #D6EBFF</div>
+        <div style="font-size:10px;color:rgba(17,29,74,0.35);margin-top:2px;">near-white blue → light blue</div>
+      </div>
+      <div class="panel" style="background:#111;">
+        <div class="panel-label" style="color:rgba(255,255,255,0.4);">dark</div>
+        <div class="grad-preview" style="background:linear-gradient(180deg,#000000 0%,#003160 100%);"></div>
+        <div style="font-size:10px;color:rgba(255,255,255,0.4);">{primitive.color.black} &rarr; {primitive.color.navy.800} → #000000 &rarr; #003160</div>
+        <div style="font-size:10px;color:rgba(255,255,255,0.25);margin-top:2px;">black → navy.800</div>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <div class="panel-label">gradient.xaut_card</div>
+    <div class="two-col" style="gap:12px;">
+      <div class="panel">
+        <div class="panel-label">light</div>
+        <div class="grad-preview" style="background:linear-gradient(180deg,#FFFFFF99 0%,#EEF7FF 100%); border:1px solid #ECEDF0;"></div>
+        <div style="font-size:10px;color:rgba(17,29,74,0.5);">#FFFFFF99 &rarr; #EEF7FF</div>
+        <div style="font-size:10px;color:rgba(17,29,74,0.35);margin-top:2px;">literal glass white → pale blue</div>
+      </div>
+      <div class="panel" style="background:#111;">
+        <div class="panel-label" style="color:rgba(255,255,255,0.4);">dark</div>
+        <div class="grad-preview" style="background:linear-gradient(180deg,#151417B3 0%,#2C2C2E 100%);"></div>
+        <div style="font-size:10px;color:rgba(255,255,255,0.4);">#151417B3 &rarr; #2C2C2E</div>
+        <div style="font-size:10px;color:rgba(255,255,255,0.25);margin-top:2px;">literal warm near-black → gray.800</div>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <div class="panel-label">gradient.bar_backdrop</div>
+    <div class="two-col" style="gap:12px;">
+      <div class="panel">
+        <div class="panel-label">light</div>
+        <div class="grad-preview" style="background:linear-gradient(180deg,#FFFFFF00 0%,#FFFFFF 100%); border:1px solid #ECEDF0;"></div>
+        <div style="font-size:10px;color:rgba(17,29,74,0.5);">primitive.color.white.0 &rarr; {primitive.color.white} → #FFFFFF00 &rarr; #FFFFFF</div>
+        <div style="font-size:10px;color:rgba(17,29,74,0.35);margin-top:2px;">transparent → white (feathered)</div>
+      </div>
+      <div class="panel" style="background:#111;">
+        <div class="panel-label" style="color:rgba(255,255,255,0.4);">dark</div>
+        <div class="grad-preview" style="background:linear-gradient(180deg,#01030600 0%,#010306 100%);"></div>
+        <div style="font-size:10px;color:rgba(255,255,255,0.4);">primitive.color.gray.0 &rarr; {primitive.color.gray.950} → #01030600 &rarr; #010306</div>
+        <div style="font-size:10px;color:rgba(255,255,255,0.25);margin-top:2px;">transparent → OLED black</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+<!-- =========================================================
+     PRIMITIVE — TYPOGRAPHY
+     ========================================================= -->
+<div class="layer-title">
+  <div class="layer-kicker">Layer</div>
+  <div class="layer-name">Typography</div>
+</div>
+<h2>Primitive &mdash; Typography <span class="badge badge-primitive">primitive</span></h2>
+
+<h3>Families &amp; Weights</h3>
+<div class="token-card-grid">
+  <div class="token-card">
+    <div class="token-card-label">Font Families</div>
+    <div class="token-card-list">
+      <div class="token-card-item">
+        <div class="token-card-token">typography.family.sans</div>
+        <div class="token-card-value">Noto Sans</div>
+        <div class="token-card-desc">Confirmed primary Latin typography family from Figma node 33297:16462.</div>
+      </div>
+      <div class="token-card-item">
+        <div class="token-card-token">typography.family.jp</div>
+        <div class="token-card-value">Noto Sans JP</div>
+        <div class="token-card-desc">Japanese fallback family observed in the Figma typography definition.</div>
+      </div>
+      <div class="token-card-item">
+        <div class="token-card-token">typography.family.sc</div>
+        <div class="token-card-value">Noto Sans SC</div>
+        <div class="token-card-desc">Simplified Chinese fallback family observed in the Figma typography definition.</div>
+      </div>
+    </div>
+  </div>
+  <div class="token-card">
+    <div class="token-card-label">Font Weights</div>
+    <div class="token-card-list">
+      <div class="token-card-item">
+        <div class="token-card-token">typography.weight.regular</div>
+        <div class="token-card-value">400</div>
+        <div class="token-card-desc">Regular weight confirmed in the Figma typography definition.</div>
+      </div>
+      <div class="token-card-item">
+        <div class="token-card-token">typography.weight.medium</div>
+        <div class="token-card-value">500</div>
+        <div class="token-card-desc">Medium weight confirmed in the Figma typography definition.</div>
+      </div>
+      <div class="token-card-item">
+        <div class="token-card-token">typography.weight.bold</div>
+        <div class="token-card-value">700</div>
+        <div class="token-card-desc">Bold weight confirmed in the Figma typography definition.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h3>Sizes, Line Heights &amp; Letter Spacing</h3>
+<div class="token-card-grid">
+  <div class="token-card">
+    <div class="token-card-label">Font Sizes</div>
+    <div class="token-card-list">
+      <div class="token-card-item">
+        <div class="token-card-token">typography.size.xs</div>
+        <div class="token-card-value">10px</div>
+        <div class="token-card-desc">10px text size from the bottom navigation special case in the Figma typography definition.</div>
+      </div>
+      <div class="token-card-item">
+        <div class="token-card-token">typography.size.sm</div>
+        <div class="token-card-value">12px</div>
+        <div class="token-card-desc">12px text size for auxiliary information, annotations, and labels in the Figma typography definition.</div>
+      </div>
+      <div class="token-card-item">
+        <div class="token-card-token">typography.size.md</div>
+        <div class="token-card-value">14px</div>
+        <div class="token-card-desc">14px text size for secondary content and grouped headings in the Figma typography definition.</div>
+      </div>
+      <div class="token-card-item">
+        <div class="token-card-token">typography.size.lg</div>
+        <div class="token-card-value">16px</div>
+        <div class="token-card-desc">16px text size for navigation titles, body text, and button text in the Figma typography definition.</div>
+      </div>
+      <div class="token-card-item">
+        <div class="token-card-token">typography.size.xl</div>
+        <div class="token-card-value">20px</div>
+        <div class="token-card-desc">20px text size for guide titles in the Figma typography definition.</div>
+      </div>
+      <div class="token-card-item">
+        <div class="token-card-token">typography.size.2xl</div>
+        <div class="token-card-value">24px</div>
+        <div class="token-card-desc">24px text size for large amount emphasis in the Figma typography definition.</div>
+      </div>
+      <div class="token-card-item">
+        <div class="token-card-token">typography.size.3xl</div>
+        <div class="token-card-value">32px</div>
+        <div class="token-card-desc">32px text size for the largest title treatment in the Figma typography definition.</div>
+      </div>
+    </div>
+  </div>
+  <div class="token-card">
+    <div class="token-card-label">Line Height / Tracking</div>
+    <div class="token-card-list">
+      <div class="token-card-item">
+        <div class="token-card-token">typography.lineHeight.tight</div>
+        <div class="token-card-value">130%</div>
+        <div class="token-card-desc">130% line height used by the 12px auxiliary information style in the Figma typography definition.</div>
+      </div>
+      <div class="token-card-item">
+        <div class="token-card-token">typography.lineHeight.normal</div>
+        <div class="token-card-value">140%</div>
+        <div class="token-card-desc">140% line height used by the main text styles in the Figma typography definition.</div>
+      </div>
+      <div class="token-card-item">
+        <div class="token-card-token">typography.letterSpacing.normal</div>
+        <div class="token-card-value">4%</div>
+        <div class="token-card-desc">4% letter spacing derived from the Figma typography definition value of 0.04em.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h2>Semantic &mdash; Text Styles <span class="badge badge-semantic">semantic</span></h2>
+<div class="theme-panels">
+  <div class="theme-panel theme-panel-light">
+    <div class="tp-label">Light</div>
+    <div class="tp-group">semantic.textStyle</div>
+    <div class="tp-row"><div class="tp-info"><div class="tp-name">Hero Title <span style="opacity:.45; font-size:10px;">semantic.textStyle.heroTitle</span></div><div class="tp-val">Noto Sans / 32px / 700 / 140% / 4%</div><div style="margin-top:8px; color:#111D4A; font-family:'Noto Sans', sans-serif; font-size:32px; font-weight:700; line-height:140%; letter-spacing:4%; opacity:.92;">Asset Overview</div></div></div><div class="tp-row"><div class="tp-info"><div class="tp-name">Hero Amount <span style="opacity:.45; font-size:10px;">semantic.textStyle.heroAmount</span></div><div class="tp-val">Noto Sans / 24px / 700 / 140% / 4%</div><div style="margin-top:8px; color:#111D4A; font-family:'Noto Sans', sans-serif; font-size:24px; font-weight:700; line-height:140%; letter-spacing:4%; opacity:.92;">$128,450.32</div></div></div><div class="tp-row"><div class="tp-info"><div class="tp-name">Section Lead <span style="opacity:.45; font-size:10px;">semantic.textStyle.sectionLead</span></div><div class="tp-val">Noto Sans / 20px / 500 / 140% / 4%</div><div style="margin-top:8px; color:#111D4A; font-family:'Noto Sans', sans-serif; font-size:20px; font-weight:500; line-height:140%; letter-spacing:4%; opacity:.92;">Make the next action obvious and calm.</div></div></div><div class="tp-row"><div class="tp-info"><div class="tp-name">Nav Title <span style="opacity:.45; font-size:10px;">semantic.textStyle.navTitle</span></div><div class="tp-val">Noto Sans / 16px / 700 / 140% / 4%</div><div style="margin-top:8px; color:#111D4A; font-family:'Noto Sans', sans-serif; font-size:16px; font-weight:700; line-height:140%; letter-spacing:4%; opacity:.92;">Wallet</div></div></div><div class="tp-row"><div class="tp-info"><div class="tp-name">Body Primary <span style="opacity:.45; font-size:10px;">semantic.textStyle.bodyPrimary</span></div><div class="tp-val">Noto Sans / 16px / 500 / 140% / 4%</div><div style="margin-top:8px; color:#111D4A; font-family:'Noto Sans', sans-serif; font-size:16px; font-weight:500; line-height:140%; letter-spacing:4%; opacity:.92;">Primary content supports scanning and confident decision-making.</div></div></div><div class="tp-row"><div class="tp-info"><div class="tp-name">Action Label <span style="opacity:.45; font-size:10px;">semantic.textStyle.actionLabel</span></div><div class="tp-val">Noto Sans / 16px / 400 / 140% / 4%</div><div style="margin-top:8px; color:#007FFF; font-family:'Noto Sans', sans-serif; font-size:16px; font-weight:400; line-height:140%; letter-spacing:4%; opacity:.92;">Continue</div></div></div><div class="tp-row"><div class="tp-info"><div class="tp-name">Body Secondary <span style="opacity:.45; font-size:10px;">semantic.textStyle.bodySecondary</span></div><div class="tp-val">Noto Sans / 14px / 400 / 140% / 4%</div><div style="margin-top:8px; color:#A0A5B7; font-family:'Noto Sans', sans-serif; font-size:14px; font-weight:400; line-height:140%; letter-spacing:4%; opacity:.92;">Secondary content adds context without competing with the main task.</div></div></div><div class="tp-row"><div class="tp-info"><div class="tp-name">Section Title <span style="opacity:.45; font-size:10px;">semantic.textStyle.sectionTitle</span></div><div class="tp-val">Noto Sans / 14px / 500 / 140% / 4%</div><div style="margin-top:8px; color:#111D4A; font-family:'Noto Sans', sans-serif; font-size:14px; font-weight:500; line-height:140%; letter-spacing:4%; opacity:.92;">Recent Activity</div></div></div><div class="tp-row"><div class="tp-info"><div class="tp-name">Supporting Text <span style="opacity:.45; font-size:10px;">semantic.textStyle.supportingText</span></div><div class="tp-val">Noto Sans / 12px / 400 / 130% / 4%</div><div style="margin-top:8px; color:#A0A5B7; font-family:'Noto Sans', sans-serif; font-size:12px; font-weight:400; line-height:130%; letter-spacing:4%; opacity:.92;">Last synced 2 minutes ago</div></div></div><div class="tp-row"><div class="tp-info"><div class="tp-name">Tab Label <span style="opacity:.45; font-size:10px;">semantic.textStyle.tabLabel</span></div><div class="tp-val">Noto Sans / 10px / 400 / 140% / 4%</div><div style="margin-top:8px; color:#A0A5B7; font-family:'Noto Sans', sans-serif; font-size:10px; font-weight:400; line-height:140%; letter-spacing:4%; opacity:.92;">Home</div></div></div>
+  </div>
+  <div class="theme-panel theme-panel-dark">
+    <div class="tp-label">Dark</div>
+    <div class="tp-group">semantic.textStyle</div>
+    <div class="tp-row"><div class="tp-info"><div class="tp-name">Hero Title <span style="opacity:.45; font-size:10px;">semantic.textStyle.heroTitle</span></div><div class="tp-val">Noto Sans / 32px / 700 / 140% / 4%</div><div style="margin-top:8px; color:#FFFFFF; font-family:'Noto Sans', sans-serif; font-size:32px; font-weight:700; line-height:140%; letter-spacing:4%; opacity:.92;">Asset Overview</div></div></div><div class="tp-row"><div class="tp-info"><div class="tp-name">Hero Amount <span style="opacity:.45; font-size:10px;">semantic.textStyle.heroAmount</span></div><div class="tp-val">Noto Sans / 24px / 700 / 140% / 4%</div><div style="margin-top:8px; color:#FFFFFF; font-family:'Noto Sans', sans-serif; font-size:24px; font-weight:700; line-height:140%; letter-spacing:4%; opacity:.92;">$128,450.32</div></div></div><div class="tp-row"><div class="tp-info"><div class="tp-name">Section Lead <span style="opacity:.45; font-size:10px;">semantic.textStyle.sectionLead</span></div><div class="tp-val">Noto Sans / 20px / 500 / 140% / 4%</div><div style="margin-top:8px; color:#D6D7E0; font-family:'Noto Sans', sans-serif; font-size:20px; font-weight:500; line-height:140%; letter-spacing:4%; opacity:.92;">Make the next action obvious and calm.</div></div></div><div class="tp-row"><div class="tp-info"><div class="tp-name">Nav Title <span style="opacity:.45; font-size:10px;">semantic.textStyle.navTitle</span></div><div class="tp-val">Noto Sans / 16px / 700 / 140% / 4%</div><div style="margin-top:8px; color:#D6D7E0; font-family:'Noto Sans', sans-serif; font-size:16px; font-weight:700; line-height:140%; letter-spacing:4%; opacity:.92;">Wallet</div></div></div><div class="tp-row"><div class="tp-info"><div class="tp-name">Body Primary <span style="opacity:.45; font-size:10px;">semantic.textStyle.bodyPrimary</span></div><div class="tp-val">Noto Sans / 16px / 500 / 140% / 4%</div><div style="margin-top:8px; color:#D6D7E0; font-family:'Noto Sans', sans-serif; font-size:16px; font-weight:500; line-height:140%; letter-spacing:4%; opacity:.92;">Primary content supports scanning and confident decision-making.</div></div></div><div class="tp-row"><div class="tp-info"><div class="tp-name">Action Label <span style="opacity:.45; font-size:10px;">semantic.textStyle.actionLabel</span></div><div class="tp-val">Noto Sans / 16px / 400 / 140% / 4%</div><div style="margin-top:8px; color:#066BD2; font-family:'Noto Sans', sans-serif; font-size:16px; font-weight:400; line-height:140%; letter-spacing:4%; opacity:.92;">Continue</div></div></div><div class="tp-row"><div class="tp-info"><div class="tp-name">Body Secondary <span style="opacity:.45; font-size:10px;">semantic.textStyle.bodySecondary</span></div><div class="tp-val">Noto Sans / 14px / 400 / 140% / 4%</div><div style="margin-top:8px; color:#8B8B91; font-family:'Noto Sans', sans-serif; font-size:14px; font-weight:400; line-height:140%; letter-spacing:4%; opacity:.92;">Secondary content adds context without competing with the main task.</div></div></div><div class="tp-row"><div class="tp-info"><div class="tp-name">Section Title <span style="opacity:.45; font-size:10px;">semantic.textStyle.sectionTitle</span></div><div class="tp-val">Noto Sans / 14px / 500 / 140% / 4%</div><div style="margin-top:8px; color:#D6D7E0; font-family:'Noto Sans', sans-serif; font-size:14px; font-weight:500; line-height:140%; letter-spacing:4%; opacity:.92;">Recent Activity</div></div></div><div class="tp-row"><div class="tp-info"><div class="tp-name">Supporting Text <span style="opacity:.45; font-size:10px;">semantic.textStyle.supportingText</span></div><div class="tp-val">Noto Sans / 12px / 400 / 130% / 4%</div><div style="margin-top:8px; color:#8B8B91; font-family:'Noto Sans', sans-serif; font-size:12px; font-weight:400; line-height:130%; letter-spacing:4%; opacity:.92;">Last synced 2 minutes ago</div></div></div><div class="tp-row"><div class="tp-info"><div class="tp-name">Tab Label <span style="opacity:.45; font-size:10px;">semantic.textStyle.tabLabel</span></div><div class="tp-val">Noto Sans / 10px / 400 / 140% / 4%</div><div style="margin-top:8px; color:#8B8B91; font-family:'Noto Sans', sans-serif; font-size:10px; font-weight:400; line-height:140%; letter-spacing:4%; opacity:.92;">Home</div></div></div>
+  </div>
+</div>
+
+
+<!-- =========================================================
+     PATTERN
+     ========================================================= -->
+<div class="layer-title">
+  <div class="layer-kicker">Layer</div>
+  <div class="layer-name">Pattern</div>
+</div>
+<h2>Pattern <span class="badge badge-pattern">pattern</span></h2>
+
+<h3>Color tokens</h3>
+<div class="theme-panels">
+  <div class="theme-panel theme-panel-light">
+    <div class="tp-label">Light</div>
+    <div class="tp-group">surface.card</div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#FFFFFF;"></div></div><div class="tp-info"><div class="tp-name">surface.card.background</div><div class="tp-val">{semantic.background.card} → #FFFFFF</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#111D4A;"></div></div><div class="tp-info"><div class="tp-name">surface.card.title</div><div class="tp-val">{semantic.textStyle.sectionTitle} → #111D4A</div></div></div>
+    <div class="tp-row"><div class="tp-swatch ck"><div class="tp-fill" style="background:#A0A5B7;"></div></div><div class="tp-info"><div class="tp-name">surface.card.body</div><div class="tp-val">{semantic.textStyle.bodySecondary} → #A0A5B7</div></div></div>
+    <div class="tp-group">modal.form</div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#111D4A;"></div></div><div class="tp-info"><div class="tp-name">modal.form.title</div><div class="tp-val">{semantic.textStyle.sectionTitle} → #111D4A</div></div></div>
+    <div class="tp-row"><div class="tp-swatch ck"><div class="tp-fill" style="background:#A0A5B7;"></div></div><div class="tp-info"><div class="tp-name">modal.form.body</div><div class="tp-val">{semantic.textStyle.bodySecondary} → #A0A5B7</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#FFFFFF;"></div></div><div class="tp-info"><div class="tp-name">modal.form.fieldBackground</div><div class="tp-val">{semantic.background.modal_section} → #FFFFFF</div></div></div>
+    <div class="tp-group">list.tokenItem</div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#111D4A;"></div></div><div class="tp-info"><div class="tp-name">list.tokenItem.text</div><div class="tp-val">{semantic.textStyle.bodyPrimary} → #111D4A</div></div></div>
+    <div class="tp-row"><div class="tp-swatch ck"><div class="tp-fill" style="background:#A0A5B7;"></div></div><div class="tp-info"><div class="tp-name">list.tokenItem.subtext</div><div class="tp-val">{semantic.textStyle.bodySecondary} → #A0A5B7</div></div></div>
+    <div class="tp-group">list.statusRow</div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#111D4A;"></div></div><div class="tp-info"><div class="tp-name">list.statusRow.title</div><div class="tp-val">{semantic.textStyle.sectionTitle} → #111D4A</div></div></div>
+    <div class="tp-row"><div class="tp-swatch ck"><div class="tp-fill" style="background:#A0A5B7;"></div></div><div class="tp-info"><div class="tp-name">list.statusRow.meta</div><div class="tp-val">{semantic.textStyle.supportingText} → #A0A5B7</div></div></div>
+  </div>
+  <div class="theme-panel theme-panel-dark">
+    <div class="tp-label">Dark</div>
+    <div class="tp-group">surface.card</div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#1C1C1E;"></div></div><div class="tp-info"><div class="tp-name">surface.card.background</div><div class="tp-val">{semantic.background.card} → #1C1C1E</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#D6D7E0;"></div></div><div class="tp-info"><div class="tp-name">surface.card.title</div><div class="tp-val">{semantic.textStyle.sectionTitle} → #D6D7E0</div></div></div>
+    <div class="tp-row"><div class="tp-swatch ck-dark"><div class="tp-fill" style="background:#8B8B91;"></div></div><div class="tp-info"><div class="tp-name">surface.card.body</div><div class="tp-val">{semantic.textStyle.bodySecondary} → #8B8B91</div></div></div>
+    <div class="tp-group">modal.form</div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#D6D7E0;"></div></div><div class="tp-info"><div class="tp-name">modal.form.title</div><div class="tp-val">{semantic.textStyle.sectionTitle} → #D6D7E0</div></div></div>
+    <div class="tp-row"><div class="tp-swatch ck-dark"><div class="tp-fill" style="background:#8B8B91;"></div></div><div class="tp-info"><div class="tp-name">modal.form.body</div><div class="tp-val">{semantic.textStyle.bodySecondary} → #8B8B91</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#2C2C2E;"></div></div><div class="tp-info"><div class="tp-name">modal.form.fieldBackground</div><div class="tp-val">{semantic.background.modal_section} → #2C2C2E</div></div></div>
+    <div class="tp-group">list.tokenItem</div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#D6D7E0;"></div></div><div class="tp-info"><div class="tp-name">list.tokenItem.text</div><div class="tp-val">{semantic.textStyle.bodyPrimary} → #D6D7E0</div></div></div>
+    <div class="tp-row"><div class="tp-swatch ck-dark"><div class="tp-fill" style="background:#8B8B91;"></div></div><div class="tp-info"><div class="tp-name">list.tokenItem.subtext</div><div class="tp-val">{semantic.textStyle.bodySecondary} → #8B8B91</div></div></div>
+    <div class="tp-group">list.statusRow</div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#D6D7E0;"></div></div><div class="tp-info"><div class="tp-name">list.statusRow.title</div><div class="tp-val">{semantic.textStyle.sectionTitle} → #D6D7E0</div></div></div>
+    <div class="tp-row"><div class="tp-swatch ck-dark"><div class="tp-fill" style="background:#8B8B91;"></div></div><div class="tp-info"><div class="tp-name">list.statusRow.meta</div><div class="tp-val">{semantic.textStyle.supportingText} → #8B8B91</div></div></div>
+  </div>
+</div>
+
+<h3>Dimensions &amp; strings</h3>
+<table class="dim-table">
+  <tr><th style="width:280px;">Token</th><th style="width:80px;">Value</th><th>Description</th></tr>
+  <tr><td>surface.card.padding</td><td>{primitive.spacing.16} → 16px</td><td>Internal card padding.</td></tr>
+  <tr><td>surface.card.radius</td><td>{primitive.radius.md} → 10</td><td>Card corner radius.</td></tr>
+  <tr><td>modal.form.fieldPaddingX</td><td>{primitive.spacing.12} → 12px</td><td>Field horizontal padding.</td></tr>
+  <tr><td>modal.form.fieldHeight</td><td>{primitive.size.48} → 48px</td><td>Field height.</td></tr>
+  <tr><td>modal.form.sectionGap</td><td>{primitive.spacing.32} → 32px</td><td>Section gap.</td></tr>
+  <tr><td>modal.form.actionGap</td><td>{primitive.spacing.32} → 32px</td><td>Action group gap.</td></tr>
+  <tr><td>list.tokenItem.iconSize</td><td>{primitive.size.40} → 40px</td><td>Icon size.</td></tr>
+  <tr><td>list.tokenItem.gap</td><td>{primitive.spacing.12} → 12px</td><td>Internal gap between icon and text.</td></tr>
+  <tr><td>list.tokenItem.height</td><td>{primitive.size.62} → 62px</td><td>Row height.</td></tr>
+  <tr><td>list.statusRow.iconSize</td><td>{primitive.size.20} → 20px</td><td>Icon size.</td></tr>
+  <tr><td>list.statusRow.rowGap</td><td>{primitive.spacing.8} → 8px</td><td>Internal row gap.</td></tr>
+  <tr><td>list.statusRow.paddingY</td><td>{primitive.spacing.16} → 16px</td><td>Vertical row padding.</td></tr>
+</table>
+
+
+<!-- =========================================================
+     COMPONENT
+     ========================================================= -->
+<div class="layer-title">
+  <div class="layer-kicker">Layer</div>
+  <div class="layer-name">Component</div>
+</div>
+<h2>Component <span class="badge badge-component">component</span></h2>
+
+<h3>Color tokens</h3>
+<div class="theme-panels">
+  <div class="theme-panel theme-panel-light">
+    <div class="tp-label">Light</div>
+    <div class="tp-group">mobileNav / primary</div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#111D4A;"></div></div><div class="tp-info"><div class="tp-name">mobileNav.primary.default.title</div><div class="tp-val">{semantic.textStyle.navTitle} → #111D4A</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#111D4A;"></div></div><div class="tp-info"><div class="tp-name">mobileNav.primary.default.icon</div><div class="tp-val">{semantic.stroke.icon_primary} → #111D4A</div></div></div>
+    <div class="tp-group">mobileNav / secondary</div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#111D4A;"></div></div><div class="tp-info"><div class="tp-name">mobileNav.secondary.default.title</div><div class="tp-val">{semantic.textStyle.navTitle} → #111D4A</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#111D4A;"></div></div><div class="tp-info"><div class="tp-name">mobileNav.secondary.default.icon</div><div class="tp-val">{semantic.stroke.icon_primary} → #111D4A</div></div></div>
+    <div class="tp-group">webNav</div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#FFFFFF;"></div></div><div class="tp-info"><div class="tp-name">webNav.default.default.background</div><div class="tp-val">{semantic.background.general} → #FFFFFF</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#111D4A;"></div></div><div class="tp-info"><div class="tp-name">webNav.default.default.title</div><div class="tp-val">{semantic.textStyle.navTitle} → #111D4A</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#111D4A;"></div></div><div class="tp-info"><div class="tp-name">webNav.default.default.icon</div><div class="tp-val">{semantic.stroke.icon_primary} → #111D4A</div></div></div>
+    <div class="tp-row"><div class="tp-swatch ck"><div class="tp-fill" style="background:#ECEDF0;"></div></div><div class="tp-info"><div class="tp-name">webNav.default.default.border</div><div class="tp-val">{semantic.border.default} → #ECEDF0</div></div></div>
+    <div class="tp-group">modal</div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#F9FAFB;"></div></div><div class="tp-info"><div class="tp-name">modal.default.default.background</div><div class="tp-val">{semantic.background.modal} → #F9FAFB</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#111D4A;"></div></div><div class="tp-info"><div class="tp-name">modal.default.default.title</div><div class="tp-val">{semantic.textStyle.sectionTitle} → #111D4A</div></div></div>
+    <div class="tp-row"><div class="tp-swatch ck"><div class="tp-fill" style="background:#A0A5B7;"></div></div><div class="tp-info"><div class="tp-name">modal.default.default.body</div><div class="tp-val">{semantic.textStyle.bodySecondary} → #A0A5B7</div></div></div>
+    <div class="tp-group">button / primary</div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#111D4A;"></div></div><div class="tp-info"><div class="tp-name">button.primary.default.background</div><div class="tp-val">{semantic.fill.secondary} → #111D4A</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#007FFF;"></div></div><div class="tp-info"><div class="tp-name">button.primary.default.text</div><div class="tp-val">{semantic.textStyle.actionLabel} → #007FFF</div></div></div>
+    <div class="tp-group">menu</div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#FFFFFF;"></div></div><div class="tp-info"><div class="tp-name">menu.default.signedOut.background</div><div class="tp-val">{semantic.background.card} → #FFFFFF</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#FFFFFF;"></div></div><div class="tp-info"><div class="tp-name">menu.default.signedIn.background</div><div class="tp-val">{semantic.background.card} → #FFFFFF</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#111D4A;"></div></div><div class="tp-info"><div class="tp-name">menu.default.default.title</div><div class="tp-val">{semantic.textStyle.sectionTitle} → #111D4A</div></div></div>
+    <div class="tp-row"><div class="tp-swatch ck"><div class="tp-fill" style="background:#A0A5B7;"></div></div><div class="tp-info"><div class="tp-name">menu.default.default.body</div><div class="tp-val">{semantic.textStyle.bodySecondary} → #A0A5B7</div></div></div>
+  </div>
+  <div class="theme-panel theme-panel-dark">
+    <div class="tp-label">Dark</div>
+    <div class="tp-group">mobileNav / primary</div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#D6D7E0;"></div></div><div class="tp-info"><div class="tp-name">mobileNav.primary.default.title</div><div class="tp-val">{semantic.textStyle.navTitle} → #D6D7E0</div></div></div>
+    <div class="tp-row"><div class="tp-swatch ck-dark"><div class="tp-fill" style="background:#B4B4BC;"></div></div><div class="tp-info"><div class="tp-name">mobileNav.primary.default.icon</div><div class="tp-val">{semantic.stroke.icon_primary} → #B4B4BC</div></div></div>
+    <div class="tp-group">mobileNav / secondary</div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#D6D7E0;"></div></div><div class="tp-info"><div class="tp-name">mobileNav.secondary.default.title</div><div class="tp-val">{semantic.textStyle.navTitle} → #D6D7E0</div></div></div>
+    <div class="tp-row"><div class="tp-swatch ck-dark"><div class="tp-fill" style="background:#B4B4BC;"></div></div><div class="tp-info"><div class="tp-name">mobileNav.secondary.default.icon</div><div class="tp-val">{semantic.stroke.icon_primary} → #B4B4BC</div></div></div>
+    <div class="tp-group">webNav</div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#1C1C1E;"></div></div><div class="tp-info"><div class="tp-name">webNav.default.default.background</div><div class="tp-val">{semantic.background.general} → #1C1C1E</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#D6D7E0;"></div></div><div class="tp-info"><div class="tp-name">webNav.default.default.title</div><div class="tp-val">{semantic.textStyle.navTitle} → #D6D7E0</div></div></div>
+    <div class="tp-row"><div class="tp-swatch ck-dark"><div class="tp-fill" style="background:#B4B4BC;"></div></div><div class="tp-info"><div class="tp-name">webNav.default.default.icon</div><div class="tp-val">{semantic.stroke.icon_primary} → #B4B4BC</div></div></div>
+    <div class="tp-row"><div class="tp-swatch ck-dark"><div class="tp-fill" style="background:#2C2C30;"></div></div><div class="tp-info"><div class="tp-name">webNav.default.default.border</div><div class="tp-val">{semantic.border.default} → #2C2C30</div></div></div>
+    <div class="tp-group">modal</div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#1C1C1E;"></div></div><div class="tp-info"><div class="tp-name">modal.default.default.background</div><div class="tp-val">{semantic.background.modal} → #1C1C1E</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#D6D7E0;"></div></div><div class="tp-info"><div class="tp-name">modal.default.default.title</div><div class="tp-val">{semantic.textStyle.sectionTitle} → #D6D7E0</div></div></div>
+    <div class="tp-row"><div class="tp-swatch ck-dark"><div class="tp-fill" style="background:#8B8B91;"></div></div><div class="tp-info"><div class="tp-name">modal.default.default.body</div><div class="tp-val">{semantic.textStyle.bodySecondary} → #8B8B91</div></div></div>
+    <div class="tp-group">button / primary</div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#B6B7C1;"></div></div><div class="tp-info"><div class="tp-name">button.primary.default.background</div><div class="tp-val">{semantic.fill.secondary} → #B6B7C1</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#066BD2;"></div></div><div class="tp-info"><div class="tp-name">button.primary.default.text</div><div class="tp-val">{semantic.textStyle.actionLabel} → #066BD2</div></div></div>
+    <div class="tp-group">menu</div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#1C1C1E;"></div></div><div class="tp-info"><div class="tp-name">menu.default.signedOut.background</div><div class="tp-val">{semantic.background.card} → #1C1C1E</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#1C1C1E;"></div></div><div class="tp-info"><div class="tp-name">menu.default.signedIn.background</div><div class="tp-val">{semantic.background.card} → #1C1C1E</div></div></div>
+    <div class="tp-row"><div class="tp-swatch"><div class="tp-fill" style="background:#D6D7E0;"></div></div><div class="tp-info"><div class="tp-name">menu.default.default.title</div><div class="tp-val">{semantic.textStyle.sectionTitle} → #D6D7E0</div></div></div>
+    <div class="tp-row"><div class="tp-swatch ck-dark"><div class="tp-fill" style="background:#8B8B91;"></div></div><div class="tp-info"><div class="tp-name">menu.default.default.body</div><div class="tp-val">{semantic.textStyle.bodySecondary} → #8B8B91</div></div></div>
+  </div>
+</div>
+
+<h3>Dimensions &amp; strings</h3>
+<table class="dim-table">
+  <tr><th style="width:340px;">Token</th><th style="width:80px;">Value</th><th>Description</th></tr>
+  <tr><td>mobileNav.primary.default.height</td><td>{primitive.size.90} → 90px</td><td>Primary mobile nav height.</td></tr>
+  <tr><td>mobileNav.primary.default.paddingX</td><td>{primitive.spacing.16} → 16px</td><td>Horizontal padding.</td></tr>
+  <tr><td>mobileNav.secondary.default.height</td><td>{primitive.size.56} → 56px</td><td>Secondary mobile nav height.</td></tr>
+  <tr><td>mobileNav.secondary.default.paddingX</td><td>{primitive.spacing.16} → 16px</td><td>Horizontal padding.</td></tr>
+  <tr><td>webNav.default.signedOut.height</td><td>{primitive.size.68} → 68px</td><td>Signed-out web nav height.</td></tr>
+  <tr><td>webNav.default.signedIn.height</td><td>{primitive.size.68} → 68px</td><td>Signed-in web nav height.</td></tr>
+  <tr><td>modal.default.default.paddingX</td><td>{primitive.spacing.16} → 16px</td><td>Horizontal padding.</td></tr>
+  <tr><td>modal.default.default.paddingTop</td><td>{primitive.spacing.8} → 8px</td><td>Top padding.</td></tr>
+  <tr><td>modal.default.default.contentTopGap</td><td>{primitive.spacing.72} → 72px</td><td>Content top gap (below handle + header).</td></tr>
+  <tr><td>modal.default.default.closeButtonSize</td><td>{primitive.size.32} → 32px</td><td>Close button size.</td></tr>
+  <tr><td>modal.default.default.dragHandleWidth</td><td>{primitive.size.36} → 36px</td><td>Drag handle width.</td></tr>
+  <tr><td>modal.default.default.dragHandleHeight</td><td>{primitive.size.4} → 4px</td><td>Drag handle height.</td></tr>
+  <tr><td>modal.default.default.radius</td><td>{primitive.radius.lg} → 16</td><td>Modal corner radius.</td></tr>
+  <tr><td>button.primary.default.height</td><td>{primitive.size.52} → 52px</td><td>Primary button height.</td></tr>
+  <tr><td>button.primary.default.paddingX</td><td>{primitive.spacing.16} → 16px</td><td>Horizontal padding.</td></tr>
+  <tr><td>button.primary.default.radius</td><td>{primitive.radius.md} → 10</td><td>Button corner radius.</td></tr>
+  <tr><td>menu.default.default.padding</td><td>{primitive.spacing.16} → 16px</td><td>Menu internal padding.</td></tr>
+</table>
+
+<p style="font-size:10px;color:rgba(17,29,74,0.3);margin-top:48px;padding-top:16px;border-top:1px solid #ECEDF0;">
+  generated from source_token_v5.json &mdash; 2026-03-23
+</p>
+
+</body>
+</html>

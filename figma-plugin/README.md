@@ -59,6 +59,23 @@ The plugin uses the Figma Variables API and creates or updates:
 - local paint styles for gradients
 - local text styles for composite typography tokens
 
+## Figma Consumption Rules
+
+The repository keeps more semantic structure in source than it exposes directly in Figma.
+
+- `source` remains the semantic source of truth and can preserve `primitive`, `semantic`, `pattern`, and `component`
+- the Figma-facing adapter may intentionally exclude higher layers that reduce picker usability
+- the current `v2` adapter excludes the entire `pattern` and `component` layers from Figma import
+- `primitive` numeric tokens remain the main binding surface for spacing, size, and radius in Figma
+- `semantic` remains the main source for consumable color and typography intent
+
+The plugin also flattens some imported names for Figma usability:
+
+- semantic font styles are imported as top-level text style names such as `navTitle` or `bodyPrimary`
+- semantic gradient paint styles drop the `Semantic/` prefix and are imported as `Light/gradient/...` and `Dark/gradient/...`
+
+This means semantic structure is preserved in `source` and in the adapter contract, while the plugin optimizes only the final Figma-facing names.
+
 ## Typography Import Behavior
 
 Typography is imported in two different ways:
@@ -71,7 +88,7 @@ Example:
 ```json
 {
   "semantic/light": {
-    "textStyle": {
+    "font": {
       "body": {
         "$type": "typography",
         "$value": {
@@ -89,5 +106,5 @@ Example:
 
 With multiple modes, text style names are created as:
 
-- `Collection/Light/...`
-- `Collection/Dark/...`
+- semantic font styles with identical light and dark values are flattened to top-level style names such as `body`
+- other mode-specific typography styles remain mode-qualified when their values differ
