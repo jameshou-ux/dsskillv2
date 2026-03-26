@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weekly Figma DS Report · 2026-03-26</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --surface: rgba(255,255,255,0.88);
+      --surface-strong: #ffffff;
+      --line: rgba(17,29,74,0.10);
+      --line-strong: rgba(17,29,74,0.18);
+      --text: #111d4a;
+      --muted: rgba(17,29,74,0.58);
+      --soft: rgba(17,29,74,0.36);
+      --blue: #2d8cff;
+      --cyan: #5fd0ff;
+      --green: #0b7f55;
+      --amber: #b97700;
+      --red: #b93849;
+      --chip: rgba(45,140,255,0.08);
+      --shadow: 0 18px 50px rgba(17,29,74,0.08);
+      --radius: 18px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Fira Code", monospace;
+      background: #ffffff;
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .wrap {
+      width: min(1240px, calc(100vw - 40px));
+      margin: 0 auto;
+      padding: 40px 0 56px;
+    }
+
+    .hero {
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.92), rgba(255,255,255,0.82)),
+        linear-gradient(135deg, rgba(45,140,255,0.04), rgba(95,208,255,0.08));
+      box-shadow: var(--shadow);
+      padding: 32px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: -100px;
+      top: -80px;
+      width: 280px;
+      height: 280px;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(95,208,255,0.20), transparent 68%);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      color: var(--blue);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 14px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 22px;
+      height: 1px;
+      background: currentColor;
+      opacity: 0.5;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(22px, 3.6vw, 32px);
+      line-height: 1.1;
+      letter-spacing: -0.04em;
+      max-width: 980px;
+    }
+
+    .lede {
+      margin: 18px 0 0;
+      max-width: 900px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .meta {
+      margin-top: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.72);
+      color: var(--text);
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 11px;
+    }
+
+    section {
+      margin-top: 28px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+      padding: 24px;
+      backdrop-filter: blur(10px);
+    }
+
+    h2 {
+      margin: 0 0 14px;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--soft);
+    }
+
+    h3 {
+      margin: 0 0 10px;
+      font-size: 15px;
+    }
+
+    p {
+      margin: 0 0 12px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: var(--surface-strong);
+      padding: 16px;
+      min-height: 100%;
+    }
+
+    .gallery-image {
+      width: 100%;
+      margin-top: 12px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      display: block;
+      background: #fff;
+      height: 320px;
+      object-fit: cover;
+      object-position: top center;
+    }
+
+    .gallery-image.fit-height {
+      object-fit: contain;
+      object-position: center top;
+      background: #fff;
+    }
+
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: var(--chip);
+      color: var(--blue);
+      font-size: 11px;
+      border: 1px solid rgba(45,140,255,0.10);
+    }
+
+    .chip.green { color: var(--green); background: rgba(11,127,85,0.08); border-color: rgba(11,127,85,0.10); }
+    .chip.amber { color: var(--amber); background: rgba(185,119,0,0.09); border-color: rgba(185,119,0,0.12); }
+    .chip.red { color: var(--red); background: rgba(185,56,73,0.08); border-color: rgba(185,56,73,0.12); }
+
+    ul, ol {
+      margin: 10px 0 0 0;
+      padding-left: 18px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    li { margin: 6px 0; }
+
+    .timeline {
+      display: grid;
+      gap: 12px;
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 14px;
+      border-top: 1px solid var(--line);
+      padding-top: 12px;
+    }
+
+    .step:first-child {
+      border-top: none;
+      padding-top: 0;
+    }
+
+    .step-tag {
+      color: var(--blue);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .kpi {
+      padding: 14px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(255,255,255,0.70));
+    }
+
+    .kpi .num {
+      font-size: 24px;
+      line-height: 1;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .kpi .label {
+      font-size: 11px;
+      color: var(--soft);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+      font-size: 12px;
+    }
+
+    th, td {
+      text-align: left;
+      vertical-align: top;
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    th {
+      color: var(--soft);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 10px;
+      font-weight: 500;
+    }
+
+    .callout {
+      border-left: 3px solid var(--blue);
+      padding: 10px 14px;
+      background: rgba(45,140,255,0.05);
+      border-radius: 0 12px 12px 0;
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 10px;
+    }
+
+    .two-tone {
+      background: linear-gradient(180deg, rgba(17,29,74,0.03), rgba(17,29,74,0.00));
+    }
+
+    .foot {
+      margin-top: 28px;
+      color: var(--soft);
+      font-size: 11px;
+      text-align: center;
+    }
+
+    @media (max-width: 980px) {
+      .grid-2, .grid-3, .kpi-grid { grid-template-columns: 1fr; }
+      .step { grid-template-columns: 1fr; }
+      .wrap { width: min(100vw - 24px, 1240px); }
+      .hero, section { padding: 18px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="hero">
+      <div class="eyebrow">周报汇总</div>
+      <h1>Figma DS 页面结构、完整度与新 Skill Workflow 汇报</h1>
+      <div class="meta">
+        <div class="pill">日期 · 2026-03-26</div>
+        <div class="pill">文件 · DBQdb8ymhIfTPS9GmcTqaR</div>
+        <div class="pill">来源 · skills-overview + page-structure docs</div>
+        <div class="pill">状态 · 结构审视</div>
+      </div>
+    </header>
+
+<section>
+      <h2>本周结果</h2>
+      <div class="kpi-grid">
+        <div class="kpi">
+          <div class="num">3</div>
+          <div class="label">页面层级</div>
+        </div>
+        <div class="kpi">
+          <div class="num">5</div>
+          <div class="label">主要使用 skill</div>
+        </div>
+        <div class="kpi">
+          <div class="num">7</div>
+          <div class="label">Target component pages scaffolded</div>
+        </div>
+        <div class="kpi">
+          <div class="num">0</div>
+          <div class="label">Residual bindings on audited core families</div>
+        </div>
+      </div>
+      <div class="grid-2" style="margin-top:16px;">
+        <div class="card">
+          <h3>当前页面结构</h3>
+          <p>文件已经从单一治理板演进成三层并存：foundations 页面、历史治理页面、以及正在形成中的 canonical component 页面。后续工作可以从 cleanup 转向 canonization。</p>
+          <div class="chip-row">
+            <span class="chip">foundations</span>
+            <span class="chip">governance pages</span>
+            <span class="chip">target pages</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>当前 DS 完整度</h3>
+          <p>核心 family 的 binding 已收敛，治理主板的 effect、spacing、radius 覆盖已基本完成，Button 目标页完整度最高。当前最关键的任务已经不再是泛 cleanup，而是把少量目标页扶正为真正的编辑面。</p>
+          <div class="chip-row">
+            <span class="chip green">bindings converged</span>
+            <span class="chip green">effect coverage</span>
+            <span class="chip green">target pages ready</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+<section>
+      <h2>当前 Figma 页面结构</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Page</th>
+            <th>Role</th>
+            <th>Completeness</th>
+            <th>Recommendation</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>Design token</code></td>
+            <td>Foundations / token-facing</td>
+            <td>Stable, not main governance board</td>
+            <td>继续作为 foundations 面，不作为组件 API 主页</td>
+          </tr>
+          <tr>
+            <td><code>组件Phase 0</code></td>
+            <td>Historical governance</td>
+            <td>High historical value</td>
+            <td>保留为 cleanup / migration 参考，不做长期编辑面</td>
+          </tr>
+          <tr>
+            <td><code>组件Phase 1</code></td>
+            <td>Main review / governance board</td>
+            <td>Most complete governance page</td>
+            <td>继续保留为 review 板，但逐步让位给 canonical component pages</td>
+          </tr>
+          <tr>
+            <td><code>原子组件/Button</code></td>
+            <td>Target component page</td>
+            <td>Highest among target pages</td>
+            <td>最适合先扶正成 canonical edit surface</td>
+          </tr>
+          <tr>
+            <td><code>原子组件/Navigation</code></td>
+            <td>Target component page</td>
+            <td>Medium</td>
+            <td>结构已成形，需继续规范 example 和布局</td>
+          </tr>
+          <tr>
+            <td><code>原子组件/Modal</code></td>
+            <td>Target component page</td>
+            <td>Medium-low</td>
+            <td>组件定义强，页面表达还需补齐</td>
+          </tr>
+          <tr>
+            <td><code>原子组件/Toast+Dialog / Toggle / Backdrop / Error</code></td>
+            <td>Target / business pages</td>
+            <td>Mixed</td>
+            <td>继续 harden，但优先级低于 Button / Navigation / Modal</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+<section>
+      <h2>页面图示</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>页面结构示意</h3>
+          <p>这张图对应当前 Figma 文件中的页面和组件分区结构，能够看到治理主板、目标组件页以及不同模块的版面分布。它更适合说明“文件结构和页面分层”已经成形。</p>
+          <img class="gallery-image fit-height" src="demo1.png" alt="页面结构示意图" />
+          <div class="chip-row">
+            <span class="chip green">page structure</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>变量绑定覆盖示意</h3>
+          <p>这张图更适合说明当前的组件定义和展示内容已经进入“变量绑定覆盖全面”的状态。它强调的不是页面结构，而是 token、样式和组件绑定在实际 UI 上的落地结果。</p>
+          <img class="gallery-image" src="demo2.png" alt="变量绑定覆盖示意图" />
+          <div class="chip-row">
+            <span class="chip green">binding coverage</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+<section>
+      <h2>当前 DS 完整度</h2>
+      <div class="grid-3">
+        <div class="card">
+          <h3>基础层</h3>
+          <p>变量 scope 和 WEB code syntax 已统一，关键 semantic token 缺口已补齐，text styles 基本收敛，本地 variable layer 已可作为后续页面治理基础。</p>
+          <div class="chip-row">
+            <span class="chip green">stable enough</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>治理页面</h3>
+          <p>`组件Phase 0` 与 `组件Phase 1` 已不是临时 scratch board，而是承载 cleanup history、迁移依据和 audit evidence 的治理页面。</p>
+          <div class="chip-row">
+            <span class="chip green">reference-ready</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Canonical 页面</h3>
+          <p>新的目标组件页已经建立 skeleton，其中 `原子组件/Button` 完整度最高，`Navigation` 和 `Modal` 紧随其后，已经具备继续扶正的条件。</p>
+          <div class="chip-row">
+            <span class="chip amber">emerging</span>
+          </div>
+        </div>
+      </div>
+      <div class="grid-2" style="margin-top:16px;">
+        <div class="card">
+          <h3>Figma to Code 视角</h3>
+          <p>从 handoff 角度看，这套 DS 已经具备初步可交付性：核心 token 语义更稳定，主要 family 的 binding 已经收敛，Button 目标页开始具备作为 handoff surface 的条件。但当前真正适合直接进入 design-to-code 的页面仍然有限，更多还是集中在 `原子组件/Button`，而不是全量组件页。</p>
+          <div class="chip-row">
+            <span class="chip green">token semantics clearer</span>
+            <span class="chip green">handoff starting to work</span>
+            <span class="chip amber">page coverage incomplete</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>AI to Code 视角</h3>
+          <p>从 agent 实现角度看，当前状态比之前更可用，因为 component naming、variant schema、text style 和 local variable binding 已明显收敛。但如果直接大规模进入 AI to Code，仍然会遇到 canonical page 尚未完全定型的问题，所以更适合先围绕少量页面和成熟 family 做试点，而不是全量铺开。</p>
+          <div class="chip-row">
+            <span class="chip green">better for retrieval</span>
+            <span class="chip green">less naming drift</span>
+            <span class="chip amber">not full-scale ready</span>
+          </div>
+        </div>
+      </div>
+      <div class="callout">
+        结论上，当前 DS 已经从“仅适合治理”推进到“可以开始局部 handoff 和局部 AI implementation 试点”，但还没有到“所有目标页都能稳定作为 code-side source of truth”的阶段。
+      </div>
+    </section>
+
+<section class="two-tone">
+      <h2>新 Skill Workflow</h2>
+      <div class="grid-3">
+        <div class="card">
+          <h3>执行底座</h3>
+          <p><strong>`figma-use`</strong> 是实际 Figma 操作底座，承担页面读写、变量绑定、节点修改和结构迁移。</p>
+          <div class="chip-row">
+            <span class="chip">hard dependency</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>治理框架</h3>
+          <p><strong>`figma-generate-library`</strong> 负责 phase 顺序和 DS 结构原则，决定先 foundations、后 components、再 QA 的治理逻辑。</p>
+          <div class="chip-row">
+            <span class="chip">phase logic</span>
+            <span class="chip">workflow orchestration</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>专项治理</h3>
+          <p><strong>`audit-design-system`</strong>、<strong>`sync-figma-token`</strong>、<strong>`rad-spacing`</strong>、<strong>`apply-design-system`</strong> 负责 drift 诊断、token 对齐、间距规范化和页面级重连。</p>
+          <div class="chip-row">
+            <span class="chip amber">optional but high value</span>
+          </div>
+        </div>
+      </div>
+      <div class="grid-2" style="margin-top:16px;">
+        <div class="card">
+          <h3>当前主组合</h3>
+          <p>当前主线实际使用的是 `figma-use` + `figma-generate-library` + `audit-design-system` + `sync-figma-token` + `rad-spacing`。这是面向现有 messy DS 文件的治理流，不是 contract-first 生成流。</p>
+          <div class="chip-row">
+            <span class="chip green">governance-first</span>
+            <span class="chip green">existing-file flow</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>暂不是主路径</h3>
+          <p>`cc-figma-tokens`、`cc-figma-component` 更适合 contract 成熟后的 regenerate；`figma-code-connect-components`、`figma-generate-design`、`edit-figma-design` 更适合治理之后的下游工作流。</p>
+          <div class="chip-row">
+            <span class="chip amber">downstream</span>
+            <span class="chip amber">later-stage</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+<section>
+      <h2>Workflow 展示</h2>
+      <div class="timeline">
+        <div class="step">
+          <div class="step-tag">01 · Inspect</div>
+          <div>
+            <h3>`figma-use`</h3>
+            <p>盘点页面、变量、样式和组件结构，建立当前 Figma 文件的真实状态。</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-tag">02 · Audit</div>
+          <div>
+            <h3>`audit-design-system`</h3>
+            <p>识别 drift、local wrapper、未绑定 token/style 以及 variant schema 问题。</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-tag">03 · Token Parity</div>
+          <div>
+            <h3>`sync-figma-token`</h3>
+            <p>在 code token 和 Figma variable 之间做 dry-run parity 检查，补缺口、修 alias、修 scope 与 syntax。</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-tag">04 · Targeted Write</div>
+          <div>
+            <h3>`figma-generate-library` + `figma-use`</h3>
+            <p>按 foundations → file structure → components 的顺序做增量治理，一次只改一个 page、一个 family 或一组 tokens。</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-tag">05 · Normalize</div>
+          <div>
+            <h3>`apply-design-system` / `rad-spacing`</h3>
+            <p>在页面或 section 级做系统化重连，并对 gap、padding、层级节奏做规范化。</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-tag">06 · Validate</div>
+          <div>
+            <h3>Re-check and canonize</h3>
+            <p>验证当前页面结构是否已经适合从治理页过渡到 canonical component pages。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+<section>
+      <h2>下一步计划</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>页面层</h3>
+          <ol>
+            <li>按页硬化 `原子组件/Button`、`原子组件/Navigation`、`原子组件/Modal`。</li>
+            <li>明确哪些页是 canonical edit surfaces，哪些页只保留为治理历史。</li>
+            <li>继续让 `Semantic` 成为默认 binding layer，减少 page-local 例外。</li>
+          </ol>
+        </div>
+        <div class="card">
+          <h3>Canoical 化之后</h3>
+          <ol>
+            <li>把 canonical component pages 作为正式 handoff surface。</li>
+            <li>再接 `Figma to Code` 与 `AI to Code`。</li>
+            <li>在成熟 family 上再考虑 `Code Connect` 与 `cc-*` regenerate 流。</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+<section>
+      <h2>结论</h2>
+      <div class="callout">
+        当前文件已经从“主要依赖治理板推进”进入“治理板 + canonical 页面候选并存”的状态。接下来最重要的不是继续加更多治理动作，而是把 `Button`、`Navigation`、`Modal` 这类目标页正式扶正，形成明确的 canonical edit surface，再承接后续的 handoff 和 code-side workflow。
+      </div>
+    </section>
+
+<div class="foot">
+      生成依据：<code>skills-overview-workflow-2026-03-26.md</code> + <code>pages-structure-status-next-steps-2026-03-26.md</code> + weekly summary notes。<br />
+      视觉状态已用 Figma MCP 核对 `3285:437` 与 `3210:8201`；截图区域当前保留为可替换占位。
+    </div>
+  </div>
+</body>
+</html>
