@@ -251,6 +251,11 @@
         }
       },
       "spacing": {
+        "2": {
+          "$type": "dimension",
+          "$value": "2px",
+          "$description": "2px spacing step for ultra-tight separators and compact internal stacks."
+        },
         "4": {
           "$type": "dimension",
           "$value": "4px",
@@ -261,10 +266,25 @@
           "$value": "8px",
           "$description": "8px spacing step for tight row gaps and small vertical rhythm."
         },
+        "10": {
+          "$type": "dimension",
+          "$value": "10px",
+          "$description": "10px spacing step preserved from recurring component internal gaps in the cleanup page."
+        },
         "12": {
           "$type": "dimension",
           "$value": "12px",
           "$description": "12px spacing step for field padding and compact list gaps."
+        },
+        "14": {
+          "$type": "dimension",
+          "$value": "14px",
+          "$description": "14px spacing step preserved from repeated info-card content spacing."
+        },
+        "15": {
+          "$type": "dimension",
+          "$value": "15px",
+          "$description": "15px spacing step preserved from repeated card row spacing."
         },
         "16": {
           "$type": "dimension",
@@ -295,6 +315,16 @@
           "$type": "dimension",
           "$value": "42px",
           "$description": "42px spacing step preserved from observed layout offsets in the design system."
+        },
+        "48": {
+          "$type": "dimension",
+          "$value": "48px",
+          "$description": "48px spacing step for larger content separation and modal tour layouts."
+        },
+        "62": {
+          "$type": "dimension",
+          "$value": "62px",
+          "$description": "62px spacing step preserved from repeated info-card list spacing."
         },
         "72": {
           "$type": "dimension",
@@ -400,6 +430,11 @@
         }
       },
       "radius": {
+        "xs": {
+          "$type": "borderRadius",
+          "$value": 8,
+          "$description": "Shared extra-small radius token aligned to repeated compact card and chip rounding."
+        },
         "sm": {
           "$type": "borderRadius",
           "$value": 4,
@@ -573,6 +608,11 @@
           "$value": "{primitive.color.blue.500}",
           "$description": "Interactive action text in light mode — brand blue to signal links, CTAs, and affordance."
         },
+        "inverse": {
+          "$type": "color",
+          "$value": "{primitive.color.white}",
+          "$description": "Inverse text color in light mode for labels placed on branded or dark surfaces such as primary buttons."
+        },
         "placeholder": {
           "$type": "color",
           "$value": "{primitive.color.navy.200}",
@@ -604,6 +644,16 @@
           "$type": "color",
           "$value": "{primitive.color.navy.700}",
           "$description": "Secondary icon stroke in light mode — solid navy-derived token replacing the prior alpha-based treatment."
+        },
+        "logo": {
+          "$type": "color",
+          "$value": "{primitive.color.navy.900}",
+          "$description": "Brand and token-logo stroke color in light mode — navy keeps outlined brand marks legible on light surfaces."
+        },
+        "icon_inverse": {
+          "$type": "color",
+          "$value": "{primitive.color.white}",
+          "$description": "Inverse icon stroke in light mode for icons placed on branded or dark surfaces such as primary buttons."
         }
       },
       "border": {
@@ -614,6 +664,16 @@
         }
       },
       "fill": {
+        "action": {
+          "$type": "color",
+          "$value": "{primitive.color.blue.500}",
+          "$description": "Primary action fill in light mode — brand blue for solid interactive chips, badges, and icon tokens."
+        },
+        "action_subtle": {
+          "$type": "color",
+          "$value": "{primitive.color.blue.500_a20}",
+          "$description": "Subtle action fill in light mode — tinted brand blue background for low-emphasis action pills and account chips."
+        },
         "icon_chip": {
           "$type": "color",
           "$value": "{primitive.color.gray.100}",
@@ -1258,6 +1318,11 @@
           "$value": "{primitive.color.blue.600}",
           "$description": "Interactive action text in dark mode — dark-surface adapted solid brand blue, preserving the previous softened appearance with more stable contrast across surfaces."
         },
+        "inverse": {
+          "$type": "color",
+          "$value": "{primitive.color.white}",
+          "$description": "Inverse text color in dark mode for labels placed on branded or dark surfaces such as primary buttons."
+        },
         "placeholder": {
           "$type": "color",
           "$value": "{primitive.color.gray.700}",
@@ -1289,6 +1354,16 @@
           "$type": "color",
           "$value": "{primitive.color.gray.350}",
           "$description": "Secondary icon stroke in dark mode — solid gray token replacing the prior alpha-based treatment."
+        },
+        "logo": {
+          "$type": "color",
+          "$value": "{primitive.color.white}",
+          "$description": "Brand and token-logo stroke in dark mode — white keeps outlined brand marks legible on dark surfaces."
+        },
+        "icon_inverse": {
+          "$type": "color",
+          "$value": "{primitive.color.white}",
+          "$description": "Inverse icon stroke in dark mode for icons placed on branded or dark surfaces such as primary buttons."
         }
       },
       "border": {
@@ -1299,6 +1374,16 @@
         }
       },
       "fill": {
+        "action": {
+          "$type": "color",
+          "$value": "{primitive.color.blue.600}",
+          "$description": "Primary action fill in dark mode — dark-surface adapted brand blue for solid interactive chips, badges, and icon tokens."
+        },
+        "action_subtle": {
+          "$type": "color",
+          "$value": "{primitive.color.blue.500_a20}",
+          "$description": "Subtle action fill in dark mode — tinted brand blue background for low-emphasis action pills and account chips."
+        },
         "icon_chip": {
           "$type": "color",
           "$value": "{primitive.color.gray.800}",
