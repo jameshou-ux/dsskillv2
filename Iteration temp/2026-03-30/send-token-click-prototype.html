@@ -1,0 +1,1598 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>imToken Send Token Prototype · Source Token V5</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    color-scheme: light;
+    --font-sans: "Noto Sans SC", "PingFang SC", "SF Pro Text", "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --font-mono: ui-monospace, "SFMono-Regular", "SF Mono", "Menlo", "Monaco", monospace;
+    --bg-page: linear-gradient(180deg, #f9fdff 0%, #f0f1f3 100%);
+    --bg-card: #ffffff;
+    --bg-modal: #f9fafb;
+    --bg-section: #ffffff;
+    --bg-section-inner: #f0f1f3;
+    --bg-action: #111d4a;
+    --bg-action-subtle: rgba(0, 127, 255, 0.2);
+    --bg-success-subtle: rgba(75, 206, 113, 0.2);
+    --bg-warning-subtle: rgba(252, 140, 77, 0.2);
+    --bg-error-subtle: rgba(243, 99, 111, 0.2);
+    --text-core: #111d4a;
+    --text-primary: #111d4a;
+    --text-secondary: #a0a5b7;
+    --text-placeholder: #d0d2db;
+    --text-action: #007fff;
+    --text-inverse: #ffffff;
+    --text-success: #4bce71;
+    --text-warning: #fc8c4d;
+    --text-error: #f3636f;
+    --border-default: #ecedf0;
+    --shadow-card: 0 24px 64px rgba(17, 29, 74, 0.12);
+    --shadow-float: 0 12px 28px rgba(17, 29, 74, 0.08);
+    --radius-xs: 2px;
+    --radius-sm: 4px;
+    --radius-md: 10px;
+    --radius-lg: 16px;
+    --radius-full: 9999px;
+    --space-2: 2px;
+    --space-4: 4px;
+    --space-8: 8px;
+    --space-12: 12px;
+    --space-16: 16px;
+    --space-20: 20px;
+    --space-24: 24px;
+    --space-32: 32px;
+    --size-20: 20px;
+    --size-24: 24px;
+    --size-32: 32px;
+    --size-40: 40px;
+    --size-48: 48px;
+    --size-52: 52px;
+    --size-56: 56px;
+    --size-62: 62px;
+    --size-90: 90px;
+    --font-title: 32px;
+    --font-hero: 24px;
+    --font-nav: 16px;
+    --font-body: 16px;
+    --font-body-sm: 14px;
+    --font-label: 12px;
+    --line-normal: 1.4;
+    --line-tight: 1.3;
+    --track-normal: 0.04em;
+    --phone-width: 375px;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: var(--font-sans);
+    background:
+      radial-gradient(circle at top, rgba(214, 235, 255, 0.85), transparent 36%),
+      #eef3f7;
+    color: var(--text-primary);
+  }
+
+  button,
+  input {
+    font: inherit;
+  }
+
+  code,
+  .footer-note,
+  .token-usage code {
+    font-family: var(--font-mono);
+  }
+
+  button {
+    border: 0;
+    background: none;
+    color: inherit;
+  }
+
+  .stage {
+    width: min(1180px, calc(100vw - 32px));
+    margin: 0 auto;
+    padding: 28px 0 40px;
+    display: grid;
+    gap: 24px;
+  }
+
+  .intro {
+    display: grid;
+    gap: 8px;
+    max-width: 860px;
+  }
+
+  .eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+  }
+
+  .intro h1 {
+    margin: 0;
+    font-size: clamp(24px, 4vw, 34px);
+    line-height: 1.2;
+  }
+
+  .intro p {
+    margin: 0;
+    max-width: 760px;
+    font-size: var(--font-body-sm);
+    line-height: var(--line-normal);
+    letter-spacing: var(--track-normal);
+    color: var(--text-secondary);
+  }
+
+  .layout {
+    display: grid;
+    grid-template-columns: minmax(260px, 320px) auto minmax(220px, 260px);
+    gap: 24px;
+    align-items: start;
+  }
+
+  .panel {
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(236, 237, 240, 0.9);
+    border-radius: 20px;
+    box-shadow: var(--shadow-float);
+    backdrop-filter: blur(12px);
+  }
+
+  .plan-panel,
+  .state-panel {
+    padding: 20px;
+    display: grid;
+    gap: 16px;
+  }
+
+  .panel-title {
+    display: grid;
+    gap: 6px;
+  }
+
+  .panel-title strong {
+    font-size: var(--font-body);
+    line-height: var(--line-normal);
+  }
+
+  .panel-title span,
+  .token-usage {
+    font-size: var(--font-label);
+    line-height: var(--line-normal);
+    color: var(--text-secondary);
+  }
+
+  .flow-list,
+  .state-list,
+  .meta-list {
+    display: grid;
+    gap: 10px;
+  }
+
+  .flow-step,
+  .meta-row,
+  .state-chip {
+    border-radius: 14px;
+  }
+
+  .flow-step {
+    width: 100%;
+    text-align: left;
+    padding: 14px;
+    display: grid;
+    gap: 6px;
+    border: 1px solid var(--border-default);
+    background: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+  }
+
+  .flow-step:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 18px rgba(17, 29, 74, 0.06);
+  }
+
+  .flow-step.active {
+    border-color: var(--text-action);
+    box-shadow: 0 10px 20px rgba(0, 127, 255, 0.12);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(238, 247, 255, 0.96) 100%);
+  }
+
+  .flow-step.done {
+    border-color: rgba(75, 206, 113, 0.4);
+  }
+
+  .flow-step small,
+  .meta-row small {
+    font-size: 11px;
+    line-height: var(--line-normal);
+    color: var(--text-secondary);
+  }
+
+  .flow-step strong,
+  .meta-row strong {
+    font-size: 13px;
+    line-height: var(--line-normal);
+    color: var(--text-primary);
+  }
+
+  .phone {
+    width: var(--phone-width);
+    min-height: 812px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 40px;
+    border: 1px solid rgba(17, 29, 74, 0.12);
+    background: var(--bg-page);
+    box-shadow: var(--shadow-card);
+    padding: 16px 16px 20px;
+    justify-self: center;
+  }
+
+  .phone::before {
+    content: "";
+    position: absolute;
+    inset: 10px;
+    border-radius: 32px;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    pointer-events: none;
+  }
+
+  .nav-shell,
+  .screen,
+  .footer,
+  .overlay-shell {
+    position: relative;
+    z-index: 1;
+  }
+
+  .nav-shell {
+    min-height: var(--size-90);
+  }
+
+  .nav-status {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 21px 27px 0 21px;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  .nav-backdrop {
+    position: absolute;
+    inset: 0 0 auto;
+    height: var(--size-90);
+    background: linear-gradient(180deg, #ffffff 0%, rgba(255, 255, 255, 0) 100%);
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    pointer-events: none;
+  }
+
+  .nav-row {
+    position: absolute;
+    top: 54px;
+    left: 16px;
+    right: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-brand-icon,
+  .nav-icon,
+  .token-stack,
+  .secondary-back {
+    display: grid;
+    place-items: center;
+  }
+
+  .nav-brand-icon {
+    width: 24px;
+    height: 16.7px;
+  }
+
+  .nav-brand-icon img,
+  .nav-icon img,
+  .token-stack img,
+  .secondary-back img {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .nav-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .token-bar {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 8px 4px 8px;
+    padding-right: 14px;
+    border-radius: var(--radius-full);
+    background: var(--bg-card);
+    border: 1px solid var(--border-default);
+    box-shadow: 0 8px 20px rgba(17, 29, 74, 0.05);
+  }
+
+  .token-stack {
+    width: 96px;
+    height: 24px;
+  }
+
+  .beta-pill {
+    position: absolute;
+    left: 48px;
+    top: 57px;
+    height: 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 8px;
+    border-radius: var(--radius-full);
+    background: rgba(0, 127, 255, 0.08);
+    border: 1px solid rgba(0, 127, 255, 0.2);
+    font-size: 10px;
+    color: var(--text-action);
+  }
+
+  .secondary-nav {
+    position: relative;
+    height: var(--size-56);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 16px;
+  }
+
+  .secondary-back {
+    position: absolute;
+    left: 0;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+  }
+
+  .secondary-title {
+    font-size: var(--font-nav);
+    font-weight: 700;
+    line-height: var(--line-normal);
+    letter-spacing: var(--track-normal);
+  }
+
+  .screen {
+    min-height: 610px;
+    display: grid;
+    grid-template-rows: auto 1fr;
+    gap: 20px;
+  }
+
+  .hero {
+    display: grid;
+    gap: 8px;
+  }
+
+  .hero small {
+    font-size: 11px;
+    line-height: var(--line-normal);
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+
+  .hero h2 {
+    margin: 0;
+    font-size: 20px;
+    line-height: 1.2;
+    color: var(--text-core);
+  }
+
+  .hero p {
+    margin: 0;
+    font-size: var(--font-body-sm);
+    line-height: var(--line-normal);
+    color: var(--text-secondary);
+  }
+
+  .screen-body {
+    display: grid;
+    gap: 12px;
+    align-content: start;
+  }
+
+  .card,
+  .list-row,
+  .summary-row,
+  .input-shell,
+  .modal,
+  .notice {
+    border-radius: var(--radius-md);
+  }
+
+  .card,
+  .input-shell,
+  .notice {
+    background: var(--bg-card);
+    border: 1px solid var(--border-default);
+    padding: 16px;
+  }
+
+  .token-summary {
+    display: grid;
+    gap: 12px;
+  }
+
+  .wallet-strip {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .wallet-meta,
+  .token-copy,
+  .status-meta,
+  .modal-copy {
+    display: grid;
+    gap: 4px;
+  }
+
+  .wallet-meta strong,
+  .token-copy strong,
+  .status-meta strong,
+  .modal-copy strong,
+  .amount-row strong,
+  .summary-row strong {
+    font-size: 14px;
+    line-height: var(--line-normal);
+  }
+
+  .wallet-meta span,
+  .token-copy span,
+  .status-meta span,
+  .modal-copy span,
+  .amount-row span,
+  .summary-row span,
+  .helper,
+  .list-row small,
+  .notice p {
+    font-size: 12px;
+    line-height: var(--line-normal);
+    color: var(--text-secondary);
+  }
+
+  .network-pill,
+  .info-pill,
+  .select-pill,
+  .quick-pill,
+  .contact-chip,
+  .state-chip,
+  .filter-chip {
+    height: 32px;
+    border-radius: var(--radius-full);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 12px;
+    border: 1px solid var(--border-default);
+    background: var(--bg-card);
+    font-size: 12px;
+    cursor: pointer;
+    transition: background 160ms ease, border-color 160ms ease, color 160ms ease;
+  }
+
+  .network-pill {
+    color: var(--text-action);
+    background: rgba(0, 127, 255, 0.08);
+    border-color: rgba(0, 127, 255, 0.2);
+  }
+
+  .info-pill {
+    background: var(--bg-section-inner);
+    color: var(--text-primary);
+  }
+
+  .filter-chip.active,
+  .select-pill.active,
+  .quick-pill.active,
+  .contact-chip.active,
+  .state-chip.active {
+    background: var(--bg-action-subtle);
+    border-color: rgba(0, 127, 255, 0.3);
+    color: var(--text-action);
+  }
+
+  .token-list,
+  .summary-list,
+  .contact-grid,
+  .quick-grid,
+  .meta-list {
+    display: grid;
+    gap: 10px;
+  }
+
+  .list-row,
+  .summary-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    justify-content: space-between;
+    background: var(--bg-card);
+    border: 1px solid var(--border-default);
+    padding: 12px;
+  }
+
+  .list-row.active {
+    border-color: rgba(0, 127, 255, 0.28);
+    box-shadow: inset 0 0 0 1px rgba(0, 127, 255, 0.12);
+  }
+
+  .token-left,
+  .summary-left,
+  .amount-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .token-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: linear-gradient(180deg, #eef7ff 0%, #d6ebff 100%);
+    color: var(--text-primary);
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  .token-icon.warning {
+    background: rgba(252, 140, 77, 0.16);
+    color: var(--text-warning);
+  }
+
+  .token-icon.success {
+    background: rgba(75, 206, 113, 0.16);
+    color: var(--text-success);
+  }
+
+  .token-icon.dark {
+    background: rgba(17, 29, 74, 0.12);
+  }
+
+  .chevron {
+    font-size: 14px;
+    color: var(--text-secondary);
+  }
+
+  .input-shell {
+    display: grid;
+    gap: 10px;
+  }
+
+  .input-shell label,
+  .section-label,
+  .amount-caption {
+    font-size: 12px;
+    line-height: var(--line-normal);
+    color: var(--text-secondary);
+  }
+
+  .input-shell input,
+  .amount-input {
+    border: 0;
+    outline: 0;
+    width: 100%;
+    background: transparent;
+    color: var(--text-core);
+  }
+
+  .input-shell input {
+    font-size: 16px;
+    line-height: var(--line-normal);
+  }
+
+  .amount-box {
+    display: grid;
+    gap: 12px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-md);
+    padding: 16px;
+  }
+
+  .amount-field {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .amount-input {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: var(--line-tight);
+    letter-spacing: calc(var(--track-normal) * -1);
+  }
+
+  .amount-unit {
+    font-size: 14px;
+    color: var(--text-secondary);
+    padding-bottom: 4px;
+  }
+
+  .helper {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+  }
+
+  .quick-grid,
+  .contact-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .notice {
+    display: grid;
+    gap: 8px;
+  }
+
+  .notice.warning {
+    background: rgba(252, 140, 77, 0.08);
+    border-color: rgba(252, 140, 77, 0.2);
+  }
+
+  .notice.success {
+    background: rgba(75, 206, 113, 0.08);
+    border-color: rgba(75, 206, 113, 0.2);
+  }
+
+  .notice strong {
+    font-size: 12px;
+    color: var(--text-primary);
+  }
+
+  .footer {
+    display: grid;
+    gap: 12px;
+    margin-top: 16px;
+  }
+
+  .footer-meta {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    font-size: 12px;
+    color: var(--text-secondary);
+  }
+
+  .cta-row {
+    display: grid;
+    gap: 10px;
+  }
+
+  .cta,
+  .secondary-cta {
+    min-height: var(--size-52);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+  }
+
+  .cta {
+    background: var(--bg-action);
+    color: var(--text-inverse);
+    padding: 0 16px;
+  }
+
+  .cta:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+  }
+
+  .secondary-cta {
+    border: 1px solid var(--border-default);
+    background: var(--bg-card);
+    color: var(--text-primary);
+  }
+
+  .footer-note {
+    font-size: 12px;
+    text-align: center;
+    color: var(--text-secondary);
+  }
+
+  .overlay-shell {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .overlay-shell.visible {
+    pointer-events: auto;
+  }
+
+  .overlay-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    opacity: 0;
+    transition: opacity 180ms ease;
+  }
+
+  .overlay-shell.visible .overlay-backdrop {
+    opacity: 1;
+  }
+
+  .modal {
+    position: absolute;
+    left: 16px;
+    right: 16px;
+    bottom: 20px;
+    background: var(--bg-modal);
+    border: 1px solid rgba(236, 237, 240, 0.96);
+    box-shadow: var(--shadow-card);
+    padding: 12px;
+    transform: translateY(24px);
+    opacity: 0;
+    transition: transform 180ms ease, opacity 180ms ease;
+  }
+
+  .overlay-shell.visible .modal {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .modal-handle {
+    width: 36px;
+    height: 4px;
+    border-radius: 999px;
+    background: #d6d7e0;
+    margin: 0 auto 16px;
+  }
+
+  .modal-actions {
+    display: grid;
+    gap: 10px;
+    margin-top: 12px;
+  }
+
+  .auth-ring {
+    width: 180px;
+    height: 180px;
+    margin: 24px auto 0;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background:
+      radial-gradient(circle at center, rgba(255, 255, 255, 0.9) 0 26%, rgba(214, 235, 255, 0.9) 27% 46%, rgba(0, 127, 255, 0.14) 47% 66%, rgba(17, 29, 74, 0.06) 67% 100%);
+    border: 1px solid rgba(0, 127, 255, 0.16);
+    color: var(--text-action);
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  .status-list .meta-row {
+    padding: 12px;
+    border: 1px solid var(--border-default);
+    background: var(--bg-card);
+  }
+
+  .token-usage code {
+    font-size: 11px;
+    color: var(--text-primary);
+  }
+
+  @media (max-width: 1080px) {
+    .layout {
+      grid-template-columns: 1fr;
+    }
+
+    .phone {
+      order: -1;
+    }
+  }
+</style>
+</head>
+<body>
+  <div class="stage">
+    <div class="intro">
+      <div class="eyebrow">r2d2-ds-agent / Prompt To Demo</div>
+      <h1>Send token 主流程交互原型</h1>
+      <p>原型使用 <code>source/imtoken-ds-source.tokens.json</code> 的 light semantic token 作为颜色和层级约束，并对齐 Figma 节点 <code>3210:8207</code> 里的 <code>Mobile navigation / Level=Primary</code> 与 <code>Level=Secondary</code> 壳层。覆盖选资产、填地址、输金额、复核、签名确认、发送成功六个主要页面。</p>
+    </div>
+
+    <div class="layout">
+      <aside class="panel plan-panel">
+        <div class="panel-title">
+          <strong>流程页</strong>
+          <span>点击左侧步骤或手机内按钮，可在主要页面之间跳转。</span>
+        </div>
+        <div class="flow-list" id="flowList"></div>
+        <div class="token-usage">
+          <div>Token layer</div>
+          <div><code>White700;Deep900</code> / <code>Deep600,White600</code> / <code>Blue600; Blue500</code></div>
+          <div><code>Mobile navigation / Level=Primary</code> / <code>Mobile navigation / Level=Secondary</code></div>
+          <div><code>Token list row</code> / <code>Primary button</code> / <code>Blur 2-modalbg</code></div>
+        </div>
+      </aside>
+
+      <main class="phone">
+        <div class="nav-shell" id="navShell"></div>
+        <div class="screen" id="screen"></div>
+
+        <div class="footer">
+          <div class="footer-meta">
+            <span id="footerLeft">Wallet 1 · Ethereum</span>
+            <span id="footerRight">Safe preview</span>
+          </div>
+          <div class="cta-row">
+            <button class="cta" id="ctaButton" type="button"></button>
+            <button class="secondary-cta" id="secondaryButton" type="button"></button>
+          </div>
+          <div class="footer-note" id="footerNote">Prototype only. No transaction will be signed.</div>
+        </div>
+
+        <div class="overlay-shell" id="overlayShell"></div>
+      </main>
+
+      <aside class="panel state-panel">
+        <div class="panel-title">
+          <strong>当前状态</strong>
+          <span>这个面板只读，用来快速验证主流程里的关键输入和反馈。</span>
+        </div>
+        <div class="state-list" id="stateList"></div>
+      </aside>
+    </div>
+  </div>
+
+<script>
+  const assets = {
+    primaryLogo: "https://www.figma.com/api/mcp/asset/3452b539-4dd2-4360-910b-3c77386b0b67",
+    primaryTokens: "https://www.figma.com/api/mcp/asset/60b33154-2263-43ff-90e7-d6e31982c9c8",
+    primarySearch: "https://www.figma.com/api/mcp/asset/9e023a77-3671-45a8-b20a-5169086ac553",
+    primaryMenu: "https://www.figma.com/api/mcp/asset/0cff6fa0-07c3-45e5-9260-4133e0a9c1e4",
+    secondaryBack: "https://www.figma.com/api/mcp/asset/7803adc9-da21-4282-9418-f9c713509032"
+  };
+
+  const tokenCatalog = [
+    { symbol: "ETH", name: "Ethereum", network: "Ethereum", balance: "12.80", fiat: "40,773.38", state: "Hot", badge: "Main", icon: "ETH" },
+    { symbol: "USDT", name: "Tether USD", network: "Ethereum", balance: "3,920.00", fiat: "3,920.00", state: "Stable", badge: "ERC20", icon: "USDT" },
+    { symbol: "IMX", name: "Immutable", network: "Ethereum", balance: "1,250.00", fiat: "3,512.50", state: "Layer 2", badge: "Bridge", icon: "IMX" }
+  ];
+
+  const recipients = [
+    "0xA9c1...2F9b",
+    "0xB3d8...17Ae",
+    "vitalik.eth",
+    "ops-vault.eth"
+  ];
+
+  const quickAmounts = ["25%", "50%", "75%", "Max"];
+  const feeModes = [
+    { id: "slow", label: "Slow", eta: "~45 sec", fee: "0.0021 ETH" },
+    { id: "normal", label: "Normal", eta: "~15 sec", fee: "0.0032 ETH" },
+    { id: "fast", label: "Fast", eta: "~5 sec", fee: "0.0046 ETH" }
+  ];
+
+  const state = {
+    step: 0,
+    tokenIndex: 0,
+    recipient: "0xA9c1...2F9b",
+    amount: "2.45",
+    feeMode: "normal",
+    authApproved: false,
+    txHash: "0x29F4...77CD",
+    overlay: null
+  };
+
+  const steps = [
+    {
+      id: "asset",
+      label: "选择资产",
+      note: "Token list + source wallet summary",
+      cta: "继续到地址",
+      secondary: "切换 Token",
+      canContinue: () => true,
+      canSecondary: () => true,
+      onSecondary: () => openOverlay("token"),
+      render: () => {
+        const token = currentToken();
+        return `
+          <div class="hero">
+            <small>Step 1</small>
+            <h2>从钱包里挑选发送资产</h2>
+            <p>起点页保持轻量。先给来源钱包、网络和余额，再给一组明确的 token rows，避免在第一步塞入过多表单。</p>
+          </div>
+          <div class="screen-body">
+            <div class="card token-summary">
+              <div class="wallet-strip">
+                <div class="wallet-meta">
+                  <strong>Wallet 1</strong>
+                  <span>Main account · Ready to send</span>
+                </div>
+                <span class="network-pill">${token.network}</span>
+              </div>
+              <div class="summary-row">
+                <div class="summary-left">
+                  <div class="token-icon dark">W1</div>
+                  <div class="token-copy">
+                    <strong>Total transferable</strong>
+                    <span>$62,118.88</span>
+                  </div>
+                </div>
+                <span class="info-pill">Source token V5</span>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="section-label">Assets</div>
+              <div class="token-list">
+                ${tokenCatalog.map((item, index) => `
+                  <button class="list-row ${index === state.tokenIndex ? "active" : ""}" data-token-index="${index}" type="button">
+                    <div class="token-left">
+                      <div class="token-icon">${item.icon}</div>
+                      <div class="token-copy">
+                        <strong>${item.name}</strong>
+                        <span>${item.network} · ${item.balance} ${item.symbol}</span>
+                      </div>
+                    </div>
+                    <div class="status-meta">
+                      <strong>$${item.fiat}</strong>
+                      <span>${item.badge}</span>
+                    </div>
+                  </button>
+                `).join("")}
+              </div>
+            </div>
+
+            <div class="notice">
+              <strong>Why this page is first</strong>
+              <p>这是 send token 最稳的入口。先做资产上下文收敛，后面的地址、金额和 gas 都会跟着当前 token 自动约束。</p>
+            </div>
+          </div>
+        `;
+      },
+      afterRender: () => {
+        document.querySelectorAll("[data-token-index]").forEach((button) => {
+          button.addEventListener("click", () => {
+            state.tokenIndex = Number(button.dataset.tokenIndex);
+            render();
+          });
+        });
+      }
+    },
+    {
+      id: "recipient",
+      label: "填写地址",
+      note: "Address input + recent contacts",
+      cta: "继续到金额",
+      secondary: "返回资产",
+      canContinue: () => state.recipient.trim().length >= 8,
+      canSecondary: () => true,
+      onSecondary: () => goToStep(0),
+      render: () => {
+        const token = currentToken();
+        return `
+          <div class="hero">
+            <small>Step 2</small>
+            <h2>填写或选择收款地址</h2>
+            <p>地址页只关心一个输入任务。保留最近联系人和网络提示，但不让它们盖过主输入框。</p>
+          </div>
+          <div class="screen-body">
+            <div class="input-shell">
+              <label for="recipientInput">Wallet address or ENS</label>
+              <input id="recipientInput" type="text" value="${state.recipient}" placeholder="Paste address or name">
+            </div>
+
+            <div class="card">
+              <div class="section-label">Recent recipients</div>
+              <div class="contact-grid">
+                ${recipients.map((item) => `
+                  <button class="contact-chip ${item === state.recipient ? "active" : ""}" data-recipient="${item}" type="button">${item}</button>
+                `).join("")}
+              </div>
+            </div>
+
+            <div class="summary-row">
+              <div class="summary-left">
+                <div class="token-icon warning">!</div>
+                <div class="status-meta">
+                  <strong>Network guard</strong>
+                  <span>Only ${token.network} compatible addresses</span>
+                </div>
+              </div>
+              <span class="network-pill">${token.symbol}</span>
+            </div>
+          </div>
+        `;
+      },
+      afterRender: () => {
+        const input = document.getElementById("recipientInput");
+        input?.addEventListener("input", (event) => {
+          state.recipient = event.target.value.trim();
+          updatePanels();
+          updateFooter();
+        });
+        document.querySelectorAll("[data-recipient]").forEach((button) => {
+          button.addEventListener("click", () => {
+            state.recipient = button.dataset.recipient;
+            render();
+          });
+        });
+      }
+    },
+    {
+      id: "amount",
+      label: "设置金额",
+      note: "Amount + quick ratios + fee mode",
+      cta: "继续到复核",
+      secondary: "切换 Gas",
+      canContinue: () => Number(state.amount) > 0,
+      canSecondary: () => true,
+      onSecondary: () => openOverlay("fee"),
+      render: () => {
+        const token = currentToken();
+        const fee = currentFee();
+        return `
+          <div class="hero">
+            <small>Step 3</small>
+            <h2>输入发送金额</h2>
+            <p>金额页复用 token summary 和 button height 语义，主输入用大数字，其余信息全部降级到辅助层。</p>
+          </div>
+          <div class="screen-body">
+            <div class="card">
+              <div class="summary-row">
+                <div class="summary-left">
+                  <div class="token-icon">${token.symbol}</div>
+                  <div class="token-copy">
+                    <strong>${token.name}</strong>
+                    <span>Available ${token.balance} ${token.symbol}</span>
+                  </div>
+                </div>
+                <button class="select-pill" id="changeTokenButton" type="button">Change</button>
+              </div>
+            </div>
+
+            <div class="amount-box">
+              <div class="amount-caption">Amount</div>
+              <div class="amount-field">
+                <input class="amount-input" id="amountInput" type="text" inputmode="decimal" value="${state.amount}" aria-label="Send amount">
+                <span class="amount-unit">${token.symbol}</span>
+              </div>
+              <div class="helper">
+                <span>≈ $${fiatValue()}</span>
+                <span>${fee.label} fee ${fee.fee}</span>
+              </div>
+            </div>
+
+            <div class="quick-grid">
+              ${quickAmounts.map((item) => `
+                <button class="quick-pill ${quickLabelActive(item) ? "active" : ""}" data-quick="${item}" type="button">${item}</button>
+              `).join("")}
+            </div>
+
+            <div class="summary-row">
+              <div class="summary-left">
+                <div class="token-icon success">⇅</div>
+                <div class="status-meta">
+                  <strong>Fee mode</strong>
+                  <span>${fee.label} · ETA ${fee.eta}</span>
+                </div>
+              </div>
+              <button class="select-pill active" id="feeButton" type="button">${fee.fee}</button>
+            </div>
+          </div>
+        `;
+      },
+      afterRender: () => {
+        const amountInput = document.getElementById("amountInput");
+        amountInput?.addEventListener("input", (event) => {
+          state.amount = event.target.value.replace(/[^0-9.]/g, "");
+          updatePanels();
+          updateFooter();
+        });
+        document.getElementById("changeTokenButton")?.addEventListener("click", () => openOverlay("token"));
+        document.getElementById("feeButton")?.addEventListener("click", () => openOverlay("fee"));
+        document.querySelectorAll("[data-quick]").forEach((button) => {
+          button.addEventListener("click", () => {
+            state.amount = resolveQuickAmount(button.dataset.quick);
+            render();
+          });
+        });
+      }
+    },
+    {
+      id: "review",
+      label: "发送复核",
+      note: "Compact review + one warning",
+      cta: "签名并发送",
+      secondary: "查看 Fee 细节",
+      canContinue: () => Number(state.amount) > 0 && state.recipient.length >= 8,
+      canSecondary: () => true,
+      onSecondary: () => openOverlay("fee"),
+      render: () => {
+        const token = currentToken();
+        const fee = currentFee();
+        return `
+          <div class="hero">
+            <small>Step 4</small>
+            <h2>复核交易摘要</h2>
+            <p>复核页压缩成三类信息：金额、地址、费用。风险提示保持可见，但不打断最终 action。</p>
+          </div>
+          <div class="screen-body">
+            <div class="summary-list">
+              <div class="summary-row">
+                <div class="summary-left">
+                  <div class="token-icon">${token.symbol}</div>
+                  <div class="status-meta">
+                    <small>Send</small>
+                    <strong>${state.amount} ${token.symbol}</strong>
+                  </div>
+                </div>
+                <span>$${fiatValue()}</span>
+              </div>
+              <div class="summary-row">
+                <div class="summary-left">
+                  <div class="token-icon dark">To</div>
+                  <div class="status-meta">
+                    <small>Recipient</small>
+                    <strong>${state.recipient}</strong>
+                  </div>
+                </div>
+                <span>${token.network}</span>
+              </div>
+              <div class="summary-row">
+                <div class="summary-left">
+                  <div class="token-icon success">Fee</div>
+                  <div class="status-meta">
+                    <small>Network fee</small>
+                    <strong>${fee.fee}</strong>
+                  </div>
+                </div>
+                <span>${fee.eta}</span>
+              </div>
+            </div>
+
+            <div class="notice warning">
+              <strong>High-signal warning</strong>
+              <p>Only send this asset to ${token.network} compatible addresses. If the destination network is wrong, the transfer cannot be recovered.</p>
+            </div>
+
+            <div class="card">
+              <div class="section-label">Route</div>
+              <div class="meta-list">
+                <div class="meta-row">
+                  <small>From</small>
+                  <strong>Wallet 1</strong>
+                </div>
+                <div class="meta-row">
+                  <small>To</small>
+                  <strong>${state.recipient}</strong>
+                </div>
+                <div class="meta-row">
+                  <small>Total debit</small>
+                  <strong>${(Number(state.amount || 0) + Number(fee.fee.split(" ")[0])).toFixed(4)} ${token.symbol}</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+    },
+    {
+      id: "auth",
+      label: "签名确认",
+      note: "Authentication checkpoint",
+      cta: "模拟 Face ID 通过",
+      secondary: "返回复核",
+      canContinue: () => true,
+      canSecondary: () => true,
+      onSecondary: () => goToStep(3),
+      onContinue: () => {
+        state.authApproved = true;
+        goToStep(5);
+      },
+      render: () => {
+        const token = currentToken();
+        return `
+          <div class="hero">
+            <small>Step 5</small>
+            <h2>签名确认</h2>
+            <p>高风险动作单独占一个确认页。视觉上不再重复摘要，只保留本次交易的最短必要信息。</p>
+          </div>
+          <div class="screen-body">
+            <div class="auth-ring">Face ID</div>
+            <div class="card">
+              <div class="meta-list">
+                <div class="meta-row">
+                  <small>Action</small>
+                  <strong>Send ${state.amount} ${token.symbol}</strong>
+                </div>
+                <div class="meta-row">
+                  <small>Recipient</small>
+                  <strong>${state.recipient}</strong>
+                </div>
+                <div class="meta-row">
+                  <small>Signing note</small>
+                  <strong>One explicit confirmation before queueing transaction</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+    },
+    {
+      id: "success",
+      label: "发送成功",
+      note: "Success feedback with transaction reference",
+      cta: "重新开始",
+      secondary: "回到复核",
+      canContinue: () => true,
+      canSecondary: () => true,
+      onSecondary: () => goToStep(3),
+      onContinue: () => resetFlow(),
+      render: () => {
+        const token = currentToken();
+        const fee = currentFee();
+        return `
+          <div class="hero">
+            <small>Step 6</small>
+            <h2>交易已提交</h2>
+            <p>成功页继续留在同一套 mobile shell 里，避免用户在结果页失去空间感。</p>
+          </div>
+          <div class="screen-body">
+            <div class="notice success">
+              <strong>Queued on network</strong>
+              <p>The transaction is waiting for ${token.network} confirmation. You can still leave this screen and track it later.</p>
+            </div>
+            <div class="card">
+              <div class="meta-list">
+                <div class="meta-row">
+                  <small>Amount</small>
+                  <strong>${state.amount} ${token.symbol}</strong>
+                </div>
+                <div class="meta-row">
+                  <small>Recipient</small>
+                  <strong>${state.recipient}</strong>
+                </div>
+                <div class="meta-row">
+                  <small>Fee</small>
+                  <strong>${fee.fee}</strong>
+                </div>
+                <div class="meta-row">
+                  <small>Transaction</small>
+                  <strong>${state.txHash}</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+    }
+  ];
+
+  const flowList = document.getElementById("flowList");
+  const navShell = document.getElementById("navShell");
+  const screen = document.getElementById("screen");
+  const stateList = document.getElementById("stateList");
+  const overlayShell = document.getElementById("overlayShell");
+  const ctaButton = document.getElementById("ctaButton");
+  const secondaryButton = document.getElementById("secondaryButton");
+  const footerLeft = document.getElementById("footerLeft");
+  const footerRight = document.getElementById("footerRight");
+  const footerNote = document.getElementById("footerNote");
+
+  function currentToken() {
+    return tokenCatalog[state.tokenIndex];
+  }
+
+  function currentFee() {
+    return feeModes.find((item) => item.id === state.feeMode);
+  }
+
+  function fiatValue() {
+    const prices = { ETH: 3185.42, USDT: 1, IMX: 2.81 };
+    const token = currentToken();
+    const value = Number(state.amount || 0) * prices[token.symbol];
+    return value.toFixed(2);
+  }
+
+  function quickLabelActive(label) {
+    const token = currentToken();
+    const numeric = Number(state.amount || 0);
+    if (label === "25%") return numeric === Number((Number(token.balance) * 0.25).toFixed(2));
+    if (label === "50%") return numeric === Number((Number(token.balance) * 0.5).toFixed(2));
+    if (label === "75%") return numeric === Number((Number(token.balance) * 0.75).toFixed(2));
+    return numeric === Number(token.balance);
+  }
+
+  function resolveQuickAmount(label) {
+    const total = Number(currentToken().balance);
+    if (label === "25%") return (total * 0.25).toFixed(2);
+    if (label === "50%") return (total * 0.5).toFixed(2);
+    if (label === "75%") return (total * 0.75).toFixed(2);
+    return total.toFixed(2);
+  }
+
+  function renderFlowList() {
+    flowList.innerHTML = steps.map((item, index) => `
+      <button class="flow-step ${index === state.step ? "active" : index < state.step ? "done" : ""}" data-step-index="${index}" type="button">
+        <small>0${index + 1}</small>
+        <strong>${item.label}</strong>
+        <span>${item.note}</span>
+      </button>
+    `).join("");
+
+    document.querySelectorAll("[data-step-index]").forEach((button) => {
+      button.addEventListener("click", () => {
+        goToStep(Number(button.dataset.stepIndex));
+      });
+    });
+  }
+
+  function renderNav() {
+    if (state.step === 0) {
+      navShell.innerHTML = `
+        <div class="nav-backdrop"></div>
+        <div class="nav-status">
+          <span>9:41</span>
+          <span>◔◔ 5G ▱</span>
+        </div>
+        <div class="nav-row">
+          <div class="nav-brand-icon"><img src="${assets.primaryLogo}" alt=""></div>
+          <div class="nav-actions">
+            <div class="token-bar" aria-label="Token switcher">
+              <div class="token-stack"><img src="${assets.primaryTokens}" alt=""></div>
+            </div>
+            <div class="nav-icon"><img src="${assets.primarySearch}" alt=""></div>
+            <div class="nav-icon"><img src="${assets.primaryMenu}" alt=""></div>
+          </div>
+        </div>
+        <div class="beta-pill">Beta</div>
+      `;
+      return;
+    }
+
+    navShell.innerHTML = `
+      <div class="secondary-nav">
+        <button class="secondary-back" id="backButton" type="button" aria-label="Back">
+          <img src="${assets.secondaryBack}" alt="">
+        </button>
+        <div class="secondary-title">${steps[state.step].label}</div>
+      </div>
+    `;
+
+    document.getElementById("backButton")?.addEventListener("click", () => {
+      if (state.step > 0) goToStep(state.step - 1);
+    });
+  }
+
+  function renderScreen() {
+    screen.innerHTML = steps[state.step].render();
+    steps[state.step].afterRender?.();
+  }
+
+  function renderStatePanel() {
+    const token = currentToken();
+    const fee = currentFee();
+    stateList.innerHTML = `
+      <button class="state-chip active" type="button">${token.symbol} · ${token.network}</button>
+      <button class="state-chip ${state.authApproved ? "active" : ""}" type="button">Auth ${state.authApproved ? "passed" : "pending"}</button>
+      <div class="meta-list">
+        <div class="meta-row">
+          <small>Recipient</small>
+          <strong>${state.recipient || "Not set"}</strong>
+        </div>
+        <div class="meta-row">
+          <small>Amount</small>
+          <strong>${state.amount || "0"} ${token.symbol}</strong>
+        </div>
+        <div class="meta-row">
+          <small>Fee mode</small>
+          <strong>${fee.label} · ${fee.fee}</strong>
+        </div>
+        <div class="meta-row">
+          <small>ETA</small>
+          <strong>${fee.eta}</strong>
+        </div>
+      </div>
+    `;
+  }
+
+  function renderOverlay() {
+    if (!state.overlay) {
+      overlayShell.className = "overlay-shell";
+      overlayShell.innerHTML = "";
+      return;
+    }
+
+    const content = state.overlay === "token" ? renderTokenOverlay() : renderFeeOverlay();
+    overlayShell.className = "overlay-shell visible";
+    overlayShell.innerHTML = `
+      <div class="overlay-backdrop" data-close-overlay="true"></div>
+      ${content}
+    `;
+
+    overlayShell.querySelectorAll("[data-close-overlay]").forEach((node) => {
+      node.addEventListener("click", closeOverlay);
+    });
+
+    overlayShell.querySelectorAll("[data-overlay-token]").forEach((node) => {
+      node.addEventListener("click", () => {
+        state.tokenIndex = Number(node.dataset.overlayToken);
+        closeOverlay();
+        render();
+      });
+    });
+
+    overlayShell.querySelectorAll("[data-overlay-fee]").forEach((node) => {
+      node.addEventListener("click", () => {
+        state.feeMode = node.dataset.overlayFee;
+        closeOverlay();
+        render();
+      });
+    });
+  }
+
+  function renderTokenOverlay() {
+    return `
+      <div class="modal">
+        <div class="modal-handle"></div>
+        <div class="modal-copy">
+          <strong>Choose token</strong>
+          <span>Reusing token list row semantics from Source Token V5.</span>
+        </div>
+        <div class="token-list" style="margin-top: 12px;">
+          ${tokenCatalog.map((item, index) => `
+            <button class="list-row ${index === state.tokenIndex ? "active" : ""}" data-overlay-token="${index}" type="button">
+              <div class="token-left">
+                <div class="token-icon">${item.icon}</div>
+                <div class="token-copy">
+                  <strong>${item.name}</strong>
+                  <span>${item.balance} ${item.symbol}</span>
+                </div>
+              </div>
+              <span class="info-pill">${item.badge}</span>
+            </button>
+          `).join("")}
+        </div>
+        <div class="modal-actions">
+          <button class="secondary-cta" data-close-overlay="true" type="button">Close</button>
+        </div>
+      </div>
+    `;
+  }
+
+  function renderFeeOverlay() {
+    return `
+      <div class="modal">
+        <div class="modal-handle"></div>
+        <div class="modal-copy">
+          <strong>Network fee mode</strong>
+          <span>Bottom sheet follows the modal tokens: modal bg, 16px radius, 32px section spacing.</span>
+        </div>
+        <div class="token-list" style="margin-top: 12px;">
+          ${feeModes.map((item) => `
+            <button class="list-row ${item.id === state.feeMode ? "active" : ""}" data-overlay-fee="${item.id}" type="button">
+              <div class="token-left">
+                <div class="token-icon success">${item.label[0]}</div>
+                <div class="token-copy">
+                  <strong>${item.label}</strong>
+                  <span>${item.eta}</span>
+                </div>
+              </div>
+              <strong>${item.fee}</strong>
+            </button>
+          `).join("")}
+        </div>
+        <div class="modal-actions">
+          <button class="secondary-cta" data-close-overlay="true" type="button">Close</button>
+        </div>
+      </div>
+    `;
+  }
+
+  function updateFooter() {
+    const token = currentToken();
+    const fee = currentFee();
+    footerLeft.textContent = `${token.name} · ${state.amount || "0"} ${token.symbol}`;
+    footerRight.textContent = state.step >= 3 ? fee.fee : "Safe preview";
+    footerNote.textContent = state.step === 5
+      ? "Success state is simulated to validate page structure."
+      : "Prototype only. No transaction will be signed.";
+
+    ctaButton.textContent = steps[state.step].cta;
+    ctaButton.disabled = !steps[state.step].canContinue();
+
+    secondaryButton.textContent = steps[state.step].secondary;
+    secondaryButton.disabled = !steps[state.step].canSecondary();
+  }
+
+  function openOverlay(type) {
+    state.overlay = type;
+    renderOverlay();
+  }
+
+  function closeOverlay() {
+    state.overlay = null;
+    renderOverlay();
+  }
+
+  function goToStep(index) {
+    state.step = index;
+    if (index < 5) state.authApproved = false;
+    closeOverlay();
+    render();
+  }
+
+  function resetFlow() {
+    state.step = 0;
+    state.tokenIndex = 0;
+    state.recipient = "0xA9c1...2F9b";
+    state.amount = "2.45";
+    state.feeMode = "normal";
+    state.authApproved = false;
+    closeOverlay();
+    render();
+  }
+
+  function updatePanels() {
+    renderStatePanel();
+    renderFlowList();
+  }
+
+  function render() {
+    renderNav();
+    renderScreen();
+    renderOverlay();
+    updatePanels();
+    updateFooter();
+  }
+
+  ctaButton.addEventListener("click", () => {
+    const step = steps[state.step];
+    if (!step.canContinue()) return;
+    if (step.onContinue) {
+      step.onContinue();
+      return;
+    }
+    if (state.step < steps.length - 1) {
+      goToStep(state.step + 1);
+    }
+  });
+
+  secondaryButton.addEventListener("click", () => {
+    const step = steps[state.step];
+    if (!step.canSecondary()) return;
+    step.onSecondary?.();
+  });
+
+  render();
+</script>
+</body>
+</html>

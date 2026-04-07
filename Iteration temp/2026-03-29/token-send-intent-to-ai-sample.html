@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>imToken DS Intent To AI Send Sample</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-page: linear-gradient(180deg, #f9fdff 0%, #f0f1f3 100%);
+    --bg-card: rgba(255, 255, 255, 0.88);
+    --bg-card-strong: #ffffff;
+    --bg-inner: #f0f1f3;
+    --text-primary: #111d4a;
+    --text-secondary: rgba(17, 29, 74, 0.4);
+    --text-placeholder: rgba(17, 29, 74, 0.2);
+    --border-default: rgba(17, 29, 74, 0.08);
+    --accent: #007fff;
+    --accent-soft: #d6ebff;
+    --success: #06b57a;
+    --danger-soft: #fff3f0;
+    --danger: #b24b2f;
+    --shadow-card: 0 18px 32px rgba(17, 29, 74, 0.08);
+    --radius-sm: 4px;
+    --radius-md: 10px;
+    --radius-lg: 16px;
+    --radius-full: 9999px;
+    --space-8: 8px;
+    --space-12: 12px;
+    --space-16: 16px;
+    --space-20: 20px;
+    --space-24: 24px;
+    --space-32: 32px;
+    --phone-width: 375px;
+    --type-nav-title-size: 16px;
+    --type-nav-title-weight: 700;
+    --type-nav-title-line: 1.4;
+    --type-nav-title-track: 0.04em;
+    --type-body-primary-size: 16px;
+    --type-body-primary-weight: 500;
+    --type-body-primary-line: 1.4;
+    --type-body-primary-track: 0.04em;
+    --type-body-secondary-size: 14px;
+    --type-body-secondary-weight: 400;
+    --type-body-secondary-line: 1.4;
+    --type-body-secondary-track: 0.04em;
+    --type-section-lead-size: 20px;
+    --type-section-lead-weight: 500;
+    --type-section-lead-line: 1.4;
+    --type-section-lead-track: 0.04em;
+    --type-hero-amount-size: 32px;
+    --type-hero-amount-weight: 700;
+    --type-hero-amount-line: 1.4;
+    --type-hero-amount-track: 0.04em;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: 32px 16px;
+    font-family: "Noto Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: radial-gradient(circle at top, rgba(214, 235, 255, 0.92), transparent 38%), #eef3f7;
+    color: var(--text-primary);
+  }
+
+  .stage {
+    width: min(100%, 1080px);
+    display: grid;
+    gap: 24px;
+    justify-items: center;
+  }
+
+  .intro {
+    width: min(100%, 760px);
+    text-align: center;
+    display: grid;
+    gap: 8px;
+  }
+
+  .intro small {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+  }
+
+  .intro h1 {
+    margin: 0;
+    font-size: clamp(24px, 4vw, 32px);
+    line-height: 1.2;
+  }
+
+  .intro p {
+    margin: 0;
+    font-size: var(--type-body-secondary-size);
+    font-weight: var(--type-body-secondary-weight);
+    line-height: var(--type-body-secondary-line);
+    letter-spacing: var(--type-body-secondary-track);
+    color: var(--text-secondary);
+  }
+
+  .demo-grid {
+    display: grid;
+    gap: 24px;
+    grid-template-columns: auto minmax(240px, 280px);
+    align-items: start;
+  }
+
+  .phone {
+    width: var(--phone-width);
+    min-height: 812px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 40px;
+    border: 1px solid rgba(17, 29, 74, 0.12);
+    background: var(--bg-page);
+    box-shadow: 0 30px 80px rgba(17, 29, 74, 0.18);
+    padding: 16px 16px 20px;
+  }
+
+  .phone::before {
+    content: "";
+    position: absolute;
+    inset: 10px;
+    border-radius: 32px;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    pointer-events: none;
+  }
+
+  .nav-shell,
+  .content,
+  .footer {
+    position: relative;
+    z-index: 1;
+  }
+
+  .nav-shell {
+    min-height: 90px;
+    position: relative;
+  }
+
+  .primary-nav {
+    position: absolute;
+    inset: 0;
+  }
+
+  .nav-status {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 21px 27px 0 21px;
+    font-size: 11px;
+    font-weight: 700;
+  }
+
+  .nav-status-right {
+    font-size: 12px;
+    letter-spacing: 0.02em;
+  }
+
+  .nav-backdrop {
+    position: absolute;
+    inset: 0 0 auto;
+    height: 90px;
+    background: linear-gradient(180deg, #ffffff 0%, rgba(255, 255, 255, 0) 100%);
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+  }
+
+  .nav-row {
+    position: absolute;
+    left: 16px;
+    right: 16px;
+    top: 54px;
+    width: 343px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-brand-icon {
+    width: 24px;
+    height: 16.7px;
+  }
+
+  .nav-brand-icon img,
+  .nav-icon img,
+  .token-stack img {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .nav-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .token-bar {
+    position: absolute;
+    left: 50%;
+    top: 50px;
+    transform: translateX(-50%);
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 8px 4px 8px;
+    padding-right: 14px;
+    border-radius: var(--radius-full);
+    background: #fff;
+    border: 1px solid var(--border-default);
+    box-shadow: 0 8px 20px rgba(17, 29, 74, 0.05);
+  }
+
+  .token-stack {
+    width: 96px;
+    height: 24px;
+  }
+
+  .beta-pill {
+    position: absolute;
+    left: 48px;
+    top: 57px;
+    height: 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 8px;
+    border-radius: var(--radius-sm);
+    border: 1px solid #4fa1f5;
+    background: rgba(255, 255, 255, 0.62);
+    box-shadow: 1.5px 1.5px 15px rgba(0, 0, 0, 0.12);
+    color: rgba(0, 127, 255, 0.8);
+    font-size: 10px;
+    letter-spacing: 0.04em;
+  }
+
+  .content {
+    display: grid;
+    gap: 16px;
+    padding: 8px 4px 0;
+  }
+
+  .hero,
+  .panel,
+  .route-card,
+  .summary-card,
+  .notice {
+    border-radius: var(--radius-lg);
+  }
+
+  .hero {
+    padding: 18px 18px 16px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.82), rgba(214,235,255,0.48));
+    border: 1px solid rgba(255,255,255,0.88);
+    box-shadow: var(--shadow-card);
+    display: grid;
+    gap: 10px;
+  }
+
+  .hero small,
+  .panel-label {
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+  }
+
+  .hero h2 {
+    margin: 0;
+    font-size: var(--type-section-lead-size);
+    font-weight: var(--type-section-lead-weight);
+    line-height: var(--type-section-lead-line);
+    letter-spacing: var(--type-section-lead-track);
+  }
+
+  .hero p {
+    margin: 0;
+    font-size: var(--type-body-secondary-size);
+    font-weight: var(--type-body-secondary-weight);
+    line-height: var(--type-body-secondary-line);
+    letter-spacing: var(--type-body-secondary-track);
+    color: var(--text-secondary);
+  }
+
+  .hero-top {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    align-items: start;
+  }
+
+  .network-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 28px;
+    padding: 0 12px;
+    border-radius: var(--radius-full);
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+  }
+
+  .amount-shell {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+  }
+
+  .amount-shell strong {
+    font-size: var(--type-hero-amount-size);
+    font-weight: var(--type-hero-amount-weight);
+    line-height: var(--type-hero-amount-line);
+    letter-spacing: calc(var(--type-hero-amount-track) * -1);
+  }
+
+  .amount-shell span {
+    font-size: var(--type-body-primary-size);
+    font-weight: var(--type-body-primary-weight);
+    line-height: var(--type-body-primary-line);
+    letter-spacing: var(--type-body-primary-track);
+    color: var(--text-secondary);
+  }
+
+  .hero-meta {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    font-size: 14px;
+    color: var(--text-secondary);
+    letter-spacing: var(--type-body-secondary-track);
+  }
+
+  .panel,
+  .route-card,
+  .summary-card,
+  .notice {
+    background: var(--bg-card);
+    border: 1px solid rgba(255,255,255,0.88);
+    box-shadow: var(--shadow-card);
+  }
+
+  .panel {
+    padding: 16px;
+    display: grid;
+    gap: 14px;
+  }
+
+  .recipient-row,
+  .asset-row,
+  .summary-card,
+  .timeline-step {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .recipient-meta,
+  .asset-meta {
+    display: grid;
+    gap: 3px;
+  }
+
+  .recipient-meta strong,
+  .asset-meta strong,
+  .summary-card strong,
+  .timeline-copy strong {
+    font-size: var(--type-body-primary-size);
+    font-weight: var(--type-body-primary-weight);
+    line-height: var(--type-body-primary-line);
+    letter-spacing: var(--type-body-primary-track);
+  }
+
+  .recipient-meta span,
+  .asset-meta span,
+  .summary-card span,
+  .summary-card small,
+  .timeline-copy span,
+  .route-copy span,
+  .footer-note {
+    font-size: var(--type-body-secondary-size);
+    font-weight: var(--type-body-secondary-weight);
+    line-height: var(--type-body-secondary-line);
+    letter-spacing: var(--type-body-secondary-track);
+    color: var(--text-secondary);
+  }
+
+  .avatar,
+  .token-chip,
+  .timeline-dot {
+    flex: 0 0 auto;
+    display: grid;
+    place-items: center;
+  }
+
+  .avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 14px;
+    background: linear-gradient(180deg, #d6ebff, #eef7ff);
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  .token-chip {
+    width: 44px;
+    height: 44px;
+    border-radius: 14px;
+    background: var(--accent);
+    color: #fff;
+    font-weight: 700;
+  }
+
+  .address-input {
+    padding: 14px 16px;
+    border-radius: 24px;
+    background: var(--bg-card-strong);
+    border: 1px solid var(--border-default);
+    font-size: var(--type-body-primary-size);
+    font-weight: var(--type-body-primary-weight);
+    line-height: var(--type-body-primary-line);
+    letter-spacing: var(--type-body-primary-track);
+    color: var(--text-primary);
+  }
+
+  .quick-contacts {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .quick-contacts span,
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 9px 12px;
+    border-radius: var(--radius-full);
+    border: 1px solid var(--border-default);
+    background: rgba(255,255,255,0.72);
+    font-size: 13px;
+    color: var(--text-primary);
+  }
+
+  .tag.active {
+    background: var(--accent-soft);
+    border-color: transparent;
+    color: var(--accent);
+  }
+
+  .route-card {
+    padding: 16px;
+    display: grid;
+    gap: 12px;
+  }
+
+  .route-line {
+    display: grid;
+    gap: 12px;
+  }
+
+  .timeline-step {
+    align-items: start;
+  }
+
+  .timeline-dot {
+    width: 24px;
+    height: 24px;
+    border-radius: 999px;
+    background: var(--bg-inner);
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  .timeline-copy {
+    flex: 1;
+    display: grid;
+    gap: 2px;
+  }
+
+  .summary-card {
+    padding: 14px 16px;
+  }
+
+  .summary-card small {
+    display: block;
+    margin-bottom: 3px;
+  }
+
+  .notice {
+    padding: 14px 16px;
+    background: var(--danger-soft);
+    border-color: rgba(178, 75, 47, 0.12);
+  }
+
+  .notice strong {
+    display: block;
+    margin-bottom: 4px;
+    font-size: var(--type-body-primary-size);
+    font-weight: var(--type-body-primary-weight);
+    line-height: var(--type-body-primary-line);
+    letter-spacing: var(--type-body-primary-track);
+    color: var(--danger);
+  }
+
+  .notice p {
+    margin: 0;
+    font-size: var(--type-body-secondary-size);
+    font-weight: var(--type-body-secondary-weight);
+    line-height: var(--type-body-secondary-line);
+    letter-spacing: var(--type-body-secondary-track);
+    color: rgba(178,75,47,0.86);
+  }
+
+  .footer {
+    display: grid;
+    gap: 12px;
+    padding: 20px 4px 0;
+  }
+
+  .footer-meta {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    font-size: var(--type-body-secondary-size);
+    font-weight: var(--type-body-secondary-weight);
+    line-height: var(--type-body-secondary-line);
+    letter-spacing: var(--type-body-secondary-track);
+    color: var(--text-secondary);
+  }
+
+  .cta {
+    height: 56px;
+    border: none;
+    border-radius: 20px;
+    background: var(--accent);
+    color: white;
+    font-size: var(--type-body-primary-size);
+    font-weight: 400;
+    line-height: var(--type-body-primary-line);
+    letter-spacing: var(--type-body-primary-track);
+    box-shadow: 0 18px 28px rgba(0, 127, 255, 0.28);
+  }
+
+  .rail {
+    display: grid;
+    gap: 16px;
+  }
+
+  .rail-card {
+    padding: 16px;
+    border-radius: var(--radius-lg);
+    background: rgba(255,255,255,0.78);
+    border: 1px solid rgba(255,255,255,0.88);
+    box-shadow: var(--shadow-card);
+    display: grid;
+    gap: 10px;
+  }
+
+  .rail-card h3 {
+    margin: 0;
+    font-size: var(--type-body-primary-size);
+    font-weight: var(--type-body-primary-weight);
+    line-height: var(--type-body-primary-line);
+    letter-spacing: var(--type-body-primary-track);
+  }
+
+  .rail-card p,
+  .rail-card li {
+    margin: 0;
+    font-size: var(--type-body-secondary-size);
+    font-weight: var(--type-body-secondary-weight);
+    line-height: 1.6;
+    letter-spacing: var(--type-body-secondary-track);
+    color: var(--text-secondary);
+  }
+
+  .rail-card ul {
+    margin: 0;
+    padding-left: 18px;
+    display: grid;
+    gap: 8px;
+  }
+
+  @media (max-width: 860px) {
+    .demo-grid {
+      grid-template-columns: 1fr;
+    }
+    .rail {
+      width: min(100%, 375px);
+    }
+  }
+</style>
+</head>
+<body>
+  <div class="stage">
+    <div class="intro">
+      <small>r2d2-ds-agent · intent to ai</small>
+      <h1>Send token flow sample design</h1>
+      <p>Generated as a code demo from the same Figma DS definitions. Navigation uses real Figma assets. Content area is composed from repo tokens and DS typography.</p>
+    </div>
+
+    <div class="demo-grid">
+      <div class="phone">
+        <div class="nav-shell">
+          <div class="primary-nav">
+            <div class="nav-backdrop"></div>
+            <div class="nav-status">
+              <span>9:41</span>
+              <span class="nav-status-right">◔◔ 5G ▱</span>
+            </div>
+            <div class="nav-row">
+              <div class="nav-brand-icon"><img src="https://www.figma.com/api/mcp/asset/3452b539-4dd2-4360-910b-3c77386b0b67" alt=""></div>
+              <div class="nav-actions">
+                <div class="token-bar" aria-label="Token switcher">
+                  <div class="token-stack"><img src="https://www.figma.com/api/mcp/asset/60b33154-2263-43ff-90e7-d6e31982c9c8" alt=""></div>
+                </div>
+                <div class="nav-icon"><img src="https://www.figma.com/api/mcp/asset/9e023a77-3671-45a8-b20a-5169086ac553" alt=""></div>
+                <div class="nav-icon"><img src="https://www.figma.com/api/mcp/asset/0cff6fa0-07c3-45e5-9260-4133e0a9c1e4" alt=""></div>
+              </div>
+            </div>
+            <div class="beta-pill">Beta</div>
+          </div>
+        </div>
+
+        <div class="content">
+          <section class="hero">
+            <div class="hero-top">
+              <div>
+                <small>Transfer setup</small>
+                <h2>Send with one clean path</h2>
+              </div>
+              <div class="network-pill">Ethereum</div>
+            </div>
+            <div class="amount-shell">
+              <strong>2.45</strong>
+              <span>ETH</span>
+            </div>
+            <div class="hero-meta">
+              <span>≈ $7,804.28</span>
+              <span>Available 12.80 ETH</span>
+            </div>
+          </section>
+
+          <section class="panel">
+            <div class="asset-row">
+              <div class="token-chip">ETH</div>
+              <div class="asset-meta">
+                <strong>Ethereum</strong>
+                <span>Main asset · network fee estimated before signing</span>
+              </div>
+              <span class="tag active">Live</span>
+            </div>
+            <div class="panel-label">Recipient</div>
+            <div class="recipient-row">
+              <div class="avatar">AL</div>
+              <div class="recipient-meta">
+                <strong>Alice Treasury</strong>
+                <span>0xA9c1...2F9b</span>
+              </div>
+              <span class="tag">Saved</span>
+            </div>
+            <div class="address-input">vitalik.eth or paste wallet address</div>
+            <div class="quick-contacts">
+              <span class="tag active">0xA9c1...2F9b</span>
+              <span>0xB3d8...17Ae</span>
+              <span>vitalik.eth</span>
+            </div>
+          </section>
+
+          <section class="route-card">
+            <div class="panel-label">Transfer route</div>
+            <div class="route-line">
+              <div class="timeline-step">
+                <div class="timeline-dot">1</div>
+                <div class="timeline-copy">
+                  <strong>Wallet 1</strong>
+                  <span>Primary send wallet on Ethereum mainnet</span>
+                </div>
+                <span class="route-copy"><span>Ready</span></span>
+              </div>
+              <div class="timeline-step">
+                <div class="timeline-dot">2</div>
+                <div class="timeline-copy">
+                  <strong>Network confirmation</strong>
+                  <span>Estimated completion in ~15 sec</span>
+                </div>
+                <span class="route-copy"><span>0.0032 ETH</span></span>
+              </div>
+              <div class="timeline-step">
+                <div class="timeline-dot">3</div>
+                <div class="timeline-copy">
+                  <strong>Alice Treasury</strong>
+                  <span>Receives 2.45 ETH after confirmation</span>
+                </div>
+                <span class="route-copy"><span>Saved</span></span>
+              </div>
+            </div>
+          </section>
+
+          <section class="summary-card">
+            <div>
+              <small>Total debit</small>
+              <strong>2.4532 ETH</strong>
+            </div>
+            <span>Amount + fee</span>
+          </section>
+
+          <section class="notice">
+            <strong>Heads-up</strong>
+            <p>Only send to Ethereum-compatible addresses. This sample keeps the risk note compact and visible before the final action.</p>
+          </section>
+        </div>
+
+        <div class="footer">
+          <div class="footer-meta">
+            <span>Wallet 1 · Ethereum</span>
+            <span>Preview only</span>
+          </div>
+          <button class="cta" type="button">Send 2.45 ETH</button>
+          <div class="footer-note">Intent-to-AI sample. No transaction is signed.</div>
+        </div>
+      </div>
+
+      <aside class="rail">
+        <section class="rail-card">
+          <h3>Scenario</h3>
+          <p>`Intent To AI` with output to code demo. The request is treated as generating a new sample design from DS intent, not repairing an existing screen.</p>
+        </section>
+        <section class="rail-card">
+          <h3>Applied From DS</h3>
+          <ul>
+            <li>Typography is aligned to runtime adapter values for `navTitle`, `bodyPrimary`, `bodySecondary`, `sectionLead`, and `heroAmount`.</li>
+            <li>Color, spacing, radius, and hierarchy use the repo token source from `source/tokens.json`.</li>
+            <li>Top navigation uses real Figma assets from the linked DS page.</li>
+          </ul>
+        </section>
+        <section class="rail-card">
+          <h3>Design Intent</h3>
+          <p>Make send feel fast, calm, and high-trust on mobile. Keep the primary path obvious: amount, recipient, route, confirm.</p>
+        </section>
+      </aside>
+    </div>
+  </div>
+</body>
+</html>

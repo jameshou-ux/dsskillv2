@@ -8,6 +8,8 @@ Design System Adapt is split into a publishable skill, a standalone Figma plugin
 - [`figma-plugin/`](figma-plugin/) contains the standalone Figma variable importer package.
 - [`schema/figma-adapter-spec.md`](schema/figma-adapter-spec.md) defines the public JSON contract the plugin consumes.
 - [`tools/build-figma-adapter.py`](tools/build-figma-adapter.py) is an optional generator for producing conforming Figma adapter payloads from a canonical token source.
+- [`r2d2-ds-agent/`](r2d2-ds-agent/) is the installable team skill package for governance-aware DS work.
+- [`docs/agents/r2d2-ds-agent.md`](docs/agents/r2d2-ds-agent.md) is the team-default DS agent spec and skill stack entry.
 
 ## Recommended Flow
 

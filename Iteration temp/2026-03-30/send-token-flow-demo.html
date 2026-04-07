@@ -1,0 +1,1963 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>imToken · Send Token Flow · Source Token V5</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+
+/* ═══════════════════════════════════════════════════════════════════
+   SOURCE TOKEN V5 · LIGHT SEMANTIC — all values resolved from JSON
+   ════════════════════════════════════════════════════════════════ */
+:root {
+  /* ── Primitives (resolved) ─────────────────────────────────────── */
+  --prim-white:           #FFFFFF;
+  --prim-gray-50:         #F9FAFB;
+  --prim-gray-100:        #F0F1F3;
+  --prim-navy-50:         #ECEDF0;
+  --prim-navy-200:        #D0D2DB;
+  --prim-navy-700:        #A0A5B7;
+  --prim-navy-900:        #111D4A;
+  --prim-blue-50:         #F9FDFF;
+  --prim-blue-100:        #D6EBFF;
+  --prim-blue-500:        #007FFF;
+  --prim-blue-a8:         rgba(0, 127, 255, 0.08);
+  --prim-blue-a20:        rgba(0, 127, 255, 0.20);
+  --prim-green-500:       #4BCE71;
+  --prim-green-a20:       rgba(75, 206, 113, 0.20);
+  --prim-red-500:         #F3636F;
+  --prim-red-a20:         rgba(243, 99, 111, 0.20);
+  --prim-orange-500:      #FC8C4D;
+  --prim-orange-a20:      rgba(252, 140, 77, 0.20);
+
+  /* ── Semantic: Background ──────────────────────────────────────── */
+  --bg-general:           var(--prim-white);         /* background/general */
+  --bg-card:              var(--prim-white);         /* background/card */
+  --bg-modal:             var(--prim-gray-50);       /* background/modal */
+  --bg-modal-section:     var(--prim-white);         /* background/modal_section */
+  --bg-modal-inner:       var(--prim-gray-100);      /* background/modal_section_inner */
+
+  /* ── Semantic: Text ────────────────────────────────────────────── */
+  --text-core:            var(--prim-navy-900);      /* text/core */
+  --text-primary:         var(--prim-navy-900);      /* text/primary */
+  --text-secondary:       var(--prim-navy-700);      /* text/secondary */
+  --text-action:          var(--prim-blue-500);      /* text/action */
+  --text-inverse:         var(--prim-white);         /* text/inverse */
+  --text-placeholder:     var(--prim-navy-200);      /* text/placeholder */
+  --text-success:         var(--prim-green-500);     /* text/success */
+  --text-error:           var(--prim-red-500);       /* text/error */
+  --text-warning:         var(--prim-orange-500);    /* text/warning */
+
+  /* ── Semantic: Stroke ──────────────────────────────────────────── */
+  --stroke-icon:          var(--prim-navy-900);      /* stroke/icon_primary */
+  --stroke-icon-sec:      var(--prim-navy-700);      /* stroke/icon_secondary */
+
+  /* ── Semantic: Border ──────────────────────────────────────────── */
+  --border-default:       var(--prim-navy-50);       /* border/default */
+
+  /* ── Semantic: Fill ────────────────────────────────────────────── */
+  --fill-action:          var(--prim-blue-500);      /* fill/action */
+  --fill-action-subtle:   var(--prim-blue-a20);      /* fill/action_subtle */
+  --fill-secondary:       var(--prim-navy-900);      /* fill/secondary */
+  --fill-chip:            var(--prim-gray-100);      /* fill/icon_chip */
+  --fill-success:         var(--prim-green-500);     /* fill/success */
+  --fill-success-subtle:  var(--prim-green-a20);     /* fill/success_subtle */
+  --fill-error:           var(--prim-red-500);       /* fill/error */
+  --fill-error-subtle:    var(--prim-red-a20);       /* fill/error_subtle */
+  --fill-warning-subtle:  var(--prim-orange-a20);    /* fill/warning_subtle */
+
+  /* ── Semantic: Gradient ────────────────────────────────────────── */
+  --gradient-general:     linear-gradient(180deg, var(--prim-blue-50) 0%, var(--prim-gray-100) 100%);
+  --gradient-main:        linear-gradient(180deg, var(--prim-blue-50) 0%, var(--prim-blue-100) 100%);
+
+  /* ── Primitive: Spacing ────────────────────────────────────────── */
+  --sp-2: 2px;  --sp-4: 4px;  --sp-8: 8px;   --sp-10: 10px;
+  --sp-12: 12px; --sp-16: 16px; --sp-20: 20px; --sp-24: 24px;
+  --sp-32: 32px; --sp-40: 40px; --sp-48: 48px;
+
+  /* ── Primitive: Size ───────────────────────────────────────────── */
+  --sz-16: 16px; --sz-20: 20px; --sz-24: 24px; --sz-32: 32px;
+  --sz-36: 36px; --sz-40: 40px; --sz-44: 44px; --sz-48: 48px;
+  --sz-52: 52px; --sz-56: 56px; --sz-90: 90px;
+
+  /* ── Primitive: Radius ─────────────────────────────────────────── */
+  --r-xs: 8px; --r-sm: 4px; --r-md: 10px; --r-lg: 16px; --r-full: 9999px;
+
+  /* ── Primitive: Typography ─────────────────────────────────────── */
+  --f-xs: 10px; --f-sm: 12px; --f-md: 14px; --f-lg: 16px;
+  --f-xl: 20px; --f-2xl: 24px; --f-3xl: 32px;
+  --fw-reg: 400; --fw-med: 500; --fw-bold: 700;
+  --lh-tight: 1.30; --lh-norm: 1.40;
+  --ls-norm: 0.04em;
+
+  /* ── Phone dimensions (primitive.size.375 / primitive.size.812) ── */
+  --phone-w: 375px;
+  --phone-h: 812px;
+
+  /* ── Shadows ───────────────────────────────────────────────────── */
+  --sh-card:  0 24px 64px rgba(17, 29, 74, 0.12);
+  --sh-float: 0 8px 24px rgba(17, 29, 74, 0.08);
+  --sh-btn:   0 4px 16px rgba(0, 127, 255, 0.28);
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   BASE
+   ════════════════════════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  height: 100%;
+  font-family: "Noto Sans SC", "PingFang SC", -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background:
+    radial-gradient(circle at 25% -5%, var(--prim-blue-100) 0%, transparent 40%),
+    #dde4ec;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: var(--sp-24);
+}
+
+button { font: inherit; border: 0; background: none; color: inherit; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+input  { font: inherit; border: 0; background: none; color: inherit; outline: none; }
+
+/* ═══════════════════════════════════════════════════════════════════
+   PHONE SHELL
+   ════════════════════════════════════════════════════════════════ */
+.phone-shell {
+  position: relative;
+  width: var(--phone-w);
+  height: var(--phone-h);
+  filter: drop-shadow(0 32px 80px rgba(17, 29, 74, 0.22));
+}
+
+/* Physical outer ring */
+.phone-shell::before {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 44px;
+  background: linear-gradient(145deg, #c8cdd6 0%, #b8bec9 50%, #cdd1da 100%);
+  z-index: 0;
+}
+
+/* Inner screen area */
+.phone {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 40px;
+  overflow: hidden;
+  background: var(--bg-general);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.6);
+  z-index: 1;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   SCREEN STACK + TRANSITIONS
+   ════════════════════════════════════════════════════════════════ */
+.screen {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--gradient-general);
+  transform: translateX(100%);
+  will-change: transform;
+  overflow: hidden;
+}
+
+.screen.is-active  { transform: translateX(0); }
+.screen.slide-out-left  {
+  transform: translateX(-28%);
+  transition: transform 320ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.screen.slide-out-right {
+  transform: translateX(100%);
+  transition: transform 320ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.screen.slide-in-left {
+  transform: translateX(-28%);
+}
+.screen.slide-in-right {
+  transform: translateX(100%);
+}
+.screen.animating {
+  transition: transform 320ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   STATUS BAR
+   ════════════════════════════════════════════════════════════════ */
+.status-bar {
+  height: 44px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 0 var(--sp-24) var(--sp-8);
+  font-size: var(--f-xs);
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.02em;
+  color: var(--text-primary);
+  flex-shrink: 0;
+}
+
+.status-icons { display: flex; align-items: center; gap: 5px; }
+
+/* ═══════════════════════════════════════════════════════════════════
+   NAVIGATION (secondary — sz-56)
+   ════════════════════════════════════════════════════════════════ */
+.nav-secondary {
+  height: var(--sz-56);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--sp-16);
+  border-bottom: 1px solid var(--border-default);
+  flex-shrink: 0;
+  position: relative;
+  background: rgba(255,255,255,0.8);
+  backdrop-filter: blur(12px);
+}
+
+.nav-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: var(--f-lg);
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-norm);
+  letter-spacing: var(--ls-norm);
+  color: var(--text-core);
+  white-space: nowrap;
+}
+
+.nav-icon-btn {
+  width: var(--sz-32);
+  height: var(--sz-32);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--stroke-icon);
+  border-radius: var(--r-full);
+  transition: background 120ms;
+}
+
+.nav-icon-btn:active { background: var(--fill-chip); }
+
+.nav-primary {
+  position: relative;
+  height: 90px;
+  flex-shrink: 0;
+  background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
+}
+
+.nav-primary-status {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 27px 0 21px;
+  font-size: 11px;
+  font-weight: var(--fw-bold);
+  color: var(--text-primary);
+}
+
+.nav-primary-bar {
+  position: absolute;
+  left: 50%;
+  top: 54px;
+  transform: translateX(-50%);
+  width: 343px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand-mark {
+  width: 24px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-core);
+}
+
+.nav-primary-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-8);
+}
+
+.token-pill {
+  position: absolute;
+  left: 50%;
+  top: 50px;
+  transform: translateX(-50%);
+  height: 32px;
+  padding: var(--sp-4) var(--sp-8);
+  border-radius: var(--r-full);
+  border: 1px solid var(--border-default);
+  background: var(--bg-card);
+  box-shadow: var(--sh-float);
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.token-pill-dot {
+  width: 24px;
+  height: 24px;
+  margin-right: -6px;
+  border-radius: var(--r-full);
+  border: 2px solid var(--bg-card);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.token-pill-dot:last-child {
+  margin-right: 0;
+}
+
+.token-pill-dot.eth {
+  background: #627EEA;
+  color: var(--prim-white);
+}
+
+.token-pill-dot.usdt {
+  background: #26A17B;
+  color: var(--prim-white);
+}
+
+.token-pill-dot.btc {
+  background: #F7931A;
+  color: var(--prim-white);
+}
+
+.token-pill-dot.more {
+  background: var(--bg-modal-inner);
+  color: var(--text-secondary);
+  font-size: var(--f-sm);
+  font-weight: var(--fw-bold);
+}
+
+.beta-badge {
+  position: absolute;
+  left: 48px;
+  top: 57px;
+  height: 18px;
+  padding: 0 var(--sp-8);
+  border-radius: var(--r-sm);
+  border: 1px solid rgba(79, 161, 245, 0.52);
+  background: rgba(255, 255, 255, 0.68);
+  backdrop-filter: blur(6.75px);
+  color: var(--text-action);
+  font-size: var(--f-xs);
+  line-height: 18px;
+  letter-spacing: var(--ls-norm);
+  box-shadow: 1.5px 1.5px 15px rgba(0, 0, 0, 0.12);
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   STEP INDICATOR (semantic: fill/action, fill/success_subtle)
+   ════════════════════════════════════════════════════════════════ */
+.step-indicator {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-8);
+  padding: var(--sp-12) var(--sp-16) var(--sp-8);
+  flex-shrink: 0;
+}
+
+.step-dot {
+  height: var(--sp-8);
+  width: var(--sp-8);
+  border-radius: var(--r-full);
+  background: var(--border-default);
+  transition: width 240ms ease, background 240ms ease;
+}
+
+.step-dot.is-active  { width: 20px; background: var(--fill-action); }
+.step-dot.is-done    {
+  background: var(--fill-success-subtle);
+  outline: 1.5px solid var(--fill-success);
+  outline-offset: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   SCREEN BODY + FOOTER
+   ════════════════════════════════════════════════════════════════ */
+.screen-body {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: var(--sp-8) var(--sp-16) var(--sp-16);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-10);
+  -webkit-overflow-scrolling: touch;
+}
+
+.screen-body::-webkit-scrollbar { display: none; }
+
+.screen-footer {
+  padding: var(--sp-12) var(--sp-16) var(--sp-16);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-10);
+  border-top: 1px solid var(--border-default);
+  flex-shrink: 0;
+  background: rgba(255,255,255,0.9);
+  backdrop-filter: blur(8px);
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   HOME INDICATOR
+   ════════════════════════════════════════════════════════════════ */
+.home-indicator {
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: rgba(255,255,255,0.9);
+}
+
+.home-bar {
+  width: 134px;
+  height: 4px;
+  border-radius: var(--r-full);
+  background: rgba(17, 29, 74, 0.18);
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   BUTTONS
+   Semantic: btn-primary → fill/action, text/inverse
+             btn-ghost   → text/action
+             btn-outline → border/default, text/primary
+   ════════════════════════════════════════════════════════════════ */
+.btn-primary {
+  width: 100%;
+  height: var(--sz-52);
+  border-radius: var(--r-full);
+  background: var(--fill-action);
+  color: var(--text-inverse);
+  font-size: var(--f-lg);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--ls-norm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 120ms, opacity 120ms, box-shadow 120ms;
+  box-shadow: var(--sh-btn);
+}
+
+.btn-primary:active { transform: scale(0.97); box-shadow: 0 2px 8px rgba(0,127,255,0.2); }
+.btn-primary:disabled { opacity: 0.55; transform: none; cursor: default; }
+
+.btn-ghost {
+  height: var(--sz-44);
+  color: var(--text-action);
+  font-size: var(--f-md);
+  font-weight: var(--fw-med);
+  letter-spacing: var(--ls-norm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-4);
+  width: 100%;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   CARD — bg/card + border/default
+   ════════════════════════════════════════════════════════════════ */
+.card {
+  background: var(--bg-card);
+  border-radius: var(--r-lg);
+  border: 1px solid var(--border-default);
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   TOKEN SELECTOR ROW — Send Screen
+   ════════════════════════════════════════════════════════════════ */
+.token-selector {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: var(--sp-12);
+  padding: var(--sp-12) var(--sp-16);
+  text-align: left;
+  transition: background 120ms;
+}
+
+.token-selector:active { background: var(--bg-modal-inner); }
+
+.token-logo {
+  width: var(--sz-40);
+  height: var(--sz-40);
+  border-radius: var(--r-full);
+  flex-shrink: 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.token-meta {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.token-name {
+  font-size: var(--f-lg);
+  font-weight: var(--fw-med);
+  line-height: var(--lh-norm);
+  letter-spacing: var(--ls-norm);
+  color: var(--text-primary);
+}
+
+.token-network {
+  font-size: var(--f-sm);
+  line-height: var(--lh-norm);
+  color: var(--text-secondary);
+}
+
+.token-right { text-align: right; }
+
+.token-balance {
+  font-size: var(--f-md);
+  font-weight: var(--fw-med);
+  color: var(--text-primary);
+}
+
+.token-balance-usd {
+  font-size: var(--f-xs);
+  color: var(--text-secondary);
+  margin-top: 1px;
+}
+
+.chevron-r {
+  color: var(--stroke-icon-sec);
+  flex-shrink: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   AMOUNT BLOCK — bg/modal-section-inner for inner bg
+   ════════════════════════════════════════════════════════════════ */
+.amount-block {
+  padding: var(--sp-20) var(--sp-16) var(--sp-16);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-8);
+}
+
+.amount-input-row {
+  display: flex;
+  align-items: baseline;
+  gap: var(--sp-8);
+}
+
+/* font/heroAmount: 32px bold 140% 0.04em */
+.amount-input {
+  font-size: var(--f-3xl);
+  font-weight: var(--fw-bold);
+  color: var(--text-core);
+  width: 170px;
+  text-align: right;
+  letter-spacing: 0.01em;
+  line-height: var(--lh-norm);
+  caret-color: var(--fill-action);
+}
+
+.amount-unit {
+  font-size: var(--f-xl);
+  font-weight: var(--fw-med);
+  color: var(--text-secondary);
+  line-height: var(--lh-norm);
+}
+
+.amount-usd {
+  font-size: var(--f-md);
+  color: var(--text-secondary);
+  line-height: var(--lh-norm);
+}
+
+.max-btn {
+  height: 26px;
+  padding: 0 var(--sp-12);
+  border-radius: var(--r-full);
+  background: var(--fill-chip);
+  font-size: var(--f-sm);
+  font-weight: var(--fw-bold);
+  color: var(--text-action);
+  letter-spacing: 0.06em;
+  transition: background 120ms;
+}
+
+.max-btn:active { background: var(--fill-action-subtle); }
+
+/* ═══════════════════════════════════════════════════════════════════
+   ADDRESS FIELD
+   ════════════════════════════════════════════════════════════════ */
+.field-block {
+  padding: var(--sp-12) var(--sp-16);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-8);
+}
+
+.field-label {
+  font-size: var(--f-xs);
+  font-weight: var(--fw-bold);
+  color: var(--text-secondary);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.field-input-row {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-8);
+}
+
+.address-field {
+  flex: 1;
+  font-size: var(--f-sm);
+  font-weight: var(--fw-med);
+  color: var(--text-primary);
+  font-family: ui-monospace, "SF Mono", "Menlo", monospace;
+}
+
+.field-chip-btn {
+  height: 28px;
+  padding: 0 var(--sp-10);
+  border-radius: var(--r-full);
+  background: var(--fill-chip);
+  font-size: var(--f-sm);
+  font-weight: var(--fw-med);
+  color: var(--text-secondary);
+  flex-shrink: 0;
+  transition: background 120ms;
+}
+
+.field-chip-btn:active { background: var(--fill-action-subtle); color: var(--text-action); }
+
+/* ═══════════════════════════════════════════════════════════════════
+   FEE ROW
+   ════════════════════════════════════════════════════════════════ */
+.fee-row {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-8);
+  padding: var(--sp-12) var(--sp-16);
+  transition: background 120ms;
+}
+
+.fee-row:active { background: var(--bg-modal-inner); }
+
+.fee-label {
+  font-size: var(--f-md);
+  color: var(--text-primary);
+  flex: 1;
+}
+
+.fee-value {
+  font-size: var(--f-md);
+  font-weight: var(--fw-med);
+  color: var(--text-secondary);
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   DETAIL BLOCK (Preview + Sign) — bg/card + border/default
+   ════════════════════════════════════════════════════════════════ */
+.detail-block {
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  border: 1px solid var(--border-default);
+  background: var(--bg-card);
+}
+
+.detail-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--sp-12) var(--sp-16);
+  gap: var(--sp-16);
+}
+
+.detail-row + .detail-row { border-top: 1px solid var(--border-default); }
+
+.detail-row.total { background: var(--bg-modal-inner); }
+
+.detail-key {
+  font-size: var(--f-md);
+  color: var(--text-secondary);
+  flex-shrink: 0;
+}
+
+.detail-key.bold { font-weight: var(--fw-bold); color: var(--text-primary); }
+
+.detail-val {
+  font-size: var(--f-md);
+  font-weight: var(--fw-med);
+  color: var(--text-primary);
+  text-align: right;
+}
+
+.detail-val.bold { font-weight: var(--fw-bold); }
+.detail-val.mono {
+  font-family: ui-monospace, "SF Mono", "Menlo", monospace;
+  font-size: var(--f-sm);
+}
+
+.detail-val-stack { display: flex; flex-direction: column; gap: 2px; text-align: right; }
+.detail-val-sub   { font-size: var(--f-sm); color: var(--text-secondary); font-weight: var(--fw-reg); }
+
+/* ═══════════════════════════════════════════════════════════════════
+   AMOUNT HERO (Preview)
+   font/heroTitle: 32px bold 140% 0.04em
+   ════════════════════════════════════════════════════════════════ */
+.amount-hero {
+  padding: var(--sp-20) var(--sp-16) var(--sp-16);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-4);
+  text-align: center;
+}
+
+.amount-hero-big {
+  font-size: var(--f-3xl);
+  font-weight: var(--fw-bold);
+  color: var(--text-core);
+  letter-spacing: 0.02em;
+  line-height: 1.15;
+}
+
+.amount-hero-sub {
+  font-size: var(--f-md);
+  color: var(--text-secondary);
+  line-height: var(--lh-norm);
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   WARNING BANNER — fill/warning_subtle
+   ════════════════════════════════════════════════════════════════ */
+.warning-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-10);
+  padding: var(--sp-12) var(--sp-16);
+  background: var(--fill-warning-subtle);
+  border-radius: var(--r-md);
+}
+
+.warning-text {
+  font-size: var(--f-sm);
+  color: var(--text-warning);
+  line-height: var(--lh-norm);
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   SIGN SCREEN
+   ════════════════════════════════════════════════════════════════ */
+.sign-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-12);
+  padding: var(--sp-24) var(--sp-16);
+}
+
+.sign-icon-ring {
+  width: 72px;
+  height: 72px;
+  border-radius: var(--r-full);
+  background: var(--prim-blue-a8);
+  border: 1.5px solid var(--fill-action-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--fill-action);
+}
+
+.sign-title {
+  font-size: var(--f-xl);
+  font-weight: var(--fw-bold);
+  color: var(--text-core);
+  letter-spacing: var(--ls-norm);
+}
+
+.sign-subtitle {
+  font-size: var(--f-md);
+  color: var(--text-secondary);
+  text-align: center;
+  line-height: var(--lh-norm);
+}
+
+.password-wrap {
+  position: relative;
+}
+
+/* bg-modal-inner for input background */
+.password-field {
+  width: 100%;
+  height: var(--sz-52);
+  border-radius: var(--r-full);
+  border: 1.5px solid var(--border-default);
+  padding: 0 var(--sz-48) 0 var(--sp-20);
+  font-size: var(--f-lg);
+  background: var(--bg-modal-inner);
+  color: var(--text-primary);
+  letter-spacing: 0.12em;
+  transition: border-color 180ms;
+  display: block;
+}
+
+.password-field:focus { border-color: var(--fill-action); }
+
+.password-toggle {
+  position: absolute;
+  right: var(--sp-16);
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--stroke-icon-sec);
+  width: var(--sz-24);
+  height: var(--sz-24);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   SUCCESS SCREEN
+   ════════════════════════════════════════════════════════════════ */
+.success-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-20);
+  padding: var(--sp-32) var(--sp-16);
+}
+
+/* fill/success_subtle bg */
+.check-ring {
+  width: 96px;
+  height: 96px;
+  border-radius: var(--r-full);
+  background: var(--fill-success-subtle);
+  border: 1.5px solid rgba(75, 206, 113, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: pop 420ms cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+}
+
+@keyframes pop {
+  from { transform: scale(0.4); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+
+.check-path {
+  stroke-dasharray: 52;
+  stroke-dashoffset: 52;
+  animation: draw-check 380ms 280ms ease-out forwards;
+}
+
+@keyframes draw-check {
+  to { stroke-dashoffset: 0; }
+}
+
+.success-title {
+  font-size: var(--f-2xl);
+  font-weight: var(--fw-bold);
+  color: var(--text-core);
+  letter-spacing: var(--ls-norm);
+  text-align: center;
+}
+
+.success-desc {
+  font-size: var(--f-md);
+  color: var(--text-secondary);
+  text-align: center;
+  line-height: var(--lh-norm);
+}
+
+/* fill/icon_chip bg */
+.tx-hash-pill {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-8);
+  padding: var(--sp-8) var(--sp-16);
+  background: var(--fill-chip);
+  border-radius: var(--r-full);
+}
+
+.tx-hash-mono {
+  font-size: var(--f-sm);
+  color: var(--text-secondary);
+  font-family: ui-monospace, "SF Mono", "Menlo", monospace;
+}
+
+/* text/action link */
+.explorer-link {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-4);
+  font-size: var(--f-md);
+  color: var(--text-action);
+  font-weight: var(--fw-med);
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   HISTORY SCREEN
+   ════════════════════════════════════════════════════════════════ */
+.history-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--sp-16) var(--sp-16) var(--sp-12);
+  flex-shrink: 0;
+  border-bottom: 1px solid var(--border-default);
+  background: rgba(255,255,255,0.8);
+  backdrop-filter: blur(12px);
+}
+
+.history-title-block {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+  padding: var(--sp-8) var(--sp-16) var(--sp-12);
+  border-bottom: 1px solid var(--border-default);
+  background: rgba(255,255,255,0.72);
+}
+
+.history-subtitle {
+  font-size: var(--f-sm);
+  color: var(--text-secondary);
+  line-height: var(--lh-norm);
+}
+
+.history-title {
+  font-size: var(--f-xl);
+  font-weight: var(--fw-bold);
+  color: var(--text-core);
+  letter-spacing: var(--ls-norm);
+}
+
+.history-actions { display: flex; gap: var(--sp-12); }
+
+.filter-tabs {
+  display: flex;
+  gap: var(--sp-4);
+  padding: var(--sp-12) var(--sp-16) var(--sp-8);
+  border-bottom: 1px solid var(--border-default);
+  flex-shrink: 0;
+  background: rgba(255,255,255,0.6);
+}
+
+.filter-tab {
+  height: 32px;
+  padding: 0 var(--sp-12);
+  border-radius: var(--r-full);
+  font-size: var(--f-sm);
+  font-weight: var(--fw-med);
+  color: var(--text-secondary);
+  transition: background 180ms, color 180ms;
+}
+
+.filter-tab.is-active {
+  background: var(--fill-chip);
+  color: var(--text-primary);
+  font-weight: var(--fw-bold);
+}
+
+.tx-list {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+.tx-list::-webkit-scrollbar { display: none; }
+
+.date-group-label {
+  padding: var(--sp-12) var(--sp-16) var(--sp-4);
+  font-size: var(--f-sm);
+  font-weight: var(--fw-med);
+  color: var(--text-secondary);
+  letter-spacing: 0.02em;
+}
+
+.tx-item {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-12);
+  padding: var(--sp-12) var(--sp-16);
+  transition: background 120ms;
+}
+
+.tx-item:active { background: var(--bg-modal-inner); }
+
+/* New tx: fill/action_subtle left accent */
+.tx-item.is-new {
+  background: var(--prim-blue-a8);
+  border-left: 3px solid var(--fill-action);
+}
+
+.tx-logo-wrap {
+  position: relative;
+  flex-shrink: 0;
+  width: var(--sz-40);
+  height: var(--sz-40);
+}
+
+.tx-logo {
+  width: 100%;
+  height: 100%;
+  border-radius: var(--r-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.tx-type-dot {
+  position: absolute;
+  bottom: -1px;
+  right: -1px;
+  width: 16px;
+  height: 16px;
+  border-radius: var(--r-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid var(--bg-general);
+}
+
+.tx-meta { flex: 1; display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+
+.tx-title-row { display: flex; align-items: center; gap: var(--sp-8); }
+
+.tx-title {
+  font-size: var(--f-md);
+  font-weight: var(--fw-med);
+  color: var(--text-primary);
+  line-height: var(--lh-norm);
+  white-space: nowrap;
+}
+
+.tx-addr {
+  font-size: var(--f-sm);
+  color: var(--text-secondary);
+  font-family: ui-monospace, "SF Mono", monospace;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tx-amount-col { text-align: right; flex-shrink: 0; display: flex; flex-direction: column; gap: 3px; }
+
+.tx-val { font-size: var(--f-md); font-weight: var(--fw-med); }
+.tx-val.sent     { color: var(--text-error); }
+.tx-val.received { color: var(--text-success); }
+.tx-val.swap     { color: var(--text-secondary); }
+
+.tx-usd { font-size: var(--f-sm); color: var(--text-secondary); text-align: right; }
+
+/* fill/success_subtle / fill/warning_subtle for chips */
+.status-chip {
+  display: inline-flex;
+  align-items: center;
+  height: 18px;
+  padding: 0 var(--sp-8);
+  border-radius: var(--r-full);
+  font-size: 10px;
+  font-weight: var(--fw-med);
+  line-height: 1;
+  white-space: nowrap;
+  transition: background 300ms, color 300ms;
+}
+
+.status-chip.confirmed  { background: var(--fill-success-subtle); color: var(--text-success); }
+.status-chip.pending    { background: var(--fill-warning-subtle);  color: var(--text-warning); }
+.status-chip.failed     { background: var(--fill-error-subtle);    color: var(--text-error); }
+
+/* History footer CTA */
+.history-footer {
+  padding: var(--sp-12) var(--sp-16) var(--sp-16);
+  border-top: 1px solid var(--border-default);
+  flex-shrink: 0;
+  background: rgba(255,255,255,0.9);
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   DIVIDER
+   ════════════════════════════════════════════════════════════════ */
+.divider { height: 1px; background: var(--border-default); }
+
+/* ═══════════════════════════════════════════════════════════════════
+   SECTION LABEL
+   ════════════════════════════════════════════════════════════════ */
+.section-label {
+  font-size: var(--f-xs);
+  font-weight: var(--fw-bold);
+  color: var(--text-secondary);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   MOBILE OVERRIDE (actual device)
+   ════════════════════════════════════════════════════════════════ */
+@media (max-width: 414px) {
+  body { padding: 0; background: var(--bg-general); }
+  .phone-shell { width: 100vw; height: 100vh; filter: none; }
+  .phone-shell::before { display: none; }
+  .phone { border-radius: 0; }
+}
+</style>
+</head>
+<body>
+
+<div class="phone-shell">
+<div class="phone" id="phone">
+
+<!-- ████████████████████████████████████████████████████████████████
+     SCREEN 1 · SEND
+     Inputs: token selector, amount, recipient address, network fee
+     DS tier: semantic tokens throughout; all Tier 1–3
+████████████████████████████████████████████████████████████████ -->
+<div class="screen is-active" id="sc-send">
+
+  <!-- Status bar -->
+  <div class="status-bar">
+    <span>9:41</span>
+    <div class="status-icons">
+      <!-- Signal -->
+      <svg width="17" height="12" viewBox="0 0 17 12" fill="none">
+        <rect x="0"   y="7"  width="3" height="5"  rx="0.8" fill="currentColor"/>
+        <rect x="4.5" y="4"  width="3" height="8"  rx="0.8" fill="currentColor"/>
+        <rect x="9"   y="1.5" width="3" height="10.5" rx="0.8" fill="currentColor"/>
+        <rect x="13.5" y="0" width="3" height="12" rx="0.8" fill="currentColor" opacity="0.25"/>
+      </svg>
+      <!-- WiFi -->
+      <svg width="15" height="11" viewBox="0 0 15 11" fill="none">
+        <path d="M7.5 9a1.5 1.5 0 100 2 1.5 1.5 0 000-2z" fill="currentColor"/>
+        <path d="M3.8 6.3C4.9 5.2 6.1 4.6 7.5 4.6s2.6.6 3.7 1.7" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+        <path d="M0.7 3.2C2.4 1.5 4.8.6 7.5.6s5.1.9 6.8 2.6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+      </svg>
+      <!-- Battery -->
+      <svg width="24" height="12" viewBox="0 0 24 12" fill="none">
+        <rect x="0.5" y="0.5" width="19" height="11" rx="2.5" stroke="currentColor" opacity="0.35"/>
+        <rect x="2" y="2" width="15" height="8" rx="1.5" fill="currentColor"/>
+        <path d="M20.5 4v4c.9-.4 1.5-1.2 1.5-2s-.6-1.6-1.5-2z" fill="currentColor" opacity="0.4"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- Nav: back (→ history), title, info -->
+  <div class="nav-secondary">
+    <button class="nav-icon-btn" onclick="goTo('sc-history', 'back')" aria-label="Back">
+      <svg width="10" height="17" viewBox="0 0 10 17" fill="none">
+        <path d="M8.5 1.5L1.5 8.5L8.5 15.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    <span class="nav-center">Send</span>
+    <button class="nav-icon-btn" aria-label="Info">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+        <circle cx="10" cy="10" r="8.5" stroke="currentColor" stroke-width="1.4"/>
+        <path d="M10 9v5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        <circle cx="10" cy="6.5" r="0.9" fill="currentColor"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Step indicator: step 1/3 -->
+  <div class="step-indicator">
+    <span class="step-dot is-active"></span>
+    <span class="step-dot"></span>
+    <span class="step-dot"></span>
+  </div>
+
+  <div class="screen-body">
+
+    <!-- Token selector — bg/card, border/default -->
+    <button class="card token-selector" aria-label="Select token">
+      <div class="token-logo">
+        <!-- ETH logo -->
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+          <circle cx="20" cy="20" r="20" fill="#627EEA"/>
+          <path d="M20 8.5v10.3l7.5 3.35L20 8.5z" fill="white" opacity="0.6"/>
+          <path d="M20 8.5L12.5 22.15l7.5-3.35V8.5z" fill="white"/>
+          <path d="M20 27v5.6l7.5-10.4L20 27z" fill="white" opacity="0.6"/>
+          <path d="M20 32.6V27l-7.5-4.8L20 32.6z" fill="white"/>
+          <path d="M20 25.6l7.5-4.45-7.5-3.35v7.8z" fill="white" opacity="0.2"/>
+          <path d="M12.5 21.15L20 25.6V17.8l-7.5 3.35z" fill="white" opacity="0.6"/>
+        </svg>
+      </div>
+      <div class="token-meta">
+        <span class="token-name">ETH</span>
+        <span class="token-network">Ethereum</span>
+      </div>
+      <div class="token-right">
+        <div class="token-balance">1.2580 ETH</div>
+        <div class="token-balance-usd">≈ $3,135.20</div>
+      </div>
+      <svg class="chevron-r" width="7" height="12" viewBox="0 0 7 12" fill="none">
+        <path d="M1 1l5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+
+    <!-- Amount input — bg/card, text/core for amount, text/secondary for USD -->
+    <div class="card">
+      <div class="amount-block">
+        <div class="amount-input-row">
+          <input class="amount-input" type="text" id="amount-val" value="0.5"
+            inputmode="decimal" aria-label="Amount in ETH"/>
+          <span class="amount-unit">ETH</span>
+        </div>
+        <div class="amount-usd" id="amount-usd">≈ $1,247.50</div>
+        <button class="max-btn" onclick="setMax()">MAX</button>
+      </div>
+    </div>
+
+    <!-- Recipient address — bg/card, text/placeholder for empty -->
+    <div class="card field-block">
+      <div class="field-label">To</div>
+      <div class="field-input-row">
+        <input class="address-field" type="text" id="recipient"
+          value="0x1234567890AbCdEf12345678"
+          aria-label="Recipient address"/>
+        <button class="field-chip-btn">Paste</button>
+        <button class="nav-icon-btn" aria-label="Scan QR">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <rect x="2" y="2" width="7" height="7" rx="1.2" stroke="currentColor" stroke-width="1.4"/>
+            <rect x="2" y="11" width="7" height="7" rx="1.2" stroke="currentColor" stroke-width="1.4"/>
+            <rect x="11" y="2" width="7" height="7" rx="1.2" stroke="currentColor" stroke-width="1.4"/>
+            <rect x="13" y="13" width="3" height="3" rx="0.5" fill="currentColor"/>
+            <path d="M11 14.5h2M14.5 11v2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Network fee row — bg/card, text/secondary -->
+    <button class="card fee-row" aria-label="Select network speed">
+      <div style="display:flex;align-items:center;gap:var(--sp-8);flex:1">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="color:var(--stroke-icon-sec)">
+          <circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.3"/>
+          <path d="M8 4.5V8l2.5 1.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="fee-label">Network fee</span>
+      </div>
+      <span class="fee-value">~$2.14 · Standard</span>
+      <svg class="chevron-r" width="7" height="12" viewBox="0 0 7 12" fill="none" style="margin-left:var(--sp-4)">
+        <path d="M1 1l5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+
+  </div><!-- /screen-body -->
+
+  <div class="screen-footer">
+    <button class="btn-primary" onclick="goTo('sc-preview', 'forward')">Next</button>
+  </div>
+  <div class="home-indicator"><div class="home-bar"></div></div>
+</div><!-- /sc-send -->
+
+
+<!-- ████████████████████████████████████████████████████████████████
+     SCREEN 2 · PREVIEW
+     Displays: from/to, amount, fee, total, irreversibility warning
+     DS tier: semantic tokens throughout
+████████████████████████████████████████████████████████████████ -->
+<div class="screen" id="sc-preview">
+
+  <div class="status-bar">
+    <span>9:41</span>
+    <div class="status-icons">
+      <svg width="17" height="12" viewBox="0 0 17 12" fill="none"><rect x="0" y="7" width="3" height="5" rx="0.8" fill="currentColor"/><rect x="4.5" y="4" width="3" height="8" rx="0.8" fill="currentColor"/><rect x="9" y="1.5" width="3" height="10.5" rx="0.8" fill="currentColor"/><rect x="13.5" y="0" width="3" height="12" rx="0.8" fill="currentColor" opacity="0.25"/></svg>
+      <svg width="15" height="11" viewBox="0 0 15 11" fill="none"><path d="M7.5 9a1.5 1.5 0 100 2 1.5 1.5 0 000-2z" fill="currentColor"/><path d="M3.8 6.3C4.9 5.2 6.1 4.6 7.5 4.6s2.6.6 3.7 1.7" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" fill="none"/><path d="M0.7 3.2C2.4 1.5 4.8.6 7.5.6s5.1.9 6.8 2.6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" fill="none"/></svg>
+      <svg width="24" height="12" viewBox="0 0 24 12" fill="none"><rect x="0.5" y="0.5" width="19" height="11" rx="2.5" stroke="currentColor" opacity="0.35"/><rect x="2" y="2" width="15" height="8" rx="1.5" fill="currentColor"/><path d="M20.5 4v4c.9-.4 1.5-1.2 1.5-2s-.6-1.6-1.5-2z" fill="currentColor" opacity="0.4"/></svg>
+    </div>
+  </div>
+
+  <div class="nav-secondary">
+    <button class="nav-icon-btn" onclick="goTo('sc-send', 'back')" aria-label="Back">
+      <svg width="10" height="17" viewBox="0 0 10 17" fill="none"><path d="M8.5 1.5L1.5 8.5L8.5 15.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <span class="nav-center">Send Preview</span>
+    <div style="width:32px"></div>
+  </div>
+
+  <!-- Step 2/3 -->
+  <div class="step-indicator">
+    <span class="step-dot is-done"></span>
+    <span class="step-dot is-active"></span>
+    <span class="step-dot"></span>
+  </div>
+
+  <div class="screen-body">
+
+    <!-- Amount hero: font/heroTitle 32px bold -->
+    <div class="card amount-hero">
+      <div class="amount-hero-big">0.5 ETH</div>
+      <div class="amount-hero-sub">≈ $1,247.50</div>
+    </div>
+
+    <!-- From / To / Network — bg/card + border/default -->
+    <div class="detail-block">
+      <div class="detail-row">
+        <span class="detail-key">From</span>
+        <span class="detail-val mono">0x742d...f53a</span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-key">To</span>
+        <span class="detail-val mono">0x1234...5678</span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-key">Network</span>
+        <div style="display:flex;align-items:center;gap:var(--sp-8)">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <circle cx="7" cy="7" r="6.5" stroke="var(--fill-action)" stroke-width="1.1"/>
+            <path d="M7 3v4l2.5 1.5" stroke="var(--fill-action)" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="detail-val">Ethereum</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fee breakdown — total row uses bg/modal-section-inner -->
+    <div class="detail-block">
+      <div class="detail-row">
+        <span class="detail-key">Amount</span>
+        <div class="detail-val-stack">
+          <span class="detail-val">0.5 ETH</span>
+          <span class="detail-val-sub">≈ $1,247.50</span>
+        </div>
+      </div>
+      <div class="detail-row">
+        <span class="detail-key">Network fee</span>
+        <div class="detail-val-stack">
+          <span class="detail-val">0.00085 ETH</span>
+          <span class="detail-val-sub">≈ $2.14</span>
+        </div>
+      </div>
+      <div class="detail-row total">
+        <span class="detail-key bold">Total</span>
+        <div class="detail-val-stack">
+          <span class="detail-val bold">0.50085 ETH</span>
+          <span class="detail-val-sub">≈ $1,249.64</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Warning — fill/warning_subtle, text/warning -->
+    <div class="warning-banner">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="flex-shrink:0;margin-top:1px;color:var(--text-warning)">
+        <path d="M8 1.5L14.5 13.5H1.5L8 1.5z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/>
+        <path d="M8 6v3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+        <circle cx="8" cy="11.2" r="0.75" fill="currentColor"/>
+      </svg>
+      <p class="warning-text">Blockchain transactions are irreversible. Verify the recipient address carefully before signing.</p>
+    </div>
+
+  </div>
+
+  <div class="screen-footer">
+    <button class="btn-primary" onclick="goTo('sc-sign', 'forward')">Confirm &amp; Sign</button>
+  </div>
+  <div class="home-indicator"><div class="home-bar"></div></div>
+</div><!-- /sc-preview -->
+
+
+<!-- ████████████████████████████████████████████████████████████████
+     SCREEN 3 · SIGN
+     Password authorization before broadcasting transaction
+████████████████████████████████████████████████████████████████ -->
+<div class="screen" id="sc-sign">
+
+  <div class="status-bar">
+    <span>9:41</span>
+    <div class="status-icons">
+      <svg width="17" height="12" viewBox="0 0 17 12" fill="none"><rect x="0" y="7" width="3" height="5" rx="0.8" fill="currentColor"/><rect x="4.5" y="4" width="3" height="8" rx="0.8" fill="currentColor"/><rect x="9" y="1.5" width="3" height="10.5" rx="0.8" fill="currentColor"/><rect x="13.5" y="0" width="3" height="12" rx="0.8" fill="currentColor" opacity="0.25"/></svg>
+      <svg width="15" height="11" viewBox="0 0 15 11" fill="none"><path d="M7.5 9a1.5 1.5 0 100 2 1.5 1.5 0 000-2z" fill="currentColor"/><path d="M3.8 6.3C4.9 5.2 6.1 4.6 7.5 4.6s2.6.6 3.7 1.7" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" fill="none"/><path d="M0.7 3.2C2.4 1.5 4.8.6 7.5.6s5.1.9 6.8 2.6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" fill="none"/></svg>
+      <svg width="24" height="12" viewBox="0 0 24 12" fill="none"><rect x="0.5" y="0.5" width="19" height="11" rx="2.5" stroke="currentColor" opacity="0.35"/><rect x="2" y="2" width="15" height="8" rx="1.5" fill="currentColor"/><path d="M20.5 4v4c.9-.4 1.5-1.2 1.5-2s-.6-1.6-1.5-2z" fill="currentColor" opacity="0.4"/></svg>
+    </div>
+  </div>
+
+  <div class="nav-secondary">
+    <button class="nav-icon-btn" onclick="goTo('sc-preview', 'back')" aria-label="Back">
+      <svg width="10" height="17" viewBox="0 0 10 17" fill="none"><path d="M8.5 1.5L1.5 8.5L8.5 15.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <span class="nav-center">Sign</span>
+    <div style="width:32px"></div>
+  </div>
+
+  <!-- Step 3/3 -->
+  <div class="step-indicator">
+    <span class="step-dot is-done"></span>
+    <span class="step-dot is-done"></span>
+    <span class="step-dot is-active"></span>
+  </div>
+
+  <div class="screen-body">
+
+    <!-- Lock icon + title — fill/action_subtle bg -->
+    <div class="sign-hero">
+      <div class="sign-icon-ring">
+        <!-- Lock/key icon using stroke/action -->
+        <svg width="28" height="32" viewBox="0 0 28 32" fill="none" style="color:var(--fill-action)">
+          <path d="M14 2C8.48 2 4 6.48 4 12v2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <path d="M24 12v2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <rect x="2" y="14" width="24" height="16" rx="4" stroke="currentColor" stroke-width="2"/>
+          <circle cx="14" cy="22" r="3" stroke="currentColor" stroke-width="2"/>
+          <path d="M14 25v3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div style="text-align:center;display:flex;flex-direction:column;gap:var(--sp-4)">
+        <div class="sign-title">Authorize Transaction</div>
+        <div class="sign-subtitle">Send 0.5 ETH to 0x1234...5678<br>on Ethereum</div>
+      </div>
+    </div>
+
+    <!-- Mini tx summary — bg/card -->
+    <div class="detail-block">
+      <div class="detail-row">
+        <span class="detail-key">You send</span>
+        <span class="detail-val" style="color:var(--text-error)">−0.5 ETH</span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-key">Network fee</span>
+        <span class="detail-val">0.00085 ETH</span>
+      </div>
+    </div>
+
+    <!-- Password field — bg/modal-inner -->
+    <div style="display:flex;flex-direction:column;gap:var(--sp-8)">
+      <span class="section-label" style="padding:0 var(--sp-4)">Wallet Password</span>
+      <div class="password-wrap">
+        <input class="password-field" id="pw-input" type="password"
+          value="mypassword123" placeholder="Enter your wallet password"
+          aria-label="Wallet password"/>
+        <button class="password-toggle" onclick="togglePassword()" aria-label="Show password">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M2 10s3-5.5 8-5.5S18 10 18 10s-3 5.5-8 5.5S2 10 2 10z" stroke="currentColor" stroke-width="1.4"/>
+            <circle cx="10" cy="10" r="2.5" stroke="currentColor" stroke-width="1.4"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="screen-footer">
+    <button class="btn-primary" id="sign-btn" onclick="doSign()">Sign</button>
+    <button class="btn-ghost" onclick="goTo('sc-preview', 'back')">Cancel</button>
+  </div>
+  <div class="home-indicator"><div class="home-bar"></div></div>
+</div><!-- /sc-sign -->
+
+
+<!-- ████████████████████████████████████████████████████████████████
+     SCREEN 4 · SUCCESS
+     Transaction broadcast; animated confirmation
+████████████████████████████████████████████████████████████████ -->
+<div class="screen" id="sc-success">
+
+  <div class="status-bar">
+    <span>9:41</span>
+    <div class="status-icons">
+      <svg width="17" height="12" viewBox="0 0 17 12" fill="none"><rect x="0" y="7" width="3" height="5" rx="0.8" fill="currentColor"/><rect x="4.5" y="4" width="3" height="8" rx="0.8" fill="currentColor"/><rect x="9" y="1.5" width="3" height="10.5" rx="0.8" fill="currentColor"/><rect x="13.5" y="0" width="3" height="12" rx="0.8" fill="currentColor" opacity="0.25"/></svg>
+      <svg width="15" height="11" viewBox="0 0 15 11" fill="none"><path d="M7.5 9a1.5 1.5 0 100 2 1.5 1.5 0 000-2z" fill="currentColor"/><path d="M3.8 6.3C4.9 5.2 6.1 4.6 7.5 4.6s2.6.6 3.7 1.7" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" fill="none"/><path d="M0.7 3.2C2.4 1.5 4.8.6 7.5.6s5.1.9 6.8 2.6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" fill="none"/></svg>
+      <svg width="24" height="12" viewBox="0 0 24 12" fill="none"><rect x="0.5" y="0.5" width="19" height="11" rx="2.5" stroke="currentColor" opacity="0.35"/><rect x="2" y="2" width="15" height="8" rx="1.5" fill="currentColor"/><path d="M20.5 4v4c.9-.4 1.5-1.2 1.5-2s-.6-1.6-1.5-2z" fill="currentColor" opacity="0.4"/></svg>
+    </div>
+  </div>
+
+  <!-- Success has no nav — this is a terminal state -->
+  <div class="success-body">
+
+    <!-- Animated checkmark — fill/success_subtle bg, fill/success stroke -->
+    <div class="check-ring" id="check-ring">
+      <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+        <path class="check-path" d="M12 24L21 33L36 16"
+          stroke="var(--prim-green-500)" stroke-width="4"
+          stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+
+    <!-- text/core title, text/secondary desc -->
+    <div style="display:flex;flex-direction:column;align-items:center;gap:var(--sp-8);text-align:center">
+      <div class="success-title">Transaction Sent!</div>
+      <div class="success-desc">
+        0.5 ETH is on its way to<br>
+        <span style="font-family:ui-monospace,'SF Mono',monospace;font-size:var(--f-sm)">0x1234...5678</span>
+      </div>
+    </div>
+
+    <!-- Tx hash — fill/icon_chip bg -->
+    <div class="tx-hash-pill">
+      <svg width="13" height="13" viewBox="0 0 13 13" fill="none" style="color:var(--text-secondary)">
+        <rect x="1" y="1" width="11" height="11" rx="2" stroke="currentColor" stroke-width="1.2"/>
+        <path d="M3.5 4.5h6M3.5 6.5h6M3.5 8.5h4" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
+      </svg>
+      <span class="tx-hash-mono">0x3f4a7c8b...e8f9a</span>
+      <button style="font-size:var(--f-xs);color:var(--text-action);font-weight:var(--fw-med)" onclick="copyHash(this)">Copy</button>
+    </div>
+
+    <!-- text/action link -->
+    <button class="explorer-link">
+      View on Etherscan
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+        <path d="M2.5 9.5L9.5 2.5M5.5 2.5H9.5V6.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+
+  </div>
+
+  <div class="screen-footer">
+    <button class="btn-primary" onclick="goTo('sc-history', 'forward')">Done</button>
+    <button class="btn-ghost" onclick="goTo('sc-history', 'forward')">View History</button>
+  </div>
+  <div class="home-indicator"><div class="home-bar"></div></div>
+</div><!-- /sc-success -->
+
+
+<!-- ████████████████████████████████████████████████████████████████
+     SCREEN 5 · HISTORY / ACTIVITY
+     Transaction list; new tx highlighted as pending → confirmed
+████████████████████████████████████████████████████████████████ -->
+<div class="screen" id="sc-history">
+
+  <div class="nav-primary">
+    <div class="nav-primary-status">
+      <span>9:41</span>
+      <div class="status-icons">
+        <svg width="17" height="12" viewBox="0 0 17 12" fill="none"><rect x="0" y="7" width="3" height="5" rx="0.8" fill="currentColor"/><rect x="4.5" y="4" width="3" height="8" rx="0.8" fill="currentColor"/><rect x="9" y="1.5" width="3" height="10.5" rx="0.8" fill="currentColor"/><rect x="13.5" y="0" width="3" height="12" rx="0.8" fill="currentColor" opacity="0.25"/></svg>
+        <svg width="15" height="11" viewBox="0 0 15 11" fill="none"><path d="M7.5 9a1.5 1.5 0 100 2 1.5 1.5 0 000-2z" fill="currentColor"/><path d="M3.8 6.3C4.9 5.2 6.1 4.6 7.5 4.6s2.6.6 3.7 1.7" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" fill="none"/><path d="M0.7 3.2C2.4 1.5 4.8.6 7.5.6s5.1.9 6.8 2.6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" fill="none"/></svg>
+        <svg width="24" height="12" viewBox="0 0 24 12" fill="none"><rect x="0.5" y="0.5" width="19" height="11" rx="2.5" stroke="currentColor" opacity="0.35"/><rect x="2" y="2" width="15" height="8" rx="1.5" fill="currentColor"/><path d="M20.5 4v4c.9-.4 1.5-1.2 1.5-2s-.6-1.6-1.5-2z" fill="currentColor" opacity="0.4"/></svg>
+      </div>
+    </div>
+    <div class="nav-primary-bar">
+      <div class="brand-mark" aria-hidden="true">
+        <svg width="24" height="17" viewBox="0 0 24 17" fill="none">
+          <path d="M1.5 9.4C1.5 5.53 4.74 2.4 8.73 2.4c1.96 0 3.29.77 4.41 2.19.67.84 1.49 1.24 2.44 1.24 1.92 0 3.42-1.6 4.9-1.6 1.19 0 2.02.58 2.02 1.66 0 3.86-4.16 8.5-10.79 8.5C5.14 14.39 1.5 12.46 1.5 9.4z" fill="currentColor"/>
+        </svg>
+      </div>
+      <div class="nav-primary-actions">
+        <button class="nav-icon-btn" aria-label="Search">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <circle cx="8.5" cy="8.5" r="5.5" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M13 13l3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </button>
+        <button class="nav-icon-btn" aria-label="More">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M3 5h14M3 10h14M3 15h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div class="token-pill" aria-label="Selected tokens">
+      <div class="token-pill-dot eth">
+        <svg width="14" height="14" viewBox="0 0 40 40" fill="none">
+          <path d="M20 8.5v10.3l7.5 3.35L20 8.5z" fill="currentColor" opacity="0.7"/>
+          <path d="M20 8.5L12.5 22.15l7.5-3.35V8.5z" fill="currentColor"/>
+          <path d="M20 27v5.6l7.5-10.4L20 27z" fill="currentColor" opacity="0.7"/>
+          <path d="M20 32.6V27l-7.5-4.8L20 32.6z" fill="currentColor"/>
+        </svg>
+      </div>
+      <div class="token-pill-dot usdt">
+        <span style="font-size:10px;font-weight:700;letter-spacing:0.04em">T</span>
+      </div>
+      <div class="token-pill-dot btc">
+        <span style="font-size:11px;font-weight:700">B</span>
+      </div>
+      <div class="token-pill-dot more">…</div>
+    </div>
+    <div class="beta-badge">Beta</div>
+  </div>
+
+  <div class="history-title-block">
+    <span class="history-title">Activity</span>
+    <span class="history-subtitle">Recent sends, receipts, and swaps synced to this wallet.</span>
+  </div>
+
+  <!-- Filter tabs: fill/icon_chip for active, text/secondary for inactive -->
+  <div class="filter-tabs" role="tablist">
+    <button class="filter-tab is-active" id="tab-all"  onclick="setTab('all')"  role="tab">All</button>
+    <button class="filter-tab"           id="tab-sent" onclick="setTab('sent')" role="tab">Sent</button>
+    <button class="filter-tab"           id="tab-recv" onclick="setTab('recv')" role="tab">Received</button>
+    <button class="filter-tab"           id="tab-swap" onclick="setTab('swap')" role="tab">Swap</button>
+  </div>
+
+  <!-- Transaction list -->
+  <div class="tx-list" id="tx-list">
+
+    <!-- ── Today ── -->
+    <div class="date-group-label">Today</div>
+
+    <!-- TX 1: NEW — prim-blue-a8 highlight, border-left fill/action -->
+    <div class="tx-item is-new" id="new-tx">
+      <div class="tx-logo-wrap">
+        <!-- ETH circle logo -->
+        <div class="tx-logo" style="background:rgba(98,126,234,0.12)">
+          <svg width="22" height="22" viewBox="0 0 40 40">
+            <circle cx="20" cy="20" r="20" fill="#627EEA"/>
+            <path d="M20 8.5v10.3l7.5 3.35L20 8.5z" fill="white" opacity="0.6"/>
+            <path d="M20 8.5L12.5 22.15l7.5-3.35V8.5z" fill="white"/>
+            <path d="M20 27v5.6l7.5-10.4L20 27z" fill="white" opacity="0.6"/>
+            <path d="M20 32.6V27l-7.5-4.8L20 32.6z" fill="white"/>
+          </svg>
+        </div>
+        <!-- Sent badge — fill/error -->
+        <div class="tx-type-dot" style="background:var(--fill-error)">
+          <svg width="8" height="8" viewBox="0 0 8 8" fill="none">
+            <path d="M6 2L2 6M2 2h4v4" stroke="white" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </div>
+      <div class="tx-meta">
+        <div class="tx-title-row">
+          <span class="tx-title">Sent ETH</span>
+          <span class="status-chip pending" id="new-tx-chip">Pending</span>
+        </div>
+        <span class="tx-addr">To 0x1234...5678</span>
+      </div>
+      <div class="tx-amount-col">
+        <span class="tx-val sent">−0.5 ETH</span>
+        <span class="tx-usd">$1,247.50</span>
+      </div>
+    </div>
+
+    <!-- TX 2: Received ETH — fill/success badge -->
+    <div class="tx-item">
+      <div class="tx-logo-wrap">
+        <div class="tx-logo" style="background:rgba(98,126,234,0.12)">
+          <svg width="22" height="22" viewBox="0 0 40 40">
+            <circle cx="20" cy="20" r="20" fill="#627EEA"/>
+            <path d="M20 8.5v10.3l7.5 3.35L20 8.5z" fill="white" opacity="0.6"/>
+            <path d="M20 8.5L12.5 22.15l7.5-3.35V8.5z" fill="white"/>
+            <path d="M20 27v5.6l7.5-10.4L20 27z" fill="white" opacity="0.6"/>
+            <path d="M20 32.6V27l-7.5-4.8L20 32.6z" fill="white"/>
+          </svg>
+        </div>
+        <div class="tx-type-dot" style="background:var(--fill-success)">
+          <svg width="8" height="8" viewBox="0 0 8 8" fill="none">
+            <path d="M2 6L6 2M6 6V2H2" stroke="white" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </div>
+      <div class="tx-meta">
+        <div class="tx-title-row">
+          <span class="tx-title">Received ETH</span>
+          <span class="status-chip confirmed">Confirmed</span>
+        </div>
+        <span class="tx-addr">From 0xAbcd...4567</span>
+      </div>
+      <div class="tx-amount-col">
+        <span class="tx-val received">+1.2 ETH</span>
+        <span class="tx-usd">$2,994.00</span>
+      </div>
+    </div>
+
+    <!-- ── March 28 ── -->
+    <div class="date-group-label">March 28</div>
+
+    <!-- TX 3: Sent USDT -->
+    <div class="tx-item">
+      <div class="tx-logo-wrap">
+        <div class="tx-logo" style="background:rgba(39,161,123,0.12)">
+          <!-- USDT logo -->
+          <svg width="22" height="22" viewBox="0 0 32 32">
+            <circle cx="16" cy="16" r="16" fill="#26A17B"/>
+            <path d="M17.7 17.1c-.1 0-.5.04-1.7.04-1.1 0-1.6-.03-1.7-.04-3.4-.22-5.9-.92-5.9-1.76s2.5-1.55 5.9-1.76v2.8c.1.01.6.04 1.7.04 1.05 0 1.6-.03 1.7-.04v-2.8c3.4.21 5.9.91 5.9 1.76s-2.5 1.54-5.9 1.76zM17.7 13V10.7h4.7V8.2H9.6v2.5h4.7V13c-3.65.24-6.4 1.1-6.4 2.15s2.75 1.91 6.4 2.15v7.45h3.4V17.3c3.65-.24 6.4-1.1 6.4-2.15S21.35 13.24 17.7 13z" fill="white"/>
+          </svg>
+        </div>
+        <div class="tx-type-dot" style="background:var(--fill-error)">
+          <svg width="8" height="8" viewBox="0 0 8 8" fill="none">
+            <path d="M6 2L2 6M2 2h4v4" stroke="white" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </div>
+      <div class="tx-meta">
+        <div class="tx-title-row">
+          <span class="tx-title">Sent USDT</span>
+          <span class="status-chip confirmed">Confirmed</span>
+        </div>
+        <span class="tx-addr">To 0x9876...Def0</span>
+      </div>
+      <div class="tx-amount-col">
+        <span class="tx-val sent">−500 USDT</span>
+        <span class="tx-usd">$500.00</span>
+      </div>
+    </div>
+
+    <!-- ── March 25 ── -->
+    <div class="date-group-label">March 25</div>
+
+    <!-- TX 4: Swap ETH → USDT — text/action icon -->
+    <div class="tx-item">
+      <div class="tx-logo-wrap">
+        <div class="tx-logo" style="background:var(--prim-blue-a8)">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style="color:var(--fill-action)">
+            <path d="M3 7h14M13 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M17 13H3M7 17l-4-4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </div>
+      <div class="tx-meta">
+        <div class="tx-title-row">
+          <span class="tx-title">ETH → USDT</span>
+          <span class="status-chip confirmed">Confirmed</span>
+        </div>
+        <span class="tx-addr">0.2 ETH → 498.2 USDT</span>
+      </div>
+      <div class="tx-amount-col">
+        <span class="tx-val swap">−0.2 ETH</span>
+        <span class="tx-usd">$498.80</span>
+      </div>
+    </div>
+
+    <!-- bottom pad for scrolling -->
+    <div style="height:var(--sp-8)"></div>
+
+  </div><!-- /tx-list -->
+
+  <!-- History footer: Send Again CTA -->
+  <div class="history-footer">
+    <button class="btn-primary" onclick="startNewSend()">Send Again</button>
+  </div>
+  <div class="home-indicator"><div class="home-bar"></div></div>
+</div><!-- /sc-history -->
+
+</div><!-- /phone -->
+</div><!-- /phone-shell -->
+
+<script>
+/* ═══════════════════════════════════════════════════════════════════
+   NAVIGATION ENGINE
+   Forward: current exits left (−28%), next enters from right (100%→0)
+   Back:    current exits right (100%), next enters from left (−28%→0)
+   ════════════════════════════════════════════════════════════════ */
+
+const SCREENS = ['sc-send', 'sc-preview', 'sc-sign', 'sc-success', 'sc-history'];
+const SCREEN_HASH = {
+  'sc-send': 'send',
+  'sc-preview': 'preview',
+  'sc-sign': 'sign',
+  'sc-success': 'success',
+  'sc-history': 'history'
+};
+
+function screenFromHash() {
+  const key = window.location.hash.replace('#', '').trim().toLowerCase();
+  return Object.entries(SCREEN_HASH).find(([, hash]) => hash === key)?.[0] || 'sc-send';
+}
+
+function syncHash(screenId) {
+  const hash = SCREEN_HASH[screenId];
+  if (!hash || window.location.hash === `#${hash}`) return;
+  window.history.replaceState(null, '', `#${hash}`);
+}
+
+function setActiveScreen(screenId) {
+  document.querySelectorAll('.screen').forEach((screen) => {
+    screen.classList.toggle('is-active', screen.id === screenId);
+    if (screen.id !== screenId) {
+      screen.style.transition = '';
+      screen.style.transform = '';
+    } else {
+      screen.style.transform = 'translateX(0)';
+    }
+  });
+
+  if (screenId === 'sc-success') scheduleSuccessAnim();
+  if (screenId === 'sc-history') scheduleConfirmation();
+}
+
+function goTo(targetId, dir) {
+  const current = document.querySelector('.screen.is-active');
+  if (!current || current.id === targetId) return;
+
+  const next = document.getElementById(targetId);
+  if (!next) return;
+
+  // Auto-detect direction if not specified
+  if (!dir) {
+    const ci = SCREENS.indexOf(current.id);
+    const ni = SCREENS.indexOf(targetId);
+    dir = ni > ci ? 'forward' : 'back';
+  }
+
+  // Pre-position the incoming screen off-screen
+  const inFrom  = dir === 'forward' ? 'translateX(100%)'  : 'translateX(-28%)';
+  const outTo   = dir === 'forward' ? 'translateX(-28%)' : 'translateX(100%)';
+
+  next.style.transition = 'none';
+  next.style.transform  = inFrom;
+  next.classList.add('is-active');
+
+  // Trigger success animation when entering success screen
+  if (targetId === 'sc-success') scheduleSuccessAnim();
+  // Trigger tx confirmation when entering history from success
+  if (targetId === 'sc-history') scheduleConfirmation();
+
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      const easing = 'cubic-bezier(0.4, 0, 0.2, 1)';
+      const dur    = '320ms';
+
+      current.style.transition = `transform ${dur} ${easing}`;
+      current.style.transform  = outTo;
+
+      next.style.transition    = `transform ${dur} ${easing}`;
+      next.style.transform     = 'translateX(0)';
+
+      setTimeout(() => {
+        current.classList.remove('is-active');
+        current.style.transition = '';
+        current.style.transform  = '';
+        next.style.transition    = '';
+        syncHash(targetId);
+      }, 330);
+    });
+  });
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   SEND SCREEN — amount input live update
+   ════════════════════════════════════════════════════════════════ */
+const ETH_PRICE = 2495.00;
+
+document.getElementById('amount-val').addEventListener('input', function () {
+  const v = parseFloat(this.value) || 0;
+  document.getElementById('amount-usd').textContent =
+    '≈ $' + (v * ETH_PRICE).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+});
+
+function setMax() {
+  document.getElementById('amount-val').value = '1.2580';
+  document.getElementById('amount-usd').textContent = '≈ $3,135.21';
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   SIGN SCREEN
+   ════════════════════════════════════════════════════════════════ */
+function togglePassword() {
+  const f = document.getElementById('pw-input');
+  f.type = f.type === 'password' ? 'text' : 'password';
+}
+
+function doSign() {
+  const btn = document.getElementById('sign-btn');
+  btn.textContent = 'Signing…';
+  btn.disabled = true;
+
+  // Simulate 1.4s broadcast delay
+  setTimeout(() => {
+    btn.textContent = 'Sign';
+    btn.disabled = false;
+    goTo('sc-success', 'forward');
+  }, 1400);
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   SUCCESS SCREEN — re-trigger animation on each visit
+   ════════════════════════════════════════════════════════════════ */
+function scheduleSuccessAnim() {
+  // Reset then re-trigger CSS animations
+  const ring = document.getElementById('check-ring');
+  const path = document.querySelector('.check-path');
+
+  ring.style.animation = 'none';
+  path.style.animation = 'none';
+
+  // Double RAF ensures the "none" state registers before re-applying
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      ring.style.animation = '';
+      path.style.animation = '';
+    });
+  });
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   HISTORY SCREEN — pending → confirmed after arrival
+   ════════════════════════════════════════════════════════════════ */
+let confirmationTimer = null;
+
+function scheduleConfirmation() {
+  if (confirmationTimer) return; // only once per session
+
+  // Check if we arrived from the success screen (newly sent tx)
+  const successScreen = document.getElementById('sc-success');
+  // Always show as pending on arrival, then flip after 3s
+  const chip  = document.getElementById('new-tx-chip');
+  if (chip) chip.className = 'status-chip pending';
+
+  confirmationTimer = setTimeout(() => {
+    if (chip) {
+      chip.className = 'status-chip confirmed';
+      chip.textContent = 'Confirmed';
+    }
+  }, 3000);
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   HISTORY FILTER TABS
+   ════════════════════════════════════════════════════════════════ */
+function setTab(id) {
+  document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('is-active'));
+  const el = document.getElementById('tab-' + id);
+  if (el) el.classList.add('is-active');
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   SEND AGAIN — reset flow state and navigate to send
+   ════════════════════════════════════════════════════════════════ */
+function startNewSend() {
+  // Reset sign btn state
+  const signBtn = document.getElementById('sign-btn');
+  signBtn.textContent = 'Sign';
+  signBtn.disabled = false;
+
+  // Reset pending chip
+  confirmationTimer = null;
+
+  goTo('sc-send', 'back');
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   MISC UTILITY
+   ════════════════════════════════════════════════════════════════ */
+function copyHash(btn) {
+  // In a real app: navigator.clipboard.writeText('0x3f4a7c8b...e8f9a')
+  btn.textContent = 'Copied!';
+  setTimeout(() => { btn.textContent = 'Copy'; }, 1500);
+}
+
+window.addEventListener('hashchange', () => {
+  setActiveScreen(screenFromHash());
+});
+
+setActiveScreen(screenFromHash());
+syncHash(screenFromHash());
+</script>
+</body>
+</html>

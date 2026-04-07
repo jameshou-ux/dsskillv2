@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>R2D2@DS 技能说明</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <style>
+    :root {
+      --bg: #f5f5f7;
+      --surface: rgba(255, 255, 255, 0.96);
+      --surface-strong: #ffffff;
+      --surface-soft: #fbfbfd;
+      --hero: #000000;
+      --line: rgba(29, 29, 31, 0.1);
+      --line-strong: rgba(29, 29, 31, 0.16);
+      --text: #1d1d1f;
+      --muted: rgba(29, 29, 31, 0.72);
+      --soft: rgba(29, 29, 31, 0.48);
+      --blue: #0071e3;
+      --green: #2f8f4e;
+      --amber: #a46a00;
+      --red: #b42318;
+      --chip-blue: rgba(0, 113, 227, 0.08);
+      --chip-green: rgba(47, 143, 78, 0.08);
+      --chip-amber: rgba(164, 106, 0, 0.1);
+      --shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+      --radius: 28px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text",
+        "PingFang SC", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      background: linear-gradient(180deg, #ffffff, var(--bg));
+      color: var(--text);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    .wrap {
+      width: min(1200px, calc(100vw - 40px));
+      margin: 0 auto;
+      padding: 24px 0 72px;
+    }
+
+    .hero,
+    section {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+
+    .hero {
+      padding: 44px 40px 40px;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 18% 18%, rgba(64, 156, 255, 0.22), transparent 26%),
+        radial-gradient(circle at 78% 0%, rgba(255, 255, 255, 0.18), transparent 24%),
+        linear-gradient(180deg, #0b0b0c, #000000 72%);
+      border-color: rgba(255, 255, 255, 0.08);
+      color: #f5f5f7;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: -40px;
+      top: -90px;
+      width: 320px;
+      height: 320px;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(0, 113, 227, 0.2), transparent 70%);
+      pointer-events: none;
+      filter: blur(6px);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: rgba(255, 255, 255, 0.72);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      margin-bottom: 18px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 20px;
+      height: 1px;
+      background: currentColor;
+      opacity: 0.5;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(36px, 7vw, 72px);
+      line-height: 0.96;
+      letter-spacing: -0.04em;
+      font-weight: 600;
+      max-width: 860px;
+    }
+
+    .lede {
+      margin: 22px 0 0;
+      max-width: 760px;
+      font-size: 19px;
+      line-height: 1.45;
+      color: rgba(255, 255, 255, 0.74);
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 26px;
+    }
+
+    .pill,
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      padding: 7px 11px;
+      border-radius: 999px;
+      font-size: 11px;
+      border: 1px solid var(--line);
+    }
+
+    .pill {
+      background: rgba(255, 255, 255, 0.08);
+      color: rgba(255, 255, 255, 0.92);
+      border-color: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(20px);
+    }
+
+    section {
+      margin-top: 28px;
+      padding: 30px 28px;
+      background: linear-gradient(180deg, #ffffff, #fbfbfd);
+    }
+
+    h2 {
+      margin: 0 0 14px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--soft);
+    }
+
+    h3 {
+      margin: 0 0 10px;
+      font-size: 21px;
+      letter-spacing: -0.02em;
+      line-height: 1.16;
+    }
+
+    p {
+      margin: 0 0 12px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    ul, ol {
+      margin: 10px 0 0;
+      padding-left: 18px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    li { margin: 6px 0; }
+
+    code {
+      font-family: "SF Mono", SFMono-Regular, ui-monospace, Menlo, monospace;
+      font-size: 0.93em;
+      background: rgba(29, 29, 31, 0.05);
+      border: 1px solid rgba(29, 29, 31, 0.08);
+      border-radius: 999px;
+      padding: 1px 6px;
+      color: var(--text);
+    }
+
+    .grid-2,
+    .grid-3 {
+      display: grid;
+      gap: 16px;
+    }
+
+    .grid-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .card {
+      min-height: 100%;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: linear-gradient(180deg, var(--surface-strong), var(--surface-soft));
+      padding: 22px 20px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+    }
+
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .chip {
+      background: var(--chip-blue);
+      color: var(--blue);
+      border-color: rgba(45, 140, 255, 0.12);
+      font-weight: 500;
+    }
+
+    .chip.green {
+      color: var(--green);
+      background: var(--chip-green);
+      border-color: rgba(11, 127, 85, 0.12);
+    }
+
+    .chip.amber {
+      color: var(--amber);
+      background: var(--chip-amber);
+      border-color: rgba(185, 119, 0, 0.14);
+    }
+
+    .note {
+      border-left: 2px solid rgba(0, 113, 227, 0.4);
+      padding-left: 14px;
+    }
+
+    .flow {
+      display: grid;
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .flow-step {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 14px;
+      border-top: 1px solid var(--line);
+      padding-top: 14px;
+    }
+
+    .flow-step:first-child {
+      border-top: none;
+      padding-top: 0;
+    }
+
+    .flow-tag {
+      color: var(--blue);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 600;
+    }
+
+    .example {
+      margin-top: 16px;
+      border: 1px solid rgba(0, 113, 227, 0.12);
+      border-radius: 20px;
+      padding: 18px;
+      background:
+        linear-gradient(180deg, rgba(0, 113, 227, 0.03), rgba(0, 113, 227, 0.015)),
+        #ffffff;
+    }
+
+    .footer {
+      margin-top: 14px;
+      font-size: 11px;
+      color: var(--soft);
+    }
+
+    .hero h1,
+    .hero .lede,
+    .hero code {
+      color: inherit;
+    }
+
+    .hero code {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.12);
+      color: #ffffff;
+    }
+
+    @media (max-width: 900px) {
+      .grid-2,
+      .grid-3 {
+        grid-template-columns: 1fr;
+      }
+
+      .flow-step {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      .hero {
+        padding: 32px 24px 28px;
+      }
+
+      .lede {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="hero">
+      <div class="eyebrow">Skill README</div>
+      <h1>R2D2@DS</h1>
+      <p class="lede">
+        这是一个面向 imToken 内部设计系统的治理型技能。它不替代底层技能，而是负责先判断任务落在哪个场景，再决定如何串接子技能，完成 DS 治理、DS 到设计、设计到 Demo、Prompt 到 Demo，以及 DS 到代码的工作。
+      </p>
+      <div class="meta">
+        <span class="pill">目的：DS 治理 + DS 驱动产出</span>
+        <span class="pill">执行底座：<code>figma-use</code></span>
+        <span class="pill">核心：<code>audit-design-system</code> + <code>figma-generate-library</code></span>
+      </div>
+    </div>
+
+    <section>
+      <h2>技能目的</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>它解决什么问题</h3>
+          <p>用它来治理一个 messy 或正在演进中的设计系统，把设计真正接回 DS，基于设计或 Prompt 生成 Demo，并在条件成熟时推进到代码 handoff。</p>
+          <div class="chip-row">
+            <span class="chip">Governance</span>
+            <span class="chip">Application</span>
+            <span class="chip">Design To Demo</span>
+            <span class="chip">Prompt To Demo</span>
+            <span class="chip">DS To Code</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>它不是什么</h3>
+          <p>它不是自由发挥的设计生成器，也不是直接输出生产代码的单一工具。它更像一个协调器，负责选择技能链路和执行顺序。</p>
+          <div class="chip-row">
+            <span class="chip amber">不是泛化设计生成器</span>
+            <span class="chip amber">不是直接 codegen 工具</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>涉及子技能</h2>
+      <div class="grid-3">
+        <div class="card">
+          <h3>必需</h3>
+          <ul>
+            <li><code>figma-use</code>：Figma 读写执行底座</li>
+            <li><code>audit-design-system</code>：发现具体的 DS drift</li>
+            <li><code>figma-generate-library</code>：判断当前所处阶段与工作顺序</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>按需调用</h3>
+          <ul>
+            <li><code>sync-figma-token</code>：token source 与 Figma 对账</li>
+            <li><code>apply-design-system</code>：section/page 级接回 DS</li>
+            <li><code>rad-spacing</code>：层级与间距治理</li>
+            <li><code>clarify</code> / <code>normalize</code>：命名、文案、规范收敛</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>下游阶段</h3>
+          <ul>
+            <li><code>figma-generate-design</code> / <code>edit-figma-design</code>：基于 DS 的设计生成</li>
+            <li><code>figma-implement-design</code>：Figma 节点到代码翻译</li>
+            <li><code>figma-code-connect-components</code>：组件到代码映射</li>
+            <li><code>cc-figma-*</code>：只用于成熟 family 的 regenerate</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>场景与流程</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>1. DS Governance</h3>
+          <p class="note">目标：让 DS 变得完整、可读、稳定、可治理。</p>
+          <div class="flow">
+            <div class="flow-step">
+              <div class="flow-tag">阶段</div>
+              <div><p><code>figma-generate-library</code> 先判断当前问题属于 foundations、component hardening、page canonization 还是下游任务。</p></div>
+            </div>
+            <div class="flow-step">
+              <div class="flow-tag">审查</div>
+              <div><p><code>audit-design-system</code> 找出 drift、裸值、弱命名、未绑定 token/style 等问题。</p></div>
+            </div>
+            <div class="flow-step">
+              <div class="flow-tag">执行</div>
+              <div><p><code>figma-use</code> 做小步修复。只有涉及 source 对齐时才调用 <code>sync-figma-token</code>。</p></div>
+            </div>
+          </div>
+          <div class="example">
+            <h3>例子</h3>
+            <p>你有一个 DS 文件，里面 variable 很多但 collection 结构混乱，组件还在使用 local fill 和裸 spacing。这个技能会先把任务归类到 governance，再审查具体 drift，最后做小步修复，而不是直接进入原型生成或代码交付。</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>2. DS Application</h3>
+          <p class="note">目标：把 DS 应用到具体产物上。这里不是单一模式，而是一层应用层分流。</p>
+          <div class="flow">
+            <div class="flow-step">
+              <div class="flow-tag">分流</div>
+              <div><p>进入应用层后，必须继续归类到四个子场景之一：<code>DS To Design</code>、<code>Design To Demo</code>、<code>Prompt To Demo</code>、<code>DS To Code</code>。</p></div>
+            </div>
+            <div class="flow-step">
+              <div class="flow-tag">规则</div>
+              <div><p>应用层的关键不是“看起来像 DS”，而是“实际使用 DS”。优先复用真实 DS 组件；没有现成业务组件时，先做最小本地可复用组件，再用实例组装。</p></div>
+            </div>
+            <div class="flow-step">
+              <div class="flow-tag">验证</div>
+              <div><p>应用层结果必须做结构、截图和关键节点数据三层验证，不能只看视觉截图，也不能只看节点存在。</p></div>
+            </div>
+          </div>
+          <div class="example">
+            <h3>例子</h3>
+            <p>一个任务说“基于现有 DS 做 send token flow”。这还不够，技能需要继续判断到底是要写回 Figma、做 Demo、还是直接进入代码 handoff，然后再选对链路。</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>3. DS To Design</h3>
+          <p class="note">目标：基于 DS 生成、修复或扩展 Figma 设计，让设计本身进入真实 DS-backed 状态。</p>
+          <div class="flow">
+            <div class="flow-step">
+              <div class="flow-tag">检查</div>
+              <div><p><code>audit-design-system</code> 先确认页面或页面组里哪些地方没有真正使用系统组件、token、style，或者结构漂移。</p></div>
+            </div>
+            <div class="flow-step">
+              <div class="flow-tag">重连</div>
+              <div><p><code>apply-design-system</code> 负责 section/page 级接回 canonical primitives。<code>figma-use</code> 负责局部 edit、绑定、组件替换和验证。</p></div>
+            </div>
+            <div class="flow-step">
+              <div class="flow-tag">收尾</div>
+              <div><p><code>rad-spacing</code>、<code>clarify</code>、<code>normalize</code> 用于 spacing、copy、命名和规范收敛。目标不是视觉接近，而是让设计在 Figma 里真正使用 DS。</p></div>
+            </div>
+          </div>
+          <div class="example">
+            <h3>例子</h3>
+            <p>一个产品页面是随手搭建的，按钮、卡片、标签都有，但没有绑定 DS variables 或 styles。这个技能会先审查，再把 color、string、dimension、font styles、组件实例和结构一起接回 DS。</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>4. Design To Demo</h3>
+          <p class="note">目标：以现有设计作为主输入，生成非 production 的 Demo。它需要真实使用 DS，而不是只做视觉模仿。</p>
+          <div class="flow">
+            <div class="flow-step">
+              <div class="flow-tag">输入</div>
+              <div><p>设计稿或 DS-backed Figma surface 是主要来源。输出是 prototype、sample implementation 或交互 Demo，而不是最终生产实现。</p></div>
+            </div>
+            <div class="flow-step">
+              <div class="flow-tag">DS 使用</div>
+              <div><p>Demo 必须优先复用真实 DS 组件。没有现成组件时，先做最小本地可复用组件，再用实例组装，而不是重复画 primitives 或只做 token/style 表层对齐。</p></div>
+            </div>
+            <div class="flow-step">
+              <div class="flow-tag">边界</div>
+              <div><p>它和 <code>DS To Code</code> 的区别在于：这里追求可用 Demo 和正确 look &amp; feel，不追求 production-ready 结构与 handoff 质量。</p></div>
+            </div>
+          </div>
+          <div class="example">
+            <h3>例子</h3>
+            <p>你给一张 send token flow 设计稿，要求生成一个 mobile Demo。这个技能会把它视为 design-to-demo：设计是主要输入，结果必须复用 DS，而不是只在视觉上“像”。</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>5. Prompt To Demo</h3>
+          <p class="note">目标：以 prompt、PRD 或产品意图为主输入，直接生成 Demo。默认输出是 Demo，不是 Figma。</p>
+          <div class="flow">
+            <div class="flow-step">
+              <div class="flow-tag">输入</div>
+              <div><p>主要输入是 prompt、PRD、设计 brief 或产品意图。系统需要先把意图翻译成设计要求，再去选 DS surfaces、组件和 token。</p></div>
+            </div>
+            <div class="flow-step">
+              <div class="flow-tag">默认输出</div>
+              <div><p><code>Prompt To Demo</code> 默认是 demo-oriented。若用户最终要的是 Figma 设计稿，应改路由到 <code>DS To Design</code>，不能在这里默认偷换输出面。</p></div>
+            </div>
+            <div class="flow-step">
+              <div class="flow-tag">DS 使用</div>
+              <div><p>规则与 design-to-demo 相同：优先真实 DS 组件，其次最小本地可复用组件；token/style 是基础层，不足以单独证明“用了 DS”。</p></div>
+            </div>
+          </div>
+          <div class="example">
+            <h3>例子</h3>
+            <p>你给出一个“账户安全页”的 prompt，再给一套稳定的 DS，包括 navigation、cards、buttons 和 typography tokens。这个技能会把它视为 prompt-to-demo：先基于 DS 生成 Demo，再做 post-generation audit 和验证。</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>6. DS To Code</h3>
+          <p class="note">目标：从稳定的 canonical Figma surface 或稳定的 DS family 进入代码准备，而不是从历史治理板直接 codegen。</p>
+          <div class="flow">
+            <div class="flow-step">
+              <div class="flow-tag">门槛</div>
+              <div><p>目标页面或组件 family 必须已经 canonical、命名稳定、token 绑定清楚。历史 cleanup board 不能直接作为 handoff surface。</p></div>
+            </div>
+            <div class="flow-step">
+              <div class="flow-tag">翻译</div>
+              <div><p><code>figma-implement-design</code> 用于 node-to-code fidelity，<code>figma-code-connect-components</code> 只在 component mapping 成熟时才使用。</p></div>
+            </div>
+            <div class="flow-step">
+              <div class="flow-tag">回退</div>
+              <div><p>如果 family 还不稳定，就回退到 governance 或其他 application 子场景，不强行进入 code workflow。</p></div>
+            </div>
+          </div>
+          <div class="example">
+            <h3>例子</h3>
+            <p>你想从一个导航 family 生成代码。如果这个 family 已有稳定 variants、token bindings 和 canonical page ownership，就可以进入 DS-to-code。如果这些条件不满足，技能会要求先继续 harden Figma 侧。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>规则</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>必需输入</h3>
+          <ul>
+            <li>当前 DS 的 canonical source token JSON</li>
+            <li>相关的 Figma 文件或页面</li>
+            <li>当结构和对账相关时，需要 adapter 或 governance schema</li>
+            <li>当涉及 design generation 时，需要 intent source</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>停止条件</h3>
+          <ul>
+            <li>缺少必需 skill</li>
+            <li>缺少必需输入</li>
+            <li>页面角色不清</li>
+            <li>DS 应用信心不足</li>
+            <li>当前 surface 还不适合进入 code handoff</li>
+          </ul>
+        </div>
+      </div>
+      <p class="footer">如果缺少必需 skill 或输入，这个技能必须明确告诉用户缺什么、为什么缺、以及需要先补什么，而不是继续猜。</p>
+    </section>
+  </div>
+</body>
+</html>
