@@ -22,6 +22,8 @@ This document is intended to support:
 - page-level normalization before AI-to-code handoff
 - AI-assisted writeback into Figma libraries
 
+For this repo, token naming must remain consistent with the approved token source file, currently [source_token_v5.json](/Users/jameshou/Desktop/imToken%20Repos/dsskillv2%20proj/Iteration%20temp/2026-03-25/source_token_v5.json).
+
 ---
 
 ## Source Hierarchy
@@ -36,6 +38,80 @@ When information conflicts, resolve in this order:
 
 Rule:
 AI may infer only when layers 1-4 do not provide enough information.
+
+---
+
+## Token Naming And Hierarchy
+
+Token naming must follow the approved source token hierarchy, not ad hoc names invented during Figma generation.
+
+Current approved token hierarchy:
+
+- `Primitive.primitive.*`
+- `Light.semantic.*`
+- `Light.pattern.*`
+- `Dark.semantic.*`
+- `Dark.pattern.*`
+
+Use this hierarchy as authoritative for token references and Figma variable grouping.
+
+### Primitive Token Groups
+
+Under `Primitive.primitive.*`, use the existing groups:
+
+- `color`
+- `spacing`
+- `size`
+- `radius`
+- `typography`
+
+Examples:
+
+- `Primitive.primitive.color.blue.500`
+- `Primitive.primitive.color.navy.900`
+- `Primitive.primitive.spacing.16`
+- `Primitive.primitive.size.48`
+- `Primitive.primitive.radius.md`
+- `Primitive.primitive.typography.family.sans`
+- `Primitive.primitive.typography.size.lg`
+
+### Mode-Specific Semantic Token Groups
+
+Use mode-specific semantic groups rather than generic invented aliases.
+
+Examples:
+
+- `Light.semantic.background.card`
+- `Light.semantic.text.primary`
+- `Light.semantic.fill.action`
+- `Light.semantic.border.default`
+- `Light.semantic.font.actionLabel`
+- `Dark.semantic.background.card`
+- `Dark.semantic.text.inverse`
+- `Dark.semantic.stroke.icon_primary`
+
+### Pattern Token Groups
+
+Pattern-level tokens must remain under the approved mode-specific `pattern` branches.
+
+Examples:
+
+- `Light.pattern.surface.card.background`
+- `Light.pattern.surface.card.radius`
+- `Dark.pattern.surface.card.background`
+
+### Naming Rules
+
+- Preserve the existing token branch names from the token source.
+- Do not rename token families inside Figma to match generic schema language.
+- Do not introduce new token aliases when an approved token already exists.
+- If a needed token does not exist, propose it against the token source instead of inventing a Figma-only variable.
+
+Rule:
+
+- Layer naming in Figma may be recommended by this schema.
+- Component property naming in Figma may be recommended by this schema.
+- Token naming must stay consistent with the approved token source.
 
 ---
 
@@ -55,8 +131,8 @@ Examples:
 - `Badge`
 - `Avatar`
 - `IconButton`
-- `Checkbox`
-- `TabsTrigger`
+- `Chip`
+- `NavItem`
 
 Use when:
 
@@ -74,7 +150,7 @@ Examples:
 - `SearchBar`
 - `AssetRow`
 - `StepCard`
-- `BalanceCard`
+- `HoldingCard`
 - `EmptyStateCard`
 
 Use when:
@@ -91,10 +167,10 @@ A reusable screen-level block or section composed of primitives and composites. 
 Examples:
 
 - `PortfolioSummarySection`
-- `TradingTaskPanel`
+- `ActionBarSection`
+- `TradingTaskSection`
 - `OnboardingStepSection`
-- `HeroBanner`
-- `ActionGridSection`
+- `HeroSection`
 
 Use when:
 
@@ -251,6 +327,7 @@ Property names must use design semantics, not engineering internals.
 Rule:
 
 - Do not expose a property unless a designer is likely to use it directly.
+- Property names are recommendations for Figma usability and may differ from code prop names.
 
 ---
 
@@ -404,6 +481,25 @@ Where possible, Figma components must bind to approved variables for:
 - effect tokens where supported
 - typography styles or mapped text styles
 
+Binding references in Figma documentation, AI prompts, and schema mappings must point to the approved token hierarchy from the token source file.
+
+### Preferred Binding Style
+
+When describing bindings, use explicit source-token paths such as:
+
+- `Primitive.primitive.color.blue.500`
+- `Primitive.primitive.radius.full`
+- `Primitive.primitive.spacing.16`
+- `Light.semantic.fill.action`
+- `Light.semantic.font.actionLabel`
+- `Dark.semantic.background.card`
+
+Avoid generic references such as:
+
+- `color.interactive.primary`
+- `radius.full`
+- `text.primary.onBrand`
+
 Rule:
 
 - Local ad hoc values are allowed only in exploration files, not in approved library assets.
@@ -463,7 +559,13 @@ Interpretation:
 - Allowed axes: `Hierarchy`, `Size`, `State`
 - Disallowed axes: page placement, floating behavior, section-specific layout
 - Slots: `Label`, optional `LeadingIcon`, optional `TrailingIcon`
-- Variable bindings: fill, text color, radius, spacing, shadow
+- Variable bindings:
+  - light primary fill -> `Light.semantic.fill.action`
+  - light label text -> `Light.semantic.text.inverse`
+  - dark primary fill -> `Dark.semantic.fill.action`
+  - radius -> `Primitive.primitive.radius.full`
+  - height and paddings -> `Primitive.primitive.size.*` and `Primitive.primitive.spacing.*`
+  - text style -> `Light.semantic.font.actionLabel` / `Dark.semantic.font.actionLabel`
 
 Rule:
 
@@ -495,6 +597,13 @@ Text properties:
 
 - `Label`
 
+Preferred token bindings:
+
+- fill -> `Light.semantic.fill.action` / `Dark.semantic.fill.action`
+- text -> `Light.semantic.text.inverse` / `Dark.semantic.text.inverse`
+- radius -> `Primitive.primitive.radius.full`
+- typography -> `Light.semantic.font.actionLabel` / `Dark.semantic.font.actionLabel`
+
 Not included:
 
 - `Floating`
@@ -517,7 +626,7 @@ Why not a Button variant:
 - often different content structure
 - different designer mental model
 
-### BalanceCard
+### HoldingCard
 
 Layer:
 
@@ -525,7 +634,7 @@ Layer:
 
 Reason:
 
-- Stable reusable composition of existing primitives.
+- Stable reusable composition of existing primitives from the alpha design spec.
 
 ### PortfolioSummarySection
 
@@ -630,6 +739,11 @@ Agent creates or updates:
 - text styles
 - effect styles where practical
 
+Rule:
+
+- Variable collection and naming should mirror the token source hierarchy as closely as Figma allows.
+- Do not flatten or rename token groups unless there is a Figma-specific technical limitation.
+
 ### Step 3: Model Components
 
 Agent classifies each design object as:
@@ -725,3 +839,19 @@ When an agent uses this schema together with a detailed `DESIGN.md`, the expecte
 - handoff-ready pages that are more machine-readable
 
 This document should be used as the Figma-side modeling contract for AI-assisted design system generation and maintenance.
+
+---
+
+## Repo-Specific Notes For Alpha
+
+This schema is currently expected to work with:
+
+- [alpha design.md](/Users/jameshou/Desktop/imToken%20Repos/dsskillv2%20proj/design%20md/alpha%20design.md)
+- [source_token_v5.json](/Users/jameshou/Desktop/imToken%20Repos/dsskillv2%20proj/Iteration%20temp/2026-03-25/source_token_v5.json)
+
+For this repo:
+
+- component names such as `Button`, `IconButton`, `ActionButton`, `Badge`, `Avatar`, `Card`, `SectionPanel`, `Chip`, `Input`, `Progress`, `NavItem`, `StepCard`, `AssetRow`, `HoldingCard`, `TaskCard`, and `ChecklistCard` should be preferred over generic substitutes when matching `DESIGN.md`
+- token references must use the source token naming hierarchy
+- Figma layer naming remains a recommended schema layer, not the token source of truth
+- Figma component property naming remains a recommended schema layer, not the token source of truth
